@@ -96,16 +96,22 @@
 
 
 
-  <meta name="description" content="something about myself and my career development.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Boven&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="在一个figure中画多个subplots在做EDA和Data Visualization中常常会用到的一个code snippet,在这里以kaggle上的titianic数据为例子: 12345# 先导入packagesimport pandas as pdimport matplotlib.pyplot as plt%matplotlib inlineimport seaborn as sn">
+<meta name="keywords" content="EDA,Data Visualization,matplotlib,seaborn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在matplotlib的一个figure中画多个subplots">
+<meta property="og:url" content="http://yoursite.com/2019/04/22/在matplotlib的一个figure中画多个subplots/index.html">
 <meta property="og:site_name" content="Boven&#39;s Blog">
-<meta property="og:description" content="something about myself and my career development.">
+<meta property="og:description" content="在一个figure中画多个subplots在做EDA和Data Visualization中常常会用到的一个code snippet,在这里以kaggle上的titianic数据为例子: 12345# 先导入packagesimport pandas as pdimport matplotlib.pyplot as plt%matplotlib inlineimport seaborn as sn">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/04/22/在matplotlib的一个figure中画多个subplots/countplot_and_pieplot_in_one_figure.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/04/22/在matplotlib的一个figure中画多个subplots/four_subplots_in_one_figure.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/04/22/在matplotlib的一个figure中画多个subplots/four_subplots_in_one_figure_plt_tight_layout.jpg">
+<meta property="og:updated_time" content="2019-04-22T13:34:35.423Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Boven&#39;s Blog">
-<meta name="twitter:description" content="something about myself and my career development.">
+<meta name="twitter:title" content="在matplotlib的一个figure中画多个subplots">
+<meta name="twitter:description" content="在一个figure中画多个subplots在做EDA和Data Visualization中常常会用到的一个code snippet,在这里以kaggle上的titianic数据为例子: 12345# 先导入packagesimport pandas as pdimport matplotlib.pyplot as plt%matplotlib inlineimport seaborn as sn">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/22/在matplotlib的一个figure中画多个subplots/countplot_and_pieplot_in_one_figure.jpg">
 
 
 
@@ -113,7 +119,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/22/在matplotlib的一个figure中画多个subplots/">
 
 
 
@@ -123,7 +129,7 @@
   };
 </script>
 
-  <title>Boven's Blog</title>
+  <title>在matplotlib的一个figure中画多个subplots | Boven's Blog</title>
   
 
 
@@ -171,8 +177,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -214,7 +219,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
 
     
     
@@ -276,9 +281,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -310,10 +315,8 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/22/在matplotlib的一个figure中画多个subplots/" class="post-title-link" itemprop="url">在matplotlib的一个figure中画多个subplots</a>
+          <h1 class="post-title" itemprop="name headline">在matplotlib的一个figure中画多个subplots
+
               
             
           </h1>
@@ -395,9 +398,7 @@
       
 
       
-        
-          
-            <h2 id="在一个figure中画多个subplots"><a href="#在一个figure中画多个subplots" class="headerlink" title="在一个figure中画多个subplots"></a>在一个figure中画多个subplots</h2><p>在做EDA和Data Visualization中常常会用到的一个code snippet,在这里以<a href="https://www.kaggle.com/c/titanic" title="Titanic in Kaggle" target="_blank" rel="noopener">kaggle上的titianic数据为例子</a>:</p>
+        <h2 id="在一个figure中画多个subplots"><a href="#在一个figure中画多个subplots" class="headerlink" title="在一个figure中画多个subplots"></a>在一个figure中画多个subplots</h2><p>在做EDA和Data Visualization中常常会用到的一个code snippet,在这里以<a href="https://www.kaggle.com/c/titanic" title="Titanic in Kaggle" target="_blank" rel="noopener">kaggle上的titianic数据为例子</a>:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 先导入packages</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入数据</span></span><br><span class="line"><span class="comment"># path需根据具体环境作调节</span></span><br><span class="line">path = <span class="string">'input'</span></span><br><span class="line"></span><br><span class="line">train_df = pd.read_csv(<span class="string">''</span>.join([path, <span class="string">'/train.csv'</span>]))</span><br><span class="line">test_df = pd.read_csv(<span class="string">''</span>.join([path, <span class="string">'/test.csv'</span>]))</span><br><span class="line">gender_sub_df = pd.read_csv(<span class="string">''</span>.join([path, <span class="string">'/gender_submission.csv'</span>]))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以Survived特征为例子</span></span><br><span class="line">fig, (ax1, ax2) = plt.subplots(nrows=<span class="number">1</span>, ncols=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ax1</span></span><br><span class="line">sns.countplot(train_df[<span class="string">'Survived'</span>], ax=ax1)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ax2</span></span><br><span class="line"><span class="comment"># autopct参数是用来显示饼图上百分比的</span></span><br><span class="line">ax2.pie(train_df[<span class="string">'Survived'</span>].value_counts(), autopct=<span class="string">'%1.1f%%'</span>)</span><br><span class="line"><span class="comment"># set_aspect('equal')是为了让饼图成圆形(circle)而不是椭圆(ellipse， oval)</span></span><br><span class="line">ax2.set_aspect(<span class="string">'equal'</span>)</span><br><span class="line">plt.set_xlabel(<span class="string">'Survived'</span>)</span><br></pre></td></tr></table></figure>
 <p>其中部分代码也可重写为如下：</p>
@@ -411,8 +412,6 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">fig, ax = plt.subplots(nrows=<span class="number">2</span>, ncols=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ax[0, 0]</span></span><br><span class="line">sns.countplot(train_df[<span class="string">'Survived'</span>], ax=ax[<span class="number">0</span>, <span class="number">0</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># ax[0, 1]</span></span><br><span class="line">ax[<span class="number">0</span>, <span class="number">1</span>].pie(train_df[<span class="string">'Survived'</span>].value_counts(), autopct=<span class="string">'%1.1f%%'</span>)</span><br><span class="line">ax[<span class="number">0</span>, <span class="number">1</span>].set_aspect(<span class="string">'equal'</span>)</span><br><span class="line">ax[<span class="number">0</span>, <span class="number">1</span>].set_xlabel(<span class="string">'Survived'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ax[1, 0]</span></span><br><span class="line">sns.countplot(train_df[<span class="string">'Pclass'</span>], ax=ax[<span class="number">1</span>, <span class="number">0</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># ax[1, 1]</span></span><br><span class="line">ax[<span class="number">1</span>, <span class="number">1</span>].pie(train_df[<span class="string">'Pclass'</span>].value_counts(), autopct=<span class="string">'%1.1f%%'</span>)</span><br><span class="line">ax[<span class="number">1</span>, <span class="number">1</span>].set_aspect(<span class="string">'equal'</span>)</span><br><span class="line">ax[<span class="number">1</span>, <span class="number">1</span>].set_xlabel(<span class="string">'Pclass'</span>)</span><br><span class="line"></span><br><span class="line">plt.tight_layout(h_pad=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
 <p><img src="/2019/04/22/在matplotlib的一个figure中画多个subplots/four_subplots_in_one_figure_plt_tight_layout.jpg" alt="four_subplots_in_one_figure_plt_tight_layout"></p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2>
-          
-        
       
     </div>
 
@@ -433,385 +432,42 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/22/Stantar-2019有感/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bowen Peng">
-      <meta itemprop="description" content="something about myself and my career development.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Boven's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/22/Stantar-2019有感/" class="post-title-link" itemprop="url">Stantar 2019有感</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-22 14:17:54 / 修改时间：20:22:47" itemprop="dateCreated datePublished" datetime="2019-04-22T14:17:54+08:00">2019-04-22</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/data-competition/" itemprop="url" rel="index"><span itemprop="name">data competition</span></a></span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/EDA/" rel="tag"># EDA</a>
           
-
+            <a href="/tags/Data-Visualization/" rel="tag"># Data Visualization</a>
           
-            
-            
+            <a href="/tags/matplotlib/" rel="tag"># matplotlib</a>
           
-
+            <a href="/tags/seaborn/" rel="tag"># seaborn</a>
           
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>看了很多个top solution，尤其是<a href="https://www.kaggle.com/c/santander-customer-transaction-prediction/discussion/88926#latest-518288" target="_blank" rel="noopener">金牌区域的</a>。</p>
-<p>给我感觉在这个比赛中的几个重要的<strong>magic</strong>有：</p>
-<ul>
-<li>frequency coding；在对于匿名数据或者categorical feature上，可以先试着这样做下，一般是会提升local CV之类；</li>
-<li>fake data；对于training set和testing set中的unique value的数量明显不同，让人怀疑testing set中的数据包含伪造数据。对于testing set中的伪造数据进行删除即可。<a href="https://www.kaggle.com/yag320/list-of-fake-samples-and-public-private-lb-split" target="_blank" rel="noopener">List of Fake Samples and Public/Private LB split</a></li>
-<li>independent feature；利用feature间的相互独立性，在用LightGBM训练时，只对某一特征训练，故有200个lgb classifier再对预测结果进行简单的simple linear blending。<a href="https://www.kaggle.com/titericz/giba-single-model-public-0-9245-private-0-9234" target="_blank" rel="noopener">a single model using all features vstacked that is enough for a top20 on Private</a></li>
-</ul>
-<p>感受颇深的是对于这些<strong>magic</strong>，一是自己确实没有通过EDA来发现到，能力有限；二是其实在kernel和discussion中都有多多少少提及到，自己未引起重视又或者不知如何是好。</p>
-<p>个人主要感觉还是：</p>
-<ol>
-<li>在EDA方面考虑得不够到位，而且可以利用：<ol>
-<li>Local CV和LB的提升上差异来分析是哪里的问题，然后解决并使得Local CV和LB的提升近似。比如此次中，一开始无论local CV提升有多高，LB都会锁在9.001上。而解决到fake data的存在后，local CV提升，LB也会随之提升，使得LB锁在9.001的情况不复存在；</li>
-<li>可以根据kernel和discussion区域中，若在新的发布后，上的存在着许多人的大幅度增长，则说明某个kernel或discussion揭露了<strong>magic</strong>；</li>
-</ol>
-</li>
-<li><strong>Model</strong>这一块也是有问题，很明显在NN上存在很多问题，尤其是现在去看top solution中开源的NN代码，会存在很多逻辑看不太懂的情况；</li>
-<li><strong>Parameter Tuning</strong>上面也有问题，除了最基本的<strong>Grid Search</strong>和<strong>Random Search</strong>外，对于<strong>Bayesian optimization</strong>没有理解且无法应用出来。<a href="https://www.kaggle.com/c/santander-customer-transaction-prediction/discussion/89320#517455" target="_blank" rel="noopener">Chris这个discussion给了很多inspirations</a>；</li>
-<li>对于Data Science这块Coding能力上也存在着问题，不能很流畅的阅读代码逻辑；</li>
-<li>这个比赛没有用到<strong>Feature Selection</strong>, 然而这块也是我的弱项；</li>
-<li>在最后如何选取2个<strong>the most robust model</strong>用于提交到PB上也仍未解决。</li>
-</ol>
-<p>不过感觉还是收获了不少，在我上述几方面加强后，还是需要回来reiview Stantar这个比赛的各个solution。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
       
 
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/11/杂谈-为什么要搭一个blog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bowen Peng">
-      <meta itemprop="description" content="something about myself and my career development.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Boven's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/11/杂谈-为什么要搭一个blog/" class="post-title-link" itemprop="url">杂谈-为什么要搭一个blog</a>
-              
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
+              <a href="/2019/04/22/Stantar-2019有感/" rel="next" title="Stantar 2019有感">
+                <i class="fa fa-chevron-left"></i> Stantar 2019有感
+              </a>
             
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-11 15:46:47" itemprop="dateCreated datePublished" datetime="2019-04-11T15:46:47+08:00">2019-04-11</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-22 20:20:11" itemprop="dateModified" datetime="2019-04-22T20:20:11+08:00">2019-04-22</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/杂谈/" itemprop="url" rel="index"><span itemprop="name">杂谈</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h1 id="为什么以前不搭一个blog？"><a href="#为什么以前不搭一个blog？" class="headerlink" title="为什么以前不搭一个blog？"></a>为什么以前不搭一个blog？</h1><p>先谈谈为什么一起没这么个念头，主要有以下几点：</p>
-<ul>
-<li>不想写些看上去很厉害其实没什么用的东西。</li>
-<li>不想写些拾人牙慧的东西。</li>
-<li>不想写些随便Google两下，或者看看两眼官方文档就能搞懂的东西。</li>
-<li>写blog组织语言起来其实很费时。</li>
-</ul>
-<p>而在有的网站上充斥着大量的这类内容，当然不是说没有“金子”在其中，只不过都被“垃圾”掩埋住了，所以在我觉得我不能输出一份没有任何错误的干货下，并不打算输出自己的知识。</p>
-<h1 id="为什么现在又搭了一个自己的blog呢？"><a href="#为什么现在又搭了一个自己的blog呢？" class="headerlink" title="为什么现在又搭了一个自己的blog呢？"></a>为什么现在又搭了一个自己的blog呢？</h1><p>无论是学业，还是生活都遭遇了很多糟心事，总得来说以下几个原因：</p>
-<ul>
-<li>学习状态一直受挫，到现在为止都很难维持住我以前的最佳状态(每天8-10小时有效学习时间)。导致有些东西学了查，查了用，用了忘，忘了又查的循环之中，低效率甚至无效率学习时间过多。我得找个地方记住这些常常需要review的问题。</li>
-<li>刚参加的一场Kaggle比赛，最后比赛结束，结果从Public LB top 7%跌到Private LB  top15%。很受打击，感觉自己学的东西很不扎实。用荀子《劝学》中的一句话来说就是“蚓无爪牙之利，筋骨之强，上食埃土，下饮黄泉，用心一也。蟹六跪而二螯，非蛇鳝之穴无可寄托者，用心躁也。”。我得沉下心来，所以我决定找个地方记录下这个过程。</li>
-<li>常常写blog，可以刷下GitHub的contributions次数，让生活充满绿色(笑)，通过这个激励自己。</li>
-</ul>
-<h1 id="所以呢？"><a href="#所以呢？" class="headerlink" title="所以呢？"></a>所以呢？</h1><p>所以，可能我大概率可能在未来会输出一些我曾认为的“垃圾“。</p>
-<p>Never mind,</p>
-<p><a href="https://en.wikipedia.org/wiki/Lucky_You_(song" target="_blank" rel="noopener">it’s my turn to cut food.</a>)</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -821,14 +477,15 @@
   </article>
 
 
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -848,8 +505,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -947,6 +613,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#在一个figure中画多个subplots"><span class="nav-number">1.</span> <span class="nav-text">在一个figure中画多个subplots</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">2.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -1075,6 +758,10 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
 
   
 
@@ -1090,6 +777,8 @@
 
   
 
+
+  
 
 
   
