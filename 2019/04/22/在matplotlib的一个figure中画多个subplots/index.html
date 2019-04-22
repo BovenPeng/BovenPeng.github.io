@@ -97,7 +97,7 @@
 
 
   <meta name="description" content="在一个figure中画多个subplots在做EDA和Data Visualization中常常会用到的一个code snippet,在这里以kaggle上的titianic数据为例子: 12345# 先导入packagesimport pandas as pdimport matplotlib.pyplot as plt%matplotlib inlineimport seaborn as sn">
-<meta name="keywords" content="EDA,Data Visualization,matplotlib,seaborn">
+<meta name="keywords" content="EDA,Data Visualization,matplotlib,seaborn,hexo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在matplotlib的一个figure中画多个subplots">
 <meta property="og:url" content="http://yoursite.com/2019/04/22/在matplotlib的一个figure中画多个subplots/index.html">
@@ -107,7 +107,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/04/22/在matplotlib的一个figure中画多个subplots/countplot_and_pieplot_in_one_figure.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/04/22/在matplotlib的一个figure中画多个subplots/four_subplots_in_one_figure.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/04/22/在matplotlib的一个figure中画多个subplots/four_subplots_in_one_figure_plt_tight_layout.jpg">
-<meta property="og:updated_time" content="2019-04-22T13:46:42.796Z">
+<meta property="og:updated_time" content="2019-04-22T13:56:54.759Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在matplotlib的一个figure中画多个subplots">
 <meta name="twitter:description" content="在一个figure中画多个subplots在做EDA和Data Visualization中常常会用到的一个code snippet,在这里以kaggle上的titianic数据为例子: 12345# 先导入packagesimport pandas as pdimport matplotlib.pyplot as plt%matplotlib inlineimport seaborn as sn">
@@ -341,7 +341,7 @@
                 
               
 
-              <time title="创建时间：2019-04-22 20:10:02 / 修改时间：21:46:42" itemprop="dateCreated datePublished" datetime="2019-04-22T20:10:02+08:00">2019-04-22</time>
+              <time title="创建时间：2019-04-22 20:10:02 / 修改时间：21:56:54" itemprop="dateCreated datePublished" datetime="2019-04-22T20:10:02+08:00">2019-04-22</time>
             
 
             
@@ -408,9 +408,11 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">fig, ax = plt.subplots(nrows=<span class="number">2</span>, ncols=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ax[0, 0]</span></span><br><span class="line">sns.countplot(train_df[<span class="string">'Survived'</span>], ax=ax[<span class="number">0</span>, <span class="number">0</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># ax[0, 1]</span></span><br><span class="line">ax[<span class="number">0</span>, <span class="number">1</span>].pie(train_df[<span class="string">'Survived'</span>].value_counts(), autopct=<span class="string">'%1.1f%%'</span>)</span><br><span class="line">ax[<span class="number">0</span>, <span class="number">1</span>].set_aspect(<span class="string">'equal'</span>)</span><br><span class="line">ax[<span class="number">0</span>, <span class="number">1</span>].set_xlabel(<span class="string">'Survived'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ax[1, 0]</span></span><br><span class="line">sns.countplot(train_df[<span class="string">'Pclass'</span>], ax=ax[<span class="number">1</span>, <span class="number">0</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># ax[1, 1]</span></span><br><span class="line">ax[<span class="number">1</span>, <span class="number">1</span>].pie(train_df[<span class="string">'Pclass'</span>].value_counts(), autopct=<span class="string">'%1.1f%%'</span>)</span><br><span class="line">ax[<span class="number">1</span>, <span class="number">1</span>].set_aspect(<span class="string">'equal'</span>)</span><br><span class="line">ax[<span class="number">1</span>, <span class="number">1</span>].set_xlabel(<span class="string">'Pclass'</span>)</span><br></pre></td></tr></table></figure>
 <p><img src="/2019/04/22/在matplotlib的一个figure中画多个subplots/four_subplots_in_one_figure.jpg" alt="four_subplots_in_one_figure"></p>
 <p>当然也可以用循环来实现，在此不对这举例了。</p>
-<p>中间还有个小插曲，就是我实现的时候，发现<code>ax[0, 0]</code>的subplot没有<code>x_label</code>,所以还去StackOverflow上面提了个<a href="https://stackoverflow.com/questions/55794894/set-xlabel-is-in-invalid-in-ax0-0-when-drawing-4-subplots-in-one-plot" title="ax[0, 0]的subplot的set_xlabel无效" target="_blank" rel="noopener">Question</a>，发现仅仅是被hidden住了，加上一行<code>plt.tight_layer()</code>代码即可。</p>
+<p>中间还有2个小插曲，就是我实现的时候，发现<code>ax[0, 0]</code>的subplot没有<code>x_label</code>,所以还去StackOverflow上面提了个<a href="https://stackoverflow.com/questions/55794894/set-xlabel-is-in-invalid-in-ax0-0-when-drawing-4-subplots-in-one-plot" title="ax[0, 0]的subplot的set_xlabel无效" target="_blank" rel="noopener">Question</a>，发现仅仅是被hidden住了，加上一行<code>plt.tight_layer()</code>代码即可。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">fig, ax = plt.subplots(nrows=<span class="number">2</span>, ncols=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ax[0, 0]</span></span><br><span class="line">sns.countplot(train_df[<span class="string">'Survived'</span>], ax=ax[<span class="number">0</span>, <span class="number">0</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># ax[0, 1]</span></span><br><span class="line">ax[<span class="number">0</span>, <span class="number">1</span>].pie(train_df[<span class="string">'Survived'</span>].value_counts(), autopct=<span class="string">'%1.1f%%'</span>)</span><br><span class="line">ax[<span class="number">0</span>, <span class="number">1</span>].set_aspect(<span class="string">'equal'</span>)</span><br><span class="line">ax[<span class="number">0</span>, <span class="number">1</span>].set_xlabel(<span class="string">'Survived'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ax[1, 0]</span></span><br><span class="line">sns.countplot(train_df[<span class="string">'Pclass'</span>], ax=ax[<span class="number">1</span>, <span class="number">0</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># ax[1, 1]</span></span><br><span class="line">ax[<span class="number">1</span>, <span class="number">1</span>].pie(train_df[<span class="string">'Pclass'</span>].value_counts(), autopct=<span class="string">'%1.1f%%'</span>)</span><br><span class="line">ax[<span class="number">1</span>, <span class="number">1</span>].set_aspect(<span class="string">'equal'</span>)</span><br><span class="line">ax[<span class="number">1</span>, <span class="number">1</span>].set_xlabel(<span class="string">'Pclass'</span>)</span><br><span class="line"></span><br><span class="line">plt.tight_layout(h_pad=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
 <p><img src="/2019/04/22/在matplotlib的一个figure中画多个subplots/four_subplots_in_one_figure_plt_tight_layout.jpg" alt="four_subplots_in_one_figure_plt_tight_layout"></p>
+<p>还有就是hexo插图片时，若用markdown语法，说是文章在首页无法显示图片，点进去后仍可，所以只可采用最好用标签插件语法来实现，例如：</p>
+<p><code></code></p>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2>
       
     </div>
@@ -441,6 +443,8 @@
             <a href="/tags/matplotlib/" rel="tag"># matplotlib</a>
           
             <a href="/tags/seaborn/" rel="tag"># seaborn</a>
+          
+            <a href="/tags/hexo/" rel="tag"># hexo</a>
           
         </div>
       
@@ -586,7 +590,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">8</span>
+                      
+                    
+                    <span class="site-state-item-count">9</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
