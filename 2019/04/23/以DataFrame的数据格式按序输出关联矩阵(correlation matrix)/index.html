@@ -96,18 +96,21 @@
 
 
 
-  <meta name="description" content="看了很多个top solution，尤其是金牌区域的。 给我感觉在这个比赛中的几个重要的magic有：  frequency coding；在对于匿名数据或者categorical feature上，可以先试着这样做下，一般是会提升local CV之类； fake data；对于training set和testing set中的unique value的数量明显不同，让人怀疑testing se">
-<meta name="keywords" content="kaggle,data competition,学习计划">
+  <meta name="description" content="一般来说在做EDA的时候，我们都是输出相关矩阵的热力图或者是以表格形式输出。 但是我在Stantar 2019的一个kernel见到了按序输出关联矩阵系数的代码，故在此基础上进行了一定修改，实现了一个自己的code snippet. 具体例子见下：(此处数据采用Titanic in Kaggle) 12train_corr = train_df.drop(&apos;PassengerId&apos;, axis=1">
+<meta name="keywords" content="EDA,Code Snippet,Data Visualization,Pandas">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Stantar 2019有感">
-<meta property="og:url" content="http://yoursite.com/2019/04/22/Stantar-2019有感/index.html">
+<meta property="og:title" content="以DataFrame的形式按序输出关联矩阵(correlation matrix)">
+<meta property="og:url" content="http://yoursite.com/2019/04/23/以DataFrame的数据格式按序输出关联矩阵(correlation matrix)/index.html">
 <meta property="og:site_name" content="Boven&#39;s Blog">
-<meta property="og:description" content="看了很多个top solution，尤其是金牌区域的。 给我感觉在这个比赛中的几个重要的magic有：  frequency coding；在对于匿名数据或者categorical feature上，可以先试着这样做下，一般是会提升local CV之类； fake data；对于training set和testing set中的unique value的数量明显不同，让人怀疑testing se">
+<meta property="og:description" content="一般来说在做EDA的时候，我们都是输出相关矩阵的热力图或者是以表格形式输出。 但是我在Stantar 2019的一个kernel见到了按序输出关联矩阵系数的代码，故在此基础上进行了一定修改，实现了一个自己的code snippet. 具体例子见下：(此处数据采用Titanic in Kaggle) 12train_corr = train_df.drop(&apos;PassengerId&apos;, axis=1">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-22T12:22:47.593Z">
+<meta property="og:image" content="http://yoursite.com/2019/04/23/以DataFrame的数据格式按序输出关联矩阵(correlation%20matrix)/heatmap.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/04/23/以DataFrame的数据格式按序输出关联矩阵(correlation%20matrix)/correlation_matrix_HD.jpg">
+<meta property="og:updated_time" content="2019-04-24T14:46:29.048Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Stantar 2019有感">
-<meta name="twitter:description" content="看了很多个top solution，尤其是金牌区域的。 给我感觉在这个比赛中的几个重要的magic有：  frequency coding；在对于匿名数据或者categorical feature上，可以先试着这样做下，一般是会提升local CV之类； fake data；对于training set和testing set中的unique value的数量明显不同，让人怀疑testing se">
+<meta name="twitter:title" content="以DataFrame的形式按序输出关联矩阵(correlation matrix)">
+<meta name="twitter:description" content="一般来说在做EDA的时候，我们都是输出相关矩阵的热力图或者是以表格形式输出。 但是我在Stantar 2019的一个kernel见到了按序输出关联矩阵系数的代码，故在此基础上进行了一定修改，实现了一个自己的code snippet. 具体例子见下：(此处数据采用Titanic in Kaggle) 12train_corr = train_df.drop(&apos;PassengerId&apos;, axis=1">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/23/以DataFrame的数据格式按序输出关联矩阵(correlation%20matrix)/heatmap.jpg">
 
 
 
@@ -115,7 +118,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/04/22/Stantar-2019有感/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/23/以DataFrame的数据格式按序输出关联矩阵(correlation matrix)/">
 
 
 
@@ -125,7 +128,7 @@
   };
 </script>
 
-  <title>Stantar 2019有感 | Boven's Blog</title>
+  <title>以DataFrame的形式按序输出关联矩阵(correlation matrix) | Boven's Blog</title>
   
 
 
@@ -294,7 +297,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/22/Stantar-2019有感/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/23/以DataFrame的数据格式按序输出关联矩阵(correlation matrix)/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bowen Peng">
@@ -311,7 +314,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Stantar 2019有感
+          <h1 class="post-title" itemprop="name headline">以DataFrame的形式按序输出关联矩阵(correlation matrix)
 
               
             
@@ -337,12 +340,24 @@
                 
               
 
-              <time title="创建时间：2019-04-22 14:17:54 / 修改时间：20:22:47" itemprop="dateCreated datePublished" datetime="2019-04-22T14:17:54+08:00">2019-04-22</time>
+              <time title="创建时间：2019-04-23 20:45:53" itemprop="dateCreated datePublished" datetime="2019-04-23T20:45:53+08:00">2019-04-23</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-24 22:46:29" itemprop="dateModified" datetime="2019-04-24T22:46:29+08:00">2019-04-24</time>
               
             
           </span>
@@ -359,7 +374,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/data-competition/" itemprop="url" rel="index"><span itemprop="name">data competition</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EDA/" itemprop="url" rel="index"><span itemprop="name">EDA</span></a></span>
 
                 
                 
@@ -394,28 +409,22 @@
       
 
       
-        <p>看了很多个top solution，尤其是<a href="https://www.kaggle.com/c/santander-customer-transaction-prediction/discussion/88926#latest-518288" target="_blank" rel="noopener">金牌区域的</a>。</p>
-<p>给我感觉在这个比赛中的几个重要的<strong>magic</strong>有：</p>
-<ul>
-<li>frequency coding；在对于匿名数据或者categorical feature上，可以先试着这样做下，一般是会提升local CV之类；</li>
-<li>fake data；对于training set和testing set中的unique value的数量明显不同，让人怀疑testing set中的数据包含伪造数据。对于testing set中的伪造数据进行删除即可。<a href="https://www.kaggle.com/yag320/list-of-fake-samples-and-public-private-lb-split" target="_blank" rel="noopener">List of Fake Samples and Public/Private LB split</a></li>
-<li>independent feature；利用feature间的相互独立性，在用LightGBM训练时，只对某一特征训练，故有200个lgb classifier再对预测结果进行简单的simple linear blending。<a href="https://www.kaggle.com/titericz/giba-single-model-public-0-9245-private-0-9234" target="_blank" rel="noopener">a single model using all features vstacked that is enough for a top20 on Private</a></li>
-</ul>
-<p>感受颇深的是对于这些<strong>magic</strong>，一是自己确实没有通过EDA来发现到，能力有限；二是其实在kernel和discussion中都有多多少少提及到，自己未引起重视又或者不知如何是好。</p>
-<p>个人主要感觉还是：</p>
-<ol>
-<li>在EDA方面考虑得不够到位，而且可以利用：<ol>
-<li>Local CV和LB的提升上差异来分析是哪里的问题，然后解决并使得Local CV和LB的提升近似。比如此次中，一开始无论local CV提升有多高，LB都会锁在9.001上。而解决到fake data的存在后，local CV提升，LB也会随之提升，使得LB锁在9.001的情况不复存在；</li>
-<li>可以根据kernel和discussion区域中，若在新的发布后，上的存在着许多人的大幅度增长，则说明某个kernel或discussion揭露了<strong>magic</strong>；</li>
-</ol>
-</li>
-<li><strong>Model</strong>这一块也是有问题，很明显在NN上存在很多问题，尤其是现在去看top solution中开源的NN代码，会存在很多逻辑看不太懂的情况；</li>
-<li><strong>Parameter Tuning</strong>上面也有问题，除了最基本的<strong>Grid Search</strong>和<strong>Random Search</strong>外，对于<strong>Bayesian optimization</strong>没有理解且无法应用出来。<a href="https://www.kaggle.com/c/santander-customer-transaction-prediction/discussion/89320#517455" target="_blank" rel="noopener">Chris这个discussion给了很多inspirations</a>；</li>
-<li>对于Data Science这块Coding能力上也存在着问题，不能很流畅的阅读代码逻辑；</li>
-<li>这个比赛没有用到<strong>Feature Selection</strong>, 然而这块也是我的弱项；</li>
-<li>在最后如何选取2个<strong>the most robust model</strong>用于提交到PB上也仍未解决。</li>
-</ol>
-<p>不过感觉还是收获了不少，在我上述几方面加强后，还是需要回来reiview Stantar这个比赛的各个solution。</p>
+        <p>一般来说在做EDA的时候，我们都是输出相关矩阵的热力图或者是以表格形式输出。</p>
+<p>但是我在Stantar 2019的一个<a href="https://www.kaggle.com/artgor/santander-eda-fe-fs-and-models" target="_blank" rel="noopener">kernel</a>见到了按序输出关联矩阵系数的代码，故在此基础上进行了一定修改，实现了一个自己的code snippet.</p>
+<p>具体例子见下：(此处数据采用<a href="https://www.kaggle.com/c/titanic" target="_blank" rel="noopener">Titanic in Kaggle</a>)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">train_corr = train_df.drop(<span class="string">'PassengerId'</span>, axis=<span class="number">1</span>).corr()</span><br><span class="line">train_corr</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置热力图尺寸为(20, 12)</span></span><br><span class="line">plt.subplots(figsize=(<span class="number">20</span>, <span class="number">12</span>))</span><br><span class="line">sns.heatmap(train_corr, vmin=<span class="number">-1</span>, vmax=<span class="number">1</span>, annot=<span class="literal">True</span>, square=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<img src="/2019/04/23/以DataFrame的数据格式按序输出关联矩阵(correlation%20matrix)/heatmap.jpg" title="heatmap">
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">corr = train_corr.abs().unstack().sort_values(kind=<span class="string">'quicksort'</span>, ascending=<span class="literal">False</span>).reset_index()</span><br><span class="line">corr = corr[(corr[<span class="string">'level_0'</span>] != corr[<span class="string">'level_1'</span>]) &amp; (corr[<span class="string">'level_0'</span>] == <span class="string">'Survived'</span>)]</span><br><span class="line">corr</span><br></pre></td></tr></table></figure>
+<img src="/2019/04/23/以DataFrame的数据格式按序输出关联矩阵(correlation%20matrix)/correlation_matrix_HD.jpg" title="correlation_matrx">
+<p>一般是设置<code>ascending</code>参数，来看你是想要按序输出高或低相关度.</p>
+<p>这里feature数量比较少，故直接输出，一般是<code>corr</code>调用<code>tail()</code>或者<code>head()</code>来输出该顺序中的后或前几个相关系数。例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">corr.tail(<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<p>下一篇会在再讲下，如何将<code>Pandas.DataFrame</code>的表格存储为图片，这也是在写这篇blog过程中的一点idea的实现.</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a href="https://www.kaggle.com/c/titanic" target="_blank" rel="noopener">Titanic in Kaggle</a></p>
+<p><a href="https://www.kaggle.com/artgor/santander-eda-fe-fs-and-models" target="_blank" rel="noopener">按序输出correlation matrix出处</a></p>
+<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.unstack.html" target="_blank" rel="noopener">Pandas.DataFrame.unstack</a></p>
+<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.reset_index.html" target="_blank" rel="noopener">Pandas.DataFrame.reset_index</a></p>
 
       
     </div>
@@ -439,11 +448,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/kaggle/" rel="tag"># kaggle</a>
+            <a href="/tags/EDA/" rel="tag"># EDA</a>
           
-            <a href="/tags/data-competition/" rel="tag"># data competition</a>
+            <a href="/tags/Code-Snippet/" rel="tag"># Code Snippet</a>
           
-            <a href="/tags/学习计划/" rel="tag"># 学习计划</a>
+            <a href="/tags/Data-Visualization/" rel="tag"># Data Visualization</a>
+          
+            <a href="/tags/Pandas/" rel="tag"># Pandas</a>
           
         </div>
       
@@ -456,8 +467,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/11/一些学习计划/" rel="next" title="一些学习计划">
-                <i class="fa fa-chevron-left"></i> 一些学习计划
+              <a href="/2019/04/22/在matplotlib的一个figure中画多个subplots/" rel="next" title="在matplotlib的一个figure中画多个subplots">
+                <i class="fa fa-chevron-left"></i> 在matplotlib的一个figure中画多个subplots
               </a>
             
           </div>
@@ -465,10 +476,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/22/在matplotlib的一个figure中画多个subplots/" rel="prev" title="在matplotlib的一个figure中画多个subplots">
-                在matplotlib的一个figure中画多个subplots <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -512,8 +519,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -619,6 +635,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">1.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
