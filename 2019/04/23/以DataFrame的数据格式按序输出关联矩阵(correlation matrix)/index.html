@@ -96,20 +96,20 @@
 
 
 
-  <meta name="description" content="一般来说在做EDA的时候，我们都是输出相关矩阵的热力图或者是以表格形式输出。 但是我在Stantar 2019的一个kernel见到了按序输出关联矩阵系数的代码，故在此基础上进行了一定修改，实现了一个自己的code snippet. 具体例子见下：(此处数据采用Titanic in Kaggle) 12train_corr = train_df.drop(&apos;PassengerId&apos;, axis=1">
-<meta name="keywords" content="EDA,Code Snippet,Data Visualization,Pandas">
+  <meta name="description" content="以DataFrame的形式按序输出关联矩阵(correlation matrix)一般来说在做EDA的时候，我们都是输出相关矩阵的热力图或者是以表格形式输出。 但是我在Stantar 2019的一个kernel见到了按序输出关联矩阵系数的代码，故在此基础上进行了一定修改，实现了一个自己的code snippet. 具体例子见下：(此处数据采用Titanic in Kaggle) 12train_c">
+<meta name="keywords" content="code snippet,EDA,pandas,data disualization">
 <meta property="og:type" content="article">
 <meta property="og:title" content="以DataFrame的形式按序输出关联矩阵(correlation matrix)">
 <meta property="og:url" content="http://yoursite.com/2019/04/23/以DataFrame的数据格式按序输出关联矩阵(correlation matrix)/index.html">
 <meta property="og:site_name" content="Boven&#39;s Blog">
-<meta property="og:description" content="一般来说在做EDA的时候，我们都是输出相关矩阵的热力图或者是以表格形式输出。 但是我在Stantar 2019的一个kernel见到了按序输出关联矩阵系数的代码，故在此基础上进行了一定修改，实现了一个自己的code snippet. 具体例子见下：(此处数据采用Titanic in Kaggle) 12train_corr = train_df.drop(&apos;PassengerId&apos;, axis=1">
+<meta property="og:description" content="以DataFrame的形式按序输出关联矩阵(correlation matrix)一般来说在做EDA的时候，我们都是输出相关矩阵的热力图或者是以表格形式输出。 但是我在Stantar 2019的一个kernel见到了按序输出关联矩阵系数的代码，故在此基础上进行了一定修改，实现了一个自己的code snippet. 具体例子见下：(此处数据采用Titanic in Kaggle) 12train_c">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2019/04/23/以DataFrame的数据格式按序输出关联矩阵(correlation%20matrix)/heatmap.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/04/23/以DataFrame的数据格式按序输出关联矩阵(correlation%20matrix)/correlation_matrix_HD.jpg">
-<meta property="og:updated_time" content="2019-04-24T14:46:29.048Z">
+<meta property="og:updated_time" content="2019-04-25T14:03:34.268Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="以DataFrame的形式按序输出关联矩阵(correlation matrix)">
-<meta name="twitter:description" content="一般来说在做EDA的时候，我们都是输出相关矩阵的热力图或者是以表格形式输出。 但是我在Stantar 2019的一个kernel见到了按序输出关联矩阵系数的代码，故在此基础上进行了一定修改，实现了一个自己的code snippet. 具体例子见下：(此处数据采用Titanic in Kaggle) 12train_corr = train_df.drop(&apos;PassengerId&apos;, axis=1">
+<meta name="twitter:description" content="以DataFrame的形式按序输出关联矩阵(correlation matrix)一般来说在做EDA的时候，我们都是输出相关矩阵的热力图或者是以表格形式输出。 但是我在Stantar 2019的一个kernel见到了按序输出关联矩阵系数的代码，故在此基础上进行了一定修改，实现了一个自己的code snippet. 具体例子见下：(此处数据采用Titanic in Kaggle) 12train_c">
 <meta name="twitter:image" content="http://yoursite.com/2019/04/23/以DataFrame的数据格式按序输出关联矩阵(correlation%20matrix)/heatmap.jpg">
 
 
@@ -357,7 +357,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-24 22:46:29" itemprop="dateModified" datetime="2019-04-24T22:46:29+08:00">2019-04-24</time>
+                <time title="修改时间：2019-04-25 22:03:34" itemprop="dateModified" datetime="2019-04-25T22:03:34+08:00">2019-04-25</time>
               
             
           </span>
@@ -409,7 +409,7 @@
       
 
       
-        <p>一般来说在做EDA的时候，我们都是输出相关矩阵的热力图或者是以表格形式输出。</p>
+        <h1 id="以DataFrame的形式按序输出关联矩阵-correlation-matrix"><a href="#以DataFrame的形式按序输出关联矩阵-correlation-matrix" class="headerlink" title="以DataFrame的形式按序输出关联矩阵(correlation matrix)"></a>以DataFrame的形式按序输出关联矩阵(correlation matrix)</h1><p>一般来说在做EDA的时候，我们都是输出相关矩阵的热力图或者是以表格形式输出。</p>
 <p>但是我在Stantar 2019的一个<a href="https://www.kaggle.com/artgor/santander-eda-fe-fs-and-models" target="_blank" rel="noopener">kernel</a>见到了按序输出关联矩阵系数的代码，故在此基础上进行了一定修改，实现了一个自己的code snippet.</p>
 <p>具体例子见下：(此处数据采用<a href="https://www.kaggle.com/c/titanic" target="_blank" rel="noopener">Titanic in Kaggle</a>)</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">train_corr = train_df.drop(<span class="string">'PassengerId'</span>, axis=<span class="number">1</span>).corr()</span><br><span class="line">train_corr</span><br></pre></td></tr></table></figure>
@@ -448,13 +448,13 @@
       
         <div class="post-tags">
           
+            <a href="/tags/code-snippet/" rel="tag"># code snippet</a>
+          
             <a href="/tags/EDA/" rel="tag"># EDA</a>
           
-            <a href="/tags/Code-Snippet/" rel="tag"># Code Snippet</a>
+            <a href="/tags/pandas/" rel="tag"># pandas</a>
           
-            <a href="/tags/Data-Visualization/" rel="tag"># Data Visualization</a>
-          
-            <a href="/tags/Pandas/" rel="tag"># Pandas</a>
+            <a href="/tags/data-disualization/" rel="tag"># data disualization</a>
           
         </div>
       
@@ -476,6 +476,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/25/将DataFrame中的数据以表格的形式另存为图片/" rel="prev" title="将DataFrame中的数据以表格的形式另存为图片">
+                将DataFrame中的数据以表格的形式另存为图片 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -544,7 +548,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -569,7 +573,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -608,7 +614,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">11</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -646,7 +656,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">1.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#以DataFrame的形式按序输出关联矩阵-correlation-matrix"><span class="nav-number">1.</span> <span class="nav-text">以DataFrame的形式按序输出关联矩阵(correlation matrix)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">2.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>
