@@ -8,22 +8,22 @@
         <category>Pandas</category>
       </categories>
       <tags>
-        <tag>matplotlib</tag>
-        <tag>seaborn</tag>
         <tag>pandas</tag>
         <tag>Code Snippet</tag>
+        <tag>matplotlib</tag>
+        <tag>seaborn</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[以DataFrame的形式按序输出关联矩阵(correlation matrix)]]></title>
     <url>%2F2019%2F04%2F23%2F%E4%BB%A5DataFrame%E7%9A%84%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F%E6%8C%89%E5%BA%8F%E8%BE%93%E5%87%BA%E5%85%B3%E8%81%94%E7%9F%A9%E9%98%B5(correlation%20matrix)%2F</url>
-    <content type="text"><![CDATA[以DataFrame的形式按序输出关联矩阵(correlation matrix)一般来说在做EDA的时候，我们都是输出相关矩阵的热力图或者是以表格形式输出。 但是我在Stantar 2019的一个kernel见到了按序输出关联矩阵系数的代码，故在此基础上进行了一定修改，实现了一个自己的code snippet. 具体例子见下：(此处数据采用Titanic in Kaggle) 12train_corr = train_df.drop('PassengerId', axis=1).corr()train_corr 123# 设置热力图尺寸为(20, 12)plt.subplots(figsize=(20, 12))sns.heatmap(train_corr, vmin=-1, vmax=1, annot=True, square=True) 123corr = train_corr.abs().unstack().sort_values(kind='quicksort', ascending=False).reset_index()corr = corr[(corr['level_0'] != corr['level_1']) &amp; (corr['level_0'] == 'Survived')]corr 一般是设置ascending参数，来看你是想要按序输出高或低相关度. 这里feature数量比较少，故直接输出，一般是corr调用tail()或者head()来输出该顺序中的后或前几个相关系数。例如： 1corr.tail(4) 下一篇会在再讲下，如何将Pandas.DataFrame的表格存储为图片，这也是在写这篇blog过程中的一点idea的实现. ReferenceTitanic in Kaggle 按序输出correlation matrix出处 Pandas.DataFrame.unstack Pandas.DataFrame.reset_index]]></content>
+    <content type="text"><![CDATA[以DataFrame的形式按序输出关联矩阵(correlation matrix)一般来说在做EDA的时候，我们都是输出相关矩阵的热力图或者是以表格形式输出。 但是我在Stantar 2019的一个kernel见到了按序输出关联矩阵系数的代码，故在此基础上进行了一定修改，实现了一个自己的code snippet. 具体例子见下：(此处数据采用Titanic in Kaggle) 12train_corr = train_df.drop(['PassengerId'], axis=1).corr()train_corr 123# 设置热力图尺寸为(20, 12)plt.subplots(figsize=(20, 12))sns.heatmap(train_corr, vmin=-1, vmax=1, annot=True, square=True) 123corr = train_corr.abs().unstack().sort_values(kind='quicksort', ascending=False).reset_index()corr = corr[(corr['level_0'] != corr['level_1']) &amp; (corr['level_0'] == 'Survived')]corr 一般是设置ascending参数，来看你是想要按序输出高或低相关度. 这里feature数量比较少，故直接输出，一般是corr调用tail()或者head()来输出该顺序中的后或前几个相关系数。例如： 1corr.tail(4) 下一篇会在再讲下，如何将Pandas.DataFrame的表格存储为图片，这也是在写这篇blog过程中的一点idea的实现. ReferenceTitanic in Kaggle 按序输出correlation matrix出处 Pandas.DataFrame.unstack Pandas.DataFrame.reset_index]]></content>
       <categories>
         <category>EDA</category>
       </categories>
       <tags>
-        <tag>EDA</tag>
         <tag>code snippet</tag>
+        <tag>EDA</tag>
         <tag>pandas</tag>
         <tag>data disualization</tag>
       </tags>
@@ -36,11 +36,11 @@
         <category>EDA</category>
       </categories>
       <tags>
-        <tag>EDA</tag>
         <tag>code snippet</tag>
-        <tag>data visualization</tag>
+        <tag>EDA</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
+        <tag>data visualization</tag>
         <tag>hexo</tag>
       </tags>
   </entry>
@@ -52,9 +52,9 @@
         <category>data competition</category>
       </categories>
       <tags>
+        <tag>学习计划</tag>
         <tag>kaggle</tag>
         <tag>data competition</tag>
-        <tag>学习计划</tag>
       </tags>
   </entry>
   <entry>
