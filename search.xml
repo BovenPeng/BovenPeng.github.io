@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA['在调用folds.split()]]></title>
+    <url>%2F2019%2F07%2F01%2F%E5%9C%A8%E8%B0%83%E7%94%A8folds-split%E4%BD%BF%E7%94%A8tqdm%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
+    <title><![CDATA['如何将相对unix初始时间的时间差转换为当前时间轴']]></title>
+    <url>%2F2019%2F07%2F01%2F%E5%A6%82%E4%BD%95%E5%B0%86%E7%9B%B8%E5%AF%B9unix%E5%88%9D%E5%A7%8B%E6%97%B6%E9%97%B4%E7%9A%84%E6%97%B6%E9%97%B4%E5%B7%AE%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%BD%93%E5%89%8D%E6%97%B6%E9%97%B4%E8%BD%B4%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[内存不够时，替代sns.countplot()的实现方法]]></title>
     <url>%2F2019%2F06%2F24%2F%E5%86%85%E5%AD%98%E4%B8%8D%E5%A4%9F%E6%97%B6%EF%BC%8C%E6%9B%BF%E4%BB%A3sns-countplot-%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95%2F</url>
     <content type="text"><![CDATA[内存不够时，替代sns.countplot()的实现方法最近做EDA的的时候会存在这样一种情况，数据量过大时，直接使用sns.countplot()内存很容易直接被榨干掉。 暂时没想清为什么会直接占用那么多内存，应该去StackOverflow提个Q的。 不过想了下又查了下StackOverflow，应该有用df.value_counts() 和 matplotlib来实现sns.countplot()的实现方法，如此，What is Matplotlib’s alternative for countplot from seaborn? 引用自StackOverflow，ImportanceOfBeingErnest Say you have this data: 123456import numpy as np; np.random.seed(42)import pandas as pdimport matplotlib.pyplot as pltdf = pd.DataFrame(&#123;"Sex" : np.random.choice(["male", "female"], size=1310, p=[.65, .35]), "other" : np.random.randint(0,80, size=1310)&#125;) You can plot a countplot in seaborn as 123import seaborn as snssns.countplot(x="Sex", data=df)plt.show() Or you can create a bar plot in pandas 12df["Sex"].value_counts().plot.bar()plt.show() Or you can create a bar plot in matplotlib 123counts = df["Sex"].value_counts()plt.bar(counts.index, counts.values)plt.show() Reference What is Matplotlib’s alternative for countplot from seaborn? Pandas:Visualization Guide]]></content>
