@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="My way:这题tag是dp，按着dp的思路写出了 状态， 状态转移方程包括 边界条件， 常规情况。 大致思路如下： 然后以Cpp实现了如下： 12345678910111213141516171819202122232425262728293031323334353637class Solution &amp;#123;public:    vector&amp;lt;int&amp;gt; countBits(in">
+  <meta name="description" content="My way:这题tag是dp，按着dp的思路写出了 状态， 状态转移方程包括 边界条件， 常规情况。 大致思路如下：  定义状态：  $i$: 数字为$i$时； $f[i]$: 数字为i时，$f[i]$表示有多少个1，在数字$i$的二进制表示形式下。   状态转移方程：  边界：$f[0] = [\ \ ]$  正常情况：(第一时间也拿不出来，通过举例拿到的，) eg.     $f[1] =">
 <meta name="keywords" content="leetcode,位运算,DP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode题解: 338.比特位计数">
 <meta property="og:url" content="http://yoursite.com/2019/10/23/leetcode题解-338-比特位计数/index.html">
 <meta property="og:site_name" content="Boven&#39;s Blog">
-<meta property="og:description" content="My way:这题tag是dp，按着dp的思路写出了 状态， 状态转移方程包括 边界条件， 常规情况。 大致思路如下： 然后以Cpp实现了如下： 12345678910111213141516171819202122232425262728293031323334353637class Solution &amp;#123;public:    vector&amp;lt;int&amp;gt; countBits(in">
+<meta property="og:description" content="My way:这题tag是dp，按着dp的思路写出了 状态， 状态转移方程包括 边界条件， 常规情况。 大致思路如下：  定义状态：  $i$: 数字为$i$时； $f[i]$: 数字为i时，$f[i]$表示有多少个1，在数字$i$的二进制表示形式下。   状态转移方程：  边界：$f[0] = [\ \ ]$  正常情况：(第一时间也拿不出来，通过举例拿到的，) eg.     $f[1] =">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-24T12:03:18.446Z">
+<meta property="og:updated_time" content="2019-10-24T12:46:58.589Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode题解: 338.比特位计数">
-<meta name="twitter:description" content="My way:这题tag是dp，按着dp的思路写出了 状态， 状态转移方程包括 边界条件， 常规情况。 大致思路如下： 然后以Cpp实现了如下： 12345678910111213141516171819202122232425262728293031323334353637class Solution &amp;#123;public:    vector&amp;lt;int&amp;gt; countBits(in">
+<meta name="twitter:description" content="My way:这题tag是dp，按着dp的思路写出了 状态， 状态转移方程包括 边界条件， 常规情况。 大致思路如下：  定义状态：  $i$: 数字为$i$时； $f[i]$: 数字为i时，$f[i]$表示有多少个1，在数字$i$的二进制表示形式下。   状态转移方程：  边界：$f[0] = [\ \ ]$  正常情况：(第一时间也拿不出来，通过举例拿到的，) eg.     $f[1] =">
 
 
 
@@ -434,7 +434,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-24 20:03:18" itemprop="dateModified" datetime="2019-10-24T20:03:18+08:00">2019-10-24</time>
+                <time title="修改时间：2019-10-24 20:46:58" itemprop="dateModified" datetime="2019-10-24T20:46:58+08:00">2019-10-24</time>
               
             
           </span>
@@ -488,7 +488,45 @@
       
         <h2 id="My-way"><a href="#My-way" class="headerlink" title="My way:"></a>My way:</h2><p>这题tag是dp，按着dp的思路写出了 <strong>状态</strong>， <strong>状态转移方程</strong>包括 <em>边界条件</em>， <em>常规情况</em>。</p>
 <p>大致思路如下：</p>
-<p>然后以Cpp实现了如下：</p>
+<ul>
+<li><p>定义状态：</p>
+<ul>
+<li>$i$: 数字为$i$时；</li>
+<li>$f[i]$: 数字为i时，$f[i]$表示有多少个1，在数字$i$的二进制表示形式下。</li>
+</ul>
+</li>
+<li><p>状态转移方程：</p>
+<ul>
+<li><p>边界：$f[0] = [\ \ ]$</p>
+</li>
+<li><p>正常情况：(第一时间也拿不出来，通过举例拿到的，)</p>
+<p>eg.    </p>
+<p>$f[1] = 1$</p>
+<p>$f[2] = 1$</p>
+<p>$f[3] = 1 + 1 = f[2] + f[1]$</p>
+<p>$f[4] = 1$</p>
+<p>$f[5] = 2 = f[4] + f[1]$</p>
+<p>$f[6] = 2 = f[4] + f[2]$</p>
+<p>$f[7] = 3 = f[4] + f[2] + f[1]$    </p>
+</li>
+</ul>
+</li>
+</ul>
+<pre><code>得到：
+$$
+f[i] = \begin{cases}
+[\ \ ], &amp; \text{if}\ i == 0 \\
+1, &amp; \text{if}\ i == 2^m,\ \text{m is unisgned integer} \\
+1 + f[i - j], &amp; \text{if}\ 2^j &lt; i &lt; 2^{j+1},\ \text{j is unsigned integer}
+\end{cases}
+$$
+
+
+合并下情况有：
+$$
+f[i] = 1 + f[i-j],\ \text{if}\ 2^j &lt; i &lt; 2^{j+1},\ \text{j is unsigned integer}
+$$
+</code></pre><p>然后以Cpp实现了如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">        <span class="keyword">if</span> (num == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&#123;<span class="number">0</span>&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (num == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &#123;<span class="number">0</span>, <span class="number">1</span>&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi &#123;<span class="number">0</span>, <span class="number">1</span>&#125;;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; num+<span class="number">1</span>; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> j;</span><br><span class="line">            <span class="keyword">for</span> (j = <span class="number">0</span>; <span class="built_in">pow</span>(<span class="number">2</span>, j) &lt;= i; ++j)</span><br><span class="line">            &#123;&#125;</span><br><span class="line">            j = <span class="built_in">pow</span>(<span class="number">2</span>, j<span class="number">-1</span>);</span><br><span class="line">                    </span><br><span class="line">            <span class="keyword">int</span> val;</span><br><span class="line">            <span class="keyword">if</span> (i-j<span class="number">-1</span> == <span class="number">-1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                val = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                val = <span class="number">1</span> + vi[i-j];</span><br><span class="line">            &#125;</span><br><span class="line">            vi.push_back(val);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> vi;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>不过很遗憾这是一种很低效的解法</p>
 <h2 id="Standard-Way"><a href="#Standard-Way" class="headerlink" title="Standard Way"></a>Standard Way</h2><p>详细解释见之后reference的官方解释link处，这里只给出最后的思路/状态转移方程和我的一些理解及实现。</p>
@@ -537,6 +575,7 @@
 </li>
 </ul>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p><a href="https://leetcode-cn.com/problems/counting-bits/solution/bi-te-wei-ji-shu-by-leetcode/" target="_blank" rel="noopener">leetcode官方解答</a></p>
+<p><a href="https://tex.stackexchange.com/questions/9065/large-braces-for-specifying-values-of-variables-by-condition" target="_blank" rel="noopener">Large braces for specifying values of variables by condition</a></p>
 <h3 id="Extended-knowledge"><a href="#Extended-knowledge" class="headerlink" title="Extended knowledge"></a>Extended knowledge</h3><p><a href="https://en.cppreference.com/w/cpp/utility/bitset/bitset" target="_blank" rel="noopener"> std::bitset<n>::bitset in cppreference</n></a></p>
 <p><a href="https://stackoverflow.com/questions/7349689/how-to-print-using-cout-a-number-in-binary-form" target="_blank" rel="noopener">How to print (using cout) a number in binary form?</a></p>
 <p><a href="http://www.enseignement.polytechnique.fr/informatique/INF478/docs/Cpp/en/cpp/language/default_initialization.html" target="_blank" rel="noopener">default initialization</a></p>
