@@ -16,7 +16,7 @@
 
 <html class="theme-next muse use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
@@ -96,20 +96,20 @@
 
 
 
-  <meta name="description" content="以DataFrame的形式按序输出关联矩阵(correlation matrix)一般来说在做EDA的时候，我们都是输出相关矩阵的热力图或者是以表格形式输出。 但是我在Stantar 2019的一个kernel见到了按序输出关联矩阵系数的代码，故在此基础上进行了一定修改，实现了一个自己的code snippet. 具体例子见下：(此处数据采用Titanic in Kaggle) 12train_c">
+  <meta name="description" content="以DataFrame的形式按序输出关联矩阵(correlation matrix) 一般来说在做EDA的时候，我们都是输出相关矩阵的热力图或者是以表格形式输出。 但是我在Stantar 2019的一个kernel见到了按序输出关联矩阵系数的代码，故在此基础上进行了一定修改，实现了一个自己的code snippet. 具体例子见下：(此处数据采用Titanic in Kaggle) 12tr">
 <meta name="keywords" content="code snippet,EDA,pandas,data disualization">
 <meta property="og:type" content="article">
 <meta property="og:title" content="以DataFrame的形式按序输出关联矩阵(correlation matrix)">
 <meta property="og:url" content="http://yoursite.com/2019/04/23/以DataFrame的数据格式按序输出关联矩阵(correlation matrix)/index.html">
 <meta property="og:site_name" content="Boven&#39;s Blog">
-<meta property="og:description" content="以DataFrame的形式按序输出关联矩阵(correlation matrix)一般来说在做EDA的时候，我们都是输出相关矩阵的热力图或者是以表格形式输出。 但是我在Stantar 2019的一个kernel见到了按序输出关联矩阵系数的代码，故在此基础上进行了一定修改，实现了一个自己的code snippet. 具体例子见下：(此处数据采用Titanic in Kaggle) 12train_c">
+<meta property="og:description" content="以DataFrame的形式按序输出关联矩阵(correlation matrix) 一般来说在做EDA的时候，我们都是输出相关矩阵的热力图或者是以表格形式输出。 但是我在Stantar 2019的一个kernel见到了按序输出关联矩阵系数的代码，故在此基础上进行了一定修改，实现了一个自己的code snippet. 具体例子见下：(此处数据采用Titanic in Kaggle) 12tr">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2019/04/23/以DataFrame的数据格式按序输出关联矩阵(correlation%20matrix)/heatmap.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/04/23/以DataFrame的数据格式按序输出关联矩阵(correlation%20matrix)/correlation_matrix_HD.jpg">
 <meta property="og:updated_time" content="2019-05-06T03:01:07.081Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="以DataFrame的形式按序输出关联矩阵(correlation matrix)">
-<meta name="twitter:description" content="以DataFrame的形式按序输出关联矩阵(correlation matrix)一般来说在做EDA的时候，我们都是输出相关矩阵的热力图或者是以表格形式输出。 但是我在Stantar 2019的一个kernel见到了按序输出关联矩阵系数的代码，故在此基础上进行了一定修改，实现了一个自己的code snippet. 具体例子见下：(此处数据采用Titanic in Kaggle) 12train_c">
+<meta name="twitter:description" content="以DataFrame的形式按序输出关联矩阵(correlation matrix) 一般来说在做EDA的时候，我们都是输出相关矩阵的热力图或者是以表格形式输出。 但是我在Stantar 2019的一个kernel见到了按序输出关联矩阵系数的代码，故在此基础上进行了一定修改，实现了一个自己的code snippet. 具体例子见下：(此处数据采用Titanic in Kaggle) 12tr">
 <meta name="twitter:image" content="http://yoursite.com/2019/04/23/以DataFrame的数据格式按序输出关联矩阵(correlation%20matrix)/heatmap.jpg">
 
 
@@ -165,7 +165,7 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
@@ -176,7 +176,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -489,7 +489,8 @@
       
 
       
-        <h1 id="以DataFrame的形式按序输出关联矩阵-correlation-matrix"><a href="#以DataFrame的形式按序输出关联矩阵-correlation-matrix" class="headerlink" title="以DataFrame的形式按序输出关联矩阵(correlation matrix)"></a>以DataFrame的形式按序输出关联矩阵(correlation matrix)</h1><p>一般来说在做EDA的时候，我们都是输出相关矩阵的热力图或者是以表格形式输出。</p>
+        <h1 id="以dataframe的形式按序输出关联矩阵correlation-matrix">以DataFrame的形式按序输出关联矩阵(correlation matrix)</h1>
+<p>一般来说在做EDA的时候，我们都是输出相关矩阵的热力图或者是以表格形式输出。</p>
 <p>但是我在Stantar 2019的一个<a href="https://www.kaggle.com/artgor/santander-eda-fe-fs-and-models" target="_blank" rel="noopener">kernel</a>见到了按序输出关联矩阵系数的代码，故在此基础上进行了一定修改，实现了一个自己的code snippet.</p>
 <p>具体例子见下：(此处数据采用<a href="https://www.kaggle.com/c/titanic" target="_blank" rel="noopener">Titanic in Kaggle</a>)</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">train_corr = train_df.drop([<span class="string">'PassengerId'</span>], axis=<span class="number">1</span>).corr()</span><br><span class="line">train_corr</span><br></pre></td></tr></table></figure>
@@ -501,7 +502,8 @@
 <p>这里feature数量比较少，故直接输出，一般是<code>corr</code>调用<code>tail()</code>或者<code>head()</code>来输出该顺序中的后或前几个相关系数。例如：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">corr.tail(<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
 <p>下一篇会在再讲下，如何将<code>Pandas.DataFrame</code>的表格存储为图片，这也是在写这篇blog过程中的一点idea的实现.</p>
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a href="https://www.kaggle.com/c/titanic" target="_blank" rel="noopener">Titanic in Kaggle</a></p>
+<h1 id="reference">Reference</h1>
+<p><a href="https://www.kaggle.com/c/titanic" target="_blank" rel="noopener">Titanic in Kaggle</a></p>
 <p><a href="https://www.kaggle.com/artgor/santander-eda-fe-fs-and-models" target="_blank" rel="noopener">按序输出correlation matrix出处</a></p>
 <p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.unstack.html" target="_blank" rel="noopener">Pandas.DataFrame.unstack</a></p>
 <p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.reset_index.html" target="_blank" rel="noopener">Pandas.DataFrame.reset_index</a></p>
@@ -628,7 +630,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -706,7 +708,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -744,7 +748,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#以DataFrame的形式按序输出关联矩阵-correlation-matrix"><span class="nav-number">1.</span> <span class="nav-text">以DataFrame的形式按序输出关联矩阵(correlation matrix)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">2.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#以dataframe的形式按序输出关联矩阵correlation-matrix"><span class="nav-number">1.</span> <span class="nav-text">以DataFrame的形式按序输出关联矩阵(correlation matrix)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reference"><span class="nav-number">2.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>
@@ -1220,7 +1224,24 @@
         onPopupClose();
       }
     });
-  </script>
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
 
@@ -1231,6 +1252,13 @@
   
 
   
+  
+
+  
+  
+
+  
+
 
   
 

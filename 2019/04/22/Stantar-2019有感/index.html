@@ -16,7 +16,7 @@
 
 <html class="theme-next muse use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="Stantar 2019有感看了很多个top solution，尤其是金牌区域的。 给我感觉在这个比赛中的几个重要的magic有：  frequency coding；在对于匿名数据或者categorical feature上，可以先试着这样做下，一般是会提升local CV之类； fake data；对于training set和testing set中的unique value的数量明显不同，">
+  <meta name="description" content="Stantar 2019有感 看了很多个top solution，尤其是金牌区域的。 给我感觉在这个比赛中的几个重要的magic有：  frequency coding；在对于匿名数据或者categorical feature上，可以先试着这样做下，一般是会提升local CV之类； fake data；对于training set和testing set中的unique value的数">
 <meta name="keywords" content="kaggle,data competition,学习计划">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Stantar 2019有感">
 <meta property="og:url" content="http://yoursite.com/2019/04/22/Stantar-2019有感/index.html">
 <meta property="og:site_name" content="Boven&#39;s Blog">
-<meta property="og:description" content="Stantar 2019有感看了很多个top solution，尤其是金牌区域的。 给我感觉在这个比赛中的几个重要的magic有：  frequency coding；在对于匿名数据或者categorical feature上，可以先试着这样做下，一般是会提升local CV之类； fake data；对于training set和testing set中的unique value的数量明显不同，">
+<meta property="og:description" content="Stantar 2019有感 看了很多个top solution，尤其是金牌区域的。 给我感觉在这个比赛中的几个重要的magic有：  frequency coding；在对于匿名数据或者categorical feature上，可以先试着这样做下，一般是会提升local CV之类； fake data；对于training set和testing set中的unique value的数">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-04-25T14:03:04.288Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Stantar 2019有感">
-<meta name="twitter:description" content="Stantar 2019有感看了很多个top solution，尤其是金牌区域的。 给我感觉在这个比赛中的几个重要的magic有：  frequency coding；在对于匿名数据或者categorical feature上，可以先试着这样做下，一般是会提升local CV之类； fake data；对于training set和testing set中的unique value的数量明显不同，">
+<meta name="twitter:description" content="Stantar 2019有感 看了很多个top solution，尤其是金牌区域的。 给我感觉在这个比赛中的几个重要的magic有：  frequency coding；在对于匿名数据或者categorical feature上，可以先试着这样做下，一般是会提升local CV之类； fake data；对于training set和testing set中的unique value的数">
 
 
 
@@ -162,7 +162,7 @@
   .use-motion .logo-line-before i { left: initial; }
   .use-motion .logo-line-after i { right: initial; }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
@@ -173,7 +173,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -486,7 +486,8 @@
       
 
       
-        <h1 id="Stantar-2019有感"><a href="#Stantar-2019有感" class="headerlink" title="Stantar 2019有感"></a>Stantar 2019有感</h1><p>看了很多个top solution，尤其是<a href="https://www.kaggle.com/c/santander-customer-transaction-prediction/discussion/88926#latest-518288" target="_blank" rel="noopener">金牌区域的</a>。</p>
+        <h1 id="stantar-2019有感">Stantar 2019有感</h1>
+<p>看了很多个top solution，尤其是<a href="https://www.kaggle.com/c/santander-customer-transaction-prediction/discussion/88926#latest-518288" target="_blank" rel="noopener">金牌区域的</a>。</p>
 <p>给我感觉在这个比赛中的几个重要的<strong>magic</strong>有：</p>
 <ul>
 <li>frequency coding；在对于匿名数据或者categorical feature上，可以先试着这样做下，一般是会提升local CV之类；</li>
@@ -495,12 +496,12 @@
 </ul>
 <p>感受颇深的是对于这些<strong>magic</strong>，一是自己确实没有通过EDA来发现到，能力有限；二是其实在kernel和discussion中都有多多少少提及到，自己未引起重视又或者不知如何是好。</p>
 <p>个人主要感觉还是：</p>
-<ol>
-<li>在EDA方面考虑得不够到位，而且可以利用：<ol>
+<ol type="1">
+<li>在EDA方面考虑得不够到位，而且可以利用：
+<ol type="1">
 <li>Local CV和LB的提升上差异来分析是哪里的问题，然后解决并使得Local CV和LB的提升近似。比如此次中，一开始无论local CV提升有多高，LB都会锁在9.001上。而解决到fake data的存在后，local CV提升，LB也会随之提升，使得LB锁在9.001的情况不复存在；</li>
 <li>可以根据kernel和discussion区域中，若在新的发布后，上的存在着许多人的大幅度增长，则说明某个kernel或discussion揭露了<strong>magic</strong>；</li>
-</ol>
-</li>
+</ol></li>
 <li><strong>Model</strong>这一块也是有问题，很明显在NN上存在很多问题，尤其是现在去看top solution中开源的NN代码，会存在很多逻辑看不太懂的情况；</li>
 <li><strong>Parameter Tuning</strong>上面也有问题，除了最基本的<strong>Grid Search</strong>和<strong>Random Search</strong>外，对于<strong>Bayesian optimization</strong>没有理解且无法应用出来。<a href="https://www.kaggle.com/c/santander-customer-transaction-prediction/discussion/89320#517455" target="_blank" rel="noopener">Chris这个discussion给了很多inspirations</a>；</li>
 <li>对于Data Science这块Coding能力上也存在着问题，不能很流畅的阅读代码逻辑；</li>
@@ -508,7 +509,8 @@
 <li>在最后如何选取2个<strong>the most robust model</strong>用于提交到PB上也仍未解决。</li>
 </ol>
 <p>不过感觉还是收获了不少，在我上述几方面加强后，还是需要回来reiview Stantar这个比赛的各个solution。</p>
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p><a href="https://www.kaggle.com/c/santander-customer-transaction-prediction/discussion/88926#latest-518288" target="_blank" rel="noopener">Gold Medal Solutions of Stantar 2019</a></p>
+<h1 id="reference">Reference</h1>
+<p><a href="https://www.kaggle.com/c/santander-customer-transaction-prediction/discussion/88926#latest-518288" target="_blank" rel="noopener">Gold Medal Solutions of Stantar 2019</a></p>
 <p><a href="https://www.kaggle.com/yag320/list-of-fake-samples-and-public-private-lb-split" target="_blank" rel="noopener">List of Fake Samples and Public/Private LB split</a></p>
 <p><a href="https://www.kaggle.com/titericz/giba-single-model-public-0-9245-private-0-9234" target="_blank" rel="noopener">Giba: a single model using all features vstacked that is enough for a top20 on Private</a></p>
 <p><a href="https://www.kaggle.com/c/santander-customer-transaction-prediction/discussion/89320#517455" target="_blank" rel="noopener">Chirs: How do we optimize GBM hyperparameters?</a></p>
@@ -633,7 +635,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -711,7 +713,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -749,7 +753,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Stantar-2019有感"><span class="nav-number">1.</span> <span class="nav-text">Stantar 2019有感</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">2.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#stantar-2019有感"><span class="nav-number">1.</span> <span class="nav-text">Stantar 2019有感</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reference"><span class="nav-number">2.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>
@@ -1225,7 +1229,24 @@
         onPopupClose();
       }
     });
-  </script>
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="custom_mathjax_source">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
 
@@ -1236,6 +1257,13 @@
   
 
   
+  
+
+  
+  
+
+  
+
 
   
 
