@@ -96,22 +96,22 @@
 
 
 
-  <meta name="description" content="官方解 数学way 综评最高解 在dp解释上强于官方解，简要摘取部分过程，详细见reference处。 对于\(piles=[3, 9, 1, 2]\),  定义状态： \[ dp[i][j].fir\ or\ dp[i][j].sec\\ 其中：\\ 0 &amp;lt;= i &amp;lt; piles.length, i相当于石子堆最左堆\\ i &amp;lt;= j &amp;lt; piles.">
+  <meta name="description" content="官方解 数学way 直接从官方解处摘抄过来，很有意思的数学归纳证明思想。如下： 显然，亚历克斯总是赢得 2 堆时的游戏。 通过一些努力，我们可以获知她总是赢得 4 堆时的游戏。 如果亚历克斯最初获得第一堆，她总是可以拿第三堆。 如果她最初取到第四堆，她总是可以取第二堆。第一 + 第三，第二 + 第四 中的至少一组是更大的，所以她总能获胜。 我们可以将这个想法扩展到 N 堆的情况下。设第一">
 <meta name="keywords" content="leetcode,DP,二维dp,博弈问题">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode题解: 877.石子游戏">
 <meta property="og:url" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/index.html">
 <meta property="og:site_name" content="Boven&#39;s Blog">
-<meta property="og:description" content="官方解 数学way 综评最高解 在dp解释上强于官方解，简要摘取部分过程，详细见reference处。 对于\(piles=[3, 9, 1, 2]\),  定义状态： \[ dp[i][j].fir\ or\ dp[i][j].sec\\ 其中：\\ 0 &amp;lt;= i &amp;lt; piles.length, i相当于石子堆最左堆\\ i &amp;lt;= j &amp;lt; piles.">
+<meta property="og:description" content="官方解 数学way 直接从官方解处摘抄过来，很有意思的数学归纳证明思想。如下： 显然，亚历克斯总是赢得 2 堆时的游戏。 通过一些努力，我们可以获知她总是赢得 4 堆时的游戏。 如果亚历克斯最初获得第一堆，她总是可以拿第三堆。 如果她最初取到第四堆，她总是可以取第二堆。第一 + 第三，第二 + 第四 中的至少一组是更大的，所以她总能获胜。 我们可以将这个想法扩展到 N 堆的情况下。设第一">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/dp_table_1.png">
 <meta property="og:image" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/dp_table_2.png">
 <meta property="og:image" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/dp_table_3.png">
 <meta property="og:image" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/dp_table_4.png">
-<meta property="og:updated_time" content="2019-10-28T07:43:41.037Z">
+<meta property="og:updated_time" content="2019-10-28T13:23:35.588Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode题解: 877.石子游戏">
-<meta name="twitter:description" content="官方解 数学way 综评最高解 在dp解释上强于官方解，简要摘取部分过程，详细见reference处。 对于\(piles=[3, 9, 1, 2]\),  定义状态： \[ dp[i][j].fir\ or\ dp[i][j].sec\\ 其中：\\ 0 &amp;lt;= i &amp;lt; piles.length, i相当于石子堆最左堆\\ i &amp;lt;= j &amp;lt; piles.">
+<meta name="twitter:description" content="官方解 数学way 直接从官方解处摘抄过来，很有意思的数学归纳证明思想。如下： 显然，亚历克斯总是赢得 2 堆时的游戏。 通过一些努力，我们可以获知她总是赢得 4 堆时的游戏。 如果亚历克斯最初获得第一堆，她总是可以拿第三堆。 如果她最初取到第四堆，她总是可以取第二堆。第一 + 第三，第二 + 第四 中的至少一组是更大的，所以她总能获胜。 我们可以将这个想法扩展到 N 堆的情况下。设第一">
 <meta name="twitter:image" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/dp_table_1.png">
 
 
@@ -439,7 +439,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-28 15:43:41" itemprop="dateModified" datetime="2019-10-28T15:43:41+08:00">2019-10-28</time>
+                <time title="修改时间：2019-10-28 21:23:35" itemprop="dateModified" datetime="2019-10-28T21:23:35+08:00">2019-10-28</time>
               
             
           </span>
@@ -493,11 +493,18 @@
       
         <h2 id="官方解">官方解</h2>
 <h3 id="数学way">数学way</h3>
+<p>直接从官方解处摘抄过来，很有意思的数学归纳证明思想。如下：</p>
+<p>显然，亚历克斯总是赢得 2 堆时的游戏。 通过一些努力，我们可以获知她总是赢得 4 堆时的游戏。</p>
+<p>如果亚历克斯最初获得第一堆，她总是可以拿第三堆。 如果她最初取到第四堆，她总是可以取第二堆。第一 + 第三，第二 + 第四 中的至少一组是更大的，所以她总能获胜。</p>
+<p>我们可以将这个想法扩展到 N 堆的情况下。设第一、第三、第五、第七桩是白色的，第二、第四、第六、第八桩是黑色的。 亚历克斯总是可以拿到所有白色桩或所有黑色桩，其中一种颜色具有的石头数量必定大于另一种颜色的。</p>
+<p>因此，亚历克斯总能赢得比赛。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">stoneGame</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; piles)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h2 id="综评最高解">综评最高解</h2>
 <p>在dp解释上强于官方解，简要摘取部分过程，详细见reference处。</p>
 <p>对于<span class="math inline">\(piles=[3, 9, 1, 2]\)</span>,</p>
 <img src="/2019/10/27/leetcode题解-877-石子游戏/dp_table_1.png" title="dp_table">
-<p>定义<strong>状态</strong>： <span class="math display">\[
+<h4 id="定义状态">定义<strong>状态</strong>：</h4>
+<p><span class="math display">\[
 dp[i][j].fir\ or\ dp[i][j].sec\\
 其中：\\
 0 &lt;= i &lt; piles.length, i相当于石子堆最左堆\\
@@ -506,7 +513,8 @@ i &lt;= j &lt; piles.length, j相当于石子堆最右堆
 dp[i][j].fir表示，对于piles[i...j]这部分石子，先手能获得的最高分数 \\
 dp[i][j].sec表示，对于piles[i...j]这部分石子，后手能获得的最高分数
 \]</span></p>
-<p>其<strong>状态转移方程</strong>为： <span class="math display">\[
+<h4 id="状态转移方程为"><strong>状态转移方程</strong>为：</h4>
+<p><span class="math display">\[
 dp[i][j].fir = max(piles[i] + dp[i+1][j].sec, piles[j] + dp[i][j-1].sec) \\
 \]</span></p>
 <p>$$ <span class="math display">\[\begin{align*}
@@ -540,6 +548,36 @@ dp[i][j].fir = max(piles[i] + dp[i+1][j].sec, piles[j] + dp[i][j-1].sec) \\
 <p>所以说算法不能简单的一行一行遍历 <code>dp</code> 数组，<strong>而要斜着遍历数组</strong>：</p>
 <img src="/2019/10/27/leetcode题解-877-石子游戏/dp_table_4.png" title="dp_table">
 <h4 id="实现">实现</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">stoneGame</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; piles)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = piles.size();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// initialize dp array</span></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt;&gt; dp(n, <span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt;(n, make_pair(<span class="number">0</span>, <span class="number">0</span>)));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// fill with base case</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            dp[i][i].first = piles[i];</span><br><span class="line">            dp[i][i].second = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// traverse array in a diagonal way</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">2</span>; l &lt;= n; ++l)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n - l; ++i)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">int</span> j = i + l - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 先手选择最左边或者最右边的分数</span></span><br><span class="line">                <span class="keyword">int</span> left = piles[i] + dp[i+<span class="number">1</span>][j].second;</span><br><span class="line">                <span class="keyword">int</span> right = piles[j] + dp[i][j<span class="number">-1</span>].second;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 套用状态转移方程</span></span><br><span class="line">                <span class="keyword">if</span> (left &gt; right)</span><br><span class="line">                &#123;</span><br><span class="line">                    dp[i][j].first = left;</span><br><span class="line">                    dp[i][j].second = dp[i+<span class="number">1</span>][j].first;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    dp[i][j].first = right;</span><br><span class="line">                    dp[i][j].second = dp[i][j<span class="number">-1</span>].first;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; res(dp[<span class="number">0</span>][n<span class="number">-1</span>]);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res.first - res.second;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>综评Java实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 返回游戏最后先手和后手的得分之差 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">stoneGame</span><span class="params">(<span class="keyword">int</span>[] piles)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = piles.length;</span><br><span class="line">    <span class="comment">// 初始化 dp 数组</span></span><br><span class="line">    Pair[][] dp = <span class="keyword">new</span> Pair[n][n];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; n; j++)</span><br><span class="line">            dp[i][j] = <span class="keyword">new</span> Pair(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="comment">// 填入 base case</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        dp[i][i].fir = piles[i];</span><br><span class="line">        dp[i][i].sec = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 斜着遍历数组</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">2</span>; l &lt;= n; l++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n - l; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> j = l + i - <span class="number">1</span>;</span><br><span class="line">            <span class="comment">// 先手选择最左边或最右边的分数</span></span><br><span class="line">            <span class="keyword">int</span> left = piles[i] + dp[i+<span class="number">1</span>][j].sec;</span><br><span class="line">            <span class="keyword">int</span> right = piles[j] + dp[i][j-<span class="number">1</span>].sec;</span><br><span class="line">            <span class="comment">// 套用状态转移方程</span></span><br><span class="line">            <span class="keyword">if</span> (left &gt; right) &#123;</span><br><span class="line">                dp[i][j].fir = left;</span><br><span class="line">                dp[i][j].sec = dp[i+<span class="number">1</span>][j].fir;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                dp[i][j].fir = right;</span><br><span class="line">                dp[i][j].sec = dp[i][j-<span class="number">1</span>].fir;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    Pair res = dp[<span class="number">0</span>][n-<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">return</span> res.fir - res.sec;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="总结">总结</h2>
+<ul>
+<li><p>二维DP，也是递推问题，但是给人的没有一维DP那么好处理。</p>
+<ul>
+<li><strong>状态定义</strong>，一般涉及到2个状态<span class="math inline">\(i,\ j\)</span>。可以用表格法表示，有点类似0-1背包问题。</li>
+<li><strong>状态转移方程</strong>，一般涉及到上一状态的2个状态。</li>
+<li><strong>base case</strong>, 我的理解是一般类似于 <strong>corner case</strong>的存在，是一个需要考虑到的初始条件。</li>
+</ul></li>
+<li><p><strong>斜着遍历数组</strong>，这个在实现的时候，也不是一件非常容易的事情。</p>
+<ul>
+<li><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// traverse array in a diagonal way</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">2</span>; l &lt;= n; ++l)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n - l; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">    	<span class="keyword">int</span> j = i + l - <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+若<span class="math inline">\(n = 4\)</span>, 则依次遍历： <span class="math display">\[
+\begin{align*}
+&amp; [0,\ 1],\ [1,\ 2], [2,\ 3], [3,\ 4] \\ 
+&amp; [0,\ 2],\ [1,\ 3], [2,\ 4] \\
+&amp; [0,\ 3],\ [1,\ 4] \\
+&amp; [0,\ 4] \\
+\end{align*}
+\]</span></li>
+</ul></li>
+</ul>
+<h2 id="reference">Reference</h2>
+<p><a href="https://leetcode-cn.com/problems/stone-game/solution/jie-jue-bo-yi-wen-ti-de-dong-tai-gui-hua-tong-yong/" target="_blank" rel="noopener">labuladong: leetcode解</a></p>
+<p><a href="https://leetcode-cn.com/problems/stone-game/solution/shi-zi-you-xi-by-leetcode/" target="_blank" rel="noopener">leetcode 官方解</a></p>
+<h3 id="extended">extended</h3>
+<p><a href="https://en.cppreference.com/w/cpp/utility/pair" target="_blank" rel="noopener">std::pair</a></p>
+<p><a href="https://en.cppreference.com/w/cpp/container/vector" target="_blank" rel="noopener">std::vector</a></p>
 
       
     </div>
@@ -781,7 +819,7 @@ dp[i][j].fir = max(piles[i] + dp[i+1][j].sec, piles[j] + dp[i][j-1].sec) \\
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#官方解"><span class="nav-number">1.</span> <span class="nav-text">官方解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数学way"><span class="nav-number">1.1.</span> <span class="nav-text">数学way</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#综评最高解"><span class="nav-number">2.</span> <span class="nav-text">综评最高解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#base-case"><span class="nav-number">2.0.1.</span> <span class="nav-text">base case</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现"><span class="nav-number">2.0.2.</span> <span class="nav-text">实现</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#官方解"><span class="nav-number">1.</span> <span class="nav-text">官方解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数学way"><span class="nav-number">1.1.</span> <span class="nav-text">数学way</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#综评最高解"><span class="nav-number">2.</span> <span class="nav-text">综评最高解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义状态"><span class="nav-number">2.0.1.</span> <span class="nav-text">定义状态：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#状态转移方程为"><span class="nav-number">2.0.2.</span> <span class="nav-text">状态转移方程为：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#base-case"><span class="nav-number">2.0.3.</span> <span class="nav-text">base case</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现"><span class="nav-number">2.0.4.</span> <span class="nav-text">实现</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#extended"><span class="nav-number">4.1.</span> <span class="nav-text">extended</span></a></li></ol></li></div>
             
 
           </div>
