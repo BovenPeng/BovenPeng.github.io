@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode题解: 877.石子游戏]]></title>
+    <url>%2F2019%2F10%2F27%2Fleetcode%E9%A2%98%E8%A7%A3-877-%E7%9F%B3%E5%AD%90%E6%B8%B8%E6%88%8F%2F</url>
+    <content type="text"><![CDATA[官方解 数学way 综评最高解 在dp解释上强于官方解，简要摘取部分过程，详细见reference处。 对于\(piles=[3, 9, 1, 2]\), 定义状态： \[ dp[i][j].fir\ or\ dp[i][j].sec\\ 其中：\\ 0 &lt;= i &lt; piles.length, i相当于石子堆最左堆\\ i &lt;= j &lt; piles.length, j相当于石子堆最右堆 \] 其中， \[ dp[i][j].fir表示，对于piles[i...j]这部分石子，先手能获得的最高分数 \\ dp[i][j].sec表示，对于piles[i...j]这部分石子，后手能获得的最高分数 \] 其状态转移方程为： \[ dp[i][j].fir = max(piles[i] + dp[i+1][j].sec, piles[j] + dp[i][j-1].sec) \\ \] $$ \[\begin{align*} &amp; if 先手选择左边: dp[i][j].sec = dp[i+1][j].fir \\ &amp; if 先手选择右边: dp[i][j].sec = dp[i][j-1].fir \\ &amp; 解释：\\ &amp; 我作为后手，要等先手先选择，有两种情况： \\ &amp; 如果先手选择了最左边那堆，给我剩下了 piles[i+1...j] \\ &amp; 此时轮到我，我变成了先手；\\ &amp; 如果先手选择了最右边那堆，给我剩下了 piles[i...j-1] \\ &amp; 此时轮到我，我变成了先手。\\ \end{align*}\] $$ base case \[ \begin{align*} &amp; dp[i][j].fir = piles[i] \\ &amp; dp[i][j].sec = 0 \\ &amp; 其中 0 &lt;= i == j &lt; n \\ &amp; 解释：i 和 j 相等就是说面前只有一堆石头 piles[i] \\ &amp; 那么显然先手的得分为 piles[i] \\ &amp; 后手没有石头拿了，得分为 0 \\ \end{align*} \] 这里需要注意一点，我们发现 \(base\ case\)是斜着的，而且我们推算 dp[i][j] 时需要用到 dp[i+1][j] 和 dp[i][j-1]： 所以说算法不能简单的一行一行遍历 dp 数组，而要斜着遍历数组： 实现]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>DP</tag>
+        <tag>二维dp</tag>
+        <tag>博弈问题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解: 1025.除数博弈]]></title>
     <url>%2F2019%2F10%2F24%2Fleetcode%E9%A2%98%E8%A7%A3-1025-%E9%99%A4%E6%95%B0%E5%8D%9A%E5%BC%88%2F</url>
     <content type="text"><![CDATA[My way: 这题靠归纳推理，首先很明显就能看出来偶数的时候Alice赢了； 然后多举了几个例子就发现奇数的时候Bob赢了。 就直接一个条件语句，结束。 但是尝试套dp的做法的时候，没捋清楚，看了综评最高的，基本懂了。 12345678910111213class Solution &#123;public: bool divisorGame(int N) &#123; if (!(N &amp; 1)) &#123; return true; &#125; else &#123; return false; &#125; &#125;&#125;; 综评最高解 1.归纳法： 基本思路： 最终结果应该是占到 2 的赢，占到 1 的输； 若当前为奇数，奇数的约数只能是奇数或者 1，因此下一个一定是偶数； 若当前为偶数， 偶数的约数可以是奇数可以是偶数也可以是 1，因此直接减 1，则下一个是奇数； 因此，奇则输，偶则赢。 123class Solution: def divisorGame(self, N: int) -&gt; bool: return N%2==0 2.DP: 定义状态 \(i\): 数字\(N\)为\(i\)时； \(f[i]\): 数字\(N\)为\(i\)时，Alice的胜负状况，true为胜，false为负。 定义状态转移方程： \[ f[i] = \begin{cases} true, &amp; \text{if}\ f[i-j] == false,\ \text{if}\ i\ \%\ j == 0\ \\ &amp; and\ j\ is\ unsigned\ integer\ which \in (0, N) \ \\ false, &amp; \text{otherwise} \end{cases} \] 实现 1234567891011121314151617181920class Solution &#123;public: bool divisorGame(int N) &#123; vector&lt;bool&gt; vi(N+1); for (int i = 2; i &lt; N + 1; ++i) &#123; for (int j = 1; j &lt;= i / 2; ++j) &#123; if (vi[i-j] == false &amp;&amp; i % j == 0) &#123; vi[i] = true; &#125; &#125; &#125; return vi[N]; &#125;&#125;; 综评解 12345678910111213141516class Solution: def divisorGame(self, N: int) -&gt; bool: target = [0 for i in range(N+1)] target[1] = 0 #若爱丽丝抽到1，则爱丽丝输 if N&lt;=1: return False else: target[2] = 1 #若爱丽丝抽到2，则爱丽丝赢 for i in range(3,N+1): for j in range(1,i//2): # 若j是i的余数且target[i-j]为假（0）的话，则代表当前为真（1） if i%j==0 and target[i-j]==0: target[i] = 1 break return target[N]==1 总结 初等数学review: 奇数的因数： {奇数} 偶数的因数： {偶数} 奇数的最大公因数 = 奇数 目前做到的dp还是简单递推问题，可以简单套换成： 状态\(i\)就是数字为\(i\)的时候 \(f[i]\)就是数字为\(i\)时候，结果为\(f[i]\) Reference pandawakaka 给出的解]]></content>
@@ -9,8 +23,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>数学题</tag>
         <tag>DP</tag>
+        <tag>数学题</tag>
       </tags>
   </entry>
   <entry>
@@ -83,9 +97,9 @@
         <category>Pandas</category>
       </categories>
       <tags>
-        <tag>pandas</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
+        <tag>pandas</tag>
         <tag>Code Snippet</tag>
       </tags>
   </entry>
@@ -112,10 +126,10 @@
       </categories>
       <tags>
         <tag>code snippet</tag>
-        <tag>EDA</tag>
         <tag>data visualization</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
+        <tag>EDA</tag>
         <tag>hexo</tag>
       </tags>
   </entry>

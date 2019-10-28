@@ -96,16 +96,23 @@
 
 
 
-  <meta name="description" content="something about myself and my career development.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Boven&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/tags/位运算/index.html">
+  <meta name="description" content="官方解 数学way 综评最高解 在dp解释上强于官方解，简要摘取部分过程，详细见reference处。 对于\(piles=[3, 9, 1, 2]\),  定义状态： \[ dp[i][j].fir\ or\ dp[i][j].sec\\ 其中：\\ 0 &amp;lt;= i &amp;lt; piles.length, i相当于石子堆最左堆\\ i &amp;lt;= j &amp;lt; piles.">
+<meta name="keywords" content="leetcode,DP,二维dp,博弈问题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode题解: 877.石子游戏">
+<meta property="og:url" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/index.html">
 <meta property="og:site_name" content="Boven&#39;s Blog">
-<meta property="og:description" content="something about myself and my career development.">
+<meta property="og:description" content="官方解 数学way 综评最高解 在dp解释上强于官方解，简要摘取部分过程，详细见reference处。 对于\(piles=[3, 9, 1, 2]\),  定义状态： \[ dp[i][j].fir\ or\ dp[i][j].sec\\ 其中：\\ 0 &amp;lt;= i &amp;lt; piles.length, i相当于石子堆最左堆\\ i &amp;lt;= j &amp;lt; piles.">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/dp_table_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/dp_table_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/dp_table_3.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/dp_table_4.png">
+<meta property="og:updated_time" content="2019-10-28T07:43:41.037Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Boven&#39;s Blog">
-<meta name="twitter:description" content="something about myself and my career development.">
+<meta name="twitter:title" content="leetcode题解: 877.石子游戏">
+<meta name="twitter:description" content="官方解 数学way 综评最高解 在dp解释上强于官方解，简要摘取部分过程，详细见reference处。 对于\(piles=[3, 9, 1, 2]\),  定义状态： \[ dp[i][j].fir\ or\ dp[i][j].sec\\ 其中：\\ 0 &amp;lt;= i &amp;lt; piles.length, i相当于石子堆最左堆\\ i &amp;lt;= j &amp;lt; piles.">
+<meta name="twitter:image" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/dp_table_1.png">
 
 
 
@@ -113,7 +120,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/tags/位运算/">
+  <link rel="canonical" href="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/">
 
 
 
@@ -123,7 +130,7 @@
   };
 </script>
 
-  <title>标签: 位运算 | Boven's Blog</title>
+  <title>leetcode题解: 877.石子游戏 | Boven's Blog</title>
   
 
 
@@ -171,7 +178,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -247,7 +254,7 @@
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
 
     
     
@@ -311,28 +318,6 @@
   
     
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
   
 
   
@@ -378,57 +363,258 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>位运算<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bowen Peng">
+      <meta itemprop="description" content="something about myself and my career development.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boven's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-          <a class="post-title-link" href="/2019/10/23/leetcode题解-338-比特位计数/" itemprop="url">
-            
-              <span itemprop="name">leetcode题解: 338.比特位计数</span>
-            
-          </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">leetcode题解: 877.石子游戏
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-10-23T21:29:29+08:00" content="2019-10-23">
-          10-23
-        </time>
-      </div>
+              
+            
+          </h1>
+        
 
-    </header>
-  </article>
+        <div class="post-meta">
+          <span class="post-time">
 
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-27 21:52:40" itemprop="dateCreated datePublished" datetime="2019-10-27T21:52:40+08:00">2019-10-27</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-10-28 15:43:41" itemprop="dateModified" datetime="2019-10-28T15:43:41+08:00">2019-10-28</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/刷题/" itemprop="url" rel="index"><span itemprop="name">刷题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="官方解">官方解</h2>
+<h3 id="数学way">数学way</h3>
+<h2 id="综评最高解">综评最高解</h2>
+<p>在dp解释上强于官方解，简要摘取部分过程，详细见reference处。</p>
+<p>对于<span class="math inline">\(piles=[3, 9, 1, 2]\)</span>,</p>
+<img src="/2019/10/27/leetcode题解-877-石子游戏/dp_table_1.png" title="dp_table">
+<p>定义<strong>状态</strong>： <span class="math display">\[
+dp[i][j].fir\ or\ dp[i][j].sec\\
+其中：\\
+0 &lt;= i &lt; piles.length, i相当于石子堆最左堆\\
+i &lt;= j &lt; piles.length, j相当于石子堆最右堆
+\]</span> 其中， <span class="math display">\[
+dp[i][j].fir表示，对于piles[i...j]这部分石子，先手能获得的最高分数 \\
+dp[i][j].sec表示，对于piles[i...j]这部分石子，后手能获得的最高分数
+\]</span></p>
+<p>其<strong>状态转移方程</strong>为： <span class="math display">\[
+dp[i][j].fir = max(piles[i] + dp[i+1][j].sec, piles[j] + dp[i][j-1].sec) \\
+\]</span></p>
+<p>$$ <span class="math display">\[\begin{align*}
+&amp; if 先手选择左边:
+    dp[i][j].sec = dp[i+1][j].fir \\
+&amp; if 先手选择右边:
+    dp[i][j].sec = dp[i][j-1].fir \\
+
+&amp; 解释：\\
+
+&amp; 我作为后手，要等先手先选择，有两种情况： \\
+&amp; 如果先手选择了最左边那堆，给我剩下了 piles[i+1...j] \\
+&amp; 此时轮到我，我变成了先手；\\
+&amp; 如果先手选择了最右边那堆，给我剩下了 piles[i...j-1] \\ 
+&amp; 此时轮到我，我变成了先手。\\
+\end{align*}\]</span> $$</p>
+<h4 id="base-case">base case</h4>
+<p><span class="math display">\[
+\begin{align*}
+&amp; dp[i][j].fir = piles[i] \\
+&amp; dp[i][j].sec = 0 \\
+&amp; 其中 0 &lt;= i == j &lt; n \\
+&amp; 解释：i 和 j 相等就是说面前只有一堆石头 piles[i] \\
+&amp; 那么显然先手的得分为 piles[i] \\
+&amp; 后手没有石头拿了，得分为 0 \\
+\end{align*}
+\]</span></p>
+<img src="/2019/10/27/leetcode题解-877-石子游戏/dp_table_2.png" title="dp_table">
+<p>这里需要注意一点，我们发现 <span class="math inline">\(base\ case\)</span>是斜着的，而且我们推算 <code>dp[i][j]</code> 时需要用到 <code>dp[i+1][j]</code> 和 <code>dp[i][j-1]</code>：</p>
+<img src="/2019/10/27/leetcode题解-877-石子游戏/dp_table_3.png" title="dp_table">
+<p>所以说算法不能简单的一行一行遍历 <code>dp</code> 数组，<strong>而要斜着遍历数组</strong>：</p>
+<img src="/2019/10/27/leetcode题解-877-石子游戏/dp_table_4.png" title="dp_table">
+<h4 id="实现">实现</h4>
 
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          
+            <a href="/tags/DP/" rel="tag"># DP</a>
+          
+            <a href="/tags/二维dp/" rel="tag"># 二维dp</a>
+          
+            <a href="/tags/博弈问题/" rel="tag"># 博弈问题</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/24/leetcode题解-1025-除数博弈/" rel="next" title="leetcode题解: 1025.除数博弈">
+                <i class="fa fa-chevron-left"></i> leetcode题解: 1025.除数博弈
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -448,8 +634,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -575,6 +770,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#官方解"><span class="nav-number">1.</span> <span class="nav-text">官方解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数学way"><span class="nav-number">1.1.</span> <span class="nav-text">数学way</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#综评最高解"><span class="nav-number">2.</span> <span class="nav-text">综评最高解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#base-case"><span class="nav-number">2.0.1.</span> <span class="nav-text">base case</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现"><span class="nav-number">2.0.2.</span> <span class="nav-text">实现</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -703,6 +915,10 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
 
   
 
@@ -718,6 +934,8 @@
 
   
 
+
+  
 
 
   
@@ -1039,7 +1257,60 @@
         onPopupClose();
       }
     });
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -1058,20 +1329,7 @@
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
 
-
-
-
-
-  
-
-  
-
-  
-  
-
-  
-  
-
+    
   
 
 
