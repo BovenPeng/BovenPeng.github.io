@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="My way: 这题tag是dp，按着dp的思路写出了 状态， 状态转移方程包括 边界条件， 常规情况。 大致思路如下：  定义状态：  \(i\): 数字为\(i\)时； \(f[i]\): 数字为i时，\(f[i]\)表示有多少个1，在数字\(i\)的二进制表示形式下。  状态转移方程：  边界：\(f[0] = [\ \ ]\) 正常情况：(第一时间也拿不出来，通过举">
+  <meta name="description" content="题目 My way: 这题tag是dp，按着dp的思路写出了 状态， 状态转移方程包括 边界条件， 常规情况。 大致思路如下：  定义状态：  \(i\): 数字为\(i\)时； \(f[i]\): 数字为i时，\(f[i]\)表示有多少个1，在数字\(i\)的二进制表示形式下。  状态转移方程：  边界：\(f[0] = [\ \ ]\) 正常情况：(第一时间也拿不出来">
 <meta name="keywords" content="leetcode,DP,位运算">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode题解: 338.比特位计数">
 <meta property="og:url" content="http://yoursite.com/2019/10/23/leetcode题解-338-比特位计数/index.html">
 <meta property="og:site_name" content="Boven&#39;s Blog">
-<meta property="og:description" content="My way: 这题tag是dp，按着dp的思路写出了 状态， 状态转移方程包括 边界条件， 常规情况。 大致思路如下：  定义状态：  \(i\): 数字为\(i\)时； \(f[i]\): 数字为i时，\(f[i]\)表示有多少个1，在数字\(i\)的二进制表示形式下。  状态转移方程：  边界：\(f[0] = [\ \ ]\) 正常情况：(第一时间也拿不出来，通过举">
+<meta property="og:description" content="题目 My way: 这题tag是dp，按着dp的思路写出了 状态， 状态转移方程包括 边界条件， 常规情况。 大致思路如下：  定义状态：  \(i\): 数字为\(i\)时； \(f[i]\): 数字为i时，\(f[i]\)表示有多少个1，在数字\(i\)的二进制表示形式下。  状态转移方程：  边界：\(f[0] = [\ \ ]\) 正常情况：(第一时间也拿不出来">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-27T13:45:47.049Z">
+<meta property="og:updated_time" content="2019-10-28T13:59:36.670Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode题解: 338.比特位计数">
-<meta name="twitter:description" content="My way: 这题tag是dp，按着dp的思路写出了 状态， 状态转移方程包括 边界条件， 常规情况。 大致思路如下：  定义状态：  \(i\): 数字为\(i\)时； \(f[i]\): 数字为i时，\(f[i]\)表示有多少个1，在数字\(i\)的二进制表示形式下。  状态转移方程：  边界：\(f[0] = [\ \ ]\) 正常情况：(第一时间也拿不出来，通过举">
+<meta name="twitter:description" content="题目 My way: 这题tag是dp，按着dp的思路写出了 状态， 状态转移方程包括 边界条件， 常规情况。 大致思路如下：  定义状态：  \(i\): 数字为\(i\)时； \(f[i]\): 数字为i时，\(f[i]\)表示有多少个1，在数字\(i\)的二进制表示形式下。  状态转移方程：  边界：\(f[0] = [\ \ ]\) 正常情况：(第一时间也拿不出来">
 
 
 
@@ -434,7 +434,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-27 21:45:47" itemprop="dateModified" datetime="2019-10-27T21:45:47+08:00">2019-10-27</time>
+                <time title="修改时间：2019-10-28 21:59:36" itemprop="dateModified" datetime="2019-10-28T21:59:36+08:00">2019-10-28</time>
               
             
           </span>
@@ -486,7 +486,8 @@
       
 
       
-        <h2 id="my-way">My way:</h2>
+        <h2 id="题目"><a href="https://leetcode-cn.com/problems/counting-bits/" target="_blank" rel="noopener">题目</a></h2>
+<h2 id="my-way">My way:</h2>
 <p>这题tag是dp，按着dp的思路写出了 <strong>状态</strong>， <strong>状态转移方程</strong>包括 <em>边界条件</em>， <em>常规情况</em>。</p>
 <p>大致思路如下：</p>
 <ul>
@@ -838,7 +839,7 @@ P(x) = P(x\ \&amp;\ (x-1)) + 1
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#my-way"><span class="nav-number">1.</span> <span class="nav-text">My way:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#standard-way"><span class="nav-number">2.</span> <span class="nav-text">Standard Way</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pop-count"><span class="nav-number">2.1.</span> <span class="nav-text">1.Pop Count</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路"><span class="nav-number">2.1.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现"><span class="nav-number">2.1.2.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态规划-最高有效位"><span class="nav-number">2.2.</span> <span class="nav-text">2. 动态规划 + 最高有效位</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#状态转移方程"><span class="nav-number">2.2.1.</span> <span class="nav-text">状态转移方程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#我的理解"><span class="nav-number">2.2.2.</span> <span class="nav-text">我的理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现-1"><span class="nav-number">2.2.3.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态规划-最低有效位"><span class="nav-number">2.3.</span> <span class="nav-text">3. 动态规划 + 最低有效位</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#状态转移方程-1"><span class="nav-number">2.3.1.</span> <span class="nav-text">状态转移方程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#我的理解-1"><span class="nav-number">2.3.2.</span> <span class="nav-text">我的理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现-2"><span class="nav-number">2.3.3.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态规划-最后设置位"><span class="nav-number">2.4.</span> <span class="nav-text">4.动态规划 + 最后设置位</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#状态转移方程-2"><span class="nav-number">2.4.1.</span> <span class="nav-text">状态转移方程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#我的理解-2"><span class="nav-number">2.4.2.</span> <span class="nav-text">我的理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现-3"><span class="nav-number">2.4.3.</span> <span class="nav-text">实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#extended-knowledge"><span class="nav-number">4.1.</span> <span class="nav-text">Extended knowledge</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#my-way"><span class="nav-number">2.</span> <span class="nav-text">My way:</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#standard-way"><span class="nav-number">3.</span> <span class="nav-text">Standard Way</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pop-count"><span class="nav-number">3.1.</span> <span class="nav-text">1.Pop Count</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#思路"><span class="nav-number">3.1.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现"><span class="nav-number">3.1.2.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态规划-最高有效位"><span class="nav-number">3.2.</span> <span class="nav-text">2. 动态规划 + 最高有效位</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#状态转移方程"><span class="nav-number">3.2.1.</span> <span class="nav-text">状态转移方程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#我的理解"><span class="nav-number">3.2.2.</span> <span class="nav-text">我的理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现-1"><span class="nav-number">3.2.3.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态规划-最低有效位"><span class="nav-number">3.3.</span> <span class="nav-text">3. 动态规划 + 最低有效位</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#状态转移方程-1"><span class="nav-number">3.3.1.</span> <span class="nav-text">状态转移方程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#我的理解-1"><span class="nav-number">3.3.2.</span> <span class="nav-text">我的理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现-2"><span class="nav-number">3.3.3.</span> <span class="nav-text">实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动态规划-最后设置位"><span class="nav-number">3.4.</span> <span class="nav-text">4.动态规划 + 最后设置位</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#状态转移方程-2"><span class="nav-number">3.4.1.</span> <span class="nav-text">状态转移方程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#我的理解-2"><span class="nav-number">3.4.2.</span> <span class="nav-text">我的理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现-3"><span class="nav-number">3.4.3.</span> <span class="nav-text">实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reference"><span class="nav-number">5.</span> <span class="nav-text">Reference</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#extended-knowledge"><span class="nav-number">5.1.</span> <span class="nav-text">Extended knowledge</span></a></li></ol></li></ol></div>
             
 
           </div>

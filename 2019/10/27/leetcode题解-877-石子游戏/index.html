@@ -96,22 +96,22 @@
 
 
 
-  <meta name="description" content="官方解 数学way 直接从官方解处摘抄过来，很有意思的数学归纳证明思想。如下： 显然，亚历克斯总是赢得 2 堆时的游戏。 通过一些努力，我们可以获知她总是赢得 4 堆时的游戏。 如果亚历克斯最初获得第一堆，她总是可以拿第三堆。 如果她最初取到第四堆，她总是可以取第二堆。第一 + 第三，第二 + 第四 中的至少一组是更大的，所以她总能获胜。 我们可以将这个想法扩展到 N 堆的情况下。设第一">
+  <meta name="description" content="题目 官方解 数学way 直接从官方解处摘抄过来，很有意思的数学归纳证明思想。如下： 显然，亚历克斯总是赢得 2 堆时的游戏。 通过一些努力，我们可以获知她总是赢得 4 堆时的游戏。 如果亚历克斯最初获得第一堆，她总是可以拿第三堆。 如果她最初取到第四堆，她总是可以取第二堆。第一 + 第三，第二 + 第四 中的至少一组是更大的，所以她总能获胜。 我们可以将这个想法扩展到 N 堆的情况下">
 <meta name="keywords" content="leetcode,DP,二维dp,博弈问题">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode题解: 877.石子游戏">
 <meta property="og:url" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/index.html">
 <meta property="og:site_name" content="Boven&#39;s Blog">
-<meta property="og:description" content="官方解 数学way 直接从官方解处摘抄过来，很有意思的数学归纳证明思想。如下： 显然，亚历克斯总是赢得 2 堆时的游戏。 通过一些努力，我们可以获知她总是赢得 4 堆时的游戏。 如果亚历克斯最初获得第一堆，她总是可以拿第三堆。 如果她最初取到第四堆，她总是可以取第二堆。第一 + 第三，第二 + 第四 中的至少一组是更大的，所以她总能获胜。 我们可以将这个想法扩展到 N 堆的情况下。设第一">
+<meta property="og:description" content="题目 官方解 数学way 直接从官方解处摘抄过来，很有意思的数学归纳证明思想。如下： 显然，亚历克斯总是赢得 2 堆时的游戏。 通过一些努力，我们可以获知她总是赢得 4 堆时的游戏。 如果亚历克斯最初获得第一堆，她总是可以拿第三堆。 如果她最初取到第四堆，她总是可以取第二堆。第一 + 第三，第二 + 第四 中的至少一组是更大的，所以她总能获胜。 我们可以将这个想法扩展到 N 堆的情况下">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/dp_table_1.png">
 <meta property="og:image" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/dp_table_2.png">
 <meta property="og:image" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/dp_table_3.png">
 <meta property="og:image" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/dp_table_4.png">
-<meta property="og:updated_time" content="2019-10-28T13:23:35.588Z">
+<meta property="og:updated_time" content="2019-10-28T13:59:08.145Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode题解: 877.石子游戏">
-<meta name="twitter:description" content="官方解 数学way 直接从官方解处摘抄过来，很有意思的数学归纳证明思想。如下： 显然，亚历克斯总是赢得 2 堆时的游戏。 通过一些努力，我们可以获知她总是赢得 4 堆时的游戏。 如果亚历克斯最初获得第一堆，她总是可以拿第三堆。 如果她最初取到第四堆，她总是可以取第二堆。第一 + 第三，第二 + 第四 中的至少一组是更大的，所以她总能获胜。 我们可以将这个想法扩展到 N 堆的情况下。设第一">
+<meta name="twitter:description" content="题目 官方解 数学way 直接从官方解处摘抄过来，很有意思的数学归纳证明思想。如下： 显然，亚历克斯总是赢得 2 堆时的游戏。 通过一些努力，我们可以获知她总是赢得 4 堆时的游戏。 如果亚历克斯最初获得第一堆，她总是可以拿第三堆。 如果她最初取到第四堆，她总是可以取第二堆。第一 + 第三，第二 + 第四 中的至少一组是更大的，所以她总能获胜。 我们可以将这个想法扩展到 N 堆的情况下">
 <meta name="twitter:image" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/dp_table_1.png">
 
 
@@ -439,7 +439,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-28 21:23:35" itemprop="dateModified" datetime="2019-10-28T21:23:35+08:00">2019-10-28</time>
+                <time title="修改时间：2019-10-28 21:59:08" itemprop="dateModified" datetime="2019-10-28T21:59:08+08:00">2019-10-28</time>
               
             
           </span>
@@ -491,7 +491,8 @@
       
 
       
-        <h2 id="官方解">官方解</h2>
+        <h2 id="题目"><a href="https://leetcode-cn.com/problems/stone-game/" target="_blank" rel="noopener">题目</a></h2>
+<h2 id="官方解">官方解</h2>
 <h3 id="数学way">数学way</h3>
 <p>直接从官方解处摘抄过来，很有意思的数学归纳证明思想。如下：</p>
 <p>显然，亚历克斯总是赢得 2 堆时的游戏。 通过一些努力，我们可以获知她总是赢得 4 堆时的游戏。</p>
@@ -819,7 +820,7 @@ dp[i][j].fir = max(piles[i] + dp[i+1][j].sec, piles[j] + dp[i][j-1].sec) \\
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#官方解"><span class="nav-number">1.</span> <span class="nav-text">官方解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数学way"><span class="nav-number">1.1.</span> <span class="nav-text">数学way</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#综评最高解"><span class="nav-number">2.</span> <span class="nav-text">综评最高解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义状态"><span class="nav-number">2.0.1.</span> <span class="nav-text">定义状态：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#状态转移方程为"><span class="nav-number">2.0.2.</span> <span class="nav-text">状态转移方程为：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#base-case"><span class="nav-number">2.0.3.</span> <span class="nav-text">base case</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现"><span class="nav-number">2.0.4.</span> <span class="nav-text">实现</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#extended"><span class="nav-number">4.1.</span> <span class="nav-text">extended</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#官方解"><span class="nav-number">2.</span> <span class="nav-text">官方解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数学way"><span class="nav-number">2.1.</span> <span class="nav-text">数学way</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#综评最高解"><span class="nav-number">3.</span> <span class="nav-text">综评最高解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义状态"><span class="nav-number">3.0.1.</span> <span class="nav-text">定义状态：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#状态转移方程为"><span class="nav-number">3.0.2.</span> <span class="nav-text">状态转移方程为：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#base-case"><span class="nav-number">3.0.3.</span> <span class="nav-text">base case</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现"><span class="nav-number">3.0.4.</span> <span class="nav-text">实现</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reference"><span class="nav-number">5.</span> <span class="nav-text">Reference</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#extended"><span class="nav-number">5.1.</span> <span class="nav-text">extended</span></a></li></ol></li></div>
             
 
           </div>
