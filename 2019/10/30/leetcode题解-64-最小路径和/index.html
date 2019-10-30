@@ -97,15 +97,16 @@
 
 
   <meta name="description" content="My way 第一眼感觉就是一个当前表格状态依赖于左边表格状态和上边表格状态的二维DP题。 状态定义： \[ \begin{align*} &amp;amp; i:\ 表示第i行 \\ &amp;amp; j:\ 表示第j列 \\ &amp;amp; [i,\ j]:\ 表示第i行，j列上的数字\\ &amp;amp; grid[i][j]:\ 表示原始网格上第i行，j列上的数字\\ &amp;amp; dp[i][j">
+<meta name="keywords" content="leetcode,动态规划,2维DP,2维DP-to-1维DP,数组对角遍历">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Boven&#39;s Blog">
+<meta property="og:title" content="leetcode题解-64-最小路径和">
 <meta property="og:url" content="http://yoursite.com/2019/10/30/leetcode题解-64-最小路径和/index.html">
 <meta property="og:site_name" content="Boven&#39;s Blog">
 <meta property="og:description" content="My way 第一眼感觉就是一个当前表格状态依赖于左边表格状态和上边表格状态的二维DP题。 状态定义： \[ \begin{align*} &amp;amp; i:\ 表示第i行 \\ &amp;amp; j:\ 表示第j列 \\ &amp;amp; [i,\ j]:\ 表示第i行，j列上的数字\\ &amp;amp; grid[i][j]:\ 表示原始网格上第i行，j列上的数字\\ &amp;amp; dp[i][j">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-30T15:04:37.602Z">
+<meta property="og:updated_time" content="2019-10-30T15:07:45.414Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Boven&#39;s Blog">
+<meta name="twitter:title" content="leetcode题解-64-最小路径和">
 <meta name="twitter:description" content="My way 第一眼感觉就是一个当前表格状态依赖于左边表格状态和上边表格状态的二维DP题。 状态定义： \[ \begin{align*} &amp;amp; i:\ 表示第i行 \\ &amp;amp; j:\ 表示第j列 \\ &amp;amp; [i,\ j]:\ 表示第i行，j列上的数字\\ &amp;amp; grid[i][j]:\ 表示原始网格上第i行，j列上的数字\\ &amp;amp; dp[i][j">
 
 
@@ -124,7 +125,7 @@
   };
 </script>
 
-  <title> | Boven's Blog</title>
+  <title>leetcode题解-64-最小路径和 | Boven's Blog</title>
   
 
 
@@ -390,7 +391,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h1 class="post-title" itemprop="name headline">leetcode题解-64-最小路径和
 
               
             
@@ -416,7 +417,7 @@
                 
               
 
-              <time title="创建时间：2019-10-30 22:09:17 / 修改时间：23:04:37" itemprop="dateCreated datePublished" datetime="2019-10-30T22:09:17+08:00">2019-10-30</time>
+              <time title="创建时间：2019-10-30 23:06:41 / 修改时间：23:07:45" itemprop="dateCreated datePublished" datetime="2019-10-30T23:06:41+08:00">2019-10-30</time>
             
 
             
@@ -426,6 +427,24 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/刷题/" itemprop="url" rel="index"><span itemprop="name">刷题</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -526,6 +545,20 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          
+            <a href="/tags/动态规划/" rel="tag"># 动态规划</a>
+          
+            <a href="/tags/2维DP/" rel="tag"># 2维DP</a>
+          
+            <a href="/tags/2维DP-to-1维DP/" rel="tag"># 2维DP-to-1维DP</a>
+          
+            <a href="/tags/数组对角遍历/" rel="tag"># 数组对角遍历</a>
+          
+        </div>
       
 
       
@@ -711,7 +744,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">26</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">29</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -1225,7 +1264,60 @@
         onPopupClose();
       }
     });
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -1244,20 +1336,7 @@
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
 
-
-
-
-
-  
-
-  
-
-  
-  
-
-  
-  
-
+    
   
 
 
