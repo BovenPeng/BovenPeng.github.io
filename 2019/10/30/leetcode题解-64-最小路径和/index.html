@@ -96,17 +96,17 @@
 
 
 
-  <meta name="description" content="题目">
+  <meta name="description" content="My way 第一眼感觉就是一个当前表格状态依赖于左边表格状态和上边表格状态的二维DP题。 状态定义： \[ \begin{align*} &amp;amp; i:\ 表示第i行 \\ &amp;amp; j:\ 表示第j列 \\ &amp;amp; [i,\ j]:\ 表示第i行，j列上的数字\\ &amp;amp; grid[i][j]:\ 表示原始网格上第i行，j列上的数字\\ &amp;amp; dp[i][j">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode-64-最小路径和">
+<meta property="og:title" content="Boven&#39;s Blog">
 <meta property="og:url" content="http://yoursite.com/2019/10/30/leetcode题解-64-最小路径和/index.html">
 <meta property="og:site_name" content="Boven&#39;s Blog">
-<meta property="og:description" content="题目">
+<meta property="og:description" content="My way 第一眼感觉就是一个当前表格状态依赖于左边表格状态和上边表格状态的二维DP题。 状态定义： \[ \begin{align*} &amp;amp; i:\ 表示第i行 \\ &amp;amp; j:\ 表示第j列 \\ &amp;amp; [i,\ j]:\ 表示第i行，j列上的数字\\ &amp;amp; grid[i][j]:\ 表示原始网格上第i行，j列上的数字\\ &amp;amp; dp[i][j">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-30T15:00:11.109Z">
+<meta property="og:updated_time" content="2019-10-30T15:01:43.519Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode-64-最小路径和">
-<meta name="twitter:description" content="题目">
+<meta name="twitter:title" content="Boven&#39;s Blog">
+<meta name="twitter:description" content="My way 第一眼感觉就是一个当前表格状态依赖于左边表格状态和上边表格状态的二维DP题。 状态定义： \[ \begin{align*} &amp;amp; i:\ 表示第i行 \\ &amp;amp; j:\ 表示第j列 \\ &amp;amp; [i,\ j]:\ 表示第i行，j列上的数字\\ &amp;amp; grid[i][j]:\ 表示原始网格上第i行，j列上的数字\\ &amp;amp; dp[i][j">
 
 
 
@@ -124,7 +124,7 @@
   };
 </script>
 
-  <title>leetcode-64-最小路径和 | Boven's Blog</title>
+  <title> | Boven's Blog</title>
   
 
 
@@ -390,7 +390,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">leetcode-64-最小路径和
+          <h1 class="post-title" itemprop="name headline">
 
               
             
@@ -416,7 +416,7 @@
                 
               
 
-              <time title="创建时间：2019-10-30 22:09:17 / 修改时间：23:00:11" itemprop="dateCreated datePublished" datetime="2019-10-30T22:09:17+08:00">2019-10-30</time>
+              <time title="创建时间：2019-10-30 22:09:17 / 修改时间：23:01:43" itemprop="dateCreated datePublished" datetime="2019-10-30T22:09:17+08:00">2019-10-30</time>
             
 
             
@@ -455,7 +455,57 @@
       
 
       
-        <h2 id="题目"><a href="https://leetcode-cn.com/problems/minimum-path-sum/" target="_blank" rel="noopener">题目</a></h2>
+        <h2 id="my-way">My way</h2>
+<p>第一眼感觉就是一个当前表格状态依赖于左边表格状态和上边表格状态的二维DP题。</p>
+<h3 id="状态定义">状态定义：</h3>
+<p><span class="math display">\[
+\begin{align*}
+&amp; i:\ 表示第i行 \\
+&amp; j:\ 表示第j列 \\
+&amp; [i,\ j]:\ 表示第i行，j列上的数字\\
+&amp; grid[i][j]:\ 表示原始网格上第i行，j列上的数字\\
+&amp; dp[i][j]:\ 表示经过某些步之后，达到第i行，j列的时候，这个数字和的最小值\\
+\end{align*}
+\]</span></p>
+<h3 id="状态转移方程">状态转移方程：</h3>
+<p><span class="math display">\[
+\begin{align*}
+&amp; dp[i][j] = grid[i][j] + max(df[i-1][j],\ df[i][j-1])
+\end{align*}
+\]</span></p>
+<h3 id="base-case">Base Case:</h3>
+<p><span class="math display">\[
+\begin{align*}
+&amp; df[0][0] = grid[0][0]
+\end{align*}
+\]</span></p>
+<h3 id="corner-case">Corner Case:</h3>
+<p><span class="math display">\[
+\begin{align*}
+&amp; df[i][j] = grid[i][j] + df[i, j-1],\ \text{if $j-1$ == 0} \\
+&amp; df[i][j] = grid[i][j] + df[i-1, j],\ \text{if $j-1$ == 0}
+\end{align*}
+\]</span></p>
+<p>C++实现</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minPathSum</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; grid)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; vvi(grid);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> m = grid.size(), n = grid[<span class="number">0</span>].size();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; ++j)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (i == <span class="number">0</span> &amp;&amp; j == <span class="number">0</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    vvi[i][j] = grid[i][j];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (i == <span class="number">0</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    vvi[i][j] = grid[i][j] + vvi[i][j<span class="number">-1</span>];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (j == <span class="number">0</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    vvi[i][j] = grid[i][j] + vvi[i<span class="number">-1</span>][j];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> </span><br><span class="line">                &#123;</span><br><span class="line">                    vvi[i][j] = grid[i][j] + min(vvi[i<span class="number">-1</span>][j], vvi[i][j<span class="number">-1</span>]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> vvi[m<span class="number">-1</span>][n<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="可以试试斜着遍历">可以试试斜着遍历</h3>
+<h2 id="官方解">官方解</h2>
+<h3 id="暴力">1.暴力</h3>
+<p>不做解释了。</p>
+<h3 id="二维dp">2.二维DP</h3>
+<p>类似我的思路。</p>
+<h3 id="一维dp">3.一维DP</h3>
+<p>因为这里每个阶段的状态仅依赖上一个表格状态和左一个表格的状态，</p>
+<p>再加上我们利用按行遍历的方式，依次求出每一行对应的<span class="math inline">\(dp[i][j]\)</span>，然后得到结果。</p>
+<h4 id="官方java解">官方Java解</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minPathSum</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[grid[<span class="number">0</span>].length];</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = grid.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">           <span class="keyword">for</span> (<span class="keyword">int</span> j = grid[<span class="number">0</span>].length - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">               <span class="keyword">if</span>(i == grid.length - <span class="number">1</span> &amp;&amp; j != grid[<span class="number">0</span>].length - <span class="number">1</span>)</span><br><span class="line">                   dp[j] = grid[i][j] +  dp[j + <span class="number">1</span>];</span><br><span class="line">               <span class="keyword">else</span> <span class="keyword">if</span>(j == grid[<span class="number">0</span>].length - <span class="number">1</span> &amp;&amp; i != grid.length - <span class="number">1</span>)</span><br><span class="line">                   dp[j] = grid[i][j] + dp[j];</span><br><span class="line">               <span class="keyword">else</span> <span class="keyword">if</span>(j != grid[<span class="number">0</span>].length - <span class="number">1</span> &amp;&amp; i != grid.length - <span class="number">1</span>)</span><br><span class="line">                   dp[j] = grid[i][j] + Math.min(dp[j], dp[j + <span class="number">1</span>]);</span><br><span class="line">               <span class="keyword">else</span></span><br><span class="line">                   dp[j] = grid[i][j];</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> dp[<span class="number">0</span>];</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="重上到下c实现">重上到下，C++实现</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minPathSum</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; grid)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(grid[<span class="number">0</span>].size());</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; grid.size(); ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; grid[<span class="number">0</span>].size(); ++j)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (i == <span class="number">0</span> &amp;&amp; j == <span class="number">0</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    dp[j] = grid[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (i == <span class="number">0</span> &amp;&amp; j != <span class="number">0</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    dp[j] = grid[i][j] + dp[j<span class="number">-1</span>]; </span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (i != <span class="number">0</span> &amp;&amp; j == <span class="number">0</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    dp[j] = grid[i][j] + dp[j];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> </span><br><span class="line">                &#123;</span><br><span class="line">                    dp[j] = grid[i][j] + min(dp[j], dp[j<span class="number">-1</span>]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp[grid[<span class="number">0</span>].size()<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="reference">Reference</h2>
+<p><a href="https://leetcode-cn.com/problems/minimum-path-sum/solution/zui-xiao-lu-jing-he-by-leetcode/" target="_blank" rel="noopener">leetcode 官方解</a></p>
+<h3 id="extended">extended</h3>
+<p><a href="https://stackoverflow.com/questions/21346343/traverse-an-array-diagonally" target="_blank" rel="noopener">Traverse an array diagonally</a></p>
+<p><a href="https://stackoverflow.com/questions/2862802/traverse-2d-array-matrix-diagonally" target="_blank" rel="noopener">Traverse 2D m*n Array (Matrix) Diagonally</a></p>
 
       
     </div>
@@ -699,7 +749,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#my-way"><span class="nav-number">1.</span> <span class="nav-text">My way</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#状态定义"><span class="nav-number">1.1.</span> <span class="nav-text">状态定义：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#状态转移方程"><span class="nav-number">1.2.</span> <span class="nav-text">状态转移方程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#base-case"><span class="nav-number">1.3.</span> <span class="nav-text">Base Case:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#corner-case"><span class="nav-number">1.4.</span> <span class="nav-text">Corner Case:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#可以试试斜着遍历"><span class="nav-number">1.5.</span> <span class="nav-text">可以试试斜着遍历</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#官方解"><span class="nav-number">2.</span> <span class="nav-text">官方解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#暴力"><span class="nav-number">2.1.</span> <span class="nav-text">1.暴力</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二维dp"><span class="nav-number">2.2.</span> <span class="nav-text">2.二维DP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一维dp"><span class="nav-number">2.3.</span> <span class="nav-text">3.一维DP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#官方java解"><span class="nav-number">2.3.1.</span> <span class="nav-text">官方Java解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重上到下c实现"><span class="nav-number">2.3.2.</span> <span class="nav-text">重上到下，C++实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#extended"><span class="nav-number">3.1.</span> <span class="nav-text">extended</span></a></li></ol></li></ol></div>
             
 
           </div>
