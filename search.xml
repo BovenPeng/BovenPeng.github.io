@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode-64-最小路径和]]></title>
+    <url>%2F2019%2F10%2F30%2Fleetcode%E9%A2%98%E8%A7%A3-64-%E6%9C%80%E5%B0%8F%E8%B7%AF%E5%BE%84%E5%92%8C%2F</url>
+    <content type="text"><![CDATA[题目]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解-96-不同的二叉搜索树]]></title>
     <url>%2F2019%2F10%2F29%2Fleetcode%E9%A2%98%E8%A7%A3-96-%E4%B8%8D%E5%90%8C%E7%9A%84%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%2F</url>
-    <content type="text"><![CDATA[题目 官方解 思考题目中，输入为\(n\)，表示由\(n\)个节点来构成二叉搜索树。 可以考虑到的是，每个子树的根节点不同，则为一个新的子树结构(包括 叶节点)。 所以要考虑到如何从 根节点 入手，以及对于当前根节点的左右子树的递推的方式解决。 动态规划 状态定义： 考虑到涉及到 输入节点个数\(n\) 和所取 根节点\(i\)，可以定义如下： \[ \begin{align*} &amp; F(i,\ n) = \text{以$i$为根节点，长度为$n$的二叉搜索树的树的个数} \\ &amp; G(n) = \text{长度为$n$的二叉搜索树的树的个数} \\ \end{align*} \] 可以得到如下 状态转移方程/递推公式： \[ \begin{align*} &amp; G(n) = \sum_{i=1}^{n}F(i,\ n) \\ &amp; F(i,\ n) = G(i-1) * G(n-i),\ 因为同一长度n的二叉搜索树个数一样 \\ &amp; so\ we\ get: \\ &amp; G(n) = \sum_{i=1}^{n}\{G(i-1) * G(n-i)\} \\ &amp; 0 &lt;= i &lt;= n \end{align*} \] Base case: \[ \begin{align*} &amp; G(0) = 0\\ &amp; G(1) = 1\\ &amp; 0 &lt;= i &lt;= n \end{align*} \] \(G[0] = 0\)， 一方面说明 空树也是一种二叉搜索树。 一方面为了 构造的递推式中涉及到乘法，要保证乘积因子不为0才可。 1234567891011121314public class Solution &#123; public int numTrees(int n) &#123; int[] G = new int[n + 1]; G[0] = 1; G[1] = 1; for (int i = 2; i &lt;= n; ++i) &#123; for (int j = 1; j &lt;= i; ++j) &#123; G[i] += G[j - 1] * G[i - j]; &#125; &#125; return G[n]; &#125;&#125; 数学way 数学归纳法： 可以归纳得出：\(G(n)\)的值被称为Catalan数\(C_n\)。 定义如下： \[ \begin{align*} &amp; C_0 = 1, \\ &amp; C_{n+1} = \frac{2(2n+1)}{n+2} C_n \end{align*} \] 12345678910class Solution &#123; public int numTrees(int n) &#123; // Note: we should use long here instead of int, otherwise overflow long C = 1; for (int i = 0; i &lt; n; ++i) &#123; C = C * 2 * (2 * i + 1) / (i + 2); &#125; return (int) C; &#125;&#125; 总结 要考虑到二叉搜索树的基本定义之一 左子树上的值 &lt; 根节点 &lt; 右子树上的值 空树也是二叉搜索树的一种 *如何摸索出状态定义的中的2个状态：\(n\), \(i\). 题目已给条件中的状态有: 构成二叉搜索树的序列长度\(n\)。 考虑到子树的根节点不同，影响到二叉搜索树的结构，所以推测出: \(i\)是\([0,\ n]\)中取的一个值作为根节点。 *Catalan数，一个组合数学问题常常涉及到的。 Reference leetcode官方解 wikipidia-cn: catalan number baidu baike: 卡特兰数]]></content>
+    <content type="text"><![CDATA[题目 官方解 思考题目中，输入为\(n\)，表示由\(n\)个节点来构成二叉搜索树。 可以考虑到的是，每个子树的根节点不同，则为一个新的子树结构(包括 叶节点)。 所以要考虑到如何从 根节点 入手，以及对于当前根节点的左右子树的递推的方式解决。 动态规划 状态定义： 考虑到涉及到 输入节点个数\(n\) 和所取 根节点\(i\)，可以定义如下： \[ \begin{align*} &amp; F(i,\ n) = \text{以$i$为根节点，长度为$n$的二叉搜索树的树的个数} \\ &amp; G(n) = \text{长度为$n$的二叉搜索树的树的个数} \\ \end{align*} \] 可以得到如下 状态转移方程/递推公式： \[ \begin{align*} &amp; G(n) = \sum_{i=1}^{n}F(i,\ n) \\ &amp; F(i,\ n) = G(i-1) * G(n-i),\ 因为同一长度n的二叉搜索树个数一样 \\ &amp; so\ we\ get: \\ &amp; G(n) = \sum_{i=1}^{n}\{G(i-1) * G(n-i)\} \\ &amp; 0 &lt;= i &lt;= n \end{align*} \] Base case: \[ \begin{align*} &amp; G(0) = 0\\ &amp; G(1) = 1\\ &amp; 0 &lt;= i &lt;= n \end{align*} \] \(G[0] = 0\)， 一方面说明 空树也是一种二叉搜索树。 一方面为了 构造的递推式中涉及到乘法，要保证乘积因子不为0才可。 1234567891011121314public class Solution &#123; public int numTrees(int n) &#123; int[] G = new int[n + 1]; G[0] = 1; G[1] = 1; for (int i = 2; i &lt;= n; ++i) &#123; for (int j = 1; j &lt;= i; ++j) &#123; G[i] += G[j - 1] * G[i - j]; &#125; &#125; return G[n]; &#125;&#125; 数学way 数学归纳法： 可以归纳得出：\(G(n)\)的值被称为Catalan数\(C_n\)。 定义如下： \[ \begin{align*} &amp; C_0 = 1, \\ &amp; C_{n+1} = \frac{2(2n+1)}{n+2} C_n \end{align*} \] 12345678910class Solution &#123; public int numTrees(int n) &#123; // Note: we should use long here instead of int, otherwise overflow long C = 1; for (int i = 0; i &lt; n; ++i) &#123; C = C * 2 * (2 * i + 1) / (i + 2); &#125; return (int) C; &#125;&#125; 总结 要考虑到二叉搜索树的基本定义之一 左子树上的值 &lt; 根节点 &lt; 右子树上的值 空树也是二叉搜索树的一种 *如何摸索出状态定义的中的2个状态：\(n\), \(i\). 题目已给条件中的状态有: 构成二叉搜索树的序列长度\(n\)。 考虑到子树的根节点不同，影响到二叉搜索树的结构，所以推测出: \(i\)是\([0,\ n]\)中取的一个值作为根节点。 *Catalan数，一个组合数学问题常常涉及到的。 Reference leetcode官方解 wikipidia-cn: catalan number baidu baike: 卡特兰数 extended C++ memory model C memory model]]></content>
       <categories>
         <category>刷题</category>
       </categories>
@@ -126,9 +131,9 @@
         <category>Pandas</category>
       </categories>
       <tags>
+        <tag>pandas</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
-        <tag>pandas</tag>
         <tag>Code Snippet</tag>
       </tags>
   </entry>
@@ -155,10 +160,10 @@
       </categories>
       <tags>
         <tag>code snippet</tag>
+        <tag>EDA</tag>
         <tag>data visualization</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
-        <tag>EDA</tag>
         <tag>hexo</tag>
       </tags>
   </entry>
