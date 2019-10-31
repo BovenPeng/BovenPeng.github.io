@@ -158,9 +158,9 @@
         <category>Pandas</category>
       </categories>
       <tags>
+        <tag>pandas</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
-        <tag>pandas</tag>
         <tag>Code Snippet</tag>
       </tags>
   </entry>
@@ -187,10 +187,10 @@
       </categories>
       <tags>
         <tag>code snippet</tag>
+        <tag>EDA</tag>
         <tag>data visualization</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
-        <tag>EDA</tag>
         <tag>hexo</tag>
       </tags>
   </entry>
