@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode题解-95-不同的二叉搜索树2]]></title>
+    <url>%2F2019%2F10%2F31%2Fleetcode%E9%A2%98%E8%A7%A3-95-%E4%B8%8D%E5%90%8C%E7%9A%84%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%912%2F</url>
+    <content type="text"><![CDATA[题目 官方解 简要改自官网解。 利用树的遍历，以递归方式实现不同二叉树的构造。 我们从序列 \(1 ...n\) 中取出数字 \(i\)，作为当前树的树根。于是，剩余 \(i - 1\) 个元素可用于左子树，\(n - i\) 个元素用于右子树。 如 前文所述，这样会产生 \(G(i - 1)\) 种左子树 和 \(G(n - i)\) 种右子树，其中 \(G\) 是卡特兰数。 现在，我们对序列 \(1 ... i - 1\) 重复上述过程，以构建所有的左子树；然后对 \(i + 1 ... n\) 重复，以构建所有的右子树。 这样，我们就有了树根 \(i\) 和可能的左子树、右子树的列表。 最后一步，对两个列表循环，将左子树和右子树连接在根上。 C++实现 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: // [start, end] vector&lt;TreeNode*&gt; generate_trees(int start, int end) &#123; vector&lt;TreeNode*&gt; all_trees; if (start &gt; end) &#123; all_trees.push_back(NULL); return all_trees; &#125; // pick up a root for (int i = 0; i &lt;= end; ++i) &#123; vector&lt;TreeNode*&gt; leftTrees = generate_trees(start, i - 1); vector&lt;TreeNode*&gt; rightTrees = generate_trees(i + 1, end); for (auto l : leftTrees) &#123; for (auto r : rightTrees) &#123; TreeNode* curTree(i); curTree-&gt;left = l; curTree-&gt;right = r; all_trees.push_back(curTree); &#125; &#125; &#125; return all_trees; &#125; vector&lt;TreeNode*&gt; generateTrees(int n) &#123; if (n == 0) &#123; return vector&lt;TreeNode*&gt;(); &#125; else &#123; return generate_trees(1, n); &#125; &#125;&#125;; Java实现 1234567891011121314151617181920212223242526272829303132class Solution &#123; public LinkedList&lt;TreeNode&gt; generate_trees(int start, int end) &#123; LinkedList&lt;TreeNode&gt; all_trees = new LinkedList&lt;TreeNode&gt;(); if (start &gt; end) &#123; all_trees.add(null); return all_trees; &#125; // pick up a root for (int i = start; i &lt;= end; i++) &#123; // all possible left subtrees if i is choosen to be a root LinkedList&lt;TreeNode&gt; left_trees = generate_trees(start, i - 1); // all possible right subtrees if i is choosen to be a root LinkedList&lt;TreeNode&gt; right_trees = generate_trees(i + 1, end); // connect left and right trees to the root i for (TreeNode l : left_trees) &#123; for (TreeNode r : right_trees) &#123; TreeNode current_tree = new TreeNode(i); current_tree.left = l; current_tree.right = r; all_trees.add(current_tree); &#125; &#125; &#125; return all_trees; &#125; public List&lt;TreeNode&gt; generateTrees(int n) &#123; if (n == 0) &#123; return new LinkedList&lt;TreeNode&gt;(); Reference 官方解]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>动态规划</tag>
+        <tag>树</tag>
+        <tag>树的遍历</tag>
+        <tag>递归</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解-1227-风机座位分配概率]]></title>
     <url>%2F2019%2F10%2F31%2Fleetcode%E9%A2%98%E8%A7%A3-1227-%E9%A3%8E%E6%9C%BA%E5%BA%A7%E4%BD%8D%E5%88%86%E9%85%8D%E6%A6%82%E7%8E%87%2F</url>
     <content type="text"><![CDATA[My way 习惯不是很好。。最开始试答案试出来结果的。 \(1/n\), \(1/2\), 然后得到正确解。。 因为第一眼看上去就是组合数学题，就类似你买彩票，先买后买的顺序不影响概率。 简单思路 为什么试\(1/n\)，以为要考虑的是\(n\)个状态取1个。 后来发现应该是\(1/2\)，感觉解释起来就有问题了。 水氷/Leoooooo/winterock way 简单递推dp的思路，在此略作修改。 状态定义： \[ \begin{align*} &amp; i:\ 第i个入座的人 \\ &amp; n:\ 一共有n个座位 \\ &amp; f[i]:\ 第i个入座的人，坐到自己位置上的概率 \\ \end{align*} \] *状态转移方程： \[ \begin{align*} f[i] = 1/n + (n-2)/n * f(n-1) \end{align*} \] Leoooooo给出的推导过程： $$ \[\begin{alignat}{1} f(n) = &amp; 1/n &amp; // \text{1st person picks his own seat, probability = 1/n} \\ &amp;+ 1/n * 0 &amp; // \text{1st person picks last one&#39;s seat, probability = 1/n} \\ &amp;+ (n-2)/n * &amp; // \text{1st person picks one of seat from 2nd to (n-1)th, probability = (n-2)/n} \\ &amp;( \\ &amp;\ \ \ 1/(n-2) * f(n-1) &amp; // \text{1st person pick 2nd&#39;s seat, 2nd person becomes the new &quot;careless&quot; person, and there are n-1 seats left. it becomes subproblem of n-1.}\\ &amp;\ \ \ 1/(n-2) * f(n-2) &amp; // \text{1st person pick 3rd&#39;s seat, 2nd person will pick his own seat, 3nd person becomes the new &quot;careless&quot; person, and there are n-2 seats left. it becomes subproblem of n-2.}\\ &amp;\ \ \ ......\\ &amp;\ \ \ 1/(n-2) * f(2) &amp; // \text{1st person pick (n-1)th&#39;s seat, (n-1)th person becomes the new &quot;careless&quot; person, there are 2 seats left.}\\ &amp;) \\ \\ =&gt; &amp; f(n) = 1/n &amp; \text{\{when $n &lt;= 2$\}} \\ &amp; f(n) = 1/n + 1/n * ( f(n-1) + f(n-2) + f(n-3) + ... + f(2) ) &amp; \text{\{when $n &gt; 2$\}} \\ \end{alignat}\] $$ 根据winterock给出的解释，简单来说: 按照条件概率，分成3种情况，在此以1号为例子： \(1/n\), 第1个人，选择了自己的座位，则对\(2,...,n\)位置空出来了，他们必然可以做到自己的位置，即\(n\)可以坐到自己的位置； \(1/n*0\), 第1个人坐到\(n\)位置上，则\(n\)必然坐不到自己位置上； \((n-2)/n * (...)\) ，这个情况，简单来说就是，如果\(i\)坐到\(k\)位置上，则\((i,\ k)\)里的人都能坐到自己位置上来，因为每个人看到自己位置空的时候必然坐上来。具体举例不展开了，很容易想明白。 证明结论为\(f(n)=1/2\): \[ \begin{align*} &amp; \text{When}\ n &lt;= 2 \\ &amp; \ f(n) = 1/n \\ &amp; \text{When}\ n &gt; 2\ \text{(all these 5 formulas are correct, we can choose any one of them)} \\ &amp; \ f(n) = 1/n + 1/n * ( f(n-1) + f(n-2) + f(n-3) + ... + f(2) ) \\ &amp; \ f(n+1) = f(n)\\ &amp; \ f(n) = 1/n + (n-2)/n * f(n) \\ &amp; \ f(n) = 1/n + (n-2)/n * f(n-1) \ \text{is correct too since} f(n) == f(n-1) \\ &amp; \ f(n) = 1/2 \\ \end{align*} \] 12345678910111213class Solution &#123;public: double nthPersonGetsNthSeat(int n) &#123; double f[n+1]; f[1] = 1; if(n == 1) return 1; for (int i = 2; i &lt;= n; ++i) f[i] = (1 + (i - 2) * f[i - 1]) / (double)i; return f[n]; &#125;&#125;; 总结 怎么求出合理的递推式用于状态转移方程。 这里是用了 条件概率来入手。 然后通过思考发现了这样一个规律: 如果\(i\)坐到\(k\)位置上，则\((i,\ k)\)里的人都能坐到自己位置上来，因为每个人看到自己位置空的时候必然坐上来。 有没有从组合数学的思路的解法呢？ Reference 水氷 leetcode 解 Leoooooo 状态转移方程详解 winterock 状态转移方程详解]]></content>
@@ -9,8 +24,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>动态规划</tag>
         <tag>数学题</tag>
+        <tag>动态规划</tag>
         <tag>组合数学</tag>
       </tags>
   </entry>
@@ -172,9 +187,9 @@
         <category>Pandas</category>
       </categories>
       <tags>
-        <tag>pandas</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
+        <tag>pandas</tag>
         <tag>Code Snippet</tag>
       </tags>
   </entry>
@@ -201,10 +216,10 @@
       </categories>
       <tags>
         <tag>code snippet</tag>
-        <tag>EDA</tag>
         <tag>data visualization</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
+        <tag>EDA</tag>
         <tag>hexo</tag>
       </tags>
   </entry>
