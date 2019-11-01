@@ -106,7 +106,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2019/11/01/leetcode题解-647-回文子串/dp1.png">
 <meta property="og:image" content="http://yoursite.com/2019/11/01/leetcode题解-647-回文子串/dp2.png">
-<meta property="og:updated_time" content="2019-11-01T13:09:23.907Z">
+<meta property="og:updated_time" content="2019-11-01T13:18:01.129Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode题解-647-回文子串">
 <meta name="twitter:description" content="题目 My way 状态定义： \[ \begin{align*} &amp;amp; s:\ 字符串s\\ &amp;amp; i:\ 字符串s第i位\\ &amp;amp; j:\ 字符串s第j位\\ &amp;amp; s[i:j]:\ 字符串s第i位到第j位的子串, s[i,j]\\ &amp;amp; dp[i][j]:\ dp数组在s[i,j]上是否为回文串的记录。 \end{align*} \] B">
@@ -420,7 +420,7 @@
                 
               
 
-              <time title="创建时间：2019-11-01 16:35:48 / 修改时间：21:09:23" itemprop="dateCreated datePublished" datetime="2019-11-01T16:35:48+08:00">2019-11-01</time>
+              <time title="创建时间：2019-11-01 16:35:48 / 修改时间：21:18:01" itemprop="dateCreated datePublished" datetime="2019-11-01T16:35:48+08:00">2019-11-01</time>
             
 
             
@@ -528,6 +528,8 @@ s[i-1][j+1] =
 </ul>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countSubstrings</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">int</span> i;</span><br><span class="line">       <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; s.length(); i++)&#123;</span><br><span class="line">           count += countPalindrome(s, i, i);</span><br><span class="line">           count += countPalindrome(s, i, i + <span class="number">1</span>);</span><br><span class="line">       &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countPalindrome</span> <span class="params">(String s, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">       <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">while</span>(left &gt;= <span class="number">0</span> &amp;&amp; right &lt; s.length() &amp;&amp; s.charAt(left--) == s.charAt(right++))&#123;</span><br><span class="line">           count++;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> count;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>C++实现</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countSubstrings</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> m = s.size();</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            cnt += countPalindrome(s, i, i);    <span class="comment">// even length of string</span></span><br><span class="line">            cnt += countPalindrome(s, i, i+<span class="number">1</span>);  <span class="comment">// old length of string</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> cnt;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countPalindrome</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; s, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (l &gt;= <span class="number">0</span> &amp;&amp; r &lt; s.size() &amp;&amp; s[l--] == s[r++])</span><br><span class="line">        &#123;</span><br><span class="line">            ++cnt;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> cnt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h2 id="reference">Reference</h2>
 <p><a href="https://leetcode-cn.com/problems/palindromic-substrings/solution/dong-tai-gui-hua-yun-xing-shi-jian-11mszhong-xin-k/" target="_blank" rel="noopener">glamour解法</a></p>
 
@@ -583,6 +585,10 @@ s[i-1][j+1] =
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/01/leetcode题解-714-买卖股票的最佳时机含手续费/" rel="prev" title="leetcode题解-714-买卖股票的最佳时机含手续费">
+                leetcode题解-714-买卖股票的最佳时机含手续费 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -651,7 +657,7 @@ s[i-1][j+1] =
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">22</span>
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
