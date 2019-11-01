@@ -373,6 +373,218 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/01/leetcode题解-712-两个字符串的最小ASCII删除和/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bowen Peng">
+      <meta itemprop="description" content="something about myself and my career development.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boven's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/11/01/leetcode题解-712-两个字符串的最小ASCII删除和/" class="post-title-link" itemprop="url">leetcode题解-712-两个字符串的最小ASCII删除和</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-01 15:16:47 / 修改时间：16:33:22" itemprop="dateCreated datePublished" datetime="2019-11-01T15:16:47+08:00">2019-11-01</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/刷题/" itemprop="url" rel="index"><span itemprop="name">刷题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="https://leetcode-cn.com/problems/minimum-ascii-delete-sum-for-two-strings/" target="_blank" rel="noopener">题目</a></h2>
+<h2 id="官方解">官方解</h2>
+<h4 id="状态定义">状态定义：</h4>
+<p><span class="math display">\[
+\begin{align*}
+&amp; i:\ \text{字符串}s1的第i位\\
+&amp; j:\ \text{字符串}s2的第j位\\
+&amp; s1[i:]:\ 第i位到末尾的子串\\
+&amp; s2[j:]:\ 第j位到末尾的子串\\
+&amp; dp[i][j]:\ 表示使字符串s1[i:],s2[j:]从第i位到末尾的子串相等，要删除的ASCII码值最小 
+\end{align*}
+\]</span></p>
+<h4 id="状态转移方程">状态转移方程：</h4>
+<p><span class="math display">\[
+\begin{align*}
+dp[i][j] = \begin{cases} &amp; min(dp[i+1][j] + s1.asciiAtPos(i), dp[i][j+1] + s2.asciiAtPos(j))\ &amp; \text{if $s1[i] != s2[j]$ }\\
+&amp; df[i-1][j-1]\ &amp;\text{if $s1[i] = s2[j]$} \end{cases}
+\end{align*}
+\]</span></p>
+<h4 id="base-case">Base case:</h4>
+<p><span class="math display">\[
+\begin{align*}
+&amp;dp[i][j] = 0  &amp;\text{if $i == 0$ and $j == 0$} 
+\end{align*}
+\]</span></p>
+<h4 id="corner-case">Corner case:</h4>
+<p><span class="math display">\[
+dp[i][j] = 
+\begin{cases}
+&amp; dp[i+1][j] + s1.asciiAtPos(i) &amp; \text{if $s[j:].size() == 0$, 即$j==s1.size()$}\\
+&amp; dp[i][j+1] + s2.asciiAtPos(j) &amp; \text{if $s[i:].size() == 0$, 即$i==s1.size()$}\\
+\end{cases}
+\]</span></p>
+<h4 id="c实现">C++实现</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minimumDeleteSum</span><span class="params">(<span class="built_in">string</span> s1, <span class="built_in">string</span> s2)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; dp(s1.size()+<span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(s2.size()+<span class="number">1</span>));</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> m = s1.size(), n = s2.size();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = m - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i)</span><br><span class="line">        &#123;</span><br><span class="line">            dp[i][n] = dp[i+<span class="number">1</span>][n] + s1[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = n - <span class="number">1</span>; j &gt;= <span class="number">0</span>; --j)</span><br><span class="line">        &#123;</span><br><span class="line">            dp[m][j] = dp[m][j+<span class="number">1</span>] + s2[j];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = m - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = n - <span class="number">1</span>; j &gt;= <span class="number">0</span>; --j)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (s1[i] == s2[j])</span><br><span class="line">                &#123;</span><br><span class="line">                    dp[i][j] = dp[i+<span class="number">1</span>][j+<span class="number">1</span>];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    dp[i][j] = min(dp[i+<span class="number">1</span>][j] + s1[i], dp[i][j+<span class="number">1</span>] + s2[j]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getStrAsciiSum</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> s)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> i : s)</span><br><span class="line">        &#123;</span><br><span class="line">            sum += i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="java实现">Java实现</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minimumDeleteSum</span><span class="params">(String s1, String s2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[s1.length() + <span class="number">1</span>][s2.length() + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = s1.length() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            dp[i][s2.length()] = dp[i+<span class="number">1</span>][s2.length()] + s1.codePointAt(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = s2.length() - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">            dp[s1.length()][j] = dp[s1.length()][j+<span class="number">1</span>] + s2.codePointAt(j);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = s1.length() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = s2.length() - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">                <span class="keyword">if</span> (s1.charAt(i) == s2.charAt(j)) &#123;</span><br><span class="line">                    dp[i][j] = dp[i+<span class="number">1</span>][j+<span class="number">1</span>];</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    dp[i][j] = Math.min(dp[i+<span class="number">1</span>][j] + s1.codePointAt(i),</span><br><span class="line">                                        dp[i][j+<span class="number">1</span>] + s2.codePointAt(j));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="总结">总结</h2>
+<ul>
+<li>类似于 <a href="https://leetcode-cn.com/problems/longest-common-subsequence" target="_blank" rel="noopener">最长公共子序列</a> 的一道题。</li>
+<li>在 二维DP数组初始化的时候，没有考虑到初始化大小为<span class="math inline">\((m+1)*(n+1)\)</span> .
+<ul>
+<li>对于<span class="math inline">\(dp[m][n] = 0\)</span>其实是一种 <strong>base case</strong>，</li>
+<li>是考虑到第<span class="math inline">\(m\)</span>位字符到第<span class="math inline">\(m\)</span>位字符上的一个情况，即 空串情况。</li>
+</ul></li>
+</ul>
+<h2 id="reference">Reference</h2>
+<p><a href="https://leetcode-cn.com/problems/minimum-ascii-delete-sum-for-two-strings/solution/liang-ge-zi-fu-chuan-de-zui-xiao-asciishan-chu-he-/" target="_blank" rel="noopener">leetcode官方解</a></p>
+<p><a href="https://leetcode-cn.com/problems/minimum-ascii-delete-sum-for-two-strings/solution/asciima-zui-da-de-zi-xu-lie-zui-chang-gong-tong-zi/" target="_blank" rel="noopener">Falcon解</a></p>
+<h3 id="extended">Extended</h3>
+<p><a href="https://en.cppreference.com/w/cpp/string/basic_string" target="_blank" rel="noopener">std::basic_string</a></p>
+<p><a href="https://en.cppreference.com/w/cpp/string/basic_string/substr" target="_blank" rel="noopener">basic_string/substr</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/31/leetcode题解-95-不同的二叉搜索树2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2442,195 +2654,11 @@ P(x) = P(x\ \&amp;\ (x-1)) + 1
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/23/小结及之后/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bowen Peng">
-      <meta itemprop="description" content="something about myself and my career development.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Boven's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/10/23/小结及之后/" class="post-title-link" itemprop="url">小结及之后</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-10-23 20:55:33 / 修改时间：21:13:19" itemprop="dateCreated datePublished" datetime="2019-10-23T20:55:33+08:00">2019-10-23</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/杂谈/" itemprop="url" rel="index"><span itemprop="name">杂谈</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="小结">小结</h2>
-<p>之前都去打了些结构化数据的比赛，也补了不少基础知识，尽管没有按当初的计划来。</p>
-<p>尽管我觉得目前取得成绩不太够用吧，总结下有：</p>
-<ul>
-<li>上海电信“添翼杯”成绩预测20名（吐槽下这破比赛结束，官网就没了？？？）</li>
-<li>kaggle Instant Gratification solo铜牌</li>
-<li>19讯飞反欺诈，初赛第8，复赛a榜14，b榜24</li>
-<li>DataCastle 国能日新光伏预测功率第二届第6名</li>
-</ul>
-<p>多多少少打了些咸鱼成绩出来。</p>
-<p>最惨的还是讯飞，基本上2-3个月天天熬。初赛最后分数还算不错，到了复赛因为数据量太大，导致CatBoost在Shrink Model的时候峰值占用的内存会高到至少100g+和租的辣鸡DBC服务器疯狂卡结果，最后几天把我队的两个模型结果卡住没出来了。以及top3的选手开源了一个高分代码，上分操作与我队有一些重合，拉高了复赛线。</p>
-<p>暂时有空抽时间把前面两篇坑了的博客补了，Data Science/ Machine Learning这块考虑暂时就放一段时间了。</p>
-<h2 id="之后">之后？</h2>
-<p>开始刷leetcode和补一些以前干的后台开发相关的活了。</p>
-<ul>
-<li>刷下Cpp reference啥啥的，把一些忘了的Cpp相关的东西捡起来；</li>
-<li>每天至少龟系刷题1道，先从dp刷起来。1~2个月之后再考虑兔系刷题；</li>
-<li>补下APUE那套东西，以前碰过，现在忘了不少；</li>
-<li>接触下NoSQL，Redis这套；</li>
-</ul>
-<h3 id="ps">PS:</h3>
-<p>以后写博客就不会那么详细，主要还是自己理解，留下一步一个脚印。</p>
-<h3 id="pps">PPS：</h3>
-<p>至于比赛还打不打，看时间够不够吧，能支撑自己走下去的只有求生欲了。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2672,7 +2700,7 @@ P(x) = P(x\ \&amp;\ (x-1)) + 1
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-count">21</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2786,7 +2814,9 @@ P(x) = P(x\ \&amp;\ (x-1)) + 1
                     
                       
                     
-                    <span class="site-state-item-count">34</span>
+                      
+                    
+                    <span class="site-state-item-count">35</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

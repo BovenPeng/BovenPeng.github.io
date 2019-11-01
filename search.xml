@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode题解-712-两个字符串的最小ASCII删除和]]></title>
+    <url>%2F2019%2F11%2F01%2Fleetcode%E9%A2%98%E8%A7%A3-712-%E4%B8%A4%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%9C%80%E5%B0%8FASCII%E5%88%A0%E9%99%A4%E5%92%8C%2F</url>
+    <content type="text"><![CDATA[题目 官方解 状态定义： \[ \begin{align*} &amp; i:\ \text{字符串}s1的第i位\\ &amp; j:\ \text{字符串}s2的第j位\\ &amp; s1[i:]:\ 第i位到末尾的子串\\ &amp; s2[j:]:\ 第j位到末尾的子串\\ &amp; dp[i][j]:\ 表示使字符串s1[i:],s2[j:]从第i位到末尾的子串相等，要删除的ASCII码值最小 \end{align*} \] 状态转移方程： \[ \begin{align*} dp[i][j] = \begin{cases} &amp; min(dp[i+1][j] + s1.asciiAtPos(i), dp[i][j+1] + s2.asciiAtPos(j))\ &amp; \text{if $s1[i] != s2[j]$ }\\ &amp; df[i-1][j-1]\ &amp;\text{if $s1[i] = s2[j]$} \end{cases} \end{align*} \] Base case: \[ \begin{align*} &amp;dp[i][j] = 0 &amp;\text{if $i == 0$ and $j == 0$} \end{align*} \] Corner case: \[ dp[i][j] = \begin{cases} &amp; dp[i+1][j] + s1.asciiAtPos(i) &amp; \text{if $s[j:].size() == 0$, 即$j==s1.size()$}\\ &amp; dp[i][j+1] + s2.asciiAtPos(j) &amp; \text{if $s[i:].size() == 0$, 即$i==s1.size()$}\\ \end{cases} \] C++实现 12345678910111213141516171819202122232425262728293031323334353637383940414243444546class Solution &#123;public: int minimumDeleteSum(string s1, string s2) &#123; vector&lt;vector&lt;int&gt;&gt; dp(s1.size()+1, vector&lt;int&gt;(s2.size()+1)); int m = s1.size(), n = s2.size(); for (int i = m - 1; i &gt;= 0; --i) &#123; dp[i][n] = dp[i+1][n] + s1[i]; &#125; for (int j = n - 1; j &gt;= 0; --j) &#123; dp[m][j] = dp[m][j+1] + s2[j]; &#125; for (int i = m - 1; i &gt;= 0; --i) &#123; for (int j = n - 1; j &gt;= 0; --j) &#123; if (s1[i] == s2[j]) &#123; dp[i][j] = dp[i+1][j+1]; &#125; else &#123; dp[i][j] = min(dp[i+1][j] + s1[i], dp[i][j+1] + s2[j]); &#125; &#125; &#125; return dp[0][0]; &#125;private: int getStrAsciiSum(const string s) &#123; int sum = 0; for (auto i : s) &#123; sum += i; &#125; return sum; &#125;&#125;; Java实现 1234567891011121314151617181920212223class Solution &#123; public int minimumDeleteSum(String s1, String s2) &#123; int[][] dp = new int[s1.length() + 1][s2.length() + 1]; for (int i = s1.length() - 1; i &gt;= 0; i--) &#123; dp[i][s2.length()] = dp[i+1][s2.length()] + s1.codePointAt(i); &#125; for (int j = s2.length() - 1; j &gt;= 0; j--) &#123; dp[s1.length()][j] = dp[s1.length()][j+1] + s2.codePointAt(j); &#125; for (int i = s1.length() - 1; i &gt;= 0; i--) &#123; for (int j = s2.length() - 1; j &gt;= 0; j--) &#123; if (s1.charAt(i) == s2.charAt(j)) &#123; dp[i][j] = dp[i+1][j+1]; &#125; else &#123; dp[i][j] = Math.min(dp[i+1][j] + s1.codePointAt(i), dp[i][j+1] + s2.codePointAt(j)); &#125; &#125; &#125; return dp[0][0]; &#125;&#125; 总结 类似于 最长公共子序列 的一道题。 在 二维DP数组初始化的时候，没有考虑到初始化大小为\((m+1)*(n+1)\) . 对于\(dp[m][n] = 0\)其实是一种 base case， 是考虑到第\(m\)位字符到第\(m\)位字符上的一个情况，即 空串情况。 Reference leetcode官方解 Falcon解 Extended std::basic_string basic_string/substr]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>动态规划</tag>
+        <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解-95-不同的二叉搜索树2]]></title>
     <url>%2F2019%2F10%2F31%2Fleetcode%E9%A2%98%E8%A7%A3-95-%E4%B8%8D%E5%90%8C%E7%9A%84%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%912%2F</url>
     <content type="text"><![CDATA[题目 官方解 简要改自官网解。 利用树的遍历，以递归方式实现不同二叉树的构造。 我们从序列 \(1 ...n\) 中取出数字 \(i\)，作为当前树的树根。于是，剩余 \(i - 1\) 个元素可用于左子树，\(n - i\) 个元素用于右子树。 如 前文所述，这样会产生 \(G(i - 1)\) 种左子树 和 \(G(n - i)\) 种右子树，其中 \(G\) 是卡特兰数。 现在，我们对序列 \(1 ... i - 1\) 重复上述过程，以构建所有的左子树；然后对 \(i + 1 ... n\) 重复，以构建所有的右子树。 这样，我们就有了树根 \(i\) 和可能的左子树、右子树的列表。 最后一步，对两个列表循环，将左子树和右子树连接在根上。 C++实现 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: // [start, end] vector&lt;TreeNode*&gt; generate_trees(int start, int end) &#123; vector&lt;TreeNode*&gt; all_trees; if (start &gt; end) &#123; all_trees.push_back(NULL); return all_trees; &#125; // pick up a root for (int i = 0; i &lt;= end; ++i) &#123; vector&lt;TreeNode*&gt; leftTrees = generate_trees(start, i - 1); vector&lt;TreeNode*&gt; rightTrees = generate_trees(i + 1, end); for (auto l : leftTrees) &#123; for (auto r : rightTrees) &#123; TreeNode* curTree(i); curTree-&gt;left = l; curTree-&gt;right = r; all_trees.push_back(curTree); &#125; &#125; &#125; return all_trees; &#125; vector&lt;TreeNode*&gt; generateTrees(int n) &#123; if (n == 0) &#123; return vector&lt;TreeNode*&gt;(); &#125; else &#123; return generate_trees(1, n); &#125; &#125;&#125;; Java实现 1234567891011121314151617181920212223242526272829303132class Solution &#123; public LinkedList&lt;TreeNode&gt; generate_trees(int start, int end) &#123; LinkedList&lt;TreeNode&gt; all_trees = new LinkedList&lt;TreeNode&gt;(); if (start &gt; end) &#123; all_trees.add(null); return all_trees; &#125; // pick up a root for (int i = start; i &lt;= end; i++) &#123; // all possible left subtrees if i is choosen to be a root LinkedList&lt;TreeNode&gt; left_trees = generate_trees(start, i - 1); // all possible right subtrees if i is choosen to be a root LinkedList&lt;TreeNode&gt; right_trees = generate_trees(i + 1, end); // connect left and right trees to the root i for (TreeNode l : left_trees) &#123; for (TreeNode r : right_trees) &#123; TreeNode current_tree = new TreeNode(i); current_tree.left = l; current_tree.right = r; all_trees.add(current_tree); &#125; &#125; &#125; return all_trees; &#125; public List&lt;TreeNode&gt; generateTrees(int n) &#123; if (n == 0) &#123; return new LinkedList&lt;TreeNode&gt;(); Reference 官方解]]></content>
@@ -24,8 +37,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>数学题</tag>
         <tag>动态规划</tag>
+        <tag>数学题</tag>
         <tag>组合数学</tag>
       </tags>
   </entry>
@@ -113,8 +126,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>数学题</tag>
         <tag>DP</tag>
+        <tag>数学题</tag>
       </tags>
   </entry>
   <entry>
@@ -187,9 +200,9 @@
         <category>Pandas</category>
       </categories>
       <tags>
+        <tag>pandas</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
-        <tag>pandas</tag>
         <tag>Code Snippet</tag>
       </tags>
   </entry>
@@ -216,10 +229,10 @@
       </categories>
       <tags>
         <tag>code snippet</tag>
+        <tag>EDA</tag>
         <tag>data visualization</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
-        <tag>EDA</tag>
         <tag>hexo</tag>
       </tags>
   </entry>
