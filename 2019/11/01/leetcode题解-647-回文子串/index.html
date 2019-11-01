@@ -105,8 +105,8 @@
 <meta property="og:description" content="题目 My way 状态定义： \[ \begin{align*} &amp;amp; s:\ 字符串s\\ &amp;amp; i:\ 字符串s第i位\\ &amp;amp; j:\ 字符串s第j位\\ &amp;amp; s[i:j]:\ 字符串s第i位到第j位的子串, s[i,j]\\ &amp;amp; dp[i][j]:\ dp数组在s[i,j]上是否为回文串的记录。 \end{align*} \] B">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2019/11/01/leetcode题解-647-回文子串/dp1.png">
-<meta property="og:image" content="http://yoursite.com/2019/11/01/leetcode题解-647-回文子串/dp1.png">
-<meta property="og:updated_time" content="2019-11-01T13:02:29.933Z">
+<meta property="og:image" content="http://yoursite.com/2019/11/01/leetcode题解-647-回文子串/dp2.png">
+<meta property="og:updated_time" content="2019-11-01T13:09:23.907Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode题解-647-回文子串">
 <meta name="twitter:description" content="题目 My way 状态定义： \[ \begin{align*} &amp;amp; s:\ 字符串s\\ &amp;amp; i:\ 字符串s第i位\\ &amp;amp; j:\ 字符串s第j位\\ &amp;amp; s[i:j]:\ 字符串s第i位到第j位的子串, s[i,j]\\ &amp;amp; dp[i][j]:\ dp数组在s[i,j]上是否为回文串的记录。 \end{align*} \] B">
@@ -420,7 +420,7 @@
                 
               
 
-              <time title="创建时间：2019-11-01 16:35:48 / 修改时间：21:02:29" itemprop="dateCreated datePublished" datetime="2019-11-01T16:35:48+08:00">2019-11-01</time>
+              <time title="创建时间：2019-11-01 16:35:48 / 修改时间：21:09:23" itemprop="dateCreated datePublished" datetime="2019-11-01T16:35:48+08:00">2019-11-01</time>
             
 
             
@@ -510,11 +510,12 @@ s[i-1][j+1] =
 <h2 id="glamour-way">Glamour way</h2>
 <h3 id="dp-逆向对角遍历">1.DP + 逆向对角遍历</h3>
 <h4 id="逆向对角遍历思路">逆向对角遍历思路：</h4>
-<img src="/2019/11/01/leetcode题解-647-回文子串/dp1.png" width="1">
+<img src="/2019/11/01/leetcode题解-647-回文子串/dp1.png" title="pic1">
 <p>上图中同一条直线上的值有前者依赖于后者的关系，因此我们应该以对角线方向遍历</p>
-<img src="/2019/11/01/leetcode题解-647-回文子串/dp1.png" width="1">
+<img src="/2019/11/01/leetcode题解-647-回文子串/dp2.png" title="pic2">
 <blockquote>
-<p>但是本方法在發現一字符串不是回文串后，仍然對包含其的字符串進行回文判斷。此方法包含了冗餘的判斷，因此還有優化的地方。</p>
+<p>但是本方法在發現一字符串不是回文串后，仍然對包含其的字符串進行回文判斷。</p>
+<p>此方法包含了<strong>冗餘的判斷，因此還有優化的地方。</strong></p>
 </blockquote>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countSubstrings</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> len = s.length();</span><br><span class="line">       <span class="keyword">if</span>(len &lt;= <span class="number">1</span>) <span class="keyword">return</span> len;</span><br><span class="line">       <span class="keyword">boolean</span>[][] dp = <span class="keyword">new</span> <span class="keyword">boolean</span>[len][len];</span><br><span class="line">       <span class="keyword">int</span> i;</span><br><span class="line">       <span class="keyword">int</span> j;</span><br><span class="line">       <span class="keyword">int</span> row, column;</span><br><span class="line">       <span class="keyword">boolean</span> current;</span><br><span class="line">       <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">           dp[i][i] = <span class="keyword">true</span>;</span><br><span class="line">           count++;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt; len; i++)&#123;</span><br><span class="line">           <span class="keyword">for</span>(j = <span class="number">0</span>; j &lt;= len - i - <span class="number">1</span>; j++)&#123;</span><br><span class="line">               row = j;</span><br><span class="line">               column = i + j;</span><br><span class="line">               current = s.charAt(row) == s.charAt(column);</span><br><span class="line">               <span class="keyword">if</span>(current &amp;&amp; (i == <span class="number">1</span> || dp[row + <span class="number">1</span>][column - <span class="number">1</span>]))&#123;</span><br><span class="line">                   dp[row][column] = <span class="keyword">true</span>;</span><br><span class="line">                   count++;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">          </span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> count;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <h3 id="分治法-中心扩散法">2. 分治法 + 中心扩散法</h3>
