@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode题解-413.等差数列划分]]></title>
+    <url>%2F2019%2F11%2F03%2Fleetcode%E9%A2%98%E8%A7%A3-413-%E7%AD%89%E5%B7%AE%E6%95%B0%E5%88%97%E5%88%92%E5%88%86%2F</url>
+    <content type="text"><![CDATA[reference extended How to sum up elements of a C++ vector?]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解-303-区域和检索 - 数组不可变]]></title>
     <url>%2F2019%2F11%2F03%2Fleetcode%E9%A2%98%E8%A7%A3-303-%E5%8C%BA%E5%9F%9F%E5%92%8C%E6%A3%80%E7%B4%A2-%E6%95%B0%E7%BB%84%E4%B8%8D%E5%8F%AF%E5%8F%98%2F</url>
     <content type="text"><![CDATA[题目 12345678910111213141516class NumArray &#123;public: NumArray(vector&lt;int&gt;&amp; nums) &#123; &#125; int sumRange(int i, int j) &#123; &#125;&#125;;/** * Your NumArray object will be instantiated and called as such: * NumArray* obj = new NumArray(nums); * int param_1 = obj-&gt;sumRange(i,j); */ My way 1. 暴力法 1234567891011121314151617181920212223242526class NumArray &#123;private: vector&lt;int&gt; dp; public: NumArray(vector&lt;int&gt;&amp; nums) &#123; dp = nums; &#125; int sumRange(int i, int j) &#123; int sum = 0; for (int k = i; k &lt;= j; ++k) &#123; sum += dp[k]; &#125; return sum; &#125;&#125;;/** * Your NumArray object will be instantiated and called as such: * NumArray* obj = new NumArray(nums); * int param_1 = obj-&gt;sumRange(i,j); */ 结果，时间复杂度极低，仅超过10%的解。 很明显是要先用dp数组存入各个索引\(i\), \(j\)对应的值。 2. 2维DP 状态转移方程： \[ dp[i][j] = dp[i][j-1] + nums[j-1] \] 12345678910111213141516171819202122232425262728class NumArray &#123;private: vector&lt;vector&lt;int&gt;&gt; dp; public: NumArray(vector&lt;int&gt;&amp; nums):dp(nums.size()+1, vector&lt;int&gt;(nums.size()+1)) &#123; for (int i = 1; i &lt;= nums.size(); ++i) &#123; for (int j = i; j &lt;= nums.size(); ++j) &#123; dp[i][j] = dp[i][j-1] + nums[j-1]; &#125; &#125; &#125; int sumRange(int i, int j) &#123; return dp[i+1][j+1]; &#125;&#125;;/** * Your NumArray object will be instantiated and called as such: * NumArray* obj = new NumArray(nums); * int param_1 = obj-&gt;sumRange(i,j); */ 结果更慢了，仅超过5%的解。。。 应该是哪里思路出了问题... 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647class NumArray &#123;private: int **dp; int m;public: NumArray(vector&lt;int&gt;&amp; nums) &#123; m = nums.size() + 1; dp = new int*[m]; for(int i = 0; i &lt; m; ++i) &#123; dp[i] = new int[m]; &#125; for (int i = 1; i &lt;= nums.size(); ++i) &#123; int sum = 0; for (int j = i; j &lt;= nums.size(); ++j) &#123; sum += nums[j-1]; dp[i][j] = sum; &#125; &#125; &#125; ~NumArray() &#123; for (int i = 0; i &lt; m; ++i) &#123; delete []dp[i]; &#125; delete []dp; &#125; int sumRange(int i, int j) &#123; return dp[i+1][j+1]; &#125;&#125;;/** * Your NumArray object will be instantiated and called as such: * NumArray* obj = new NumArray(nums); * int param_1 = obj-&gt;sumRange(i,j); */ 换成原生数组，时间复杂度仅超过7%，仍然很糟糕。。。 假如直接静态数组int dp[INT_MAX][INT_MAX];，内存会炸掉。。。 官方way 2. 缓存 将计算结果提前存入到 哈希表 中。 PS：而我用的是vector&lt;vector&lt;int&gt;&gt; dp, int **dp, 感觉没区别，应该是resize()/动态分配内存那耗费了不少时间。 123456789101112131415private Map&lt;Pair&lt;Integer, Integer&gt;, Integer&gt; map = new HashMap&lt;&gt;();public NumArray(int[] nums) &#123; for (int i = 0; i &lt; nums.length; i++) &#123; int sum = 0; for (int j = i; j &lt; nums.length; j++) &#123; sum += nums[j]; map.put(Pair.create(i, j), sum); &#125; &#125;&#125;public int sumRange(int i, int j) &#123; return map.get(Pair.create(i, j));&#125; 3. 缓存 优化空间复杂度从\(O(n^2) = &gt; O(n)\). \[ sum[k] = \begin{cases} &amp; \sum_{i=0}^{k-1} nums[i] &amp; , k &gt; 0 \\ &amp; 0 &amp; , k == 0\\ \end{cases} \] 优化为: \[ sumrange(i,\ j)= sum[j+1] - sum[i] \] java: 123456789101112private int[] sum;public NumArray(int[] nums) &#123; sum = new int[nums.length + 1]; for (int i = 0; i &lt; nums.length; i++) &#123; sum[i + 1] = sum[i] + nums[i]; &#125;&#125;public int sumRange(int i, int j) &#123; return sum[j + 1] - sum[i];&#125; C++: use array 12345678910111213141516171819202122232425262728class NumArray &#123;private: int *sum;public: NumArray(vector&lt;int&gt;&amp; nums) &#123; sum = new int [nums.size() + 1]; for (int i = 0; i &lt; nums.size(); ++i) &#123; sum[i+1] = sum[i] + nums[i]; &#125; &#125; ~NumArray() &#123; delete []sum; &#125; int sumRange(int i, int j) &#123; return sum[j + 1] - sum[i]; &#125;&#125;;/** * Your NumArray object will be instantiated and called as such: * NumArray* obj = new NumArray(nums); * int param_1 = obj-&gt;sumRange(i,j); */ 但这也只超过了 78.45%... C++: user vector&lt;int&gt; 1234567891011121314151617class NumArray &#123; vector&lt;int&gt; dp;public: NumArray(vector&lt;int&gt;&amp; nums) &#123; int sum=0; dp.push_back(0); for(int i=0;i&lt;nums.size();++i) &#123; sum+=nums[i]; dp.push_back(sum); &#125; &#125; int sumRange(int i, int j) &#123; return dp[j+1]-dp[i]; &#125;&#125;; 超过了96.23%，代码类似 陈乐乐解2. 但仔细看她代码，你会发现她在C++编码时，有个很不好的习惯，我在这纠正了，就不指出来了。 总结 傻了，老想着把计算结果存起来，到时候直接取，居然忘记了 \(sumrange(i,\ j)= sum[j+1] - sum[i]\) 这里也用到了插入了一个虚拟 0 作为 sum 数组中的第一个元素。 这个技巧可以避免在 sumrange 函数中进行额外的条件检查，对于base case, corner case等等 PS：尽管，我其实喜欢加上对于base case, corner case的检查，但却是实现起来有些冗余 Reference 官方解 陈乐乐解 extended How do I declare a 2d array in C++ using new?]]></content>
@@ -10,9 +15,9 @@
       <tags>
         <tag>leetcode</tag>
         <tag>DP</tag>
-        <tag>×</tag>
         <tag>2维dp</tag>
         <tag>插入1个虚拟0</tag>
+        <tag>×</tag>
         <tag>数组</tag>
         <tag>hash</tag>
         <tag>缓存</tag>
@@ -28,10 +33,10 @@
       <tags>
         <tag>leetcode</tag>
         <tag>DP</tag>
-        <tag>×</tag>
         <tag>2维dp</tag>
         <tag>最大公共子序列</tag>
         <tag>插入1个虚拟0</tag>
+        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -59,8 +64,8 @@
       <tags>
         <tag>leetcode</tag>
         <tag>×</tag>
-        <tag>动态规划</tag>
         <tag>贪心算法</tag>
+        <tag>动态规划</tag>
         <tag>数组</tag>
       </tags>
   </entry>
@@ -75,8 +80,8 @@
         <tag>leetcode</tag>
         <tag>×</tag>
         <tag>动态规划</tag>
-        <tag>数组对角遍历</tag>
         <tag>字符串</tag>
+        <tag>数组对角遍历</tag>
         <tag>中心扩散法</tag>
       </tags>
   </entry>
@@ -89,8 +94,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>插入1个虚拟0</tag>
+        <tag>×</tag>
         <tag>动态规划</tag>
         <tag>字符串</tag>
       </tags>
@@ -120,9 +125,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>数学题</tag>
-        <tag>×</tag>
         <tag>插入1个虚拟0</tag>
+        <tag>×</tag>
+        <tag>数学题</tag>
         <tag>动态规划</tag>
         <tag>组合数学</tag>
       </tags>
@@ -136,8 +141,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>插入1个虚拟0</tag>
+        <tag>×</tag>
         <tag>动态规划</tag>
         <tag>2维DP</tag>
         <tag>2维DP-to-1维DP</tag>
@@ -171,8 +176,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>插入1个虚拟0</tag>
+        <tag>×</tag>
         <tag>动态规划</tag>
         <tag>树</tag>
         <tag>Catalan数</tag>
@@ -218,9 +223,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>数学题</tag>
         <tag>DP</tag>
         <tag>×</tag>
+        <tag>数学题</tag>
       </tags>
   </entry>
   <entry>
@@ -233,8 +238,8 @@
       <tags>
         <tag>leetcode</tag>
         <tag>DP</tag>
-        <tag>×</tag>
         <tag>插入1个虚拟0</tag>
+        <tag>×</tag>
         <tag>位运算</tag>
       </tags>
   </entry>
