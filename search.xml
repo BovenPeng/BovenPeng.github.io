@@ -10,10 +10,10 @@
       <tags>
         <tag>leetcode</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>2维dp</tag>
         <tag>最大公共子序列</tag>
         <tag>构造数组时，新长度 = 原长度+1</tag>
-        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -32,6 +32,37 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[leetcode题解-714-买卖股票的最佳时机含手续费]]></title>
+    <url>%2F2019%2F11%2F01%2Fleetcode%E9%A2%98%E8%A7%A3-714-%E4%B9%B0%E5%8D%96%E8%82%A1%E7%A5%A8%E7%9A%84%E6%9C%80%E4%BD%B3%E6%97%B6%E6%9C%BA%E5%90%AB%E6%89%8B%E7%BB%AD%E8%B4%B9%2F</url>
+    <content type="text"><![CDATA[My way 一开始审题失误了，没有看到股票可以 多次买入，卖出。 所以想了个 只准单次买入，卖出的解法。 1234567891011121314151617181920212223242526272829303132class Solution &#123;private: static bool mycomp(vector&lt;int&gt; a, vector&lt;int&gt; b) &#123; return *max_element(a.begin(), a.end()) &lt; *max_element(b.begin(), b.end()); &#125;public: int maxProfit(vector&lt;int&gt;&amp; prices, int fee) &#123; size_t n = prices.size(); vector&lt;vector&lt;int&gt;&gt; dp(n, vector&lt;int&gt;(n)); // Base case for (size_t i = 0; i &lt; n; ++i) &#123; dp[i][i] = 0; &#125; for (size_t i = 0; i &lt; n; ++i) &#123; for (size_t j = i + 1; j &lt; n; ++j) &#123; dp[i][j] = dp[i][j-1] + prices[j] - prices[j-1] - fee; &#125; &#125; auto itv = max_element(dp.begin(), dp.end(), mycomp); // find the vector // with the max element return *max_element((*itv).begin(), (*itv).end()); // finds the max element // in the desired vector &#125;&#125;; 官方解 通过第\(i\)天和\(i-1\)天\(cash,\ hold\)的递推关系，来得到最后最大收益。 *但是给我的感觉，这个思路，并不是很好捋清楚。 状态定义： \[ \begin{align*} &amp; cash:\ 不持有股票时的最大利润 \\ &amp; hold:\ 持有股票时的最大利润\\ \end{align*} \] 状态转移方程： 12cash = Math.max(cash, hold + prices[i] - fee); // max(原来请况，假设第i天卖出股票)hold = Math.max(hold, cash - prices[i]); // max(原来情况，假设第i天买进股票) Base case 12cash = 0;hold = -prices[0]; // 假设第0天买了股票 12345678910class Solution &#123; public int maxProfit(int[] prices, int fee) &#123; int cash = 0, hold = -prices[0]; for (int i = 1; i &lt; prices.length; i++) &#123; cash = Math.max(cash, hold + prices[i] - fee); hold = Math.max(hold, cash - prices[i]); &#125; return cash; &#125;&#125; e.g. $$ \[\begin{align*} &amp;输入: prices = [1, 3, 2, 8, 4, 9], fee = 2\\ &amp;输出: 8\\ &amp;解释: 能够达到的最大利润: \\ &amp;在此处买入 prices[0] = 1\\ &amp;在此处卖出 prices[3] = 8\\ &amp;在此处买入 prices[4] = 4\\ &amp;在此处卖出 prices[5] = 9\\ &amp;总利润: ((8 - 1) - 2) + ((9 - 4) - 2) = 8. \\ \end{align*}\] $$ prices cash hold 0 1 0 -1 1 3 max(0, -1+3-2)=0 max(0, 0-3)=-3 2 2 max(0, -1+2-2)=0 max(-1, 0-2)=-1 3 8 max(0, -1+8-2)=5 max(-1, 5-8)=-1 4 4 max(5, -1+4-2)=5 max(-1, 5-4)=1 5 9 max(5, 1+9-2)=8 max(1, 8-9)=-1 Reference 官方解 laluladong解 extended Find the max value in vector&gt; without for loop markdown generator]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>×</tag>
+        <tag>动态规划</tag>
+        <tag>贪心算法</tag>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[leetcode题解-647-回文子串]]></title>
+    <url>%2F2019%2F11%2F01%2Fleetcode%E9%A2%98%E8%A7%A3-647-%E5%9B%9E%E6%96%87%E5%AD%90%E4%B8%B2%2F</url>
+    <content type="text"><![CDATA[题目 My way 状态定义： \[ \begin{align*} &amp; s:\ 字符串s\\ &amp; i:\ 字符串s第i位\\ &amp; j:\ 字符串s第j位\\ &amp; s[i:j]:\ 字符串s第i位到第j位的子串, s[i,j]\\ &amp; dp[i][j]:\ dp数组在s[i,j]上是否为回文串的记录。 \end{align*} \] Base case： \[ \begin{align*} &amp;s[i][j] = 1, &amp;\text{if $i==j$}\ \end{align*} \] 状态转移方程： \[ s[i-1][j+1] = \begin{cases} &amp; 1,\ \text{if $s[i] == s[j]$}\\ &amp; 0,\ otherwise \end{cases} \] Error: 在如何实现数组遍历上面，出现了问题。 套用了 glamour的逆向对角遍历思路： 12345678910111213141516171819202122232425262728293031323334class Solution &#123;public: int countSubstrings(string s) &#123; int m = s.size(); int cnt = 0; vector&lt;vector&lt;bool&gt;&gt; dp(m, vector&lt;bool&gt;(m, false)); // base case for (int i = 0; i &lt; m; ++i) &#123; dp[i][i] = true; ++cnt; &#125; for (int i = 1; i &lt; m; ++i) &#123; for (int j = 0; j &lt;= m - i - 1; ++j) &#123; int row = j; int column = i + j; bool cur = s[row] == s[column]; if (cur &amp;&amp; (i == 1 || dp[row+1][column-1])) &#123; dp[row][column] = true; ++cnt; &#125; &#125; &#125; return cnt; &#125;&#125;; Glamour way 1.DP + 逆向对角遍历 逆向对角遍历思路： 上图中同一条直线上的值有前者依赖于后者的关系，因此我们应该以对角线方向遍历 但是本方法在發現一字符串不是回文串后，仍然對包含其的字符串進行回文判斷。 此方法包含了冗餘的判斷，因此還有優化的地方。 123456789101112131415161718192021222324252627public int countSubstrings(String s) &#123; int len = s.length(); if(len &lt;= 1) return len; boolean[][] dp = new boolean[len][len]; int i; int j; int row, column; boolean current; int count = 0; for(i = 0; i &lt; len; i++)&#123; dp[i][i] = true; count++; &#125; for(i = 1; i &lt; len; i++)&#123; for(j = 0; j &lt;= len - i - 1; j++)&#123; row = j; column = i + j; current = s.charAt(row) == s.charAt(column); if(current &amp;&amp; (i == 1 || dp[row + 1][column - 1]))&#123; dp[row][column] = true; count++; &#125; &#125; &#125; return count; &#125; 2. 分治法 + 中心扩散法 分治法，对以不同字符为中心的回文分而治之，同时又将回文的长度分为奇数和偶数，奇数的中心有一个，而偶数的中心有两个. 有一個規律： 回文串左右兩邊同時去掉一個字符仍然是回文串；反之一個字符串不是回文串， 那麽他左右兩邊不論加上什麽字符都不可能是回文串. 12345678910111213141516public int countSubstrings(String s) &#123; int count = 0; int i; for(i = 0; i &lt; s.length(); i++)&#123; count += countPalindrome(s, i, i); count += countPalindrome(s, i, i + 1); &#125; return count; &#125; public int countPalindrome (String s, int left, int right)&#123; int count = 0; while(left &gt;= 0 &amp;&amp; right &lt; s.length() &amp;&amp; s.charAt(left--) == s.charAt(right++))&#123; count++; &#125; return count; &#125; C++实现 1234567891011121314151617181920212223242526class Solution &#123;public: int countSubstrings(string s) &#123; int m = s.size(); int cnt = 0; for (int i = 0; i &lt; m; ++i) &#123; cnt += countPalindrome(s, i, i); // even length of string cnt += countPalindrome(s, i, i+1); // old length of string &#125; return cnt; &#125; int countPalindrome(const string&amp; s, int l, int r) &#123; int cnt = 0; while (l &gt;= 0 &amp;&amp; r &lt; s.size() &amp;&amp; s[l--] == s[r++]) &#123; ++cnt; &#125; return cnt; &#125;&#125;; Reference glamour解法]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>×</tag>
+        <tag>动态规划</tag>
+        <tag>数组对角遍历</tag>
+        <tag>字符串</tag>
+        <tag>中心扩散法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解-712-两个字符串的最小ASCII删除和]]></title>
     <url>%2F2019%2F11%2F01%2Fleetcode%E9%A2%98%E8%A7%A3-712-%E4%B8%A4%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%9C%80%E5%B0%8FASCII%E5%88%A0%E9%99%A4%E5%92%8C%2F</url>
     <content type="text"><![CDATA[题目 官方解 状态定义： \[ \begin{align*} &amp; i:\ \text{字符串}s1的第i位\\ &amp; j:\ \text{字符串}s2的第j位\\ &amp; s1[i:]:\ 第i位到末尾的子串\\ &amp; s2[j:]:\ 第j位到末尾的子串\\ &amp; dp[i][j]:\ 表示使字符串s1[i:],s2[j:]从第i位到末尾的子串相等，要删除的ASCII码值最小 \end{align*} \] 状态转移方程： \[ \begin{align*} dp[i][j] = \begin{cases} &amp; min(dp[i+1][j] + s1.asciiAtPos(i), dp[i][j+1] + s2.asciiAtPos(j))\ &amp; \text{if $s1[i] != s2[j]$ }\\ &amp; df[i-1][j-1]\ &amp;\text{if $s1[i] = s2[j]$} \end{cases} \end{align*} \] Base case: \[ \begin{align*} &amp;dp[i][j] = 0 &amp;\text{if $i == 0$ and $j == 0$} \end{align*} \] Corner case: \[ dp[i][j] = \begin{cases} &amp; dp[i+1][j] + s1.asciiAtPos(i) &amp; \text{if $s[j:].size() == 0$, 即$j==s1.size()$}\\ &amp; dp[i][j+1] + s2.asciiAtPos(j) &amp; \text{if $s[i:].size() == 0$, 即$i==s1.size()$}\\ \end{cases} \] C++实现 12345678910111213141516171819202122232425262728293031323334353637383940414243444546class Solution &#123;public: int minimumDeleteSum(string s1, string s2) &#123; vector&lt;vector&lt;int&gt;&gt; dp(s1.size()+1, vector&lt;int&gt;(s2.size()+1)); int m = s1.size(), n = s2.size(); for (int i = m - 1; i &gt;= 0; --i) &#123; dp[i][n] = dp[i+1][n] + s1[i]; &#125; for (int j = n - 1; j &gt;= 0; --j) &#123; dp[m][j] = dp[m][j+1] + s2[j]; &#125; for (int i = m - 1; i &gt;= 0; --i) &#123; for (int j = n - 1; j &gt;= 0; --j) &#123; if (s1[i] == s2[j]) &#123; dp[i][j] = dp[i+1][j+1]; &#125; else &#123; dp[i][j] = min(dp[i+1][j] + s1[i], dp[i][j+1] + s2[j]); &#125; &#125; &#125; return dp[0][0]; &#125;private: int getStrAsciiSum(const string s) &#123; int sum = 0; for (auto i : s) &#123; sum += i; &#125; return sum; &#125;&#125;; Java实现 1234567891011121314151617181920212223class Solution &#123; public int minimumDeleteSum(String s1, String s2) &#123; int[][] dp = new int[s1.length() + 1][s2.length() + 1]; for (int i = s1.length() - 1; i &gt;= 0; i--) &#123; dp[i][s2.length()] = dp[i+1][s2.length()] + s1.codePointAt(i); &#125; for (int j = s2.length() - 1; j &gt;= 0; j--) &#123; dp[s1.length()][j] = dp[s1.length()][j+1] + s2.codePointAt(j); &#125; for (int i = s1.length() - 1; i &gt;= 0; i--) &#123; for (int j = s2.length() - 1; j &gt;= 0; j--) &#123; if (s1.charAt(i) == s2.charAt(j)) &#123; dp[i][j] = dp[i+1][j+1]; &#125; else &#123; dp[i][j] = Math.min(dp[i+1][j] + s1.codePointAt(i), dp[i][j+1] + s2.codePointAt(j)); &#125; &#125; &#125; return dp[0][0]; &#125;&#125; 总结 类似于 最长公共子序列 的一道题。 在 二维DP数组初始化的时候，没有考虑到初始化大小为\((m+1)*(n+1)\) . 对于\(dp[m][n] = 0\)其实是一种 base case， 是考虑到第\(m\)位字符到第\(m\)位字符上的一个情况，即 空串情况。 Reference leetcode官方解 Falcon解 Extended std::basic_string basic_string/substr]]></content>
@@ -40,10 +71,26 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>构造数组时，新长度 = 原长度+1</tag>
         <tag>×</tag>
+        <tag>构造数组时，新长度 = 原长度+1</tag>
         <tag>动态规划</tag>
         <tag>字符串</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[leetcode题解-95-不同的二叉搜索树2]]></title>
+    <url>%2F2019%2F10%2F31%2Fleetcode%E9%A2%98%E8%A7%A3-95-%E4%B8%8D%E5%90%8C%E7%9A%84%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%912%2F</url>
+    <content type="text"><![CDATA[题目 官方解 简要改自官网解。 利用树的遍历，以递归方式实现不同二叉树的构造。 我们从序列 \(1 ...n\) 中取出数字 \(i\)，作为当前树的树根。于是，剩余 \(i - 1\) 个元素可用于左子树，\(n - i\) 个元素用于右子树。 如 前文所述，这样会产生 \(G(i - 1)\) 种左子树 和 \(G(n - i)\) 种右子树，其中 \(G\) 是卡特兰数。 现在，我们对序列 \(1 ... i - 1\) 重复上述过程，以构建所有的左子树；然后对 \(i + 1 ... n\) 重复，以构建所有的右子树。 这样，我们就有了树根 \(i\) 和可能的左子树、右子树的列表。 最后一步，对两个列表循环，将左子树和右子树连接在根上。 C++实现 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: // [start, end] vector&lt;TreeNode*&gt; generate_trees(int start, int end) &#123; vector&lt;TreeNode*&gt; all_trees; if (start &gt; end) &#123; all_trees.push_back(NULL); return all_trees; &#125; // pick up a root for (int i = 0; i &lt;= end; ++i) &#123; vector&lt;TreeNode*&gt; leftTrees = generate_trees(start, i - 1); vector&lt;TreeNode*&gt; rightTrees = generate_trees(i + 1, end); for (auto l : leftTrees) &#123; for (auto r : rightTrees) &#123; TreeNode* curTree(i); curTree-&gt;left = l; curTree-&gt;right = r; all_trees.push_back(curTree); &#125; &#125; &#125; return all_trees; &#125; vector&lt;TreeNode*&gt; generateTrees(int n) &#123; if (n == 0) &#123; return vector&lt;TreeNode*&gt;(); &#125; else &#123; return generate_trees(1, n); &#125; &#125;&#125;; Java实现 1234567891011121314151617181920212223242526272829303132class Solution &#123; public LinkedList&lt;TreeNode&gt; generate_trees(int start, int end) &#123; LinkedList&lt;TreeNode&gt; all_trees = new LinkedList&lt;TreeNode&gt;(); if (start &gt; end) &#123; all_trees.add(null); return all_trees; &#125; // pick up a root for (int i = start; i &lt;= end; i++) &#123; // all possible left subtrees if i is choosen to be a root LinkedList&lt;TreeNode&gt; left_trees = generate_trees(start, i - 1); // all possible right subtrees if i is choosen to be a root LinkedList&lt;TreeNode&gt; right_trees = generate_trees(i + 1, end); // connect left and right trees to the root i for (TreeNode l : left_trees) &#123; for (TreeNode r : right_trees) &#123; TreeNode current_tree = new TreeNode(i); current_tree.left = l; current_tree.right = r; all_trees.add(current_tree); &#125; &#125; &#125; return all_trees; &#125; public List&lt;TreeNode&gt; generateTrees(int n) &#123; if (n == 0) &#123; return new LinkedList&lt;TreeNode&gt;(); Reference 官方解]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>×</tag>
+        <tag>动态规划</tag>
+        <tag>树</tag>
+        <tag>树的遍历</tag>
+        <tag>递归</tag>
       </tags>
   </entry>
   <entry>
@@ -55,10 +102,10 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>构造数组时，新长度 = 原长度+1</tag>
-        <tag>×</tag>
-        <tag>动态规划</tag>
         <tag>数学题</tag>
+        <tag>×</tag>
+        <tag>构造数组时，新长度 = 原长度+1</tag>
+        <tag>动态规划</tag>
         <tag>组合数学</tag>
       </tags>
   </entry>
@@ -71,8 +118,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>构造数组时，新长度 = 原长度+1</tag>
         <tag>×</tag>
+        <tag>构造数组时，新长度 = 原长度+1</tag>
         <tag>动态规划</tag>
         <tag>2维DP</tag>
         <tag>2维DP-to-1维DP</tag>
@@ -106,11 +153,56 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>构造数组时，新长度 = 原长度+1</tag>
         <tag>×</tag>
+        <tag>构造数组时，新长度 = 原长度+1</tag>
         <tag>动态规划</tag>
         <tag>树</tag>
         <tag>Catalan数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[leetcode题解-1221-分割平衡字符串]]></title>
+    <url>%2F2019%2F10%2F28%2Fleetcode%E9%A2%98%E8%A7%A3-1221-%E5%88%86%E5%89%B2%E5%B9%B3%E8%A1%A1%E5%AD%97%E7%AC%A6%E4%B8%B2%2F</url>
+    <content type="text"><![CDATA[题目 虽然打的是 贪心算法 的tag，但是我感觉实际上是括号匹配的简单变种。 解法 括号匹配/栈的做法 考虑L, R分别对应左右两个括号。 利用stack的push, pop和括号匹配的基本思路来完成。 栈为空，push当前元素。 top元素 等于 当前元素，push当前元素，否则pop top元素。 栈为空，平衡次数+1。 PS: 注意思路实现是带有先后顺序的。 123456789101112131415161718192021222324252627class Solution &#123;public: int balancedStringSplit(string s) &#123; int count = 0; stack&lt;char&gt; sc; for (int i = 0; i &lt; s.size(); ++i) &#123; char c = s[i]; if (sc.empty() || c == sc.top()) &#123; sc.push(c); &#125; else &#123; sc.pop(); &#125; if (sc.empty()) &#123; ++count; &#125; &#125; return count; &#125;&#125;; 利用数字计数代替括号匹配做法 因为这里不同于括号匹配需要是一个&lt;&gt;的匹配状态，可以是LR, RL, LLRR, RRLL， 也就是说可以看成一个简单版本的括号匹配过程， 因为不需要要求L, R之间的先后关系，所以可以通过 数字计数 取代掉 栈括号匹配 的过程。 若当前元素为L, 计数++num；为R, 计数--num; 若num == 0, 则平衡次数+1。 1234567891011121314151617181920212223242526class Solution &#123;public: int balancedStringSplit(string s) &#123; int num = 0; int count = 0; for (auto it = s.begin(); it &lt; s.end(); ++it) &#123; if (*it == 'L') &#123; ++num; &#125; else &#123; --num; &#125; if (num == 0) &#123; ++count; &#125; &#125; return count; &#125;&#125;; 总结 这题提及的&quot;尽可能多的平衡字符串分割“ + 实例，说明了这里的字符串分割是不存在前后分割出的字符串结果有交集的。 可以思考到，正常的从头到尾的一次遍历即可。 提及的” ‘L’和'R'字符的数量是相同的 &quot;, 并没有提及到 L和R要有前后顺序的关系 可以思考到，利用 数字计数法 代替 括号匹配法。 Reference Karua leetcode 题解 amanehayashi leetcode 题解 Extended std::stack STL header stack iterator library]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>×</tag>
+        <tag>贪心算法</tag>
+        <tag>栈</tag>
+        <tag>线性表</tag>
+        <tag>括号匹配</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[leetcode题解: 877.石子游戏]]></title>
+    <url>%2F2019%2F10%2F27%2Fleetcode%E9%A2%98%E8%A7%A3-877-%E7%9F%B3%E5%AD%90%E6%B8%B8%E6%88%8F%2F</url>
+    <content type="text"><![CDATA[题目 官方解 数学way 直接从官方解处摘抄过来，很有意思的数学归纳证明思想。如下： 显然，亚历克斯总是赢得 2 堆时的游戏。 通过一些努力，我们可以获知她总是赢得 4 堆时的游戏。 如果亚历克斯最初获得第一堆，她总是可以拿第三堆。 如果她最初取到第四堆，她总是可以取第二堆。第一 + 第三，第二 + 第四 中的至少一组是更大的，所以她总能获胜。 我们可以将这个想法扩展到 N 堆的情况下。设第一、第三、第五、第七桩是白色的，第二、第四、第六、第八桩是黑色的。 亚历克斯总是可以拿到所有白色桩或所有黑色桩，其中一种颜色具有的石头数量必定大于另一种颜色的。 因此，亚历克斯总能赢得比赛。 123456class Solution &#123;public: bool stoneGame(vector&lt;int&gt;&amp; piles) &#123; return true; &#125;&#125;; 综评最高解 在dp解释上强于官方解，简要摘取部分过程，详细见reference处。 对于\(piles=[3, 9, 1, 2]\), 定义状态： \[ dp[i][j].fir\ or\ dp[i][j].sec\\ 其中：\\ 0 &lt;= i &lt; piles.length, i相当于石子堆最左堆\\ i &lt;= j &lt; piles.length, j相当于石子堆最右堆 \] 其中， \[ dp[i][j].fir表示，对于piles[i...j]这部分石子，先手能获得的最高分数 \\ dp[i][j].sec表示，对于piles[i...j]这部分石子，后手能获得的最高分数 \] 状态转移方程为： \[ dp[i][j].fir = max(piles[i] + dp[i+1][j].sec, piles[j] + dp[i][j-1].sec) \\ \] $$ \[\begin{align*} &amp; if 先手选择左边: dp[i][j].sec = dp[i+1][j].fir \\ &amp; if 先手选择右边: dp[i][j].sec = dp[i][j-1].fir \\ &amp; 解释：\\ &amp; 我作为后手，要等先手先选择，有两种情况： \\ &amp; 如果先手选择了最左边那堆，给我剩下了 piles[i+1...j] \\ &amp; 此时轮到我，我变成了先手；\\ &amp; 如果先手选择了最右边那堆，给我剩下了 piles[i...j-1] \\ &amp; 此时轮到我，我变成了先手。\\ \end{align*}\] $$ base case \[ \begin{align*} &amp; dp[i][j].fir = piles[i] \\ &amp; dp[i][j].sec = 0 \\ &amp; 其中 0 &lt;= i == j &lt; n \\ &amp; 解释：i 和 j 相等就是说面前只有一堆石头 piles[i] \\ &amp; 那么显然先手的得分为 piles[i] \\ &amp; 后手没有石头拿了，得分为 0 \\ \end{align*} \] 这里需要注意一点，我们发现 \(base\ case\)是斜着的，而且我们推算 dp[i][j] 时需要用到 dp[i+1][j] 和 dp[i][j-1]： 所以说算法不能简单的一行一行遍历 dp 数组，而要斜着遍历数组： 实现 1234567891011121314151617181920212223242526272829303132333435363738394041424344class Solution &#123;public: bool stoneGame(vector&lt;int&gt;&amp; piles) &#123; int n = piles.size(); // initialize dp array vector&lt;vector&lt;pair&lt;int, int&gt;&gt;&gt; dp(n, vector&lt;pair&lt;int, int&gt;&gt;(n, make_pair(0, 0))); // fill with base case for (int i = 0; i &lt; n; ++i) &#123; dp[i][i].first = piles[i]; dp[i][i].second = 0; &#125; // traverse array in a diagonal way for (int l = 2; l &lt;= n; ++l) &#123; for (int i = 0; i &lt;= n - l; ++i) &#123; int j = i + l - 1; // 先手选择最左边或者最右边的分数 int left = piles[i] + dp[i+1][j].second; int right = piles[j] + dp[i][j-1].second; // 套用状态转移方程 if (left &gt; right) &#123; dp[i][j].first = left; dp[i][j].second = dp[i+1][j].first; &#125; else &#123; dp[i][j].first = right; dp[i][j].second = dp[i][j-1].first; &#125; &#125; &#125; pair&lt;int, int&gt; res(dp[0][n-1]); return res.first - res.second; &#125;&#125;; 综评Java实现 123456789101112131415161718192021222324252627282930313233/* 返回游戏最后先手和后手的得分之差 */int stoneGame(int[] piles) &#123; int n = piles.length; // 初始化 dp 数组 Pair[][] dp = new Pair[n][n]; for (int i = 0; i &lt; n; i++) for (int j = i; j &lt; n; j++) dp[i][j] = new Pair(0, 0); // 填入 base case for (int i = 0; i &lt; n; i++) &#123; dp[i][i].fir = piles[i]; dp[i][i].sec = 0; &#125; // 斜着遍历数组 for (int l = 2; l &lt;= n; l++) &#123; for (int i = 0; i &lt;= n - l; i++) &#123; int j = l + i - 1; // 先手选择最左边或最右边的分数 int left = piles[i] + dp[i+1][j].sec; int right = piles[j] + dp[i][j-1].sec; // 套用状态转移方程 if (left &gt; right) &#123; dp[i][j].fir = left; dp[i][j].sec = dp[i+1][j].fir; &#125; else &#123; dp[i][j].fir = right; dp[i][j].sec = dp[i][j-1].fir; &#125; &#125; &#125; Pair res = dp[0][n-1]; return res.fir - res.sec;&#125; 总结 二维DP，也是递推问题，但是给人的没有一维DP那么好处理。 状态定义，一般涉及到2个状态\(i,\ j\)。可以用表格法表示，有点类似0-1背包问题。 状态转移方程，一般涉及到上一状态的2个状态。 base case, 我的理解是一般类似于 corner case的存在，是一个需要考虑到的初始条件。 斜着遍历数组，这个在实现的时候，也不是一件非常容易的事情。 123456789// traverse array in a diagonal wayfor (int l = 2; l &lt;= n; ++l)&#123; for (int i = 0; i &lt;= n - l; ++i) &#123; int j = i + l - 1; // ... &#125;&#125; 若\(n = 4\), 则依次遍历： \[ \begin{align*} &amp; [0,\ 1],\ [1,\ 2], [2,\ 3], [3,\ 4] \\ &amp; [0,\ 2],\ [1,\ 3], [2,\ 4] \\ &amp; [0,\ 3],\ [1,\ 4] \\ &amp; [0,\ 4] \\ \end{align*} \] Reference labuladong: leetcode解 leetcode 官方解 extended std::pair std::vector]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>DP</tag>
+        <tag>×</tag>
+        <tag>二维dp</tag>
+        <tag>博弈问题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[leetcode题解: 1025.除数博弈]]></title>
+    <url>%2F2019%2F10%2F24%2Fleetcode%E9%A2%98%E8%A7%A3-1025-%E9%99%A4%E6%95%B0%E5%8D%9A%E5%BC%88%2F</url>
+    <content type="text"><![CDATA[题目 My way: 这题靠归纳推理，首先很明显就能看出来偶数的时候Alice赢了； 然后多举了几个例子就发现奇数的时候Bob赢了。 就直接一个条件语句，结束。 但是尝试套dp的做法的时候，没捋清楚，看了综评最高的，基本懂了。 12345678910111213class Solution &#123;public: bool divisorGame(int N) &#123; if (!(N &amp; 1)) &#123; return true; &#125; else &#123; return false; &#125; &#125;&#125;; 综评最高解 1.归纳法： 基本思路： 最终结果应该是占到 2 的赢，占到 1 的输； 若当前为奇数，奇数的约数只能是奇数或者 1，因此下一个一定是偶数； 若当前为偶数， 偶数的约数可以是奇数可以是偶数也可以是 1，因此直接减 1，则下一个是奇数； 因此，奇则输，偶则赢。 123class Solution: def divisorGame(self, N: int) -&gt; bool: return N%2==0 2.DP: 定义状态 \(i\): 数字\(N\)为\(i\)时； \(f[i]\): 数字\(N\)为\(i\)时，Alice的胜负状况，true为胜，false为负。 定义状态转移方程： \[ f[i] = \begin{cases} true, &amp; \text{if}\ f[i-j] == false,\ \text{if}\ i\ \%\ j == 0\ \\ &amp; and\ j\ is\ unsigned\ integer\ which \in (0, N) \ \\ false, &amp; \text{otherwise} \end{cases} \] 实现 1234567891011121314151617181920class Solution &#123;public: bool divisorGame(int N) &#123; vector&lt;bool&gt; vi(N+1); for (int i = 2; i &lt; N + 1; ++i) &#123; for (int j = 1; j &lt;= i / 2; ++j) &#123; if (vi[i-j] == false &amp;&amp; i % j == 0) &#123; vi[i] = true; &#125; &#125; &#125; return vi[N]; &#125;&#125;; 综评解 12345678910111213141516class Solution: def divisorGame(self, N: int) -&gt; bool: target = [0 for i in range(N+1)] target[1] = 0 #若爱丽丝抽到1，则爱丽丝输 if N&lt;=1: return False else: target[2] = 1 #若爱丽丝抽到2，则爱丽丝赢 for i in range(3,N+1): for j in range(1,i//2): # 若j是i的余数且target[i-j]为假（0）的话，则代表当前为真（1） if i%j==0 and target[i-j]==0: target[i] = 1 break return target[N]==1 总结 初等数学review: 奇数的因数： {奇数} 偶数的因数： {偶数} 奇数的最大公因数 = 奇数 目前做到的dp还是简单递推问题，可以简单套换成： 状态\(i\)就是数字为\(i\)的时候 \(f[i]\)就是数字为\(i\)时候，结果为\(f[i]\) Reference pandawakaka 给出的解]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>数学题</tag>
+        <tag>DP</tag>
+        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -123,8 +215,8 @@
       <tags>
         <tag>leetcode</tag>
         <tag>DP</tag>
-        <tag>构造数组时，新长度 = 原长度+1</tag>
         <tag>×</tag>
+        <tag>构造数组时，新长度 = 原长度+1</tag>
         <tag>位运算</tag>
       </tags>
   </entry>
