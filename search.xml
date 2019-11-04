@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode题解-638-大礼包]]></title>
+    <url>%2F2019%2F11%2F04%2Fleetcode%E9%A2%98%E8%A7%A3-638-%E5%A4%A7%E7%A4%BC%E5%8C%85%2F</url>
+    <content type="text"><![CDATA[题目 My way 题目有提到 大礼包以优惠的价格捆绑销售一组物品 &lt;=&gt; 大礼包价格更优惠，优先级更高。]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>DP</tag>
+        <tag>数组</tag>
+        <tag>DFS</tag>
+        <tag>完全背包</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解-312-戳气球]]></title>
     <url>%2F2019%2F11%2F04%2Fleetcode%E9%A2%98%E8%A7%A3-312-%E6%88%B3%E6%B0%94%E7%90%83%2F</url>
     <content type="text"><![CDATA[My way 很蠢的思路： 选择min值，爆掉，然后循环至结束。 测都不用测。。。 没想到怎么往DP上面套。 ivan_allen 解 思路转变： 气球从头到尾爆炸 &lt;=&gt; 气球从尾到头爆炸 状态转移方程: \[ dp[i][j] = max(dp[i][j],\ nums[i]*nums[k]*nums[j] + dp[i][k] + dp[k][j]), \text{if $k \in\ [i,\ j]$} \] 遍历方式： 控制子数组长度len 子数组首尾i, j 使用k对数组分割 二维DP实现： 123456789101112131415161718192021222324252627282930class Solution &#123;public: int N; int maxCoins(vector&lt;int&gt;&amp; nums) &#123; // 添加哨兵在头尾，因为假如最后只删一个数字的时候，是需要乘以2个1的 nums.insert(nums.begin(), 1); nums.push_back(1); int m = nums.size(); vector&lt;vector&lt;int&gt;&gt; dp(m, vector&lt;int&gt;(m)); // 只能按长度打表 // dp[i][j], j - i &gt;= 2 for (int len = 2; len &lt; m; ++len) &#123; for (int i = 0; i &lt; m - len; ++i) &#123; int j = i + len; for (int k = i + 1; k &lt; j; ++k) &#123; dp[i][j] = max(dp[i][j], nums[i]*nums[k]*nums[j] + dp[i][k] + dp[k][j]); &#125; &#125; &#125; return dp[0][m-1]; &#125;&#125;; 总结 思路的转变： 气球从头到尾爆炸 &lt;=&gt; 气球从尾到头爆炸 头尾虚拟1的添加 类似于之前虚拟0的添加 和 哨兵的思想 Reference ivan_allen解]]></content>
@@ -56,8 +71,8 @@
         <tag>leetcode</tag>
         <tag>DP</tag>
         <tag>×</tag>
-        <tag>2维dp</tag>
         <tag>插入1个虚拟0</tag>
+        <tag>2维dp</tag>
         <tag>数组</tag>
         <tag>hash</tag>
         <tag>缓存</tag>
@@ -74,9 +89,9 @@
         <tag>leetcode</tag>
         <tag>DP</tag>
         <tag>×</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>2维dp</tag>
         <tag>最大公共子序列</tag>
-        <tag>插入1个虚拟0</tag>
       </tags>
   </entry>
   <entry>
@@ -104,8 +119,8 @@
       <tags>
         <tag>leetcode</tag>
         <tag>×</tag>
-        <tag>动态规划</tag>
         <tag>贪心算法</tag>
+        <tag>动态规划</tag>
         <tag>数组</tag>
       </tags>
   </entry>
@@ -135,8 +150,8 @@
       <tags>
         <tag>leetcode</tag>
         <tag>×</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>字符串</tag>
       </tags>
   </entry>
@@ -167,9 +182,9 @@
         <tag>leetcode</tag>
         <tag>数学题</tag>
         <tag>×</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>组合数学</tag>
+        <tag>插入1个虚拟0</tag>
       </tags>
   </entry>
   <entry>
@@ -182,8 +197,8 @@
       <tags>
         <tag>leetcode</tag>
         <tag>×</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>2维DP</tag>
         <tag>2维DP-to-1维DP</tag>
         <tag>自顶向下DP</tag>
@@ -217,8 +232,8 @@
       <tags>
         <tag>leetcode</tag>
         <tag>×</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>树</tag>
         <tag>Catalan数</tag>
       </tags>
@@ -340,9 +355,9 @@
         <category>Pandas</category>
       </categories>
       <tags>
+        <tag>pandas</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
-        <tag>pandas</tag>
         <tag>Code Snippet</tag>
       </tags>
   </entry>
@@ -369,10 +384,10 @@
       </categories>
       <tags>
         <tag>code snippet</tag>
+        <tag>EDA</tag>
         <tag>data visualization</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
-        <tag>EDA</tag>
         <tag>hexo</tag>
       </tags>
   </entry>
