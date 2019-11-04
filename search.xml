@@ -1,9 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode题解-312-戳气球]]></title>
+    <url>%2F2019%2F11%2F04%2Fleetcode%E9%A2%98%E8%A7%A3-312-%E6%88%B3%E6%B0%94%E7%90%83%2F</url>
+    <content type="text"><![CDATA[My way 很蠢的思路： 选择min值，爆掉，然后循环至结束。 测都不用测。。。 没想到怎么往DP上面套。 ivan_allen 解 思路转变： 气球从头到尾爆炸 &lt;=&gt; 气球从尾到头爆炸 状态转移方程: \[ dp[i][j] = max(dp[i][j],\ nums[i]*nums[k]*nums[j] + dp[i][k] + dp[k][j]), \text{if $k \in\ [i,\ j]$} \] 遍历方式： 控制子数组长度len 子数组首尾i, j 使用k对数组分割 二维DP实现： 123456789101112131415161718192021222324252627282930class Solution &#123;public: int N; int maxCoins(vector&lt;int&gt;&amp; nums) &#123; // 添加哨兵在头尾，因为假如最后只删一个数字的时候，是需要乘以2个1的 nums.insert(nums.begin(), 1); nums.push_back(1); int m = nums.size(); vector&lt;vector&lt;int&gt;&gt; dp(m, vector&lt;int&gt;(m)); // 只能按长度打表 // dp[i][j], j - i &gt;= 2 for (int len = 2; len &lt; m; ++len) &#123; for (int i = 0; i &lt; m - len; ++i) &#123; int j = i + len; for (int k = i + 1; k &lt; j; ++k) &#123; dp[i][j] = max(dp[i][j], nums[i]*nums[k]*nums[j] + dp[i][k] + dp[k][j]); &#125; &#125; &#125; return dp[0][m-1]; &#125;&#125;; 总结 思路的转变： 气球从头到尾爆炸 &lt;=&gt; 气球从尾到头爆炸 头尾虚拟1的添加 类似于之前虚拟0的添加 和 哨兵的思想 Reference ivan_allen解]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>DP</tag>
+        <tag>分治算法</tag>
+        <tag>哨兵</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[leetcode题解-62-不同路径]]></title>
+    <url>%2F2019%2F11%2F04%2Fleetcode%E9%A2%98%E8%A7%A3-62-%E4%B8%8D%E5%90%8C%E8%B7%AF%E5%BE%84%2F</url>
+    <content type="text"><![CDATA[My way 1. 2维DP 状态转移方程： \[ \begin{align*} &amp; dp[i][j] = dp[i-1][j] + dp[i][j-1] \\ \end{align*} \] base case: \[ \begin{align*} &amp; dp[i][j] = 1,\ \text{if $i==1$ or $j==1$} \\ \end{align*} \] corner case: \[ \begin{align*} &amp; dp[i][j] = 1, \text{if $i == 1$ and $j == 1$} \\ &amp; AND \\ &amp; return\ function \end{align*} \] 2. 1维DP 还可以转换成1维DP. powcai way 组合数学： PS： 这个排列组合的方法其实我想到过，但是没有找出通项公式 :cry: Reference powcai 解]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>DP</tag>
+        <tag>×</tag>
+        <tag>组合数学</tag>
+        <tag>2维DP-to-1维DP</tag>
+        <tag>数组</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解-413.等差数列划分]]></title>
     <url>%2F2019%2F11%2F03%2Fleetcode%E9%A2%98%E8%A7%A3-413-%E7%AD%89%E5%B7%AE%E6%95%B0%E5%88%97%E5%88%92%E5%88%86%2F</url>
-    <content type="text"><![CDATA[reference extended How to sum up elements of a C++ vector?]]></content>
+    <content type="text"><![CDATA[My way 状态转移方程: \[ dp[i][j] = \begin{cases} &amp; 2^{j-i-2}-1 &amp; \text{if $A[i:j]$是等差数列}\\ &amp; dp[i-1][j] + dp[i][j-1] &amp; otherwise\\ \end{cases} \] 官方解 2. 优雅暴力 3. 递归 状态定义： \[ \begin{align*} &amp; sum:\ 数组A中的所有的等差数列的个数 \\ &amp; slice(A,\ i):\ 求区间(k,\ i)中，而不在区间(k,\ j)中等差数列的个数，其中j&lt;i. \\ &amp; \end{align*} \] 假设知道了\(slice(A, i-1)\)的值为x, 同时这个区间元素用\([a_0, a_1, a_2, ..., a_{i-1}]\)来表示。 若这个区间本身就是一个等差数列，那么这里所有相邻元素之间的差值是相等的。 现加入一个元素\(a_i\)将区间扩展为\((0,\ i)\)，如果扩展之后的区间还是一个等差数列，那么一定存在\(a_i - a_{(i-1)} == a_{(i-1)} -a_{(i-2)}\). 故每加入一个新元素，就会多出\(ap\)个等差数列。其中新增的等差数列的区间为\((0,i), (1,i), ..., (i-2, i)\), 这些区间总数为\(x+1\). 这是因为除了区间\((0,i)\)之外，其余的区间如\((1,i), (2,i),...,(i-2,i)\)都可以对应到之前的区间\((0,i-1), (1,i-1), ...,(i-3,i-1)\)上去，其值为\(x\). 因此，每次调用slices, 如果第\(i\)个元素与前一个元素的差值正好等于之前的差值，我们直接就可以算出新增的等差数列的个数\(ap\), 同时可以更新\(sum\). 但是，如果新元素跟之前一个元素的差值不等于之前的差值，也就不会增加等差数列的个数 123456789101112131415161718public class Solution &#123; int sum = 0; public int numberOfArithmeticSlices(int[] A) &#123; slices(A, A.length - 1); return sum; &#125; public int slices(int[] A, int i) &#123; if (i &lt; 2) return 0; int ap = 0; if (A[i] - A[i - 1] == A[i - 1] - A[i - 2]) &#123; ap = 1 + slices(A, i - 1); sum += ap; &#125; else slices(A, i - 1); return ap; &#125;&#125; 4.DP 状态定义： \[ \begin{align*} &amp; dp:\ 存储在区间(k,i), 而不在区间(k,j)中的等差数列个数，其中j&lt;i\\ &amp; \end{align*} \] 12345678910111213public class Solution &#123; public int numberOfArithmeticSlices(int[] A) &#123; int[] dp = new int[A.length]; int sum = 0; for (int i = 2; i &lt; dp.length; i++) &#123; if (A[i] - A[i - 1] == A[i - 1] - A[i - 2]) &#123; dp[i] = 1 + dp[i - 1]; sum += dp[i]; &#125; &#125; return sum; &#125;&#125; 5.\(O(1)空间复杂度\)DP 对于\(dp\)数组来说，仅有\(dp[i-1]\)决定\(dp[i]\). 故只用保存最近一个\(dp\) 就可以了。 1234567891011121314public class Solution &#123; public int numberOfArithmeticSlices(int[] A) &#123; int dp = 0; int sum = 0; for (int i = 2; i &lt; A.length; i++) &#123; if (A[i] - A[i - 1] == A[i - 1] - A[i - 2]) &#123; dp = 1 + dp; sum += dp; &#125; else dp = 0; &#125; return sum; &#125;&#125; 6. 公式计算 123456789101112131415public class Solution &#123; public int numberOfArithmeticSlices(int[] A) &#123; int count = 0; int sum = 0; for (int i = 2; i &lt; A.length; i++) &#123; if (A[i] - A[i - 1] == A[i - 1] - A[i - 2]) &#123; count++; &#125; else &#123; sum += (count + 1) * (count) / 2; count = 0; &#125; &#125; return sum += count * (count + 1) / 2; &#125;&#125; reference extended How to sum up elements of a C++ vector? how to sum up a vector of vector int in C++ without loops]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>DP</tag>
+        <tag>×</tag>
+        <tag>数组</tag>
+        <tag>递归</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[leetcode题解-303-区域和检索 - 数组不可变]]></title>
@@ -15,9 +55,9 @@
       <tags>
         <tag>leetcode</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>2维dp</tag>
         <tag>插入1个虚拟0</tag>
-        <tag>×</tag>
         <tag>数组</tag>
         <tag>hash</tag>
         <tag>缓存</tag>
@@ -33,10 +73,10 @@
       <tags>
         <tag>leetcode</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>2维dp</tag>
         <tag>最大公共子序列</tag>
         <tag>插入1个虚拟0</tag>
-        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -64,8 +104,8 @@
       <tags>
         <tag>leetcode</tag>
         <tag>×</tag>
-        <tag>贪心算法</tag>
         <tag>动态规划</tag>
+        <tag>贪心算法</tag>
         <tag>数组</tag>
       </tags>
   </entry>
@@ -80,8 +120,8 @@
         <tag>leetcode</tag>
         <tag>×</tag>
         <tag>动态规划</tag>
-        <tag>字符串</tag>
         <tag>数组对角遍历</tag>
+        <tag>字符串</tag>
         <tag>中心扩散法</tag>
       </tags>
   </entry>
@@ -94,8 +134,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>×</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>字符串</tag>
       </tags>
@@ -112,8 +152,8 @@
         <tag>×</tag>
         <tag>动态规划</tag>
         <tag>树</tag>
-        <tag>树的遍历</tag>
         <tag>递归</tag>
+        <tag>树的遍历</tag>
       </tags>
   </entry>
   <entry>
@@ -125,9 +165,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>插入1个虚拟0</tag>
-        <tag>×</tag>
         <tag>数学题</tag>
+        <tag>×</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>组合数学</tag>
       </tags>
@@ -141,8 +181,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>×</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>2维DP</tag>
         <tag>2维DP-to-1维DP</tag>
@@ -176,8 +216,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>×</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>树</tag>
         <tag>Catalan数</tag>
@@ -223,9 +263,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>数学题</tag>
         <tag>DP</tag>
         <tag>×</tag>
-        <tag>数学题</tag>
       </tags>
   </entry>
   <entry>
@@ -238,8 +278,8 @@
       <tags>
         <tag>leetcode</tag>
         <tag>DP</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>×</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>位运算</tag>
       </tags>
   </entry>
@@ -300,9 +340,9 @@
         <category>Pandas</category>
       </categories>
       <tags>
-        <tag>pandas</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
+        <tag>pandas</tag>
         <tag>Code Snippet</tag>
       </tags>
   </entry>
@@ -329,10 +369,10 @@
       </categories>
       <tags>
         <tag>code snippet</tag>
-        <tag>EDA</tag>
         <tag>data visualization</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
+        <tag>EDA</tag>
         <tag>hexo</tag>
       </tags>
   </entry>
