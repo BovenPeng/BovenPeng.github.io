@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode题解-263-丑数]]></title>
+    <url>%2F2019%2F11%2F27%2Fleetcode%E9%A2%98%E8%A7%A3-263-%E4%B8%91%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解-202-快乐数]]></title>
     <url>%2F2019%2F11%2F27%2Fleetcode%E9%A2%98%E8%A7%A3-202-%E5%BF%AB%E4%B9%90%E6%95%B0%2F</url>
     <content type="text"><![CDATA[]]></content>
@@ -106,9 +111,9 @@
       <tags>
         <tag>leetcode</tag>
         <tag>DP</tag>
-        <tag>×</tag>
         <tag>2维dp</tag>
         <tag>插入1个虚拟0</tag>
+        <tag>×</tag>
         <tag>数组</tag>
         <tag>hash</tag>
         <tag>缓存</tag>
@@ -124,10 +129,10 @@
       <tags>
         <tag>leetcode</tag>
         <tag>DP</tag>
-        <tag>×</tag>
         <tag>2维dp</tag>
         <tag>最大公共子序列</tag>
         <tag>插入1个虚拟0</tag>
+        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -155,8 +160,8 @@
       <tags>
         <tag>leetcode</tag>
         <tag>×</tag>
-        <tag>贪心算法</tag>
         <tag>动态规划</tag>
+        <tag>贪心算法</tag>
         <tag>数组</tag>
       </tags>
   </entry>
@@ -185,8 +190,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>插入1个虚拟0</tag>
+        <tag>×</tag>
         <tag>动态规划</tag>
         <tag>字符串</tag>
       </tags>
@@ -216,9 +221,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>数学题</tag>
-        <tag>×</tag>
         <tag>插入1个虚拟0</tag>
+        <tag>×</tag>
+        <tag>数学题</tag>
         <tag>动态规划</tag>
         <tag>组合数学</tag>
       </tags>
@@ -232,8 +237,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>插入1个虚拟0</tag>
+        <tag>×</tag>
         <tag>动态规划</tag>
         <tag>2维DP</tag>
         <tag>2维DP-to-1维DP</tag>
@@ -267,8 +272,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>插入1个虚拟0</tag>
+        <tag>×</tag>
         <tag>动态规划</tag>
         <tag>树</tag>
         <tag>Catalan数</tag>
@@ -314,9 +319,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>数学题</tag>
         <tag>DP</tag>
         <tag>×</tag>
+        <tag>数学题</tag>
       </tags>
   </entry>
   <entry>
@@ -329,8 +334,8 @@
       <tags>
         <tag>leetcode</tag>
         <tag>DP</tag>
-        <tag>×</tag>
         <tag>插入1个虚拟0</tag>
+        <tag>×</tag>
         <tag>位运算</tag>
       </tags>
   </entry>
