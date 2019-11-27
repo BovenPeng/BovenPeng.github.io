@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode题解-202-快乐数]]></title>
+    <url>%2F2019%2F11%2F27%2Fleetcode%E9%A2%98%E8%A7%A3-202-%E5%BF%AB%E4%B9%90%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解-1155-掷骰子的N种方法]]></title>
     <url>%2F2019%2F11%2F21%2Fleetcode%E9%A2%98%E8%A7%A3-1155-%E6%8E%B7%E9%AA%B0%E5%AD%90%E7%9A%84N%E7%A7%8D%E6%96%B9%E6%B3%95%2F</url>
     <content type="text"><![CDATA[12345678910111213141516171819202122232425262728293031323334353637383940class Solution &#123;public: int numRollsToTarget(int d, int f, int target) &#123; if (d &lt; 1 || f &lt; 1 || target &lt; 1 || target &gt; d*f) &#123; return 0; &#125; // 1. int MOD = 1000000007; // 2. int MIN = min(f, target); // 3. int MAX = d*f; vector&lt;vector&lt;int&gt;&gt; dp(d+1, vector&lt;int&gt;(MAX+1, 0)); for (int j = 1; j &lt;= MIN; ++j) &#123; dp[1][j] = 1; &#125; for (int i = 2; i &lt;= d; ++i) &#123; // 因为每个筛子至少丢出来的值是 &gt;=1 的 for (int j = i; j &lt;= MAX; ++j) &#123; for (int k = 1; j - k &gt;= 0 &amp;&amp; k &lt;= f; ++k) &#123; dp[i][j] = (dp[i][j] + dp[i-1][j-k]) % MOD; &#125; &#125; &#125; return dp[d][target]; &#125;&#125;;]]></content>
@@ -24,8 +29,8 @@
         <tag>leetcode</tag>
         <tag>DP</tag>
         <tag>×</tag>
-        <tag>DFS</tag>
         <tag>数组</tag>
+        <tag>DFS</tag>
         <tag>特殊DP数组</tag>
       </tags>
   </entry>
@@ -40,8 +45,8 @@
         <tag>leetcode</tag>
         <tag>DP</tag>
         <tag>×</tag>
-        <tag>DFS</tag>
         <tag>数组</tag>
+        <tag>DFS</tag>
         <tag>完全背包</tag>
       </tags>
   </entry>
@@ -102,8 +107,8 @@
         <tag>leetcode</tag>
         <tag>DP</tag>
         <tag>×</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>2维dp</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>数组</tag>
         <tag>hash</tag>
         <tag>缓存</tag>
@@ -120,9 +125,9 @@
         <tag>leetcode</tag>
         <tag>DP</tag>
         <tag>×</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>2维dp</tag>
         <tag>最大公共子序列</tag>
+        <tag>插入1个虚拟0</tag>
       </tags>
   </entry>
   <entry>
@@ -135,8 +140,8 @@
       <tags>
         <tag>leetcode</tag>
         <tag>DP</tag>
-        <tag>2维DP-to-1维DP</tag>
         <tag>2维dp</tag>
+        <tag>2维DP-to-1维DP</tag>
         <tag>√</tag>
       </tags>
   </entry>
@@ -150,9 +155,9 @@
       <tags>
         <tag>leetcode</tag>
         <tag>×</tag>
+        <tag>贪心算法</tag>
         <tag>动态规划</tag>
         <tag>数组</tag>
-        <tag>贪心算法</tag>
       </tags>
   </entry>
   <entry>
@@ -181,8 +186,8 @@
       <tags>
         <tag>leetcode</tag>
         <tag>×</tag>
-        <tag>动态规划</tag>
         <tag>插入1个虚拟0</tag>
+        <tag>动态规划</tag>
         <tag>字符串</tag>
       </tags>
   </entry>
@@ -213,8 +218,8 @@
         <tag>leetcode</tag>
         <tag>数学题</tag>
         <tag>×</tag>
-        <tag>动态规划</tag>
         <tag>插入1个虚拟0</tag>
+        <tag>动态规划</tag>
         <tag>组合数学</tag>
       </tags>
   </entry>
@@ -228,13 +233,13 @@
       <tags>
         <tag>leetcode</tag>
         <tag>×</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>2维DP</tag>
         <tag>2维DP-to-1维DP</tag>
         <tag>自顶向下DP</tag>
         <tag>自底向上DP</tag>
         <tag>树</tag>
-        <tag>插入1个虚拟0</tag>
       </tags>
   </entry>
   <entry>
@@ -263,9 +268,9 @@
       <tags>
         <tag>leetcode</tag>
         <tag>×</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>树</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>Catalan数</tag>
       </tags>
   </entry>
@@ -386,9 +391,9 @@
         <category>Pandas</category>
       </categories>
       <tags>
+        <tag>pandas</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
-        <tag>pandas</tag>
         <tag>Code Snippet</tag>
       </tags>
   </entry>
@@ -415,10 +420,10 @@
       </categories>
       <tags>
         <tag>code snippet</tag>
+        <tag>EDA</tag>
         <tag>data visualization</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
-        <tag>EDA</tag>
         <tag>hexo</tag>
       </tags>
   </entry>
