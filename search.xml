@@ -40,14 +40,14 @@
   <entry>
     <title><![CDATA[leetcode题解-263-丑数]]></title>
     <url>%2F2019%2F11%2F27%2Fleetcode%E9%A2%98%E8%A7%A3-263-%E4%B8%91%E6%95%B0%2F</url>
-    <content type="text"><![CDATA[]]></content>
+    <content type="text"><![CDATA[题目 1234567891011121314151617181920212223242526272829class Solution &#123;public: bool isUgly(int num) &#123; while (num != 1) &#123; int ori = num; if (num % 2 == 0) &#123; num /= 2; &#125; if (num % 3 == 0) &#123; num /= 3; &#125; if (num % 5 == 0) &#123; num /= 5; &#125; if (ori == num) &#123; return false; &#125; &#125; return true; &#125;&#125;; 思路： 丑数： 因数包括 1，2， 3， 5的数。 所以考虑 非丑数 的2种情况： 除了1，2，3，5的质数 因数除了 1，2，3，5外，还有质数的非质数 模2， 3，5后，这个数还是原来的值 =&gt; 非丑数 模2， 3，5后，这个数为1 =&gt; 丑数 模2， 3，5后，这个数为一个不为1的数，继续模2，3，5，直至出现上面两种情况。 总结 数学题，考虑找规律，找补集思考 质数 常涉及到 \(/, \%\)运算？]]></content>
       <categories>
         <category>刷题</category>
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>DP</tag>
         <tag>×</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
