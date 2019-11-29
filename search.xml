@@ -12,7 +12,7 @@
   <entry>
     <title><![CDATA[leetcode题解-264-丑数Ⅱ]]></title>
     <url>%2F2019%2F11%2F27%2Fleetcode%E9%A2%98%E8%A7%A3-264-%E4%B8%91%E6%95%B0%E2%85%A1%2F</url>
-    <content type="text"><![CDATA[用STL实现小根堆 按理说应该实现些其它功能，比如： vecotor中是否包含multiple elements 堆的一些常用功能，如：heapify 123456789101112131415161718192021222324252627282930313233class Solution &#123;public: int nthUglyNumber(long n) &#123; vector&lt;long&gt; vi = &#123;1&#125;; make_heap(vi.begin(), vi.end(), greater&lt;&gt;()); long top; for (long i = 0; i &lt; n; ++i) &#123; pop_heap(vi.begin(), vi.end(), greater&lt;&gt;()); top = vi.back(); vi.pop_back(); if (find(vi.begin(), vi.end(), top*2) == vi.end()) &#123; vi.push_back(top*2); &#125; if (find(vi.begin(), vi.end(), top*3) == vi.end()) &#123; vi.push_back(top*3); &#125; if (find(vi.begin(), vi.end(), top*5) == vi.end()) &#123; vi.push_back(top*5); &#125; make_heap(vi.begin(), vi.end(), greater&lt;&gt;()); &#125; return top; &#125;&#125;; 实际上效率低了，因为用原生的make_heap需要重新构造一次堆，但是用heapify这种调整堆结构会快很多。 DP实现 状态转移方程： \[ dp[i] = min(2*dp[l_2], 3*dp[l_3], 5*dp[l_5]) \] 1234567891011121314151617181920212223242526272829class Solution &#123;public: int nthUglyNumber(long n) &#123; vector&lt;long&gt; dp(n+1); dp[1] = 1; long l2 = 1, l3 = 1, l5 = 1; for (long i = 2; i &lt;= n; ++i) &#123; dp[i] = min(2*dp[l2], min(3*dp[l3], 5*dp[l5])); if (dp[i] &gt;= 2*dp[l2]) &#123; l2 += 1; &#125; if (dp[i] &gt;= 3*dp[l3]) &#123; l3 += 1; &#125; if (dp[i] &gt;= 5*dp[l5]) &#123; l5 += 1; &#125; &#125; return dp[n]; &#125;&#125;; Reference powcai解]]></content>
+    <content type="text"><![CDATA[题目 用STL实现小根堆 按理说应该实现些其它功能，比如： vecotor中是否包含multiple elements 堆的一些常用功能，如：heapify 123456789101112131415161718192021222324252627282930313233class Solution &#123;public: int nthUglyNumber(long n) &#123; vector&lt;long&gt; vi = &#123;1&#125;; make_heap(vi.begin(), vi.end(), greater&lt;&gt;()); long top; for (long i = 0; i &lt; n; ++i) &#123; pop_heap(vi.begin(), vi.end(), greater&lt;&gt;()); top = vi.back(); vi.pop_back(); if (find(vi.begin(), vi.end(), top*2) == vi.end()) &#123; vi.push_back(top*2); &#125; if (find(vi.begin(), vi.end(), top*3) == vi.end()) &#123; vi.push_back(top*3); &#125; if (find(vi.begin(), vi.end(), top*5) == vi.end()) &#123; vi.push_back(top*5); &#125; make_heap(vi.begin(), vi.end(), greater&lt;&gt;()); &#125; return top; &#125;&#125;; 实际上效率低了，因为用原生的make_heap需要重新构造一次堆，但是用heapify这种调整堆结构会快很多。 DP实现 状态转移方程： \[ dp[i] = min(2*dp[l_2], 3*dp[l_3], 5*dp[l_5]) \] 1234567891011121314151617181920212223242526272829class Solution &#123;public: int nthUglyNumber(long n) &#123; vector&lt;long&gt; dp(n+1); dp[1] = 1; long l2 = 1, l3 = 1, l5 = 1; for (long i = 2; i &lt;= n; ++i) &#123; dp[i] = min(2*dp[l2], min(3*dp[l3], 5*dp[l5])); if (dp[i] &gt;= 2*dp[l2]) &#123; l2 += 1; &#125; if (dp[i] &gt;= 3*dp[l3]) &#123; l3 += 1; &#125; if (dp[i] &gt;= 5*dp[l5]) &#123; l5 += 1; &#125; &#125; return dp[n]; &#125;&#125;; Reference powcai解]]></content>
       <categories>
         <category>刷题</category>
       </categories>
@@ -26,7 +26,7 @@
   <entry>
     <title><![CDATA[leetcode题解-204-计数质数]]></title>
     <url>%2F2019%2F11%2F27%2Fleetcode%E9%A2%98%E8%A7%A3-204-%E8%AE%A1%E6%95%B0%E8%B4%A8%E6%95%B0%2F</url>
-    <content type="text"><![CDATA[]]></content>
+    <content type="text"><![CDATA[题目 最佳思路，Sieve of Eratosthenes 又或者叫 数筛 12345678910111213141516class Solution &#123; public int countPrimes(int n) &#123; boolean[] isPrim = new boolean[n]; Arrays.fill(isPrim, true); for (int i = 2; i * i &lt; n; i++) if (isPrim[i]) for (int j = i * i; j &lt; n; j += i) isPrim[j] = false; int count = 0; for (int i = 2; i &lt; n; i++) if (isPrim[i]) count++; return count; &#125;&#125; C++实现 1234567891011121314151617181920212223242526class Solution &#123; public int countPrimes(int n) &#123; bool isPrime[n]; memset(isPrime, true, sizeof(isPrime)); for (int i = 2; i*i &lt; n; ++i) &#123; if(isPrime[i]) &#123; for (int j = i*i; j &lt; n; j += i) &#123; isPrim[j] = false; &#125; &#125; &#125; int count = 0; for (int i = 2; i &lt; n; ++i) &#123; if (isPrime[i]) ++count; &#125; return count; &#125;&#125; 总结 质数的判断上的条件优化 只用判断到\(\sqrt{n}\)即可，我之前都是判断到\(n/2\) 我对于数筛法的理解是： 一种 记忆化搜索， 减少了重复子过程的计算。 非质数 = 质数 * 质数 非质数 = 非质数 * 非质数/质数 References labuladong 解]]></content>
       <categories>
         <category>刷题</category>
       </categories>
@@ -34,6 +34,7 @@
         <tag>leetcode</tag>
         <tag>DP</tag>
         <tag>×</tag>
+        <tag>数学</tag>
       </tags>
   </entry>
   <entry>
@@ -212,8 +213,8 @@
       <tags>
         <tag>leetcode</tag>
         <tag>×</tag>
-        <tag>贪心算法</tag>
         <tag>动态规划</tag>
+        <tag>贪心算法</tag>
         <tag>数组</tag>
       </tags>
   </entry>
