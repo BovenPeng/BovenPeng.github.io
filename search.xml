@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[背包问题.md]]></title>
+    <url>%2F2019%2F11%2F29%2F%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98-md%2F</url>
+    <content type="text"><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解-264-丑数Ⅱ]]></title>
     <url>%2F2019%2F11%2F27%2Fleetcode%E9%A2%98%E8%A7%A3-264-%E4%B8%91%E6%95%B0%E2%85%A1%2F</url>
     <content type="text"><![CDATA[用STL实现小根堆 按理说应该实现些其它功能，比如： vecotor中是否包含multiple elements 堆的一些常用功能，如：heapify 123456789101112131415161718192021222324252627282930313233class Solution &#123;public: int nthUglyNumber(long n) &#123; vector&lt;long&gt; vi = &#123;1&#125;; make_heap(vi.begin(), vi.end(), greater&lt;&gt;()); long top; for (long i = 0; i &lt; n; ++i) &#123; pop_heap(vi.begin(), vi.end(), greater&lt;&gt;()); top = vi.back(); vi.pop_back(); if (find(vi.begin(), vi.end(), top*2) == vi.end()) &#123; vi.push_back(top*2); &#125; if (find(vi.begin(), vi.end(), top*3) == vi.end()) &#123; vi.push_back(top*3); &#125; if (find(vi.begin(), vi.end(), top*5) == vi.end()) &#123; vi.push_back(top*5); &#125; make_heap(vi.begin(), vi.end(), greater&lt;&gt;()); &#125; return top; &#125;&#125;; 实际上效率低了，因为用原生的make_heap需要重新构造一次堆，但是用heapify这种调整堆结构会快很多。 DP实现 状态转移方程： \[ dp[i] = min(2*dp[l_2], 3*dp[l_3], 5*dp[l_5]) \] 1234567891011121314151617181920212223242526272829class Solution &#123;public: int nthUglyNumber(long n) &#123; vector&lt;long&gt; dp(n+1); dp[1] = 1; long l2 = 1, l3 = 1, l5 = 1; for (long i = 2; i &lt;= n; ++i) &#123; dp[i] = min(2*dp[l2], min(3*dp[l3], 5*dp[l5])); if (dp[i] &gt;= 2*dp[l2]) &#123; l2 += 1; &#125; if (dp[i] &gt;= 3*dp[l3]) &#123; l3 += 1; &#125; if (dp[i] &gt;= 5*dp[l5]) &#123; l5 += 1; &#125; &#125; return dp[n]; &#125;&#125;; Reference powcai解]]></content>
@@ -121,9 +126,9 @@
       <tags>
         <tag>leetcode</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>2维dp</tag>
         <tag>插入1个虚拟0</tag>
-        <tag>×</tag>
         <tag>数组</tag>
         <tag>hash</tag>
         <tag>缓存</tag>
@@ -139,10 +144,10 @@
       <tags>
         <tag>leetcode</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>2维dp</tag>
         <tag>最大公共子序列</tag>
         <tag>插入1个虚拟0</tag>
-        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -170,9 +175,9 @@
       <tags>
         <tag>leetcode</tag>
         <tag>×</tag>
+        <tag>贪心算法</tag>
         <tag>动态规划</tag>
         <tag>数组</tag>
-        <tag>贪心算法</tag>
       </tags>
   </entry>
   <entry>
@@ -200,8 +205,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>×</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>字符串</tag>
       </tags>
@@ -231,10 +236,10 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>插入1个虚拟0</tag>
-        <tag>×</tag>
-        <tag>动态规划</tag>
         <tag>数学题</tag>
+        <tag>×</tag>
+        <tag>插入1个虚拟0</tag>
+        <tag>动态规划</tag>
         <tag>组合数学</tag>
       </tags>
   </entry>
@@ -247,8 +252,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>×</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>2维DP</tag>
         <tag>2维DP-to-1维DP</tag>
@@ -282,8 +287,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>×</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>树</tag>
         <tag>Catalan数</tag>
@@ -329,9 +334,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>数学题</tag>
         <tag>DP</tag>
         <tag>×</tag>
-        <tag>数学题</tag>
       </tags>
   </entry>
   <entry>
@@ -344,8 +349,8 @@
       <tags>
         <tag>leetcode</tag>
         <tag>DP</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>×</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>位运算</tag>
       </tags>
   </entry>
@@ -406,9 +411,9 @@
         <category>Pandas</category>
       </categories>
       <tags>
+        <tag>pandas</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
-        <tag>pandas</tag>
         <tag>Code Snippet</tag>
       </tags>
   </entry>
@@ -435,10 +440,10 @@
       </categories>
       <tags>
         <tag>code snippet</tag>
+        <tag>EDA</tag>
         <tag>data visualization</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
-        <tag>EDA</tag>
         <tag>hexo</tag>
       </tags>
   </entry>

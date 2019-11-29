@@ -373,6 +373,231 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/30/leetcode题解-64-最小路径和/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bowen Peng">
+      <meta itemprop="description" content="something about myself and my career development.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boven's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/10/30/leetcode题解-64-最小路径和/" class="post-title-link" itemprop="url">leetcode题解-64-最小路径和</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-30 23:06:41" itemprop="dateCreated datePublished" datetime="2019-10-30T23:06:41+08:00">2019-10-30</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-11-03 19:44:33" itemprop="dateModified" datetime="2019-11-03T19:44:33+08:00">2019-11-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/刷题/" itemprop="url" rel="index"><span itemprop="name">刷题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="my-way">My way</h2>
+<p>第一眼感觉就是一个当前表格状态依赖于左边表格状态和上边表格状态的二维DP题。</p>
+<h3 id="状态定义">状态定义：</h3>
+<p><span class="math display">\[
+\begin{align*}
+&amp; i:\ 表示第i行 \\
+&amp; j:\ 表示第j列 \\
+&amp; [i,\ j]:\ 表示第i行，j列上的数字\\
+&amp; grid[i][j]:\ 表示原始网格上第i行，j列上的数字\\
+&amp; dp[i][j]:\ 表示经过某些步之后，达到第i行，j列的时候，这个数字和的最小值\\
+\end{align*}
+\]</span></p>
+<h3 id="状态转移方程">状态转移方程：</h3>
+<p><span class="math display">\[
+\begin{align*}
+&amp; dp[i][j] = grid[i][j] + max(df[i-1][j],\ df[i][j-1])
+\end{align*}
+\]</span></p>
+<h3 id="base-case">Base Case:</h3>
+<p><span class="math display">\[
+\begin{align*}
+&amp; df[0][0] = grid[0][0]
+\end{align*}
+\]</span></p>
+<h3 id="corner-case">Corner Case:</h3>
+<p><span class="math display">\[
+\begin{align*}
+&amp; df[i][j] = grid[i][j] + df[i, j-1],\ \text{if $j-1$ == 0} \\
+&amp; df[i][j] = grid[i][j] + df[i-1, j],\ \text{if $j-1$ == 0}
+\end{align*}
+\]</span></p>
+<p>C++实现</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minPathSum</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; grid)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; vvi(grid);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> m = grid.size(), n = grid[<span class="number">0</span>].size();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; ++j)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (i == <span class="number">0</span> &amp;&amp; j == <span class="number">0</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    vvi[i][j] = grid[i][j];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (i == <span class="number">0</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    vvi[i][j] = grid[i][j] + vvi[i][j<span class="number">-1</span>];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (j == <span class="number">0</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    vvi[i][j] = grid[i][j] + vvi[i<span class="number">-1</span>][j];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> </span><br><span class="line">                &#123;</span><br><span class="line">                    vvi[i][j] = grid[i][j] + min(vvi[i<span class="number">-1</span>][j], vvi[i][j<span class="number">-1</span>]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> vvi[m<span class="number">-1</span>][n<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="可以试试斜着遍历">可以试试斜着遍历</h3>
+<p>!对于<span class="math inline">\(m*n\ array\)</span>来说，不太好实现。</p>
+<p>有一个思路就是补成正方形之后，然后以对角线的方式倾斜遍历数组。</p>
+<h2 id="官方解">官方解</h2>
+<h3 id="暴力">1.暴力</h3>
+<p>不做解释了。</p>
+<h3 id="二维dp">2.二维DP</h3>
+<p>类似我的思路。</p>
+<h3 id="一维dp">3.一维DP</h3>
+<p>因为这里每个阶段的状态仅依赖上一个表格状态和左一个表格的状态，</p>
+<p>再加上我们利用按行遍历的方式，依次求出每一行对应的<span class="math inline">\(dp[i][j]\)</span>，然后得到结果。</p>
+<h4 id="官方java解">官方Java解</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minPathSum</span><span class="params">(<span class="keyword">int</span>[][] grid)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[grid[<span class="number">0</span>].length];</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = grid.length - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">           <span class="keyword">for</span> (<span class="keyword">int</span> j = grid[<span class="number">0</span>].length - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">               <span class="keyword">if</span>(i == grid.length - <span class="number">1</span> &amp;&amp; j != grid[<span class="number">0</span>].length - <span class="number">1</span>)</span><br><span class="line">                   dp[j] = grid[i][j] +  dp[j + <span class="number">1</span>];</span><br><span class="line">               <span class="keyword">else</span> <span class="keyword">if</span>(j == grid[<span class="number">0</span>].length - <span class="number">1</span> &amp;&amp; i != grid.length - <span class="number">1</span>)</span><br><span class="line">                   dp[j] = grid[i][j] + dp[j];</span><br><span class="line">               <span class="keyword">else</span> <span class="keyword">if</span>(j != grid[<span class="number">0</span>].length - <span class="number">1</span> &amp;&amp; i != grid.length - <span class="number">1</span>)</span><br><span class="line">                   dp[j] = grid[i][j] + Math.min(dp[j], dp[j + <span class="number">1</span>]);</span><br><span class="line">               <span class="keyword">else</span></span><br><span class="line">                   dp[j] = grid[i][j];</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> dp[<span class="number">0</span>];</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="重上到下c实现">重上到下，C++实现</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minPathSum</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; grid)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(grid[<span class="number">0</span>].size());</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; grid.size(); ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; grid[<span class="number">0</span>].size(); ++j)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (i == <span class="number">0</span> &amp;&amp; j == <span class="number">0</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    dp[j] = grid[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (i == <span class="number">0</span> &amp;&amp; j != <span class="number">0</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    dp[j] = grid[i][j] + dp[j<span class="number">-1</span>]; </span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span> (i != <span class="number">0</span> &amp;&amp; j == <span class="number">0</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    dp[j] = grid[i][j] + dp[j];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> </span><br><span class="line">                &#123;</span><br><span class="line">                    dp[j] = grid[i][j] + min(dp[j], dp[j<span class="number">-1</span>]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp[grid[<span class="number">0</span>].size()<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="reference">Reference</h2>
+<p><a href="https://leetcode-cn.com/problems/minimum-path-sum/solution/zui-xiao-lu-jing-he-by-leetcode/" target="_blank" rel="noopener">leetcode 官方解</a></p>
+<h3 id="extended">extended</h3>
+<p><a href="https://stackoverflow.com/questions/21346343/traverse-an-array-diagonally" target="_blank" rel="noopener">Traverse an array diagonally</a></p>
+<p><a href="https://stackoverflow.com/questions/2862802/traverse-2d-array-matrix-diagonally" target="_blank" rel="noopener">Traverse 2D m*n Array (Matrix) Diagonally</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/29/leetcode题解-96-不同的二叉搜索树/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2236,203 +2461,6 @@ P(x) = P(x\ \&amp;\ (x-1)) + 1
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/24/如何指定xtick在一个特定的范围/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bowen Peng">
-      <meta itemprop="description" content="something about myself and my career development.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Boven's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/06/24/如何指定xtick在一个特定的范围/" class="post-title-link" itemprop="url">如何指定xtick在一个特定的范围</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-06-24 15:24:14" itemprop="dateCreated datePublished" datetime="2019-06-24T15:24:14+08:00">2019-06-24</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-06-30 18:51:53" itemprop="dateModified" datetime="2019-06-30T18:51:53+08:00">2019-06-30</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EDA/" itemprop="url" rel="index"><span itemprop="name">EDA</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在做EDA的时候，会有种情况，时序数据所做的<code>plot</code>的x-axis会存在过于密集的情况，如下</p>
-<img src="/2019/06/24/如何指定xtick在一个特定的范围/high_frequency_x_axis_plot.png" title="high_frequency_x_axis_plot">
-<p>所以我们要做的就是只用将数据所在范围按一定频率切分开就行了，如这个Q，[how to change the xticks to a specific range [duplicate\]](https://stackoverflow.com/questions/56713197/how-to-change-the-xticks-to-a-specific-range) 和 <a href="https://stackoverflow.com/questions/12608788/changing-the-tick-frequency-on-x-or-y-axis-in-matplotlib" target="_blank" rel="noopener">Changing the “tick frequency” on x or y axis in matplotlib?</a></p>
-<p>分别引用自StackOverflow用户 <a href="https://stackoverflow.com/users/840947/heike" target="_blank" rel="noopener">Heike</a>和<a href="https://stackoverflow.com/users/10041823/alexandre-b" target="_blank" rel="noopener">Alexandre B.</a>并作出了一定修改。</p>
-<p>在comment和answer处提供了两种解决方案：</p>
-<ul>
-<li><p>添加一行代码<code>plt.xticks(range(9, 40, 10), range(10, 41, 10))</code></p>
-<p>这里第一个参数是是将xtick分块显示，第二个参数是各个分块处显示的数字.(这里原来的数据找不到了，就用了answer中随机生成的数据为例子).</p>
-<p>例子:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Your data to count</span></span><br><span class="line">y = np.random.randint(<span class="number">0</span>,<span class="number">41</span>,<span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create plot</span></span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line">sns.countplot(y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Show graph</span></span><br><span class="line">plt.xticks(range(<span class="number">0</span>, <span class="number">41</span>, <span class="number">10</span>), range(<span class="number">0</span>, <span class="number">41</span>, <span class="number">10</span>))</span><br><span class="line">plt.xlabel(<span class="string">'user_id'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<img src="/2019/06/24/如何指定xtick在一个特定的范围/set_xticks_plot.png" title="plot_with_setting_xticks">
-<p>但是假如将第一个参数设置的分块范围超过数据已有的范围，则会在plot超出数据已有范围处显示出一段blank。</p>
-<img src="/2019/06/24/如何指定xtick在一个特定的范围/plot_with_blank.png" title="plot_with_blank"></li>
-<li><p>One way is to define the labels on the x-axis. The <code>set_xticklabels</code> method from <code>matplotlib</code>module do the job <a href="https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.set_xticklabels.html" target="_blank" rel="noopener">(doc)</a>. By defining your own labels, you can hide them by setting the label equal to <code>''</code>.</p>
-<p>By defining your own labels, you <strong>need to take care</strong> that they are still <strong>consistent with your data</strong>.</p>
-<p>Here is one example:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># import modules</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment">#Init seaborn</span></span><br><span class="line">sns.set()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Your data to count</span></span><br><span class="line">y = np.random.randint(<span class="number">0</span>,<span class="number">41</span>,<span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the new x-axis labels </span></span><br><span class="line">x_labels = [<span class="string">''</span> <span class="keyword">if</span> i%<span class="number">10</span> != <span class="number">0</span> <span class="keyword">else</span> str(i) <span class="keyword">for</span> i <span class="keyword">in</span> range(len(np.unique(y)))]</span><br><span class="line">print(x_labels)</span><br><span class="line"><span class="comment"># ['0', '', '', '', '', '', '', '', '', '', </span></span><br><span class="line"><span class="comment"># '10', '', '', '', '', '', '', '', '', '', </span></span><br><span class="line"><span class="comment"># '20', '', '', '', '', '', '', '', '', '', </span></span><br><span class="line"><span class="comment"># '30', '', '', '', '', '', '', '', '', '', '40']</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create plot</span></span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line">sns.countplot(y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Set the new x axis labels</span></span><br><span class="line">ax.set_xticklabels(x_labels)</span><br><span class="line"><span class="comment"># Show graph</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<img src="/2019/06/24/如何指定xtick在一个特定的范围/define_label_plot.png" title="defined_own_label_plot"></li>
-</ul>
-<h1 id="reference">Reference</h1>
-<ul>
-<li>[how to change the xticks to a specific range [duplicate\]](https://stackoverflow.com/questions/56713197/how-to-change-the-xticks-to-a-specific-range)</li>
-<li><a href="https://stackoverflow.com/questions/12608788/changing-the-tick-frequency-on-x-or-y-axis-in-matplotlib" target="_blank" rel="noopener">Changing the “tick frequency” on x or y axis in matplotlib?</a></li>
-<li><a href="https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.set_xticklabels.html" target="_blank" rel="noopener">matplotlib.axes.Axes.set_xticklabels</a></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2479,7 +2507,7 @@ P(x) = P(x\ \&amp;\ (x-1)) + 1
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">36</span>
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
