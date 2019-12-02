@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode题解-326-3的幂]]></title>
+    <url>%2F2019%2F12%2F02%2Fleetcode%E9%A2%98%E8%A7%A3-326-3%E7%9A%84%E5%B9%82%2F</url>
+    <content type="text"><![CDATA[题目 我只会第一种循环迭代，后面3种方法均出自leetcode官方题解。 1. 循环迭代 12345678910111213class Solution &#123;public: bool isPowerOfThree(int n) &#123; if (n &lt; 1) return false; while (n % 3 == 0) &#123; n /= 3; &#125; return n == 1; &#125;&#125;; 时间: \(O(log_b(n))\) 空间: \(O(1)\) 2. 基准转换 将所有的数转化为以3为基数的数字。 12345public class Solution &#123; public boolean isPowerOfThree(int n) &#123; return Integer.toString(n, 3).matches("^10*$"); &#125;&#125; 时间: \(O(log_3n)\) 空间: \(O(log_3n)\) 3. 运算法 \[ n = 3^i i = log_3(n)i = \frac{log_b(n)}{log_b(3)} \] 12345public class Solution &#123; public boolean isPowerOfThree(int n) &#123; return (Math.log10(n) / Math.log10(3)) % 1 == 0; &#125;&#125; 为了解决精度错误，应该设置一个较小的epsilon 1return (Math.log(n) / Math.log(3) + epsilon) % 1 &lt;= 2 * epsilon; 4. 整数限制 在Java中，该变量是4个byte，则最大值为\(\frac{2^{32}}{2} - 1 = 2147483647\)，并得到最大的3的幂为\(3^{19} = 1162251467\). 若n是3的幂，则$ 3^{19} % n == 0$必成立 12345public class Solution &#123; public boolean isPowerOfThree(int n) &#123; return n &gt; 0 &amp;&amp; 1162261467 % n == 0; &#125;&#125; 时间: \(O(1 )\) 空间: \(O( 1)\) References https://leetcode-cn.com/problems/power-of-three/solution/3de-mi-by-leetcode/]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>×</tag>
+        <tag>数学</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解-231-2的幂]]></title>
     <url>%2F2019%2F12%2F02%2Fleetcode%E9%A2%98%E8%A7%A3-231-2%E7%9A%84%E5%B9%82%2F</url>
     <content type="text"><![CDATA[题目 123456class Solution &#123;public: bool isPowerOfTwo(int n) &#123; return n &gt; 0 &amp;&amp; !(n&amp;(n-1)); &#125;&#125;; 考虑： num &gt; 0时，才会是一个数的幂。负数和0不会是一个正整数的幂。 !(num&amp;(num-1))时，用来判断num是不是2的幂， 因为一个数是2的幂的话，则它2进制的第一位必然是1，与num-1与运算后，结果必然为0 Reference https://leetcode-cn.com/problems/power-of-four/solution/e-you-shi-yi-dao-zhuang-bi-jie-fa-de-suan-fa-ti-2/ https://www.geeksforgeeks.org/program-to-find-whether-a-no-is-power-of-two/]]></content>
@@ -191,8 +204,8 @@
         <tag>leetcode</tag>
         <tag>DP</tag>
         <tag>×</tag>
-        <tag>2维dp</tag>
         <tag>插入1个虚拟0</tag>
+        <tag>2维dp</tag>
         <tag>数组</tag>
         <tag>hash</tag>
         <tag>缓存</tag>
@@ -209,9 +222,9 @@
         <tag>leetcode</tag>
         <tag>DP</tag>
         <tag>×</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>2维dp</tag>
         <tag>最大公共子序列</tag>
-        <tag>插入1个虚拟0</tag>
       </tags>
   </entry>
   <entry>
@@ -224,8 +237,8 @@
       <tags>
         <tag>leetcode</tag>
         <tag>DP</tag>
-        <tag>2维dp</tag>
         <tag>2维DP-to-1维DP</tag>
+        <tag>2维dp</tag>
         <tag>√</tag>
       </tags>
   </entry>
@@ -270,8 +283,8 @@
       <tags>
         <tag>leetcode</tag>
         <tag>×</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>字符串</tag>
       </tags>
   </entry>
@@ -302,8 +315,8 @@
         <tag>leetcode</tag>
         <tag>数学题</tag>
         <tag>×</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>组合数学</tag>
       </tags>
   </entry>
@@ -317,13 +330,13 @@
       <tags>
         <tag>leetcode</tag>
         <tag>×</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>2维DP</tag>
         <tag>2维DP-to-1维DP</tag>
         <tag>自顶向下DP</tag>
         <tag>自底向上DP</tag>
         <tag>树</tag>
+        <tag>插入1个虚拟0</tag>
       </tags>
   </entry>
   <entry>
@@ -352,9 +365,9 @@
       <tags>
         <tag>leetcode</tag>
         <tag>×</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>树</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>Catalan数</tag>
       </tags>
   </entry>
@@ -475,9 +488,9 @@
         <category>Pandas</category>
       </categories>
       <tags>
-        <tag>pandas</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
+        <tag>pandas</tag>
         <tag>Code Snippet</tag>
       </tags>
   </entry>
@@ -504,10 +517,10 @@
       </categories>
       <tags>
         <tag>code snippet</tag>
-        <tag>EDA</tag>
         <tag>data visualization</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
+        <tag>EDA</tag>
         <tag>hexo</tag>
       </tags>
   </entry>
