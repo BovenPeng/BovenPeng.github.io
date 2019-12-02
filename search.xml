@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode题解-231-2的幂]]></title>
+    <url>%2F2019%2F12%2F02%2Fleetcode%E9%A2%98%E8%A7%A3-231-2%E7%9A%84%E5%B9%82%2F</url>
+    <content type="text"><![CDATA[题目 123456class Solution &#123;public: bool isPowerOfTwo(int n) &#123; return n &gt; 0 &amp;&amp; !(n&amp;(n-1)); &#125;&#125;; 考虑： num &gt; 0时，才会是一个数的幂。负数和0不会是一个正整数的幂。 !(num&amp;(num-1))时，用来判断num是不是2的幂， 因为一个数是2的幂的话，则它2进制的第一位必然是1，与num-1与运算后，结果必然为0 Reference https://leetcode-cn.com/problems/power-of-four/solution/e-you-shi-yi-dao-zhuang-bi-jie-fa-de-suan-fa-ti-2/ https://www.geeksforgeeks.org/program-to-find-whether-a-no-is-power-of-two/]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>×</tag>
+        <tag>位运算</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解-324-4的幂]]></title>
     <url>%2F2019%2F12%2F02%2Fleetcode%E9%A2%98%E8%A7%A3-324-4%E7%9A%84%E5%B9%82%2F</url>
-    <content type="text"><![CDATA[题目 非位运算解： 12345678910111213141516171819202122class Solution &#123;public: bool isPowerOfFour(int num) &#123; if (num == 0) return false; int mod; while (num != 1) &#123; mod = num % 4; num /= 4; if (mod != 0) &#123; return false; &#125; &#125; return true; &#125;&#125;; 位运算： 123456class Solution &#123;public: bool isPowerOfFour(int num) &#123; return num &gt; 0 &amp;&amp; !(num&amp;(num-1)) &amp;&amp; !(num &amp; 0xAAAAAAAA); &#125;&#125;; 考虑： num &gt; 0时，才会是一个数的幂。负数和0不会是一个正整数的幂。 !(num&amp;(num-1))时，用来判断num是不是2的幂， 因为一个数是2的幂的话，则它2进制的第一位必然是1，与num-1与运算后，结果必然为0 !(num &amp; 0xAAAAAAAA), 用来判断num是不是4的幂， 因为一个数是4的幂的话，则它2进制必然第一位是1且第一位是奇数位，0xA=1010，则4的幂与其求与运算后，则为0，求反得1 总结 位运算小技巧： !(n&amp;(n-1))，用于判断n是不是2的幂 !(num&amp;(num-1)) &amp;&amp; !(num &amp; 0xAAAAAAAA), 用于判断n是不是4的幂 Reference https://leetcode-cn.com/problems/power-of-four/solution/e-you-shi-yi-dao-zhuang-bi-jie-fa-de-suan-fa-ti-2/ https://www.geeksforgeeks.org/program-to-find-whether-a-no-is-power-of-two/ https://www.geeksforgeeks.org/find-whether-a-given-number-is-a-power-of-4-or-not/]]></content>
+    <content type="text"><![CDATA[题目 非位运算解： 12345678910111213141516171819202122class Solution &#123;public: bool isPowerOfFour(int num) &#123; if (num == 0) return false; int mod; while (num != 1) &#123; mod = num % 4; num /= 4; if (mod != 0) &#123; return false; &#125; &#125; return true; &#125;&#125;; 位运算： 123456class Solution &#123;public: bool isPowerOfFour(int num) &#123; return num &gt; 0 &amp;&amp; !(num&amp;(num-1)) &amp;&amp; !(num &amp; 0xAAAAAAAA); &#125;&#125;; 考虑： num &gt; 0时，才会是一个数的幂。负数和0不会是一个正整数的幂。 !(num&amp;(num-1))时，用来判断num是不是2的幂， 因为一个数是2的幂的话，则它2进制的第一位必然是1，与num-1与运算后，结果必然为0 !(num &amp; 0xAAAAAAAA), 用来判断num是不是4的幂， 因为一个数是4的幂的话，则它2进制必然第一位是1且第一位是奇数位，0xA=1010，则4的幂与其求与运算后，则为0，求反得1 总结 位运算小技巧： !(n&amp;(n-1))，用于判断n是不是2的幂 !(num&amp;(num-1)) &amp;&amp; !(num &amp; 0xAAAAAAAA), 用于判断n是不是4的幂 对于n的幂，可以先枚举一定的例子，然后对枚举结果进行归纳找到规律。 Reference https://leetcode-cn.com/problems/power-of-four/solution/e-you-shi-yi-dao-zhuang-bi-jie-fa-de-suan-fa-ti-2/ https://www.geeksforgeeks.org/program-to-find-whether-a-no-is-power-of-two/ https://www.geeksforgeeks.org/find-whether-a-given-number-is-a-power-of-4-or-not/]]></content>
       <categories>
         <category>刷题</category>
       </categories>
