@@ -373,7 +373,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/03/leetcode题解-638-大礼包-1/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/04/leetcode题解-104-二叉树的最大深度/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bowen Peng">
@@ -393,7 +393,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/03/leetcode题解-638-大礼包-1/" class="post-title-link" itemprop="url">leetcode题解-638-大礼包</a>
+                <a href="/2019/12/04/leetcode题解-104-二叉树的最大深度/" class="post-title-link" itemprop="url">leetcode题解-104-二叉树的最大深度</a>
               
             
           </h1>
@@ -418,12 +418,34 @@
                 
               
 
-              <time title="创建时间：2019-12-03 22:03:36" itemprop="dateCreated datePublished" datetime="2019-12-03T22:03:36+08:00">2019-12-03</time>
+              <time title="创建时间：2019-12-04 21:57:18 / 修改时间：22:38:36" itemprop="dateCreated datePublished" datetime="2019-12-04T21:57:18+08:00">2019-12-04</time>
             
 
+            
+              
+
+              
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/刷题/" itemprop="url" rel="index"><span itemprop="name">刷题</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -455,7 +477,19 @@
       
         
           
-            
+            <h2 id="题目"><a href="https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/" target="_blank" rel="noopener">题目</a></h2>
+<h3 id="my-way">My way</h3>
+<h4 id="简单递归实现">简单递归实现</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxDepth</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root)  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> max(maxDepth(root-&gt;left)+<span class="number">1</span>, maxDepth(root-&gt;right)+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>时间<span class="math inline">\(O(N)\)</span>仅超过51%，空间<span class="math inline">\(O(log(N)) + O(N) = O(N)\)</span>超过19%，说明递归压栈吃了不少空间，尝试改成非递归。</p>
+<h4 id="手动压栈">手动压栈</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maxDepth</span><span class="params">(TreeNode* root)</span></span>&#123;</span><br><span class="line">	<span class="built_in">stack</span>&lt;pair&lt;TreeNode*, <span class="keyword">int</span>&gt;&gt; <span class="built_in">stack</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span> (root)	<span class="built_in">stack</span>.push(pair(root, <span class="number">1</span>));</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> depth = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (!<span class="built_in">stack</span>.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		pair&lt;TreeNode*, <span class="keyword">int</span>&gt; cur = <span class="built_in">stack</span>.top();</span><br><span class="line">        <span class="built_in">stack</span>.pop();</span><br><span class="line">        root = cur.first;</span><br><span class="line">        <span class="keyword">int</span> cur_depth = cur.second;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (root)</span><br><span class="line">        &#123;</span><br><span class="line">            depth = max(depth, cur_depth);</span><br><span class="line">            <span class="built_in">stack</span>.push(pair(root-&gt;left, cur_depth+<span class="number">1</span>));</span><br><span class="line">            <span class="built_in">stack</span>.push(pair(root-&gt;right, cur_depth+<span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> depth;</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>时间<span class="math inline">\(O(N)\)</span>仅超过51%，空间<span class="math inline">\(O(N)\)</span>超过50%，手动压栈节省了不少空间。</p>
+<p>有没有时间上更优化的解法呢？</p>
+<h4 id="层次遍历">层次遍历</h4>
+<h3 id="section"></h3>
+<h2 id="references">References</h2>
+<p>https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/solution/er-cha-shu-de-zui-da-shen-du-by-leetcode/</p>
 
           
         
