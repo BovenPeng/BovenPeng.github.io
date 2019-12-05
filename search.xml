@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode题解-111-二叉树的最小深度]]></title>
+    <url>%2F2019%2F12%2F05%2Fleetcode%E9%A2%98%E8%A7%A3-111-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%B0%8F%E6%B7%B1%E5%BA%A6%2F</url>
+    <content type="text"><![CDATA[题目 My way 递归实现 1234567891011121314151617181920/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: int minDepth(TreeNode* root) &#123; if (!root) return 0; int l_depth, r_depth; l_depth = minDepth(root-&gt;left); r_depth = minDepth(root-&gt;right); return !(root-&gt;left) || !(root-&gt;right) ? l_depth + r_depth + 1 : min(l_depth, r_depth) + 1; &#125;&#125;; 手动压栈DFS 手动压栈，存储对应树结点和其高度，然后更新左右子树为空时的树高作为最小深度。 123456789101112131415161718192021222324252627282930313233343536373839404142434445/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: int minDepth(TreeNode* root) &#123; stack&lt;pair&lt;TreeNode*, int&gt;&gt; stack; if (!root) return 0; stack.push(make_pair(root, 1)); int min_depth = INT_MAX; while(!stack.empty()) &#123; auto top = stack.top(); stack.pop(); root = top.first; int depth = top.second; if (!(root-&gt;left) &amp;&amp; !(root-&gt;right)) &#123; min_depth = min(min_depth, depth); &#125; if (root-&gt;left) &#123; stack.push(make_pair(root-&gt;left, depth + 1)); &#125; if (root-&gt;right) &#123; stack.push(make_pair(root-&gt;right, depth + 1)); &#125; &#125; return min_depth; &#125;&#125;; 层次遍历 123456789101112131415161718192021222324252627282930313233/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: int minDepth(TreeNode* root) &#123; if (!root) return 0; deque&lt;TreeNode*&gt; q; q.push_back(root); int depth = 1; while (!q.empty()) &#123; for (int i = 0; i &lt; q.size(); ++i) &#123; TreeNode* top = q.front(); q.pop_front(); if (!(top-&gt;left) &amp;&amp; !(top-&gt;right)) return depth; if (top-&gt;left) q.push_back(top-&gt;left); if (top-&gt;right) q.push_back(top-&gt;right); &#125; ++depth; &#125; &#125;&#125;; References https://leetcode-cn.com/problems/minimum-depth-of-binary-tree/solution/li-jie-zhe-dao-ti-de-jie-shu-tiao-jian-by-user7208/ 总结 被情况\([1, 2]\)卡住了，因为计算的树深度是指root到leaf(左右孩子为空)的深度，此时应该是2，这个case一开始通过不了 左右子树有一个为空时，则返回左右子树的深度之和 + 1即可。 即，省略了对于左，右子树两个子树的两次判断为一次。 一种代码优化结构。]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>×</tag>
+        <tag>递归</tag>
+        <tag>树</tag>
+        <tag>DFS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解-104-二叉树的最大深度]]></title>
     <url>%2F2019%2F12%2F04%2Fleetcode%E9%A2%98%E8%A7%A3-104-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6%2F</url>
     <content type="text"><![CDATA[题目 My way 简单递归实现 1234567891011121314151617/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: int maxDepth(TreeNode* root) &#123; if (!root) return 0; return max(maxDepth(root-&gt;left)+1, maxDepth(root-&gt;right)+1); &#125;&#125;; 时间\(O(N)\)仅超过51%，空间\(O(log(N)) + O(N) = O(N)\)超过19%，说明递归压栈吃了不少空间，尝试改成非递归。 手动压栈 123456789101112131415161718192021222324252627class Solution &#123;public:int maxDepth(TreeNode* root)&#123; stack&lt;pair&lt;TreeNode*, int&gt;&gt; stack; if (root) stack.push(pair(root, 1)); int depth = 0; while (!stack.empty()) &#123; pair&lt;TreeNode*, int&gt; cur = stack.top(); stack.pop(); root = cur.first; int cur_depth = cur.second; if (root) &#123; depth = max(depth, cur_depth); stack.push(pair(root-&gt;left, cur_depth+1)); stack.push(pair(root-&gt;right, cur_depth+1)); &#125; &#125; return depth;&#125;&#125;; 时间\(O(N)\)仅超过51%，空间\(O(N)\)超过50%，手动压栈节省了不少空间。 有没有时间上更优化的解法呢？ 层次遍历 References https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/solution/er-cha-shu-de-zui-da-shen-du-by-leetcode/]]></content>
@@ -9,10 +24,10 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>DFS</tag>
-        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -72,8 +87,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>堆</tag>
       </tags>
   </entry>
@@ -86,8 +101,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>数学</tag>
       </tags>
   </entry>
@@ -113,8 +128,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -126,8 +141,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -139,9 +154,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>DFS</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
+        <tag>DFS</tag>
         <tag>数组</tag>
         <tag>特殊DP数组</tag>
       </tags>
@@ -155,9 +170,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>DFS</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
+        <tag>DFS</tag>
         <tag>数组</tag>
         <tag>完全背包</tag>
       </tags>
@@ -171,8 +186,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>分治算法</tag>
         <tag>哨兵</tag>
       </tags>
@@ -186,8 +201,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>2维DP-to-1维DP</tag>
         <tag>组合数学</tag>
         <tag>数组</tag>
@@ -202,9 +217,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>递归</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
+        <tag>递归</tag>
         <tag>数组</tag>
       </tags>
   </entry>
@@ -217,8 +232,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>2维dp</tag>
         <tag>插入1个虚拟0</tag>
         <tag>数组</tag>
@@ -235,8 +250,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>2维dp</tag>
         <tag>最大公共子序列</tag>
         <tag>插入1个虚拟0</tag>
@@ -283,8 +298,8 @@
         <tag>leetcode</tag>
         <tag>×</tag>
         <tag>动态规划</tag>
-        <tag>字符串</tag>
         <tag>数组对角遍历</tag>
+        <tag>字符串</tag>
         <tag>中心扩散法</tag>
       </tags>
   </entry>
@@ -312,9 +327,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
         <tag>动态规划</tag>
         <tag>树的遍历</tag>
       </tags>
@@ -328,8 +343,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>数学题</tag>
+        <tag>×</tag>
         <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>组合数学</tag>
@@ -344,8 +359,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>树</tag>
         <tag>×</tag>
+        <tag>树</tag>
         <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>2维DP</tag>
@@ -379,8 +394,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>树</tag>
         <tag>×</tag>
+        <tag>树</tag>
         <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>Catalan数</tag>
@@ -411,8 +426,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>二维dp</tag>
         <tag>博弈问题</tag>
       </tags>
@@ -426,9 +441,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>数学题</tag>
         <tag>DP</tag>
+        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -440,8 +455,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>插入1个虚拟0</tag>
         <tag>位运算</tag>
       </tags>
