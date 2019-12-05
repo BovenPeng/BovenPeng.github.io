@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode题解-102-二叉树的层次遍历]]></title>
+    <url>%2F2019%2F12%2F05%2Fleetcode%E9%A2%98%E8%A7%A3-102-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86%2F</url>
+    <content type="text"><![CDATA[题目 My way 手动队列BFS 123456789101112131415161718192021222324252627282930313233343536373839/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: vector&lt;vector&lt;int&gt;&gt; levelOrder(TreeNode* root) &#123; if (!root) return vector&lt;vector&lt;int&gt;&gt;(); vector&lt;vector&lt;int&gt;&gt; vvi; deque&lt;TreeNode*&gt; q; q.push_back(root); while(!q.empty()) &#123; vector&lt;int&gt; vi; int size = q.size(); for (int i = 0; i &lt; size; ++i) &#123; auto front = q.front(); q.pop_front(); vi.push_back(front-&gt;val); if (front-&gt;left) q.push_back(front-&gt;left); if (front-&gt;right) q.push_back(front-&gt;right); &#125; vvi.push_back(vi); &#125; return vvi; &#125;&#125;; 官方way 递归 123456789101112131415161718192021222324class Solution &#123; List&lt;List&lt;Integer&gt;&gt; levels = new ArrayList&lt;List&lt;Integer&gt;&gt;(); public void helper(TreeNode node, int level) &#123; // start the current level if (levels.size() == level) levels.add(new ArrayList&lt;Integer&gt;()); // fulfil the current level levels.get(level).add(node.val); // process child nodes for the next level if (node.left != null) helper(node.left, level + 1); if (node.right != null) helper(node.right, level + 1); &#125; public List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) &#123; if (root == null) return levels; helper(root, 0); return levels; &#125;&#125; 总结 错误点： 需要提前用哨兵记住队列的长度size， 否则在遍历对应层时，长度不断变大，影响结果 对入队的结点来说，只需要入队左右子树非空结点即可。 Reference https://leetcode-cn.com/problems/binary-tree-level-order-traversal/solution/er-cha-shu-de-ceng-ci-bian-li-by-leetcode/]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>递归</tag>
+        <tag>树</tag>
+        <tag>BFS</tag>
+        <tag>×</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解-110-平衡二叉树]]></title>
     <url>%2F2019%2F12%2F05%2Fleetcode%E9%A2%98%E8%A7%A3-110-%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
     <content type="text"><![CDATA[题目 12345678910111213141516171819202122232425262728293031323334/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;private: int helper(const TreeNode* root, int level, bool&amp; res) &#123; if (!root) return level; int lH = helper(root-&gt;left, level + 1, res); if (!res) return level; int rH = helper(root-&gt;right, level + 1, res); if (!res) return level; if (abs(lH - rH) &gt; 1) res = false; return max(lH, rH); &#125;public: bool isBalanced(TreeNode* root) &#123; bool res = true; helper(root, 1, res); return res; &#125;&#125;; 要保证返回当前结点的 树高 和 是否平衡。]]></content>
@@ -11,8 +26,8 @@
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>DFS</tag>
         <tag>×</tag>
+        <tag>DFS</tag>
       </tags>
   </entry>
   <entry>
@@ -26,8 +41,8 @@
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>DFS</tag>
         <tag>×</tag>
+        <tag>DFS</tag>
       </tags>
   </entry>
   <entry>
@@ -41,8 +56,8 @@
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>DFS</tag>
         <tag>×</tag>
+        <tag>DFS</tag>
       </tags>
   </entry>
   <entry>
@@ -56,8 +71,8 @@
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>DFS</tag>
         <tag>×</tag>
+        <tag>DFS</tag>
       </tags>
   </entry>
   <entry>
@@ -184,8 +199,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>DFS</tag>
         <tag>×</tag>
+        <tag>DFS</tag>
         <tag>DP</tag>
         <tag>数组</tag>
         <tag>特殊DP数组</tag>
@@ -200,8 +215,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>DFS</tag>
         <tag>×</tag>
+        <tag>DFS</tag>
         <tag>DP</tag>
         <tag>数组</tag>
         <tag>完全背包</tag>
@@ -233,8 +248,8 @@
         <tag>leetcode</tag>
         <tag>×</tag>
         <tag>DP</tag>
-        <tag>组合数学</tag>
         <tag>2维DP-to-1维DP</tag>
+        <tag>组合数学</tag>
         <tag>数组</tag>
       </tags>
   </entry>
@@ -264,8 +279,8 @@
         <tag>leetcode</tag>
         <tag>×</tag>
         <tag>DP</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>2维dp</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>数组</tag>
         <tag>hash</tag>
         <tag>缓存</tag>
@@ -282,9 +297,9 @@
         <tag>leetcode</tag>
         <tag>×</tag>
         <tag>DP</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>2维dp</tag>
         <tag>最大公共子序列</tag>
+        <tag>插入1个虚拟0</tag>
       </tags>
   </entry>
   <entry>
@@ -297,8 +312,8 @@
       <tags>
         <tag>leetcode</tag>
         <tag>DP</tag>
-        <tag>2维DP-to-1维DP</tag>
         <tag>2维dp</tag>
+        <tag>2维DP-to-1维DP</tag>
         <tag>√</tag>
       </tags>
   </entry>
@@ -343,8 +358,8 @@
       <tags>
         <tag>leetcode</tag>
         <tag>×</tag>
-        <tag>动态规划</tag>
         <tag>插入1个虚拟0</tag>
+        <tag>动态规划</tag>
         <tag>字符串</tag>
       </tags>
   </entry>
@@ -375,9 +390,9 @@
         <tag>leetcode</tag>
         <tag>×</tag>
         <tag>数学题</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>组合数学</tag>
-        <tag>插入1个虚拟0</tag>
       </tags>
   </entry>
   <entry>
@@ -391,8 +406,8 @@
         <tag>leetcode</tag>
         <tag>树</tag>
         <tag>×</tag>
-        <tag>动态规划</tag>
         <tag>插入1个虚拟0</tag>
+        <tag>动态规划</tag>
         <tag>2维DP</tag>
         <tag>2维DP-to-1维DP</tag>
         <tag>自顶向下DP</tag>
@@ -426,8 +441,8 @@
         <tag>leetcode</tag>
         <tag>树</tag>
         <tag>×</tag>
-        <tag>动态规划</tag>
         <tag>插入1个虚拟0</tag>
+        <tag>动态规划</tag>
         <tag>Catalan数</tag>
       </tags>
   </entry>

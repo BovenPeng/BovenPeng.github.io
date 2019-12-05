@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="为什么以前不搭一个blog？ 先谈谈为什么一起没这么个念头，主要有以下几点：  不想写些看上去很厉害其实没什么用的东西。 不想写些拾人牙慧的东西。 不想写些随便Google两下，或者看看两眼官方文档就能搞懂的东西。 写blog组织语言起来其实很费时。  而在有的网站上充斥着大量的这类内容，当然不是说没有“金子”在其中，只不过都被“垃圾”掩埋住了，所以在我觉得我不能输出一份没有任何错">
-<meta name="keywords" content="学习计划,杂谈">
+  <meta name="description" content="题目 My way 手动队列BFS 123456789101112131415161718192021222324252627282930313233343536373839/** * Definition for a binary tree node. * struct TreeNode &amp;#123; *     int val; *     TreeNode *left; *     T">
+<meta name="keywords" content="leetcode,递归,树,BFS,×">
 <meta property="og:type" content="article">
-<meta property="og:title" content="杂谈-为什么要搭一个blog">
-<meta property="og:url" content="http://yoursite.com/2019/04/11/杂谈-为什么要搭一个blog/index.html">
+<meta property="og:title" content="leetcode题解-102-二叉树的层次遍历">
+<meta property="og:url" content="http://yoursite.com/2019/12/05/leetcode题解-102-二叉树的层次遍历/index.html">
 <meta property="og:site_name" content="Boven&#39;s Blog">
-<meta property="og:description" content="为什么以前不搭一个blog？ 先谈谈为什么一起没这么个念头，主要有以下几点：  不想写些看上去很厉害其实没什么用的东西。 不想写些拾人牙慧的东西。 不想写些随便Google两下，或者看看两眼官方文档就能搞懂的东西。 写blog组织语言起来其实很费时。  而在有的网站上充斥着大量的这类内容，当然不是说没有“金子”在其中，只不过都被“垃圾”掩埋住了，所以在我觉得我不能输出一份没有任何错">
+<meta property="og:description" content="题目 My way 手动队列BFS 123456789101112131415161718192021222324252627282930313233343536373839/** * Definition for a binary tree node. * struct TreeNode &amp;#123; *     int val; *     TreeNode *left; *     T">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-23T13:17:30.058Z">
+<meta property="og:updated_time" content="2019-12-05T12:39:47.765Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="杂谈-为什么要搭一个blog">
-<meta name="twitter:description" content="为什么以前不搭一个blog？ 先谈谈为什么一起没这么个念头，主要有以下几点：  不想写些看上去很厉害其实没什么用的东西。 不想写些拾人牙慧的东西。 不想写些随便Google两下，或者看看两眼官方文档就能搞懂的东西。 写blog组织语言起来其实很费时。  而在有的网站上充斥着大量的这类内容，当然不是说没有“金子”在其中，只不过都被“垃圾”掩埋住了，所以在我觉得我不能输出一份没有任何错">
+<meta name="twitter:title" content="leetcode题解-102-二叉树的层次遍历">
+<meta name="twitter:description" content="题目 My way 手动队列BFS 123456789101112131415161718192021222324252627282930313233343536373839/** * Definition for a binary tree node. * struct TreeNode &amp;#123; *     int val; *     TreeNode *left; *     T">
 
 
 
@@ -115,7 +115,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/04/11/杂谈-为什么要搭一个blog/">
+  <link rel="canonical" href="http://yoursite.com/2019/12/05/leetcode题解-102-二叉树的层次遍历/">
 
 
 
@@ -125,7 +125,7 @@
   };
 </script>
 
-  <title>杂谈-为什么要搭一个blog | Boven's Blog</title>
+  <title>leetcode题解-102-二叉树的层次遍历 | Boven's Blog</title>
   
 
 
@@ -374,7 +374,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/11/杂谈-为什么要搭一个blog/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/05/leetcode题解-102-二叉树的层次遍历/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bowen Peng">
@@ -391,7 +391,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">杂谈-为什么要搭一个blog
+          <h1 class="post-title" itemprop="name headline">leetcode题解-102-二叉树的层次遍历
 
               
             
@@ -417,24 +417,12 @@
                 
               
 
-              <time title="创建时间：2019-04-11 15:46:47" itemprop="dateCreated datePublished" datetime="2019-04-11T15:46:47+08:00">2019-04-11</time>
+              <time title="创建时间：2019-12-05 19:35:54 / 修改时间：20:39:47" itemprop="dateCreated datePublished" datetime="2019-12-05T19:35:54+08:00">2019-12-05</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-10-23 21:17:30" itemprop="dateModified" datetime="2019-10-23T21:17:30+08:00">2019-10-23</time>
               
             
           </span>
@@ -451,7 +439,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/杂谈/" itemprop="url" rel="index"><span itemprop="name">杂谈</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/刷题/" itemprop="url" rel="index"><span itemprop="name">刷题</span></a></span>
 
                 
                 
@@ -486,26 +474,21 @@
       
 
       
-        <h1 id="为什么以前不搭一个blog">为什么以前不搭一个blog？</h1>
-<p>先谈谈为什么一起没这么个念头，主要有以下几点：</p>
+        <h2 id="题目"><a href="https://leetcode-cn.com/problems/binary-tree-level-order-traversal/" target="_blank" rel="noopener">题目</a></h2>
+<h3 id="my-way">My way</h3>
+<h4 id="手动队列bfs">手动队列<strong>BFS</strong></h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; levelOrder(TreeNode* root) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!root)  <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; vvi;</span><br><span class="line">        <span class="built_in">deque</span>&lt;TreeNode*&gt; q;</span><br><span class="line">        q.push_back(root);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(!q.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">int</span> size = q.size();</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; size; ++i)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">auto</span> front = q.front();</span><br><span class="line">                q.pop_front();</span><br><span class="line"></span><br><span class="line">                vi.push_back(front-&gt;val);</span><br><span class="line">                <span class="keyword">if</span> (front-&gt;left)   q.push_back(front-&gt;left);</span><br><span class="line">                <span class="keyword">if</span> (front-&gt;right)  q.push_back(front-&gt;right);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            vvi.push_back(vi);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> vvi;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="官方way">官方way</h3>
+<h4 id="递归">递归</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    List&lt;List&lt;Integer&gt;&gt; levels = <span class="keyword">new</span> ArrayList&lt;List&lt;Integer&gt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">helper</span><span class="params">(TreeNode node, <span class="keyword">int</span> level)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// start the current level</span></span><br><span class="line">        <span class="keyword">if</span> (levels.size() == level)</span><br><span class="line">            levels.add(<span class="keyword">new</span> ArrayList&lt;Integer&gt;());</span><br><span class="line"></span><br><span class="line">         <span class="comment">// fulfil the current level</span></span><br><span class="line">         levels.get(level).add(node.val);</span><br><span class="line"></span><br><span class="line">         <span class="comment">// process child nodes for the next level</span></span><br><span class="line">         <span class="keyword">if</span> (node.left != <span class="keyword">null</span>)</span><br><span class="line">            helper(node.left, level + <span class="number">1</span>);</span><br><span class="line">         <span class="keyword">if</span> (node.right != <span class="keyword">null</span>)</span><br><span class="line">            helper(node.right, level + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) &#123;</span><br><span class="line">        <span class="keyword">if</span> (root == <span class="keyword">null</span>) <span class="keyword">return</span> levels;</span><br><span class="line">        helper(root, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> levels;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="总结">总结</h2>
+<p>错误点：</p>
 <ul>
-<li>不想写些看上去很厉害其实没什么用的东西。</li>
-<li>不想写些拾人牙慧的东西。</li>
-<li>不想写些随便Google两下，或者看看两眼官方文档就能搞懂的东西。</li>
-<li>写blog组织语言起来其实很费时。</li>
+<li>需要提前用哨兵记住队列的长度<code>size</code>， 否则在遍历对应层时，长度不断变大，影响结果</li>
+<li>对入队的结点来说，只需要入队左右子树非空结点即可。</li>
 </ul>
-<p>而在有的网站上充斥着大量的这类内容，当然不是说没有“金子”在其中，只不过都被“垃圾”掩埋住了，所以在我觉得我不能输出一份没有任何错误的干货下，并不打算输出自己的知识。</p>
-<h1 id="为什么现在又搭了一个自己的blog呢">为什么现在又搭了一个自己的blog呢？</h1>
-<p>无论是学业，还是生活都遭遇了很多糟心事，总得来说以下几个原因：</p>
-<ul>
-<li>学习状态一直受挫，到现在为止都很难维持住我以前的最佳状态(每天8-10小时有效学习时间)。导致有些东西学了查，查了用，用了忘，忘了又查的循环之中，低效率甚至无效率学习时间过多。我得找个地方记住这些常常需要review的问题。</li>
-<li>刚参加的一场Kaggle比赛，最后比赛结束，结果从Public LB top 7%跌到Private LB top15%。很受打击，感觉自己学的东西很不扎实。用荀子《劝学》中的一句话来说就是“蚓无爪牙之利，筋骨之强，上食埃土，下饮黄泉，用心一也。蟹六跪而二螯，非蛇鳝之穴无可寄托者，用心躁也。”。我得沉下心来，所以我决定找个地方记录下这个过程。</li>
-<li>常常写blog，可以刷下GitHub的contributions次数，让生活充满绿色(笑)，通过这个激励自己。</li>
-</ul>
-<h1 id="所以呢">所以呢？</h1>
-<p>所以，可能我大概率可能在未来会输出一些我曾认为的“垃圾“。</p>
-<p>Never mind,</p>
-<p><a href="https://en.wikipedia.org/wiki/Lucky_You_(song)" target="_blank" rel="noopener">it's my turn to cut food.</a></p>
+<h2 id="reference">Reference</h2>
+<p>https://leetcode-cn.com/problems/binary-tree-level-order-traversal/solution/er-cha-shu-de-ceng-ci-bian-li-by-leetcode/</p>
 
       
     </div>
@@ -529,9 +512,15 @@
       
         <div class="post-tags">
           
-            <a href="/tags/学习计划/" rel="tag"># 学习计划</a>
+            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
           
-            <a href="/tags/杂谈/" rel="tag"># 杂谈</a>
+            <a href="/tags/递归/" rel="tag"># 递归</a>
+          
+            <a href="/tags/树/" rel="tag"># 树</a>
+          
+            <a href="/tags/BFS/" rel="tag"># BFS</a>
+          
+            <a href="/tags/×/" rel="tag"># ×</a>
           
         </div>
       
@@ -544,15 +533,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/12/05/leetcode题解-110-平衡二叉树/" rel="next" title="leetcode题解-110-平衡二叉树">
+                <i class="fa fa-chevron-left"></i> leetcode题解-110-平衡二叉树
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/11/一些学习计划/" rel="prev" title="一些学习计划">
-                一些学习计划 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -811,7 +800,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么以前不搭一个blog"><span class="nav-number">1.</span> <span class="nav-text">为什么以前不搭一个blog？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么现在又搭了一个自己的blog呢"><span class="nav-number">2.</span> <span class="nav-text">为什么现在又搭了一个自己的blog呢？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#所以呢"><span class="nav-number">3.</span> <span class="nav-text">所以呢？</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#my-way"><span class="nav-number">1.1.</span> <span class="nav-text">My way</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#手动队列bfs"><span class="nav-number">1.1.1.</span> <span class="nav-text">手动队列BFS</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#官方way"><span class="nav-number">1.2.</span> <span class="nav-text">官方way</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#递归"><span class="nav-number">1.2.1.</span> <span class="nav-text">递归</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reference"><span class="nav-number">3.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>
