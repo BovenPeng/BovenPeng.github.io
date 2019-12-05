@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode题解-103-二叉树的锯齿形层次遍历]]></title>
+    <url>%2F2019%2F12%2F05%2Fleetcode%E9%A2%98%E8%A7%A3-103-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%94%AF%E9%BD%BF%E5%BD%A2%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86%2F</url>
+    <content type="text"><![CDATA[题目 My way 手动BFS + 奇逆序 123456789101112131415161718192021222324252627282930313233343536373839404142434445/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: vector&lt;vector&lt;int&gt;&gt; zigzagLevelOrder(TreeNode* root) &#123; if (!root) return vector&lt;vector&lt;int&gt;&gt;(); vector&lt;vector&lt;int&gt;&gt; vvi; deque&lt;TreeNode*&gt; q; q.push_back(root); // 可以加个depth变量，depth为偶数时，[size-1, 0]来存储变量 while(!q.empty()) &#123; vector&lt;int&gt; vi; int size = q.size(); for (int i = 0; i &lt; size; ++i) &#123; auto front = q.front(); q.pop_front(); vi.push_back(front-&gt;val); if (front-&gt;left) q.push_back(front-&gt;left); if (front-&gt;right) q.push_back(front-&gt;right); &#125; vvi.push_back(vi); &#125; for (size_t i = 1; i &lt; vvi.size(); ++i, ++i) &#123; vvi[i] = vector&lt;int&gt;(vvi[i].rbegin(), vvi[i].rend()); &#125; return vvi; &#125;&#125;; 加个depth变量，depth为偶数时，[size-1, 0]来存储变量 OR 插入后逆序，因为vector::insert代价是\(O(N)\)，所以一直从头部差，时间cost过大，或者 用deque，然后用deque中元素赋值给vector 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: vector&lt;vector&lt;int&gt;&gt; zigzagLevelOrder(TreeNode* root) &#123; if (!root) return vector&lt;vector&lt;int&gt;&gt;(); vector&lt;vector&lt;int&gt;&gt; vvi; deque&lt;TreeNode*&gt; q; q.push_back(root); // 可以加个depth变量，depth为偶数时，[size-1, 0]来存储变量 int depth = 0; while(!q.empty()) &#123; vector&lt;int&gt; vi; ++depth; int size = q.size(); for (int i = 0; i &lt; size; ++i) &#123; auto front = q.front(); q.pop_front(); vi.push_back(front-&gt;val); if (front-&gt;left) q.push_back(front-&gt;left); if (front-&gt;right) q.push_back(front-&gt;right); &#125; if (!depth&amp;(depth-1)) vi = vector&lt;int&gt;(vi.rbegin(), vi.rend()); vvi.push_back(vi); &#125; for (size_t i = 1; i &lt; vvi.size(); ++i, ++i) &#123; vvi[i] = vector&lt;int&gt;(vvi[i].rbegin(), vvi[i].rend()); &#125; return vvi; &#125;&#125;; 递归 + 奇逆序 123456789101112131415161718192021222324252627282930313233343536373839/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;private: void helper(vector&lt;vector&lt;int&gt;&gt;&amp; vvi, int level, TreeNode* root) &#123; if (!root) return ; // add new vector&lt;int&gt; for saving new level elements if (vvi.size() == level) &#123; vvi.push_back(vector&lt;int&gt;()); &#125; vvi[level].push_back(root-&gt;val); helper(vvi, level+1, root-&gt;left); helper(vvi, level+1, root-&gt;right); &#125;public: vector&lt;vector&lt;int&gt;&gt; zigzagLevelOrder(TreeNode* root) &#123; vector&lt;vector&lt;int&gt;&gt; vvi; helper(vvi, 0, root); for (size_t i = 1; i &lt; vvi.size(); ++i, ++i) &#123; vvi[i] = vector&lt;int&gt;(vvi[i].rbegin(), vvi[i].rend()); &#125; return vvi; &#125;&#125;;]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>递归</tag>
+        <tag>树</tag>
+        <tag>BFS</tag>
+        <tag>√</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解-107-二叉树的层次遍历Ⅱ]]></title>
     <url>%2F2019%2F12%2F05%2Fleetcode%E9%A2%98%E8%A7%A3-107-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86%E2%85%A1%2F</url>
     <content type="text"><![CDATA[题目 My way 手动队列BFS + reverse结果 123456789101112131415161718192021222324252627282930313233343536373839/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: vector&lt;vector&lt;int&gt;&gt; levelOrderBottom(TreeNode* root) &#123; if (!root) return vector&lt;vector&lt;int&gt;&gt;(); vector&lt;vector&lt;int&gt;&gt; vvi; deque&lt;TreeNode*&gt; q; q.push_back(root); while(!q.empty()) &#123; vector&lt;int&gt; vi; int size = q.size(); for (int i = 0; i &lt; size; ++i) &#123; auto front = q.front(); q.pop_front(); vi.push_back(front-&gt;val); if (front-&gt;left) q.push_back(front-&gt;left); if (front-&gt;right) q.push_back(front-&gt;right); &#125; vvi.push_back(vi); &#125; return vector&lt;vector&lt;int&gt;&gt;(vvi.rbegin(), vvi.rend()); &#125;&#125;; 递归BFS + 逆序 123456789101112131415161718192021222324252627282930313233343536/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;private: void helper(vector&lt;vector&lt;int&gt;&gt;&amp; vvi, int level, TreeNode* root) &#123; if (!root) return ; // add new vector&lt;int&gt; for saving new level elements if (vvi.size() == level) &#123; vvi.push_back(vector&lt;int&gt;()); &#125; vvi[level].push_back(root-&gt;val); helper(vvi, level+1, root-&gt;left); helper(vvi, level+1, root-&gt;right); &#125;public: vector&lt;vector&lt;int&gt;&gt; levelOrderBottom(TreeNode* root) &#123; vector&lt;vector&lt;int&gt;&gt; vvi; helper(vvi, 0, root); return vector&lt;vector&lt;int&gt;&gt; (vvi.rbegin(), vvi.rend()); &#125;&#125;; 有没有办法遍历的时候直接逆序插入呢？？ 总结 递归方式BFS实现层次遍历时，需要在vector&lt;vector&lt;int&gt;&gt;的对应层数上存储，所以在helper函数上，需要传参 References https://leetcode-cn.com/problems/binary-tree-level-order-traversal/solution/er-cha-shu-ceng-ci-bian-li-c-by-huang-fu-mai-yan/]]></content>
@@ -327,9 +342,9 @@
       <tags>
         <tag>leetcode</tag>
         <tag>DP</tag>
+        <tag>√</tag>
         <tag>2维dp</tag>
         <tag>2维DP-to-1维DP</tag>
-        <tag>√</tag>
       </tags>
   </entry>
   <entry>
@@ -438,11 +453,11 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>√</tag>
         <tag>动态规划</tag>
         <tag>2维DP</tag>
         <tag>2维DP-to-1维DP</tag>
         <tag>数组对角遍历</tag>
-        <tag>√</tag>
       </tags>
   </entry>
   <entry>
