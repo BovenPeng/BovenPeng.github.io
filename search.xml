@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode题解-107-二叉树的层次遍历Ⅱ]]></title>
+    <url>%2F2019%2F12%2F05%2Fleetcode%E9%A2%98%E8%A7%A3-107-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86%E2%85%A1%2F</url>
+    <content type="text"><![CDATA[题目 My way 手动队列BFS + reverse结果 123456789101112131415161718192021222324252627282930313233343536373839/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: vector&lt;vector&lt;int&gt;&gt; levelOrderBottom(TreeNode* root) &#123; if (!root) return vector&lt;vector&lt;int&gt;&gt;(); vector&lt;vector&lt;int&gt;&gt; vvi; deque&lt;TreeNode*&gt; q; q.push_back(root); while(!q.empty()) &#123; vector&lt;int&gt; vi; int size = q.size(); for (int i = 0; i &lt; size; ++i) &#123; auto front = q.front(); q.pop_front(); vi.push_back(front-&gt;val); if (front-&gt;left) q.push_back(front-&gt;left); if (front-&gt;right) q.push_back(front-&gt;right); &#125; vvi.push_back(vi); &#125; return vector&lt;vector&lt;int&gt;&gt;(vvi.rbegin(), vvi.rend()); &#125;&#125;; 递归BFS 12 总结 递归方式BFS实现层次遍历时，需要在vector&lt;vector&lt;int&gt;&gt;的对应层数上存储，所以在helper函数上，需要传参 References https://leetcode-cn.com/problems/binary-tree-level-order-traversal/solution/er-cha-shu-ceng-ci-bian-li-c-by-huang-fu-mai-yan/]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>递归</tag>
+        <tag>树</tag>
+        <tag>BFS</tag>
+        <tag>×</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解-102-二叉树的层次遍历]]></title>
     <url>%2F2019%2F12%2F05%2Fleetcode%E9%A2%98%E8%A7%A3-102-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E6%AC%A1%E9%81%8D%E5%8E%86%2F</url>
-    <content type="text"><![CDATA[题目 My way 手动队列BFS 123456789101112131415161718192021222324252627282930313233343536373839/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: vector&lt;vector&lt;int&gt;&gt; levelOrder(TreeNode* root) &#123; if (!root) return vector&lt;vector&lt;int&gt;&gt;(); vector&lt;vector&lt;int&gt;&gt; vvi; deque&lt;TreeNode*&gt; q; q.push_back(root); while(!q.empty()) &#123; vector&lt;int&gt; vi; int size = q.size(); for (int i = 0; i &lt; size; ++i) &#123; auto front = q.front(); q.pop_front(); vi.push_back(front-&gt;val); if (front-&gt;left) q.push_back(front-&gt;left); if (front-&gt;right) q.push_back(front-&gt;right); &#125; vvi.push_back(vi); &#125; return vvi; &#125;&#125;; 官方way 递归 123456789101112131415161718192021222324class Solution &#123; List&lt;List&lt;Integer&gt;&gt; levels = new ArrayList&lt;List&lt;Integer&gt;&gt;(); public void helper(TreeNode node, int level) &#123; // start the current level if (levels.size() == level) levels.add(new ArrayList&lt;Integer&gt;()); // fulfil the current level levels.get(level).add(node.val); // process child nodes for the next level if (node.left != null) helper(node.left, level + 1); if (node.right != null) helper(node.right, level + 1); &#125; public List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) &#123; if (root == null) return levels; helper(root, 0); return levels; &#125;&#125; 总结 错误点： 需要提前用哨兵记住队列的长度size， 否则在遍历对应层时，长度不断变大，影响结果 对入队的结点来说，只需要入队左右子树非空结点即可。 Reference https://leetcode-cn.com/problems/binary-tree-level-order-traversal/solution/er-cha-shu-de-ceng-ci-bian-li-by-leetcode/]]></content>
+    <content type="text"><![CDATA[题目 My way 手动队列BFS 123456789101112131415161718192021222324252627282930313233343536373839/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: vector&lt;vector&lt;int&gt;&gt; levelOrder(TreeNode* root) &#123; if (!root) return vector&lt;vector&lt;int&gt;&gt;(); vector&lt;vector&lt;int&gt;&gt; vvi; deque&lt;TreeNode*&gt; q; q.push_back(root); while(!q.empty()) &#123; vector&lt;int&gt; vi; int size = q.size(); for (int i = 0; i &lt; size; ++i) &#123; auto front = q.front(); q.pop_front(); vi.push_back(front-&gt;val); if (front-&gt;left) q.push_back(front-&gt;left); if (front-&gt;right) q.push_back(front-&gt;right); &#125; vvi.push_back(vi); &#125; return vvi; &#125;&#125;; 时间:\(O(N)\), 空间:\(O(N)\) 官方way 递归 123456789101112131415161718192021222324class Solution &#123; List&lt;List&lt;Integer&gt;&gt; levels = new ArrayList&lt;List&lt;Integer&gt;&gt;(); public void helper(TreeNode node, int level) &#123; // start the current level if (levels.size() == level) levels.add(new ArrayList&lt;Integer&gt;()); // fulfil the current level levels.get(level).add(node.val); // process child nodes for the next level if (node.left != null) helper(node.left, level + 1); if (node.right != null) helper(node.right, level + 1); &#125; public List&lt;List&lt;Integer&gt;&gt; levelOrder(TreeNode root) &#123; if (root == null) return levels; helper(root, 0); return levels; &#125;&#125; 时间:\(O(N)\), 空间:\(O(N)+O(logN)= O(N)\)，因为递归自动压栈需要维护一个栈，故空间上常数项系数更大 12345678910111213141516171819202122232425262728293031323334/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;private: void helper(vector&lt;vector&lt;int&gt;&gt;&amp; vvi, int level, TreeNode* root) &#123; // add new vector&lt;int&gt; for saving new level elements if (vvi.size() == level) &#123; vvi.push_back(vector&lt;int&gt;()); &#125; vvi[level].push_back(root-&gt;val); if(root-&gt;left) helper(vvi, level+1, root-&gt;left); if(root-&gt;right) helper(vvi, level+1, root-&gt;right); &#125;public: vector&lt;vector&lt;int&gt;&gt; levelOrder(TreeNode* root) &#123; if (!root) return vector&lt;vector&lt;int&gt;&gt;(); vector&lt;vector&lt;int&gt;&gt; vvi; helper(vvi, 0, root); return vvi; &#125;&#125;; 优化递归函数helper后： 12345678910111213141516171819202122232425262728293031323334/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;private: void helper(vector&lt;vector&lt;int&gt;&gt;&amp; vvi, int level, TreeNode* root) &#123; if (!root) return ; // add new vector&lt;int&gt; for saving new level elements if (vvi.size() == level) &#123; vvi.push_back(vector&lt;int&gt;()); &#125; vvi[level].push_back(root-&gt;val); helper(vvi, level+1, root-&gt;left); helper(vvi, level+1, root-&gt;right); &#125;public: vector&lt;vector&lt;int&gt;&gt; levelOrder(TreeNode* root) &#123; vector&lt;vector&lt;int&gt;&gt; vvi; helper(vvi, 0, root); return vvi; &#125;&#125;; 总结 错误点： 需要提前用哨兵记住队列的长度size， 否则在遍历对应层时，长度不断变大，影响结果 对入队的结点来说，只需要入队左右子树非空结点即可。 递归方式BFS实现层次遍历时，需要在vector&lt;vector&lt;int&gt;&gt;的对应层数上存储，所以在helper函数上，需要传参 Reference https://leetcode-cn.com/problems/binary-tree-level-order-traversal/solution/er-cha-shu-de-ceng-ci-bian-li-by-leetcode/ https://leetcode-cn.com/problems/binary-tree-level-order-traversal/solution/er-cha-shu-ceng-ci-bian-li-c-by-huang-fu-mai-yan/]]></content>
       <categories>
         <category>刷题</category>
       </categories>
@@ -200,8 +215,8 @@
       <tags>
         <tag>leetcode</tag>
         <tag>×</tag>
-        <tag>DFS</tag>
         <tag>DP</tag>
+        <tag>DFS</tag>
         <tag>数组</tag>
         <tag>特殊DP数组</tag>
       </tags>
@@ -216,8 +231,8 @@
       <tags>
         <tag>leetcode</tag>
         <tag>×</tag>
-        <tag>DFS</tag>
         <tag>DP</tag>
+        <tag>DFS</tag>
         <tag>数组</tag>
         <tag>完全背包</tag>
       </tags>
@@ -563,9 +578,9 @@
         <category>Pandas</category>
       </categories>
       <tags>
+        <tag>pandas</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
-        <tag>pandas</tag>
         <tag>Code Snippet</tag>
       </tags>
   </entry>
@@ -592,10 +607,10 @@
       </categories>
       <tags>
         <tag>code snippet</tag>
+        <tag>EDA</tag>
         <tag>data visualization</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
-        <tag>EDA</tag>
         <tag>hexo</tag>
       </tags>
   </entry>
