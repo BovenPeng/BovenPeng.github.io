@@ -373,6 +373,231 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/24/leetcode题解-1025-除数博弈/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bowen Peng">
+      <meta itemprop="description" content="something about myself and my career development.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boven's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/10/24/leetcode题解-1025-除数博弈/" class="post-title-link" itemprop="url">leetcode题解: 1025.除数博弈</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-24 22:17:03" itemprop="dateCreated datePublished" datetime="2019-10-24T22:17:03+08:00">2019-10-24</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-11-03 20:14:18" itemprop="dateModified" datetime="2019-11-03T20:14:18+08:00">2019-11-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/刷题/" itemprop="url" rel="index"><span itemprop="name">刷题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="https://leetcode-cn.com/problems/divisor-game/" target="_blank" rel="noopener">题目</a></h2>
+<h2 id="my-way">My way:</h2>
+<p>这题靠归纳推理，首先很明显就能看出来偶数的时候Alice赢了；</p>
+<p>然后多举了几个例子就发现奇数的时候Bob赢了。</p>
+<p>就直接一个条件语句，结束。</p>
+<p>但是尝试套dp的做法的时候，没捋清楚，看了综评最高的，基本懂了。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">divisorGame</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!(N &amp; <span class="number">1</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="综评最高解">综评最高解</h2>
+<h3 id="归纳法">1.归纳法：</h3>
+<p>基本思路：</p>
+<ul>
+<li><p>最终结果应该是占到 2 的赢，占到 1 的输；</p></li>
+<li><p>若当前为奇数，奇数的约数只能是奇数或者 1，因此下一个一定是偶数；</p></li>
+<li><p>若当前为偶数， 偶数的约数可以是奇数可以是偶数也可以是 1，因此直接减 1，则下一个是奇数；</p></li>
+</ul>
+<p>因此，<strong>奇则输，偶则赢</strong>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">divisorGame</span><span class="params">(self, N: int)</span> -&gt; bool:</span></span><br><span class="line">        <span class="keyword">return</span> N%<span class="number">2</span>==<span class="number">0</span></span><br></pre></td></tr></table></figure>
+<h3 id="dp">2.DP:</h3>
+<ul>
+<li>定义状态
+<ul>
+<li><span class="math inline">\(i\)</span>: 数字<span class="math inline">\(N\)</span>为<span class="math inline">\(i\)</span>时；</li>
+<li><span class="math inline">\(f[i]\)</span>: 数字<span class="math inline">\(N\)</span>为<span class="math inline">\(i\)</span>时，Alice的胜负状况，<code>true</code>为胜，<code>false</code>为负。</li>
+</ul></li>
+<li>定义状态转移方程：</li>
+</ul>
+<p><span class="math display">\[
+f[i] = \begin{cases} 
+true, &amp; \text{if}\ f[i-j] == false,\ \text{if}\ i\ \%\ j == 0\ \\
+      &amp; and\ j\ is\ unsigned\ integer\ which \in (0, N) \  \\
+false, &amp; \text{otherwise}
+\end{cases}
+\]</span></p>
+<h4 id="实现">实现</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">divisorGame</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; vi(N+<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; N + <span class="number">1</span>; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i / <span class="number">2</span>; ++j)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (vi[i-j] == <span class="literal">false</span> &amp;&amp; i % j == <span class="number">0</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    vi[i] = <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> vi[N];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>综评解</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">divisorGame</span><span class="params">(self, N: int)</span> -&gt; bool:</span></span><br><span class="line">        target = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(N+<span class="number">1</span>)]</span><br><span class="line">        target[<span class="number">1</span>] = <span class="number">0</span> <span class="comment">#若爱丽丝抽到1，则爱丽丝输</span></span><br><span class="line">        <span class="keyword">if</span> N&lt;=<span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">        </span><br><span class="line">            target[<span class="number">2</span>] = <span class="number">1</span> <span class="comment">#若爱丽丝抽到2，则爱丽丝赢</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span>,N+<span class="number">1</span>):</span><br><span class="line">                <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,i//<span class="number">2</span>):</span><br><span class="line">                    <span class="comment"># 若j是i的余数且target[i-j]为假（0）的话，则代表当前为真（1）</span></span><br><span class="line">                    <span class="keyword">if</span> i%j==<span class="number">0</span> <span class="keyword">and</span> target[i-j]==<span class="number">0</span>:</span><br><span class="line">                        target[i] = <span class="number">1</span></span><br><span class="line">                        <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">return</span> target[N]==<span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h2 id="总结">总结</h2>
+<ul>
+<li>初等数学review:
+<ul>
+<li>奇数的因数： {奇数}</li>
+<li>偶数的因数： {偶数}</li>
+<li>奇数的最大公因数 = 奇数</li>
+</ul></li>
+<li>目前做到的dp还是简单递推问题，可以简单套换成：
+<ul>
+<li>状态<span class="math inline">\(i\)</span>就是数字为<span class="math inline">\(i\)</span>的时候</li>
+<li><span class="math inline">\(f[i]\)</span>就是数字为<span class="math inline">\(i\)</span>时候，结果为<span class="math inline">\(f[i]\)</span></li>
+</ul></li>
+</ul>
+<h2 id="reference">Reference</h2>
+<p><a href="https://leetcode-cn.com/problems/divisor-game/solution/python3gui-na-fa-by-pandawakaka/" target="_blank" rel="noopener">pandawakaka 给出的解</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/23/leetcode题解-338-比特位计数/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2064,206 +2289,6 @@ P(x) = P(x\ \&amp;\ (x-1)) + 1
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/22/Stantar-2019有感/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bowen Peng">
-      <meta itemprop="description" content="something about myself and my career development.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Boven's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/22/Stantar-2019有感/" class="post-title-link" itemprop="url">Stantar 2019有感</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-22 14:17:54" itemprop="dateCreated datePublished" datetime="2019-04-22T14:17:54+08:00">2019-04-22</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-25 22:03:04" itemprop="dateModified" datetime="2019-04-25T22:03:04+08:00">2019-04-25</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/data-competition/" itemprop="url" rel="index"><span itemprop="name">data competition</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="stantar-2019有感">Stantar 2019有感</h1>
-<p>看了很多个top solution，尤其是<a href="https://www.kaggle.com/c/santander-customer-transaction-prediction/discussion/88926#latest-518288" target="_blank" rel="noopener">金牌区域的</a>。</p>
-<p>给我感觉在这个比赛中的几个重要的<strong>magic</strong>有：</p>
-<ul>
-<li>frequency coding；在对于匿名数据或者categorical feature上，可以先试着这样做下，一般是会提升local CV之类；</li>
-<li>fake data；对于training set和testing set中的unique value的数量明显不同，让人怀疑testing set中的数据包含伪造数据。对于testing set中的伪造数据进行删除即可。<a href="https://www.kaggle.com/yag320/list-of-fake-samples-and-public-private-lb-split" target="_blank" rel="noopener">List of Fake Samples and Public/Private LB split</a></li>
-<li>independent feature；利用feature间的相互独立性，在用LightGBM训练时，只对某一特征训练，故有200个lgb classifier再对预测结果进行简单的simple linear blending。<a href="https://www.kaggle.com/titericz/giba-single-model-public-0-9245-private-0-9234" target="_blank" rel="noopener">a single model using all features vstacked that is enough for a top20 on Private</a></li>
-</ul>
-<p>感受颇深的是对于这些<strong>magic</strong>，一是自己确实没有通过EDA来发现到，能力有限；二是其实在kernel和discussion中都有多多少少提及到，自己未引起重视又或者不知如何是好。</p>
-<p>个人主要感觉还是：</p>
-<ol type="1">
-<li>在EDA方面考虑得不够到位，而且可以利用：
-<ol type="1">
-<li>Local CV和LB的提升上差异来分析是哪里的问题，然后解决并使得Local CV和LB的提升近似。比如此次中，一开始无论local CV提升有多高，LB都会锁在9.001上。而解决到fake data的存在后，local CV提升，LB也会随之提升，使得LB锁在9.001的情况不复存在；</li>
-<li>可以根据kernel和discussion区域中，若在新的发布后，上的存在着许多人的大幅度增长，则说明某个kernel或discussion揭露了<strong>magic</strong>；</li>
-</ol></li>
-<li><strong>Model</strong>这一块也是有问题，很明显在NN上存在很多问题，尤其是现在去看top solution中开源的NN代码，会存在很多逻辑看不太懂的情况；</li>
-<li><strong>Parameter Tuning</strong>上面也有问题，除了最基本的<strong>Grid Search</strong>和<strong>Random Search</strong>外，对于<strong>Bayesian optimization</strong>没有理解且无法应用出来。<a href="https://www.kaggle.com/c/santander-customer-transaction-prediction/discussion/89320#517455" target="_blank" rel="noopener">Chris这个discussion给了很多inspirations</a>；</li>
-<li>对于Data Science这块Coding能力上也存在着问题，不能很流畅的阅读代码逻辑；</li>
-<li>这个比赛没有用到<strong>Feature Selection</strong>, 然而这块也是我的弱项；</li>
-<li>在最后如何选取2个<strong>the most robust model</strong>用于提交到PB上也仍未解决。</li>
-</ol>
-<p>不过感觉还是收获了不少，在我上述几方面加强后，还是需要回来reiview Stantar这个比赛的各个solution。</p>
-<h1 id="reference">Reference</h1>
-<p><a href="https://www.kaggle.com/c/santander-customer-transaction-prediction/discussion/88926#latest-518288" target="_blank" rel="noopener">Gold Medal Solutions of Stantar 2019</a></p>
-<p><a href="https://www.kaggle.com/yag320/list-of-fake-samples-and-public-private-lb-split" target="_blank" rel="noopener">List of Fake Samples and Public/Private LB split</a></p>
-<p><a href="https://www.kaggle.com/titericz/giba-single-model-public-0-9245-private-0-9234" target="_blank" rel="noopener">Giba: a single model using all features vstacked that is enough for a top20 on Private</a></p>
-<p><a href="https://www.kaggle.com/c/santander-customer-transaction-prediction/discussion/89320#517455" target="_blank" rel="noopener">Chirs: How do we optimize GBM hyperparameters?</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2310,7 +2335,7 @@ P(x) = P(x\ \&amp;\ (x-1)) + 1
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">42</span>
+                    <span class="site-state-item-count">43</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
