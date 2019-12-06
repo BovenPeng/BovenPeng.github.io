@@ -3,12 +3,34 @@
   <entry>
     <title><![CDATA[leetcode题解-429-N叉树的层序遍历]]></title>
     <url>%2F2019%2F12%2F06%2Fleetcode%E9%A2%98%E8%A7%A3-429-N%E5%8F%89%E6%A0%91%E7%9A%84%E5%B1%82%E5%BA%8F%E9%81%8D%E5%8E%86%2F</url>
-    <content type="text"><![CDATA[]]></content>
+    <content type="text"><![CDATA[题目 My way 递归实现BFS 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647/*// Definition for a Node.class Node &#123;public: int val; vector&lt;Node*&gt; children; Node() &#123;&#125; Node(int _val) &#123; val = _val; &#125; Node(int _val, vector&lt;Node*&gt; _children) &#123; val = _val; children = _children; &#125;&#125;;*/class Solution &#123;private: void helper(vector&lt;vector&lt;int&gt;&gt;&amp; vvi, int level, Node* root) &#123; if (!root) return ; // add new vector&lt;int&gt; for saving new level elements if (vvi.size() == level) &#123; vvi.push_back(vector&lt;int&gt;()); &#125; vvi[level].push_back(root-&gt;val); for (auto it : root-&gt;children) &#123; helper(vvi, level+1, it); &#125; &#125;public: vector&lt;vector&lt;int&gt;&gt; levelOrder(Node* root) &#123; vector&lt;vector&lt;int&gt;&gt; vvi; helper(vvi, 0, root); return vvi; &#125;&#125;; 手动队列BFS 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152/*// Definition for a Node.class Node &#123;public: int val; vector&lt;Node*&gt; children; Node() &#123;&#125; Node(int _val) &#123; val = _val; &#125; Node(int _val, vector&lt;Node*&gt; _children) &#123; val = _val; children = _children; &#125;&#125;;*/class Solution &#123;public: vector&lt;vector&lt;int&gt;&gt; levelOrder(Node* root) &#123; if (!root) return vector&lt;vector&lt;int&gt;&gt;(); vector&lt;vector&lt;int&gt;&gt; vvi; deque&lt;Node*&gt; q; q.push_back(root); while(!q.empty()) &#123; vector&lt;int&gt; vi; int size = q.size(); for (int i = 0; i &lt; size; ++i) &#123; auto front = q.front(); q.pop_front(); vi.push_back(front-&gt;val); for (auto&amp; it : front-&gt;children) &#123; if (it) q.push_back(it); &#125; &#125; vvi.push_back(vi); &#125; return vvi; &#125;&#125;;]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>递归</tag>
+        <tag>树</tag>
+        <tag>树的遍历</tag>
+        <tag>BFS</tag>
+        <tag>√</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[leetcode题解-63-二叉树的平均值]]></title>
     <url>%2F2019%2F12%2F06%2Fleetcode%E9%A2%98%E8%A7%A3-63-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%B9%B3%E5%9D%87%E5%80%BC%2F</url>
     <content type="text"><![CDATA[]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>递归</tag>
+        <tag>树</tag>
+        <tag>树的遍历</tag>
+        <tag>BFS</tag>
+        <tag>√</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[leetcode题解-103-二叉树的锯齿形层次遍历]]></title>
@@ -21,6 +43,7 @@
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
+        <tag>树的遍历</tag>
         <tag>BFS</tag>
         <tag>√</tag>
       </tags>
@@ -36,6 +59,7 @@
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
+        <tag>树的遍历</tag>
         <tag>BFS</tag>
         <tag>×</tag>
       </tags>
@@ -51,6 +75,7 @@
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
+        <tag>树的遍历</tag>
         <tag>BFS</tag>
         <tag>×</tag>
       </tags>
@@ -414,9 +439,9 @@
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
+        <tag>树的遍历</tag>
         <tag>×</tag>
         <tag>动态规划</tag>
-        <tag>树的遍历</tag>
       </tags>
   </entry>
   <entry>
@@ -576,9 +601,9 @@
       </categories>
       <tags>
         <tag>code snippet</tag>
+        <tag>data visualization</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
-        <tag>data visualization</tag>
       </tags>
   </entry>
   <entry>
@@ -604,9 +629,9 @@
       </categories>
       <tags>
         <tag>pandas</tag>
-        <tag>Code Snippet</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
+        <tag>Code Snippet</tag>
       </tags>
   </entry>
   <entry>
@@ -633,9 +658,9 @@
       <tags>
         <tag>code snippet</tag>
         <tag>EDA</tag>
+        <tag>data visualization</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
-        <tag>data visualization</tag>
         <tag>hexo</tag>
       </tags>
   </entry>
