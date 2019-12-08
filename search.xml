@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[leetcode题解-94-二叉树的中序遍历]]></title>
     <url>%2F2019%2F12%2F08%2Fleetcode%E9%A2%98%E8%A7%A3-94-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%2F</url>
-    <content type="text"><![CDATA[题目 My way 递归实现 123456789101112131415161718192021222324252627/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;private: vector&lt;int&gt; vi; void helper(TreeNode* root) &#123; if (!root) return ; helper(root-&gt;left); vi.push_back(root-&gt;val); helper(root-&gt;right); &#125;public: vector&lt;int&gt; inorderTraversal(TreeNode* root) &#123; helper(root); return vi; &#125;&#125;; 12345678910111213141516171819202122232425262728293031323334353637383940/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;private: vector&lt;int&gt; vi;public: vector&lt;int&gt; inorderTraversal(TreeNode* root) &#123; if (root) &#123; stack&lt;TreeNode*&gt; s; while(!s.empty() || root) &#123; if (root) &#123; s.push(root); root = root-&gt;left; &#125; else &#123; root = s.top(); s.pop(); vi.push_back(root-&gt;val); root = root-&gt;right; &#125; &#125; &#125; return vi; &#125;&#125;;]]></content>
+    <content type="text"><![CDATA[题目 My way 递归实现 123456789101112131415161718192021222324252627/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;private: vector&lt;int&gt; vi; void helper(TreeNode* root) &#123; if (!root) return ; helper(root-&gt;left); vi.push_back(root-&gt;val); helper(root-&gt;right); &#125;public: vector&lt;int&gt; inorderTraversal(TreeNode* root) &#123; helper(root); return vi; &#125;&#125;; 手动压栈实现 12345678910111213141516171819202122232425262728293031323334353637383940/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;private: vector&lt;int&gt; vi;public: vector&lt;int&gt; inorderTraversal(TreeNode* root) &#123; if (root) &#123; stack&lt;TreeNode*&gt; s; while(!s.empty() || root) &#123; if (root) &#123; s.push(root); root = root-&gt;left; &#125; else &#123; root = s.top(); s.pop(); vi.push_back(root-&gt;val); root = root-&gt;right; &#125; &#125; &#125; return vi; &#125;&#125;; 总结 因为中序遍历是 &quot;左根右&quot;，所以得 先遍历到最左的结点，则这个结点可能是 &quot;左根右&quot;中的 左/ 根 若为 左， 则 弹栈 若为 根， 则 需保存它的右孩子，然后继续考察他的 ”左根右“结构。]]></content>
       <categories>
         <category>刷题</category>
       </categories>
@@ -437,8 +437,8 @@
       <tags>
         <tag>leetcode</tag>
         <tag>×</tag>
-        <tag>贪心算法</tag>
         <tag>动态规划</tag>
+        <tag>贪心算法</tag>
         <tag>数组</tag>
       </tags>
   </entry>
@@ -453,8 +453,8 @@
         <tag>leetcode</tag>
         <tag>×</tag>
         <tag>动态规划</tag>
-        <tag>字符串</tag>
         <tag>数组对角遍历</tag>
+        <tag>字符串</tag>
         <tag>中心扩散法</tag>
       </tags>
   </entry>
