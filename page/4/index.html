@@ -373,6 +373,901 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/01/leetcode题解-714-买卖股票的最佳时机含手续费/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bowen Peng">
+      <meta itemprop="description" content="something about myself and my career development.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boven's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/11/01/leetcode题解-714-买卖股票的最佳时机含手续费/" class="post-title-link" itemprop="url">leetcode题解-714-买卖股票的最佳时机含手续费</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-01 21:17:26" itemprop="dateCreated datePublished" datetime="2019-11-01T21:17:26+08:00">2019-11-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-11-03 20:13:39" itemprop="dateModified" datetime="2019-11-03T20:13:39+08:00">2019-11-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/刷题/" itemprop="url" rel="index"><span itemprop="name">刷题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="my-way"><del>My way</del></h2>
+<p>一开始审题失误了，没有看到股票可以 <strong>多次买入，卖出</strong>。</p>
+<p>所以想了个 <strong>只准单次买入，卖出的解法</strong>。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">static</span> <span class="keyword">bool</span> <span class="title">mycomp</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; a, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; b)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> *max_element(a.begin(), a.end()) &lt; *max_element(b.begin(), b.end());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; prices, <span class="keyword">int</span> fee)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">size_t</span> n = prices.size();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; dp(n, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Base case</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            dp[i][i] = <span class="number">0</span>;</span><br><span class="line">        &#125;      </span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">size_t</span> j = i + <span class="number">1</span>; j &lt; n; ++j)</span><br><span class="line">            &#123;</span><br><span class="line">                dp[i][j] = dp[i][j<span class="number">-1</span>] + prices[j] - prices[j<span class="number">-1</span>] - fee;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">auto</span> itv = max_element(dp.begin(), dp.end(), mycomp); <span class="comment">// find the vector </span></span><br><span class="line">                                                     <span class="comment">// with the max element</span></span><br><span class="line">        <span class="keyword">return</span> *max_element((*itv).begin(), (*itv).end()); <span class="comment">// finds the max element </span></span><br><span class="line">                                                        <span class="comment">// in the desired vector</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="官方解">官方解</h2>
+<p>通过第<span class="math inline">\(i\)</span>天和<span class="math inline">\(i-1\)</span>天<span class="math inline">\(cash,\ hold\)</span>的递推关系，来得到最后最大收益。</p>
+<p>*但是给我的感觉，这个思路，并不是很好捋清楚。</p>
+<h4 id="状态定义">状态定义：</h4>
+<p><span class="math display">\[
+\begin{align*}
+&amp; cash:\ 不持有股票时的最大利润 \\
+&amp; hold:\ 持有股票时的最大利润\\
+\end{align*}
+\]</span></p>
+<h4 id="状态转移方程">状态转移方程：</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cash = Math.max(cash, hold + prices[i] - fee);	<span class="comment">// max(原来请况，假设第i天卖出股票)</span></span><br><span class="line">hold = Math.max(hold, cash - prices[i]);		<span class="comment">// max(原来情况，假设第i天买进股票)</span></span><br></pre></td></tr></table></figure>
+<h4 id="base-case">Base case</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cash = <span class="number">0</span>;</span><br><span class="line">hold = -prices[<span class="number">0</span>]; <span class="comment">// 假设第0天买了股票</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices, <span class="keyword">int</span> fee)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> cash = <span class="number">0</span>, hold = -prices[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; prices.length; i++) &#123;</span><br><span class="line">            cash = Math.max(cash, hold + prices[i] - fee);</span><br><span class="line">            hold = Math.max(hold, cash - prices[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> cash;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="e.g.">e.g.</h4>
+<p>$$ <span class="math display">\[\begin{align*}
+&amp;输入: prices = [1, 3, 2, 8, 4, 9], fee = 2\\
+&amp;输出: 8\\
+&amp;解释: 能够达到的最大利润:  \\
+&amp;在此处买入 prices[0] = 1\\
+&amp;在此处卖出 prices[3] = 8\\
+&amp;在此处买入 prices[4] = 4\\
+&amp;在此处卖出 prices[5] = 9\\
+&amp;总利润: ((8 - 1) - 2) + ((9 - 4) - 2) = 8. \\
+
+\end{align*}\]</span> $$</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>prices</th>
+<th>cash</th>
+<th>hold</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>-1</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>3</td>
+<td>max(0, -1+3-2)=0</td>
+<td>max(0, 0-3)=-3</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>2</td>
+<td>max(0, -1+2-2)=0</td>
+<td>max(-1, 0-2)=-1</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td>8</td>
+<td>max(0, -1+8-2)=5</td>
+<td>max(-1, 5-8)=-1</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>4</td>
+<td>max(5, -1+4-2)=5</td>
+<td>max(-1, 5-4)=1</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>9</td>
+<td>max(5, 1+9-2)=8</td>
+<td>max(1, 8-9)=-1</td>
+</tr>
+</tbody>
+</table>
+<h2 id="reference">Reference</h2>
+<p><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/solution/mai-mai-gu-piao-de-zui-jia-shi-ji-han-shou-xu-fei-/" target="_blank" rel="noopener">官方解</a></p>
+<p><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/solution/yi-ge-fang-fa-tuan-mie-6-dao-gu-piao-wen-ti-by-l-2/" target="_blank" rel="noopener">laluladong解</a></p>
+<h3 id="extended">extended</h3>
+<p><a href="https://stackoverflow.com/questions/36228231/find-the-max-value-in-vectorvectorint-without-for-loop" target="_blank" rel="noopener">Find the max value in vector&gt; without for loop</a></p>
+<p><a href="https://www.tablesgenerator.com/markdown_tables" target="_blank" rel="noopener">markdown generator</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/01/leetcode题解-647-回文子串/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bowen Peng">
+      <meta itemprop="description" content="something about myself and my career development.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boven's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/11/01/leetcode题解-647-回文子串/" class="post-title-link" itemprop="url">leetcode题解-647-回文子串</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-01 16:35:48" itemprop="dateCreated datePublished" datetime="2019-11-01T16:35:48+08:00">2019-11-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-11-03 20:13:52" itemprop="dateModified" datetime="2019-11-03T20:13:52+08:00">2019-11-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/刷题/" itemprop="url" rel="index"><span itemprop="name">刷题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="https://leetcode-cn.com/problems/palindromic-substrings/" target="_blank" rel="noopener">题目</a></h2>
+<h2 id="my-way"><del>My way</del></h2>
+<h4 id="状态定义">状态定义：</h4>
+<p><span class="math display">\[
+\begin{align*}
+&amp; s:\ 字符串s\\
+&amp; i:\ 字符串s第i位\\
+&amp; j:\ 字符串s第j位\\
+&amp; s[i:j]:\ 字符串s第i位到第j位的子串, s[i,j]\\
+&amp; dp[i][j]:\ dp数组在s[i,j]上是否为回文串的记录。
+\end{align*}
+\]</span></p>
+<h4 id="base-case">Base case：</h4>
+<p><span class="math display">\[
+\begin{align*}
+&amp;s[i][j] = 1, &amp;\text{if $i==j$}\ 
+\end{align*}
+\]</span></p>
+<h4 id="状态转移方程">状态转移方程：</h4>
+<p><span class="math display">\[
+s[i-1][j+1] = 
+\begin{cases}
+&amp; 1,\ \text{if $s[i] == s[j]$}\\
+&amp; 0,\ otherwise
+\end{cases}
+\]</span></p>
+<h3 id="error">Error:</h3>
+<p>在如何实现数组遍历上面，出现了问题。</p>
+<p>套用了 <strong>glamour</strong>的逆向对角遍历思路：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countSubstrings</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> m = s.size();</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;&gt; dp(m, <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;(m, <span class="literal">false</span>));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">// base case</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            dp[i][i] = <span class="literal">true</span>;</span><br><span class="line">            ++cnt;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; m; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= m - i - <span class="number">1</span>; ++j)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">int</span> row = j;</span><br><span class="line">                <span class="keyword">int</span> column = i + j;</span><br><span class="line">                <span class="keyword">bool</span> cur = s[row] == s[column];</span><br><span class="line">                <span class="keyword">if</span> (cur &amp;&amp; (i == <span class="number">1</span> || dp[row+<span class="number">1</span>][column<span class="number">-1</span>]))</span><br><span class="line">                &#123;</span><br><span class="line">                    dp[row][column] = <span class="literal">true</span>;</span><br><span class="line">                    ++cnt;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> cnt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="glamour-way">Glamour way</h2>
+<h3 id="dp-逆向对角遍历">1.DP + 逆向对角遍历</h3>
+<h4 id="逆向对角遍历思路">逆向对角遍历思路：</h4>
+<img src="/2019/11/01/leetcode题解-647-回文子串/dp1.png" title="pic1">
+<p>上图中同一条直线上的值有前者依赖于后者的关系，因此我们应该以对角线方向遍历</p>
+<img src="/2019/11/01/leetcode题解-647-回文子串/dp2.png" title="pic2">
+<blockquote>
+<p>但是本方法在發現一字符串不是回文串后，仍然對包含其的字符串進行回文判斷。</p>
+<p>此方法包含了<strong>冗餘的判斷，因此還有優化的地方。</strong></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countSubstrings</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> len = s.length();</span><br><span class="line">       <span class="keyword">if</span>(len &lt;= <span class="number">1</span>) <span class="keyword">return</span> len;</span><br><span class="line">       <span class="keyword">boolean</span>[][] dp = <span class="keyword">new</span> <span class="keyword">boolean</span>[len][len];</span><br><span class="line">       <span class="keyword">int</span> i;</span><br><span class="line">       <span class="keyword">int</span> j;</span><br><span class="line">       <span class="keyword">int</span> row, column;</span><br><span class="line">       <span class="keyword">boolean</span> current;</span><br><span class="line">       <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">           dp[i][i] = <span class="keyword">true</span>;</span><br><span class="line">           count++;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt; len; i++)&#123;</span><br><span class="line">           <span class="keyword">for</span>(j = <span class="number">0</span>; j &lt;= len - i - <span class="number">1</span>; j++)&#123;</span><br><span class="line">               row = j;</span><br><span class="line">               column = i + j;</span><br><span class="line">               current = s.charAt(row) == s.charAt(column);</span><br><span class="line">               <span class="keyword">if</span>(current &amp;&amp; (i == <span class="number">1</span> || dp[row + <span class="number">1</span>][column - <span class="number">1</span>]))&#123;</span><br><span class="line">                   dp[row][column] = <span class="keyword">true</span>;</span><br><span class="line">                   count++;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">          </span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> count;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="分治法-中心扩散法">2. 分治法 + 中心扩散法</h3>
+<blockquote>
+<p><strong>分治法</strong>，对以不同字符为中心的回文分而治之，同时又将回文的长度分为奇数和偶数，奇数的中心有一个，而偶数的中心有两个.</p>
+<p>有一個規律：</p>
+<ul>
+<li>回文串左右兩邊同時去掉一個字符仍然是回文串；反之一個字符串不是回文串，</li>
+<li>那麽他左右兩邊不論加上什麽字符都不可能是回文串.</li>
+</ul>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countSubstrings</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">int</span> i;</span><br><span class="line">       <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; s.length(); i++)&#123;</span><br><span class="line">           count += countPalindrome(s, i, i);</span><br><span class="line">           count += countPalindrome(s, i, i + <span class="number">1</span>);</span><br><span class="line">       &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countPalindrome</span> <span class="params">(String s, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">       <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">while</span>(left &gt;= <span class="number">0</span> &amp;&amp; right &lt; s.length() &amp;&amp; s.charAt(left--) == s.charAt(right++))&#123;</span><br><span class="line">           count++;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> count;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>C++实现</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countSubstrings</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> m = s.size();</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            cnt += countPalindrome(s, i, i);    <span class="comment">// even length of string</span></span><br><span class="line">            cnt += countPalindrome(s, i, i+<span class="number">1</span>);  <span class="comment">// old length of string</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> cnt;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countPalindrome</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; s, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (l &gt;= <span class="number">0</span> &amp;&amp; r &lt; s.size() &amp;&amp; s[l--] == s[r++])</span><br><span class="line">        &#123;</span><br><span class="line">            ++cnt;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> cnt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="reference">Reference</h2>
+<p><a href="https://leetcode-cn.com/problems/palindromic-substrings/solution/dong-tai-gui-hua-yun-xing-shi-jian-11mszhong-xin-k/" target="_blank" rel="noopener">glamour解法</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/01/leetcode题解-712-两个字符串的最小ASCII删除和/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bowen Peng">
+      <meta itemprop="description" content="something about myself and my career development.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boven's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/11/01/leetcode题解-712-两个字符串的最小ASCII删除和/" class="post-title-link" itemprop="url">leetcode题解-712-两个字符串的最小ASCII删除和</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-01 15:16:47" itemprop="dateCreated datePublished" datetime="2019-11-01T15:16:47+08:00">2019-11-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-11-03 21:12:26" itemprop="dateModified" datetime="2019-11-03T21:12:26+08:00">2019-11-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/刷题/" itemprop="url" rel="index"><span itemprop="name">刷题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="https://leetcode-cn.com/problems/minimum-ascii-delete-sum-for-two-strings/" target="_blank" rel="noopener">题目</a></h2>
+<h2 id="官方解">官方解</h2>
+<h4 id="状态定义">状态定义：</h4>
+<p><span class="math display">\[
+\begin{align*}
+&amp; i:\ \text{字符串}s1的第i位\\
+&amp; j:\ \text{字符串}s2的第j位\\
+&amp; s1[i:]:\ 第i位到末尾的子串\\
+&amp; s2[j:]:\ 第j位到末尾的子串\\
+&amp; dp[i][j]:\ 表示使字符串s1[i:],s2[j:]从第i位到末尾的子串相等，要删除的ASCII码值最小 
+\end{align*}
+\]</span></p>
+<h4 id="状态转移方程">状态转移方程：</h4>
+<p><span class="math display">\[
+\begin{align*}
+dp[i][j] = \begin{cases} &amp; min(dp[i+1][j] + s1.asciiAtPos(i), dp[i][j+1] + s2.asciiAtPos(j))\ &amp; \text{if $s1[i] != s2[j]$ }\\
+&amp; df[i-1][j-1]\ &amp;\text{if $s1[i] = s2[j]$} \end{cases}
+\end{align*}
+\]</span></p>
+<h4 id="base-case">Base case:</h4>
+<p><span class="math display">\[
+\begin{align*}
+&amp;dp[i][j] = 0  &amp;\text{if $i == 0$ and $j == 0$} 
+\end{align*}
+\]</span></p>
+<h4 id="corner-case">Corner case:</h4>
+<p><span class="math display">\[
+dp[i][j] = 
+\begin{cases}
+&amp; dp[i+1][j] + s1.asciiAtPos(i) &amp; \text{if $s[j:].size() == 0$, 即$j==s1.size()$}\\
+&amp; dp[i][j+1] + s2.asciiAtPos(j) &amp; \text{if $s[i:].size() == 0$, 即$i==s1.size()$}\\
+\end{cases}
+\]</span></p>
+<h4 id="c实现">C++实现</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">minimumDeleteSum</span><span class="params">(<span class="built_in">string</span> s1, <span class="built_in">string</span> s2)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; dp(s1.size()+<span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(s2.size()+<span class="number">1</span>));</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> m = s1.size(), n = s2.size();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = m - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i)</span><br><span class="line">        &#123;</span><br><span class="line">            dp[i][n] = dp[i+<span class="number">1</span>][n] + s1[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = n - <span class="number">1</span>; j &gt;= <span class="number">0</span>; --j)</span><br><span class="line">        &#123;</span><br><span class="line">            dp[m][j] = dp[m][j+<span class="number">1</span>] + s2[j];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = m - <span class="number">1</span>; i &gt;= <span class="number">0</span>; --i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = n - <span class="number">1</span>; j &gt;= <span class="number">0</span>; --j)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (s1[i] == s2[j])</span><br><span class="line">                &#123;</span><br><span class="line">                    dp[i][j] = dp[i+<span class="number">1</span>][j+<span class="number">1</span>];</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    dp[i][j] = min(dp[i+<span class="number">1</span>][j] + s1[i], dp[i][j+<span class="number">1</span>] + s2[j]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> dp[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getStrAsciiSum</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span> s)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> i : s)</span><br><span class="line">        &#123;</span><br><span class="line">            sum += i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="java实现">Java实现</h4>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">minimumDeleteSum</span><span class="params">(String s1, String s2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[][] dp = <span class="keyword">new</span> <span class="keyword">int</span>[s1.length() + <span class="number">1</span>][s2.length() + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = s1.length() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            dp[i][s2.length()] = dp[i+<span class="number">1</span>][s2.length()] + s1.codePointAt(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = s2.length() - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">            dp[s1.length()][j] = dp[s1.length()][j+<span class="number">1</span>] + s2.codePointAt(j);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = s1.length() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = s2.length() - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">                <span class="keyword">if</span> (s1.charAt(i) == s2.charAt(j)) &#123;</span><br><span class="line">                    dp[i][j] = dp[i+<span class="number">1</span>][j+<span class="number">1</span>];</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    dp[i][j] = Math.min(dp[i+<span class="number">1</span>][j] + s1.codePointAt(i),</span><br><span class="line">                                        dp[i][j+<span class="number">1</span>] + s2.codePointAt(j));</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="总结">总结</h2>
+<ul>
+<li>类似于 <a href="https://leetcode-cn.com/problems/longest-common-subsequence" target="_blank" rel="noopener">最长公共子序列</a> 的一道题。</li>
+<li>在 二维DP数组初始化的时候，没有考虑到初始化大小为<span class="math inline">\((m+1)*(n+1)\)</span> .
+<ul>
+<li>对于<span class="math inline">\(dp[m][n] = 0\)</span>其实是一种 <strong>base case</strong>，</li>
+<li>是考虑到第<span class="math inline">\(m\)</span>位字符到第<span class="math inline">\(m\)</span>位字符上的一个情况，即 空串情况。</li>
+</ul></li>
+</ul>
+<h2 id="reference">Reference</h2>
+<p><a href="https://leetcode-cn.com/problems/minimum-ascii-delete-sum-for-two-strings/solution/liang-ge-zi-fu-chuan-de-zui-xiao-asciishan-chu-he-/" target="_blank" rel="noopener">leetcode官方解</a></p>
+<p><a href="https://leetcode-cn.com/problems/minimum-ascii-delete-sum-for-two-strings/solution/asciima-zui-da-de-zi-xu-lie-zui-chang-gong-tong-zi/" target="_blank" rel="noopener">Falcon解</a></p>
+<h3 id="extended">Extended</h3>
+<p><a href="https://en.cppreference.com/w/cpp/string/basic_string" target="_blank" rel="noopener">std::basic_string</a></p>
+<p><a href="https://en.cppreference.com/w/cpp/string/basic_string/substr" target="_blank" rel="noopener">basic_string/substr</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/31/leetcode题解-95-不同的二叉搜索树2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bowen Peng">
+      <meta itemprop="description" content="something about myself and my career development.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boven's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/10/31/leetcode题解-95-不同的二叉搜索树2/" class="post-title-link" itemprop="url">leetcode题解-95-不同的二叉搜索树2</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-10-31 20:46:50" itemprop="dateCreated datePublished" datetime="2019-10-31T20:46:50+08:00">2019-10-31</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-11-03 20:13:59" itemprop="dateModified" datetime="2019-11-03T20:13:59+08:00">2019-11-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/刷题/" itemprop="url" rel="index"><span itemprop="name">刷题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="https://leetcode-cn.com/problems/unique-binary-search-trees-ii/" target="_blank" rel="noopener">题目</a></h2>
+<h2 id="官方解">官方解</h2>
+<p>简要改自官网解。</p>
+<p>利用树的遍历，以递归方式实现不同二叉树的构造。</p>
+<img src="/2019/10/31/leetcode题解-95-不同的二叉搜索树2/tree.png" title="tree">
+<p>我们从序列 <span class="math inline">\(1 ...n\)</span> 中取出数字 <span class="math inline">\(i\)</span>，作为当前树的树根。于是，剩余 <span class="math inline">\(i - 1\)</span> 个元素可用于左子树，<span class="math inline">\(n - i\)</span> 个元素用于右子树。 如 前文所述，这样会产生 <span class="math inline">\(G(i - 1)\)</span> 种左子树 和 <span class="math inline">\(G(n - i)\)</span> 种右子树，其中 <span class="math inline">\(G\)</span> 是卡特兰数。</p>
+<p>现在，我们对序列 <span class="math inline">\(1 ... i - 1\)</span> 重复上述过程，以构建所有的左子树；然后对 <span class="math inline">\(i + 1 ... n\)</span> 重复，以构建所有的右子树。</p>
+<p>这样，我们就有了树根 <span class="math inline">\(i\)</span> 和可能的左子树、右子树的列表。</p>
+<p>最后一步，对两个列表循环，将左子树和右子树连接在根上。</p>
+<p>C++实现</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// [start, end]</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;TreeNode*&gt; generate_trees(<span class="keyword">int</span> start, <span class="keyword">int</span> end)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;TreeNode*&gt; all_trees;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (start &gt; end)</span><br><span class="line">        &#123;</span><br><span class="line">            all_trees.push_back(<span class="literal">NULL</span>);</span><br><span class="line">            <span class="keyword">return</span> all_trees;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// pick up a root </span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= end; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">vector</span>&lt;TreeNode*&gt; leftTrees = generate_trees(start, i - <span class="number">1</span>);</span><br><span class="line">            <span class="built_in">vector</span>&lt;TreeNode*&gt; rightTrees = generate_trees(i + <span class="number">1</span>, end);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">auto</span> l : leftTrees)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">auto</span> r : rightTrees)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="function">TreeNode* <span class="title">curTree</span><span class="params">(i)</span></span>;</span><br><span class="line">                    curTree-&gt;left = l;</span><br><span class="line">                    curTree-&gt;right = r;</span><br><span class="line">                    all_trees.push_back(curTree);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> all_trees;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">vector</span>&lt;TreeNode*&gt; generateTrees(<span class="keyword">int</span> n) </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">vector</span>&lt;TreeNode*&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> generate_trees(<span class="number">1</span>, n);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>Java实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> LinkedList&lt;TreeNode&gt; <span class="title">generate_trees</span><span class="params">(<span class="keyword">int</span> start, <span class="keyword">int</span> end)</span> </span>&#123;</span><br><span class="line">    LinkedList&lt;TreeNode&gt; all_trees = <span class="keyword">new</span> LinkedList&lt;TreeNode&gt;();</span><br><span class="line">    <span class="keyword">if</span> (start &gt; end) &#123;</span><br><span class="line">      all_trees.add(<span class="keyword">null</span>);</span><br><span class="line">      <span class="keyword">return</span> all_trees;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// pick up a root</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = start; i &lt;= end; i++) &#123;</span><br><span class="line">      <span class="comment">// all possible left subtrees if i is choosen to be a root</span></span><br><span class="line">      LinkedList&lt;TreeNode&gt; left_trees = generate_trees(start, i - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// all possible right subtrees if i is choosen to be a root</span></span><br><span class="line">      LinkedList&lt;TreeNode&gt; right_trees = generate_trees(i + <span class="number">1</span>, end);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// connect left and right trees to the root i</span></span><br><span class="line">      <span class="keyword">for</span> (TreeNode l : left_trees) &#123;</span><br><span class="line">        <span class="keyword">for</span> (TreeNode r : right_trees) &#123;</span><br><span class="line">          TreeNode current_tree = <span class="keyword">new</span> TreeNode(i);</span><br><span class="line">          current_tree.left = l;</span><br><span class="line">          current_tree.right = r;</span><br><span class="line">          all_trees.add(current_tree);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> all_trees;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> List&lt;TreeNode&gt; <span class="title">generateTrees</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> LinkedList&lt;TreeNode&gt;();</span><br></pre></td></tr></table></figure>
+<h2 id="reference">Reference</h2>
+<p><a href="https://leetcode-cn.com/problems/unique-binary-search-trees-ii/solution/bu-tong-de-er-cha-sou-suo-shu-ii-by-leetcode/" target="_blank" rel="noopener">官方解</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/31/leetcode题解-1227-风机座位分配概率/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1796,845 +2691,11 @@ dp[i][j].fir = max(piles[i] + dp[i+1][j].sec, piles[j] + dp[i][j-1].sec) \\
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/24/leetcode题解-1025-除数博弈/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bowen Peng">
-      <meta itemprop="description" content="something about myself and my career development.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Boven's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/10/24/leetcode题解-1025-除数博弈/" class="post-title-link" itemprop="url">leetcode题解: 1025.除数博弈</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-10-24 22:17:03" itemprop="dateCreated datePublished" datetime="2019-10-24T22:17:03+08:00">2019-10-24</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-11-03 20:14:18" itemprop="dateModified" datetime="2019-11-03T20:14:18+08:00">2019-11-03</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/刷题/" itemprop="url" rel="index"><span itemprop="name">刷题</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="https://leetcode-cn.com/problems/divisor-game/" target="_blank" rel="noopener">题目</a></h2>
-<h2 id="my-way">My way:</h2>
-<p>这题靠归纳推理，首先很明显就能看出来偶数的时候Alice赢了；</p>
-<p>然后多举了几个例子就发现奇数的时候Bob赢了。</p>
-<p>就直接一个条件语句，结束。</p>
-<p>但是尝试套dp的做法的时候，没捋清楚，看了综评最高的，基本懂了。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">divisorGame</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!(N &amp; <span class="number">1</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="综评最高解">综评最高解</h2>
-<h3 id="归纳法">1.归纳法：</h3>
-<p>基本思路：</p>
-<ul>
-<li><p>最终结果应该是占到 2 的赢，占到 1 的输；</p></li>
-<li><p>若当前为奇数，奇数的约数只能是奇数或者 1，因此下一个一定是偶数；</p></li>
-<li><p>若当前为偶数， 偶数的约数可以是奇数可以是偶数也可以是 1，因此直接减 1，则下一个是奇数；</p></li>
-</ul>
-<p>因此，<strong>奇则输，偶则赢</strong>。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">divisorGame</span><span class="params">(self, N: int)</span> -&gt; bool:</span></span><br><span class="line">        <span class="keyword">return</span> N%<span class="number">2</span>==<span class="number">0</span></span><br></pre></td></tr></table></figure>
-<h3 id="dp">2.DP:</h3>
-<ul>
-<li>定义状态
-<ul>
-<li><span class="math inline">\(i\)</span>: 数字<span class="math inline">\(N\)</span>为<span class="math inline">\(i\)</span>时；</li>
-<li><span class="math inline">\(f[i]\)</span>: 数字<span class="math inline">\(N\)</span>为<span class="math inline">\(i\)</span>时，Alice的胜负状况，<code>true</code>为胜，<code>false</code>为负。</li>
-</ul></li>
-<li>定义状态转移方程：</li>
-</ul>
-<p><span class="math display">\[
-f[i] = \begin{cases} 
-true, &amp; \text{if}\ f[i-j] == false,\ \text{if}\ i\ \%\ j == 0\ \\
-      &amp; and\ j\ is\ unsigned\ integer\ which \in (0, N) \  \\
-false, &amp; \text{otherwise}
-\end{cases}
-\]</span></p>
-<h4 id="实现">实现</h4>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">divisorGame</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; vi(N+<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; N + <span class="number">1</span>; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i / <span class="number">2</span>; ++j)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (vi[i-j] == <span class="literal">false</span> &amp;&amp; i % j == <span class="number">0</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    vi[i] = <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> vi[N];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>综评解</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">divisorGame</span><span class="params">(self, N: int)</span> -&gt; bool:</span></span><br><span class="line">        target = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(N+<span class="number">1</span>)]</span><br><span class="line">        target[<span class="number">1</span>] = <span class="number">0</span> <span class="comment">#若爱丽丝抽到1，则爱丽丝输</span></span><br><span class="line">        <span class="keyword">if</span> N&lt;=<span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">        </span><br><span class="line">            target[<span class="number">2</span>] = <span class="number">1</span> <span class="comment">#若爱丽丝抽到2，则爱丽丝赢</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">3</span>,N+<span class="number">1</span>):</span><br><span class="line">                <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">1</span>,i//<span class="number">2</span>):</span><br><span class="line">                    <span class="comment"># 若j是i的余数且target[i-j]为假（0）的话，则代表当前为真（1）</span></span><br><span class="line">                    <span class="keyword">if</span> i%j==<span class="number">0</span> <span class="keyword">and</span> target[i-j]==<span class="number">0</span>:</span><br><span class="line">                        target[i] = <span class="number">1</span></span><br><span class="line">                        <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">return</span> target[N]==<span class="number">1</span></span><br></pre></td></tr></table></figure>
-<h2 id="总结">总结</h2>
-<ul>
-<li>初等数学review:
-<ul>
-<li>奇数的因数： {奇数}</li>
-<li>偶数的因数： {偶数}</li>
-<li>奇数的最大公因数 = 奇数</li>
-</ul></li>
-<li>目前做到的dp还是简单递推问题，可以简单套换成：
-<ul>
-<li>状态<span class="math inline">\(i\)</span>就是数字为<span class="math inline">\(i\)</span>的时候</li>
-<li><span class="math inline">\(f[i]\)</span>就是数字为<span class="math inline">\(i\)</span>时候，结果为<span class="math inline">\(f[i]\)</span></li>
-</ul></li>
-</ul>
-<h2 id="reference">Reference</h2>
-<p><a href="https://leetcode-cn.com/problems/divisor-game/solution/python3gui-na-fa-by-pandawakaka/" target="_blank" rel="noopener">pandawakaka 给出的解</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/23/leetcode题解-338-比特位计数/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bowen Peng">
-      <meta itemprop="description" content="something about myself and my career development.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Boven's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/10/23/leetcode题解-338-比特位计数/" class="post-title-link" itemprop="url">leetcode题解: 338.比特位计数</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-10-23 21:29:29" itemprop="dateCreated datePublished" datetime="2019-10-23T21:29:29+08:00">2019-10-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-11-03 21:13:25" itemprop="dateModified" datetime="2019-11-03T21:13:25+08:00">2019-11-03</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/刷题/" itemprop="url" rel="index"><span itemprop="name">刷题</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="https://leetcode-cn.com/problems/counting-bits/" target="_blank" rel="noopener">题目</a></h2>
-<h2 id="my-way">My way:</h2>
-<p>这题tag是dp，按着dp的思路写出了 <strong>状态</strong>， <strong>状态转移方程</strong>包括 <em>边界条件</em>， <em>常规情况</em>。</p>
-<p>大致思路如下：</p>
-<ul>
-<li><p>定义状态：</p>
-<ul>
-<li><span class="math inline">\(i\)</span>: 数字为<span class="math inline">\(i\)</span>时；</li>
-<li><span class="math inline">\(f[i]\)</span>: 数字为i时，<span class="math inline">\(f[i]\)</span>表示有多少个1，在数字<span class="math inline">\(i\)</span>的二进制表示形式下。</li>
-</ul></li>
-<li><p>状态转移方程：</p>
-<ul>
-<li><p>边界：<span class="math inline">\(f[0] = [\ \ ]\)</span></p></li>
-<li><p>正常情况：(第一时间也拿不出来，通过举例拿到的，)</p>
-<p>eg.</p>
-<p><span class="math inline">\(f[1] = 1\)</span></p>
-<p><span class="math inline">\(f[2] = 1\)</span></p>
-<p><span class="math inline">\(f[3] = 1 + 1 = f[2] + f[1]\)</span></p>
-<p><span class="math inline">\(f[4] = 1\)</span></p>
-<p><span class="math inline">\(f[5] = 2 = f[4] + f[1]\)</span></p>
-<p><span class="math inline">\(f[6] = 2 = f[4] + f[2]\)</span></p>
-<p><span class="math inline">\(f[7] = 3 = f[4] + f[2] + f[1]\)</span></p>
-<p>得到： <span class="math display">\[
-f[i] = \begin{cases}
-[\ \ ], &amp; \text{if}\ i == 0 \\
-1, &amp; \text{if}\ i == 2^m,\ \text{m is unisgned integer} \\
-1 + f[i - j], &amp; \text{if}\ 2^j &lt; i &lt; 2^{j+1},\ \text{j is unsigned integer}
-\end{cases}
-\]</span> 合并下情况有： <span class="math display">\[
-f[i] = 1 + f[i-j],\ \text{if}\ 2^j &lt; i &lt; 2^{j+1},\ \text{j is unsigned integer}
-\]</span></p></li>
-</ul></li>
-</ul>
-<p>然后以Cpp实现了如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">        <span class="keyword">if</span> (num == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&#123;<span class="number">0</span>&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (num == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &#123;<span class="number">0</span>, <span class="number">1</span>&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi &#123;<span class="number">0</span>, <span class="number">1</span>&#125;;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; num+<span class="number">1</span>; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> j;</span><br><span class="line">            <span class="keyword">for</span> (j = <span class="number">0</span>; <span class="built_in">pow</span>(<span class="number">2</span>, j) &lt;= i; ++j)</span><br><span class="line">            &#123;&#125;</span><br><span class="line">            j = <span class="built_in">pow</span>(<span class="number">2</span>, j<span class="number">-1</span>);</span><br><span class="line">                    </span><br><span class="line">            <span class="keyword">int</span> val;</span><br><span class="line">            <span class="keyword">if</span> (i-j<span class="number">-1</span> == <span class="number">-1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                val = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                val = <span class="number">1</span> + vi[i-j];</span><br><span class="line">            &#125;</span><br><span class="line">            vi.push_back(val);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> vi;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>不过很遗憾这是一种<strong>很低效的解法</strong></p>
-<h2 id="standard-way">Standard Way</h2>
-<p>详细解释见之后reference的官方解释link处，这里只给出最后的思路/状态转移方程和我的一些理解及实现。</p>
-<h3 id="pop-count">1.Pop Count</h3>
-<h4 id="思路">思路</h4>
-<p>利用位运算<code>x &amp; (x - 1)</code>来不断消除最右边的一位1，直至数字为0时，可以算出这个数字有多少位1。</p>
-<p><strong>PS</strong>：确实没想到位运算这块，思维狭隘了。</p>
-<h4 id="实现">实现</h4>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">        <span class="keyword">if</span> (num == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&#123;<span class="number">0</span>&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (num == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &#123;<span class="number">0</span>, <span class="number">1</span>&#125;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi &#123;<span class="number">0</span>, <span class="number">1</span>, &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; num + <span class="number">1</span>; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            vi.push_back(pop_count(i));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> vi;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">pop_count</span><span class="params">(<span class="keyword">int</span> num)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 通过 x &amp;= x - 1 的位运算操作，来消除掉一个数从左到右的最右边的一个1</span></span><br><span class="line">        <span class="keyword">int</span> count;</span><br><span class="line">        <span class="keyword">for</span> (count = <span class="number">0</span>; num != <span class="number">0</span>; ++count)</span><br><span class="line">        &#123;</span><br><span class="line">            num &amp;= num - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>官方解这里利用了 default initialization来implicit初始化 未初始化的结果。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">        <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[num + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= num; ++i)</span><br><span class="line">            ans[i] = popcount(i);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">popcount</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count;</span><br><span class="line">        <span class="keyword">for</span> (count = <span class="number">0</span>; x != <span class="number">0</span>; ++count)</span><br><span class="line">          x &amp;= x - <span class="number">1</span>; <span class="comment">//zeroing out the least significant nonzero bit</span></span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="动态规划-最高有效位">2. 动态规划 + 最高有效位</h3>
-<h4 id="状态转移方程">状态转移方程</h4>
-<p>结合1解法的<code>pop_count</code> <span class="math inline">\(P(x)\)</span>函数来，有以下状态转移函数： <span class="math display">\[
-P(x+b) = P(x) + 1, b= 2^m &gt; x
-\]</span></p>
-<h4 id="我的理解">我的理解</h4>
-<p>能想到最左最高有效位刚好多一个1的情况，这个1在m位的话，则是多了<span class="math inline">\(2^m\)</span>值。</p>
-<h4 id="实现-1">实现</h4>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi(num+<span class="number">1</span>);</span><br><span class="line">        <span class="comment">// 可以不初始化为，gcc, clang下，float, double, size_t, unsigned会由default initialization初始化0</span></span><br><span class="line">        <span class="comment">// 同理, string会初始化为''</span></span><br><span class="line">        <span class="comment">//vi[0] = 0;</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> x = <span class="number">0</span>, b = <span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 利用外部循环来找到满足 b = 2^m &gt; x的情况</span></span><br><span class="line">        <span class="comment">// i = 0是因为每4个一循环，给下4个取值</span></span><br><span class="line">        <span class="keyword">for</span> ( ; b &lt;= num; b &lt;&lt;= <span class="number">1</span>, x = <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span> (x &lt; b &amp;&amp; x + b &lt;= num)</span><br><span class="line">            &#123;</span><br><span class="line">                vi[x+b] = vi[x] + <span class="number">1</span>;</span><br><span class="line">                ++x;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> vi;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>这里官方解的Java实现有个非常巧妙的地方：</p>
-<ul>
-<li>利用了 <code>while (b &lt;= num) {...}</code>的外部循环来找到 <span class="math inline">\(b = 2^m &gt; x\)</span> 的<span class="math inline">\(b\)</span>值</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># standard solution</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">        <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[num + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, b = <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// [0, b) is calculated</span></span><br><span class="line">        <span class="keyword">while</span> (b &lt;= num) &#123;</span><br><span class="line">            <span class="comment">// generate [b, 2b) or [b, num) from [0, b)</span></span><br><span class="line">            <span class="keyword">while</span>(i &lt; b &amp;&amp; i + b &lt;= num)&#123;</span><br><span class="line">                ans[i + b] = ans[i] + <span class="number">1</span>;</span><br><span class="line">                ++i;</span><br><span class="line">            &#125;</span><br><span class="line">            i = <span class="number">0</span>;   <span class="comment">// reset i</span></span><br><span class="line">            b &lt;&lt;= <span class="number">1</span>; <span class="comment">// b = 2b</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="动态规划-最低有效位">3. 动态规划 + 最低有效位</h3>
-<h4 id="状态转移方程-1">状态转移方程</h4>
-<p>同样基于<code>pop_count()</code>函数 <span class="math display">\[
-P(x) = P(x/2) + (x\ mod\ 2)
-\]</span></p>
-<h4 id="我的理解-1">我的理解</h4>
-<p>同理2解法，由最高有效位，想到最低有效位：</p>
-<h4 id="实现-2">实现</h4>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi(num+<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> ( ; i &lt; num + <span class="number">1</span>; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            vi[i] = vi[i/<span class="number">2</span>] + (i % <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> vi;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>这里官方解，利用了位运算来代替已有的<code>/</code>和<code>%</code>运算：</p>
-<ul>
-<li><code>x &gt;&gt; 1</code> &lt;=&gt; <code>x / 2</code></li>
-<li><code>x &amp; 1</code> &lt;=&gt; <code>x % 2</code></li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">int</span>[] countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">      <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[num + <span class="number">1</span>];</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= num; ++i)</span><br><span class="line">        ans[i] = ans[i &gt;&gt; <span class="number">1</span>] + (i &amp; <span class="number">1</span>); <span class="comment">// x / 2 is x &gt;&gt; 1 and x % 2 is x &amp; 1</span></span><br><span class="line">      <span class="keyword">return</span> ans;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="动态规划-最后设置位">4.动态规划 + 最后设置位</h3>
-<h4 id="状态转移方程-2">状态转移方程</h4>
-<p>同样基于<code>pop_count()</code>函数 <span class="math display">\[
-P(x) = P(x\ \&amp;\ (x-1)) + 1
-\]</span></p>
-<h4 id="我的理解-2">我的理解</h4>
-<p>利用位运算<code>x &amp; (x-1)</code>消除最右边的一位“1”，</p>
-<p>使得 <code>x</code> 比 <code>x &amp; (x-1)</code> 少一位“1”， 加上这个“1”即可.</p>
-<h4 id="实现-3">实现</h4>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi(num+<span class="number">1</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; num + <span class="number">1</span>; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            vi[i] = vi[i &amp; (i - <span class="number">1</span>)] + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> vi;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>官方解：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">int</span>[] countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">      <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[num + <span class="number">1</span>];</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= num; ++i)</span><br><span class="line">        ans[i] = ans[i &amp; (i - <span class="number">1</span>)] + <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">return</span> ans;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="总结">总结</h2>
-<ul>
-<li><p>简单DP，注意定义好状态，写出状态转移方程，然后注意corner case。写成代码即可。</p></li>
-<li><p>注意涉及到 <strong>2进制</strong>， <strong>全0 1 的数字</strong>， <strong>非负整数, unsigned, size_t, size_type</strong>等等，</p>
-<p>往位运算上面想。</p></li>
-<li><p>总结这里的位运算操作，之后考虑全部总结下常见位运算操作, 我记得耗子有篇文章总结了很多这方面的。</p>
-<ul>
-<li><code>x &amp; (x - 1)</code> 消除 <code>x</code> 的最右边的一位1. (PS: 这一个确实不熟悉，虽然也见过)</li>
-<li><code>x &lt;&lt; 2</code> &lt;=&gt; <code>x * 2</code></li>
-<li><code>x &gt;&gt; 2</code> &lt;=&gt; <code>x / 2</code></li>
-<li><code>x &amp; 1</code> &lt;=&gt; <code>x % 2</code></li>
-</ul>
-<p>(PS：那篇文章link找不到了)</p></li>
-</ul>
-<h2 id="reference">Reference</h2>
-<p><a href="https://leetcode-cn.com/problems/counting-bits/solution/bi-te-wei-ji-shu-by-leetcode/" target="_blank" rel="noopener">leetcode官方解答</a></p>
-<p><a href="https://tex.stackexchange.com/questions/9065/large-braces-for-specifying-values-of-variables-by-condition" target="_blank" rel="noopener">Large braces for specifying values of variables by condition</a></p>
-<h3 id="extended-knowledge">Extended knowledge</h3>
-<p><a href="https://en.cppreference.com/w/cpp/utility/bitset/bitset" target="_blank" rel="noopener">std::bitset<n>::bitset in cppreference</n></a></p>
-<p><a href="https://stackoverflow.com/questions/7349689/how-to-print-using-cout-a-number-in-binary-form" target="_blank" rel="noopener">How to print (using cout) a number in binary form?</a></p>
-<p><a href="http://www.enseignement.polytechnique.fr/informatique/INF478/docs/Cpp/en/cpp/language/default_initialization.html" target="_blank" rel="noopener">default initialization</a></p>
-<p><a href="https://en.cppreference.com/w/cpp/language/lifetime" target="_blank" rel="noopener">lifetime</a></p>
-<p><a href="https://stackoverflow.com/questions/48775464/why-does-c-initialise-a-stdvector-with-zeros-but-not-a-stdarray" target="_blank" rel="noopener">Why does c++ initialise a std::vector with zeros, but not a std::array?</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/23/小结及之后/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bowen Peng">
-      <meta itemprop="description" content="something about myself and my career development.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Boven's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/10/23/小结及之后/" class="post-title-link" itemprop="url">小结及之后</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-10-23 20:55:33 / 修改时间：21:13:19" itemprop="dateCreated datePublished" datetime="2019-10-23T20:55:33+08:00">2019-10-23</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/杂谈/" itemprop="url" rel="index"><span itemprop="name">杂谈</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="小结">小结</h2>
-<p>之前都去打了些结构化数据的比赛，也补了不少基础知识，尽管没有按当初的计划来。</p>
-<p>尽管我觉得目前取得成绩不太够用吧，总结下有：</p>
-<ul>
-<li>上海电信“添翼杯”成绩预测20名（吐槽下这破比赛结束，官网就没了？？？）</li>
-<li>kaggle Instant Gratification solo铜牌</li>
-<li>19讯飞反欺诈，初赛第8，复赛a榜14，b榜24</li>
-<li>DataCastle 国能日新光伏预测功率第二届第6名</li>
-</ul>
-<p>多多少少打了些咸鱼成绩出来。</p>
-<p>最惨的还是讯飞，基本上2-3个月天天熬。初赛最后分数还算不错，到了复赛因为数据量太大，导致CatBoost在Shrink Model的时候峰值占用的内存会高到至少100g+和租的辣鸡DBC服务器疯狂卡结果，最后几天把我队的两个模型结果卡住没出来了。以及top3的选手开源了一个高分代码，上分操作与我队有一些重合，拉高了复赛线。</p>
-<p>暂时有空抽时间把前面两篇坑了的博客补了，Data Science/ Machine Learning这块考虑暂时就放一段时间了。</p>
-<h2 id="之后">之后？</h2>
-<p>开始刷leetcode和补一些以前干的后台开发相关的活了。</p>
-<ul>
-<li>刷下Cpp reference啥啥的，把一些忘了的Cpp相关的东西捡起来；</li>
-<li>每天至少龟系刷题1道，先从dp刷起来。1~2个月之后再考虑兔系刷题；</li>
-<li>补下APUE那套东西，以前碰过，现在忘了不少；</li>
-<li>接触下NoSQL，Redis这套；</li>
-</ul>
-<h3 id="ps">PS:</h3>
-<p>以后写博客就不会那么详细，主要还是自己理解，留下一步一个脚印。</p>
-<h3 id="pps">PPS：</h3>
-<p>至于比赛还打不打，看时间够不够吧，能支撑自己走下去的只有求生欲了。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/07/01/在调用folds-split进行交叉检验时，使用tqdm记录每折时间/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bowen Peng">
-      <meta itemprop="description" content="something about myself and my career development.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Boven's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/01/在调用folds-split进行交叉检验时，使用tqdm记录每折时间/" class="post-title-link" itemprop="url">在调用folds-split进行交叉检验时，使用tqdm记录每折时间</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-01 11:00:53 / 修改时间：11:04:44" itemprop="dateCreated datePublished" datetime="2019-07-01T11:00:53+08:00">2019-07-01</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2676,7 +2737,7 @@ P(x) = P(x\ \&amp;\ (x-1)) + 1
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">49</span>
+                    <span class="site-state-item-count">53</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
