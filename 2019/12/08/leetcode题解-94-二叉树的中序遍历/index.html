@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="Boven&#39;s Blog">
 <meta property="og:description" content="题目 My way 递归实现 123456789101112131415161718192021222324252627/** * Definition for a binary tree node. * struct TreeNode &amp;#123; *     int val; *     TreeNode *left; *     TreeNode *right; *     TreeN">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-08T15:12:19.842Z">
+<meta property="og:updated_time" content="2019-12-08T15:15:28.419Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode题解-94-二叉树的中序遍历">
 <meta name="twitter:description" content="题目 My way 递归实现 123456789101112131415161718192021222324252627/** * Definition for a binary tree node. * struct TreeNode &amp;#123; *     int val; *     TreeNode *left; *     TreeNode *right; *     TreeN">
@@ -417,7 +417,7 @@
                 
               
 
-              <time title="创建时间：2019-12-08 22:34:10 / 修改时间：23:12:19" itemprop="dateCreated datePublished" datetime="2019-12-08T22:34:10+08:00">2019-12-08</time>
+              <time title="创建时间：2019-12-08 22:34:10 / 修改时间：23:15:28" itemprop="dateCreated datePublished" datetime="2019-12-08T22:34:10+08:00">2019-12-08</time>
             
 
             
@@ -484,8 +484,10 @@
 <ul>
 <li>因为中序遍历是 &quot;<strong>左根右</strong>&quot;，所以得
 <ul>
-<li>先遍历到最左的结点，则这个结点可能是 &quot;<strong>左根右</strong>&quot;中的 <strong>左</strong> 或者 <strong>根</strong></li>
+<li>先遍历到最左的结点，则这个结点可能是 &quot;<strong>左根右</strong>&quot;中的 <strong>左</strong> 或者 <strong>根</strong> 或者 <strong>null</strong></li>
 <li>若为 <strong>左</strong>/<strong>根</strong>， 则 都需保存它的右孩子(为<strong>空</strong>/<strong>不空</strong>)，然后继续考察他的 ”<strong>左根右</strong>“结构。</li>
+<li>若<strong>不为null</strong>， 则 保存当前结点，且继续往左孩子遍历</li>
+<li>若 <strong>为null</strong>，则 弹栈 并 打印当前栈顶元素值，然后往右孩子遍历</li>
 </ul></li>
 </ul>
 
