@@ -96,14 +96,18 @@
 
 
 
-  <meta property="og:type" content="article">
+  <meta name="description" content="题目 My way 递归实现 1234567891011121314151617181920212223242526/** * Definition for a binary tree node. * struct TreeNode &amp;#123; *     int val; *     TreeNode *left; *     TreeNode *right; *     TreeNod">
+<meta name="keywords" content="leetcode,递归,树,树的遍历,√">
+<meta property="og:type" content="article">
 <meta property="og:title" content="leetcode题解-144-二叉树的前序遍历">
 <meta property="og:url" content="http://yoursite.com/2019/12/08/leetcode题解-144-二叉树的前序遍历/index.html">
 <meta property="og:site_name" content="Boven&#39;s Blog">
+<meta property="og:description" content="题目 My way 递归实现 1234567891011121314151617181920212223242526/** * Definition for a binary tree node. * struct TreeNode &amp;#123; *     int val; *     TreeNode *left; *     TreeNode *right; *     TreeNod">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-08T12:48:46.002Z">
+<meta property="og:updated_time" content="2019-12-08T14:33:07.091Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode题解-144-二叉树的前序遍历">
+<meta name="twitter:description" content="题目 My way 递归实现 1234567891011121314151617181920212223242526/** * Definition for a binary tree node. * struct TreeNode &amp;#123; *     int val; *     TreeNode *left; *     TreeNode *right; *     TreeNod">
 
 
 
@@ -413,7 +417,7 @@
                 
               
 
-              <time title="创建时间：2019-12-08 20:48:45 / 修改时间：20:48:46" itemprop="dateCreated datePublished" datetime="2019-12-08T20:48:45+08:00">2019-12-08</time>
+              <time title="创建时间：2019-12-08 20:48:45 / 修改时间：22:33:07" itemprop="dateCreated datePublished" datetime="2019-12-08T20:48:45+08:00">2019-12-08</time>
             
 
             
@@ -423,6 +427,24 @@
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/刷题/" itemprop="url" rel="index"><span itemprop="name">刷题</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -452,7 +474,16 @@
       
 
       
-        
+        <h2 id="题目"><a href="https://leetcode-cn.com/problems/binary-tree-preorder-traversal/" target="_blank" rel="noopener">题目</a></h2>
+<h3 id="my-way">My way</h3>
+<h4 id="递归实现">递归实现</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">helper</span><span class="params">(TreeNode* root)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root)  <span class="keyword">return</span> ;</span><br><span class="line">        vi.push_back(root-&gt;val);</span><br><span class="line">        helper(root-&gt;left); </span><br><span class="line">        helper(root-&gt;right);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; preorderTraversal(TreeNode* root) &#123;</span><br><span class="line">        helper(root);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> vi;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="手动压栈实现">手动压栈实现</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; preorderTraversal(TreeNode* root) </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (root) </span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">stack</span>&lt;TreeNode*&gt; s;</span><br><span class="line">            s.push(root);</span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span> (!s.empty())</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">auto</span> top = s.top(); s.pop();</span><br><span class="line">                vi.push_back(top-&gt;val);</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (top-&gt;right)    s.push(top-&gt;right);</span><br><span class="line">                <span class="keyword">if</span> (top-&gt;left)    s.push(top-&gt;left); </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;   </span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> vi;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="总结">总结</h3>
+<ul>
+<li>因为前序遍历是 ”<strong>根左右</strong>“，所以手动入栈的时候是 <strong>先右孩子，再左孩子</strong></li>
+</ul>
 
       
     </div>
@@ -473,6 +504,20 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          
+            <a href="/tags/递归/" rel="tag"># 递归</a>
+          
+            <a href="/tags/树/" rel="tag"># 树</a>
+          
+            <a href="/tags/树的遍历/" rel="tag"># 树的遍历</a>
+          
+            <a href="/tags/√/" rel="tag"># √</a>
+          
+        </div>
       
 
       
@@ -539,8 +584,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -555,7 +609,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">53</span>
+                    <span class="site-state-item-count">54</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -734,6 +788,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#my-way"><span class="nav-number">1.1.</span> <span class="nav-text">My way</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#递归实现"><span class="nav-number">1.1.1.</span> <span class="nav-text">递归实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#手动压栈实现"><span class="nav-number">1.1.2.</span> <span class="nav-text">手动压栈实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">1.2.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       

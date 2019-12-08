@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode题解-94-二叉树的中序遍历]]></title>
+    <url>%2F2019%2F12%2F08%2Fleetcode%E9%A2%98%E8%A7%A3-94-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E4%B8%AD%E5%BA%8F%E9%81%8D%E5%8E%86%2F</url>
+    <content type="text"><![CDATA[题目 My way 递归实现 123456789101112131415161718192021222324252627/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;private: vector&lt;int&gt; vi; void helper(TreeNode* root) &#123; if (!root) return ; helper(root-&gt;left); vi.push_back(root-&gt;val); helper(root-&gt;right); &#125;public: vector&lt;int&gt; inorderTraversal(TreeNode* root) &#123; helper(root); return vi; &#125;&#125;; 12345678910111213141516171819202122232425262728293031323334353637383940/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;private: vector&lt;int&gt; vi;public: vector&lt;int&gt; inorderTraversal(TreeNode* root) &#123; if (root) &#123; stack&lt;TreeNode*&gt; s; while(!s.empty() || root) &#123; if (root) &#123; s.push(root); root = root-&gt;left; &#125; else &#123; root = s.top(); s.pop(); vi.push_back(root-&gt;val); root = root-&gt;right; &#125; &#125; &#125; return vi; &#125;&#125;;]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>递归</tag>
+        <tag>树</tag>
+        <tag>树的遍历</tag>
+        <tag>√</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解-590-N叉树的后序遍历]]></title>
     <url>%2F2019%2F12%2F08%2Fleetcode%E9%A2%98%E8%A7%A3-590-N%E5%8F%89%E6%A0%91%E7%9A%84%E5%90%8E%E5%BA%8F%E9%81%8D%E5%8E%86%2F</url>
     <content type="text"><![CDATA[]]></content>
@@ -18,7 +33,17 @@
   <entry>
     <title><![CDATA[leetcode题解-144-二叉树的前序遍历]]></title>
     <url>%2F2019%2F12%2F08%2Fleetcode%E9%A2%98%E8%A7%A3-144-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E5%BA%8F%E9%81%8D%E5%8E%86%2F</url>
-    <content type="text"><![CDATA[]]></content>
+    <content type="text"><![CDATA[题目 My way 递归实现 1234567891011121314151617181920212223242526/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;private: vector&lt;int&gt; vi; void helper(TreeNode* root) &#123; if (!root) return ; vi.push_back(root-&gt;val); helper(root-&gt;left); helper(root-&gt;right); &#125;public: vector&lt;int&gt; preorderTraversal(TreeNode* root) &#123; helper(root); return vi; &#125;&#125;; 手动压栈实现 12345678910111213141516171819202122232425262728293031323334/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;private: vector&lt;int&gt; vi;public: vector&lt;int&gt; preorderTraversal(TreeNode* root) &#123; if (root) &#123; stack&lt;TreeNode*&gt; s; s.push(root); while (!s.empty()) &#123; auto top = s.top(); s.pop(); vi.push_back(top-&gt;val); if (top-&gt;right) s.push(top-&gt;right); if (top-&gt;left) s.push(top-&gt;left); &#125; &#125; return vi; &#125;&#125;; 总结 因为前序遍历是 ”根左右“，所以手动入栈的时候是 先右孩子，再左孩子]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>递归</tag>
+        <tag>树</tag>
+        <tag>树的遍历</tag>
+        <tag>√</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[leetcode题解-429-N叉树的层序遍历]]></title>
@@ -428,8 +453,8 @@
         <tag>leetcode</tag>
         <tag>×</tag>
         <tag>动态规划</tag>
-        <tag>数组对角遍历</tag>
         <tag>字符串</tag>
+        <tag>数组对角遍历</tag>
         <tag>中心扩散法</tag>
       </tags>
   </entry>
