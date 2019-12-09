@@ -96,23 +96,18 @@
 
 
 
-  <meta name="description" content="题目 官方解 数学way 直接从官方解处摘抄过来，很有意思的数学归纳证明思想。如下： 显然，亚历克斯总是赢得 2 堆时的游戏。 通过一些努力，我们可以获知她总是赢得 4 堆时的游戏。 如果亚历克斯最初获得第一堆，她总是可以拿第三堆。 如果她最初取到第四堆，她总是可以取第二堆。第一 + 第三，第二 + 第四 中的至少一组是更大的，所以她总能获胜。 我们可以将这个想法扩展到 N 堆的情况下">
-<meta name="keywords" content="leetcode,×,DP,二维dp,博弈问题">
+  <meta name="description" content="题目 官方 递归实现 考虑4种情况：  如果当前节点有两个孩子，那我们在递归时，需要在两个孩子的结果外都加上一层括号； 如果当前节点没有孩子，那我们不需要在节点后面加上任何括号； 如果当前节点只有左孩子，那我们在递归时，只需要在左孩子的结果外加上一层括号，而不需要给右孩子加上任何括号； 如果当前节点只有右孩子，那我们在递归时，需要先加上一层空的括号 () 表示左孩子为空，再对右孩子">
+<meta name="keywords" content="leetcode,递归,树,树的遍历,√,栈,括号匹配,stringstream">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode题解: 877.石子游戏">
-<meta property="og:url" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/index.html">
+<meta property="og:title" content="leetcode题解-606-根据二叉树创建字符串">
+<meta property="og:url" content="http://yoursite.com/2019/12/09/leetcode题解-606-根据二叉树创建字符串/index.html">
 <meta property="og:site_name" content="Boven&#39;s Blog">
-<meta property="og:description" content="题目 官方解 数学way 直接从官方解处摘抄过来，很有意思的数学归纳证明思想。如下： 显然，亚历克斯总是赢得 2 堆时的游戏。 通过一些努力，我们可以获知她总是赢得 4 堆时的游戏。 如果亚历克斯最初获得第一堆，她总是可以拿第三堆。 如果她最初取到第四堆，她总是可以取第二堆。第一 + 第三，第二 + 第四 中的至少一组是更大的，所以她总能获胜。 我们可以将这个想法扩展到 N 堆的情况下">
+<meta property="og:description" content="题目 官方 递归实现 考虑4种情况：  如果当前节点有两个孩子，那我们在递归时，需要在两个孩子的结果外都加上一层括号； 如果当前节点没有孩子，那我们不需要在节点后面加上任何括号； 如果当前节点只有左孩子，那我们在递归时，只需要在左孩子的结果外加上一层括号，而不需要给右孩子加上任何括号； 如果当前节点只有右孩子，那我们在递归时，需要先加上一层空的括号 () 表示左孩子为空，再对右孩子">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/dp_table_1.png">
-<meta property="og:image" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/dp_table_2.png">
-<meta property="og:image" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/dp_table_3.png">
-<meta property="og:image" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/dp_table_4.png">
-<meta property="og:updated_time" content="2019-11-03T12:13:31.030Z">
+<meta property="og:updated_time" content="2019-12-09T14:34:00.214Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode题解: 877.石子游戏">
-<meta name="twitter:description" content="题目 官方解 数学way 直接从官方解处摘抄过来，很有意思的数学归纳证明思想。如下： 显然，亚历克斯总是赢得 2 堆时的游戏。 通过一些努力，我们可以获知她总是赢得 4 堆时的游戏。 如果亚历克斯最初获得第一堆，她总是可以拿第三堆。 如果她最初取到第四堆，她总是可以取第二堆。第一 + 第三，第二 + 第四 中的至少一组是更大的，所以她总能获胜。 我们可以将这个想法扩展到 N 堆的情况下">
-<meta name="twitter:image" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/dp_table_1.png">
+<meta name="twitter:title" content="leetcode题解-606-根据二叉树创建字符串">
+<meta name="twitter:description" content="题目 官方 递归实现 考虑4种情况：  如果当前节点有两个孩子，那我们在递归时，需要在两个孩子的结果外都加上一层括号； 如果当前节点没有孩子，那我们不需要在节点后面加上任何括号； 如果当前节点只有左孩子，那我们在递归时，只需要在左孩子的结果外加上一层括号，而不需要给右孩子加上任何括号； 如果当前节点只有右孩子，那我们在递归时，需要先加上一层空的括号 () 表示左孩子为空，再对右孩子">
 
 
 
@@ -120,7 +115,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/">
+  <link rel="canonical" href="http://yoursite.com/2019/12/09/leetcode题解-606-根据二叉树创建字符串/">
 
 
 
@@ -130,7 +125,7 @@
   };
 </script>
 
-  <title>leetcode题解: 877.石子游戏 | Boven's Blog</title>
+  <title>leetcode题解-606-根据二叉树创建字符串 | Boven's Blog</title>
   
 
 
@@ -379,7 +374,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/09/leetcode题解-606-根据二叉树创建字符串/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bowen Peng">
@@ -396,7 +391,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">leetcode题解: 877.石子游戏
+          <h1 class="post-title" itemprop="name headline">leetcode题解-606-根据二叉树创建字符串
 
               
             
@@ -422,24 +417,12 @@
                 
               
 
-              <time title="创建时间：2019-10-27 21:52:40" itemprop="dateCreated datePublished" datetime="2019-10-27T21:52:40+08:00">2019-10-27</time>
+              <time title="创建时间：2019-12-09 21:25:07 / 修改时间：22:34:00" itemprop="dateCreated datePublished" datetime="2019-12-09T21:25:07+08:00">2019-12-09</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-11-03 20:13:31" itemprop="dateModified" datetime="2019-11-03T20:13:31+08:00">2019-11-03</time>
               
             
           </span>
@@ -491,94 +474,44 @@
       
 
       
-        <h2 id="题目"><a href="https://leetcode-cn.com/problems/stone-game/" target="_blank" rel="noopener">题目</a></h2>
-<h2 id="官方解">官方解</h2>
-<h3 id="数学way">数学way</h3>
-<p>直接从官方解处摘抄过来，很有意思的数学归纳证明思想。如下：</p>
-<p>显然，亚历克斯总是赢得 2 堆时的游戏。 通过一些努力，我们可以获知她总是赢得 4 堆时的游戏。</p>
-<p>如果亚历克斯最初获得第一堆，她总是可以拿第三堆。 如果她最初取到第四堆，她总是可以取第二堆。第一 + 第三，第二 + 第四 中的至少一组是更大的，所以她总能获胜。</p>
-<p>我们可以将这个想法扩展到 N 堆的情况下。设第一、第三、第五、第七桩是白色的，第二、第四、第六、第八桩是黑色的。 亚历克斯总是可以拿到所有白色桩或所有黑色桩，其中一种颜色具有的石头数量必定大于另一种颜色的。</p>
-<p>因此，亚历克斯总能赢得比赛。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">stoneGame</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; piles)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="综评最高解">综评最高解</h2>
-<p>在dp解释上强于官方解，简要摘取部分过程，详细见reference处。</p>
-<p>对于<span class="math inline">\(piles=[3, 9, 1, 2]\)</span>,</p>
-<img src="/2019/10/27/leetcode题解-877-石子游戏/dp_table_1.png" title="dp_table">
-<h4 id="定义状态">定义<strong>状态</strong>：</h4>
-<p><span class="math display">\[
-dp[i][j].fir\ or\ dp[i][j].sec\\
-其中：\\
-0 &lt;= i &lt; piles.length, i相当于石子堆最左堆\\
-i &lt;= j &lt; piles.length, j相当于石子堆最右堆
-\]</span> 其中， <span class="math display">\[
-dp[i][j].fir表示，对于piles[i...j]这部分石子，先手能获得的最高分数 \\
-dp[i][j].sec表示，对于piles[i...j]这部分石子，后手能获得的最高分数
-\]</span></p>
-<h4 id="状态转移方程为"><strong>状态转移方程</strong>为：</h4>
-<p><span class="math display">\[
-dp[i][j].fir = max(piles[i] + dp[i+1][j].sec, piles[j] + dp[i][j-1].sec) \\
-\]</span></p>
-<p>$$ <span class="math display">\[\begin{align*}
-&amp; if 先手选择左边:
-    dp[i][j].sec = dp[i+1][j].fir \\
-&amp; if 先手选择右边:
-    dp[i][j].sec = dp[i][j-1].fir \\
-
-&amp; 解释：\\
-
-&amp; 我作为后手，要等先手先选择，有两种情况： \\
-&amp; 如果先手选择了最左边那堆，给我剩下了 piles[i+1...j] \\
-&amp; 此时轮到我，我变成了先手；\\
-&amp; 如果先手选择了最右边那堆，给我剩下了 piles[i...j-1] \\ 
-&amp; 此时轮到我，我变成了先手。\\
-\end{align*}\]</span> $$</p>
-<h4 id="base-case">base case</h4>
-<p><span class="math display">\[
-\begin{align*}
-&amp; dp[i][j].fir = piles[i] \\
-&amp; dp[i][j].sec = 0 \\
-&amp; 其中 0 &lt;= i == j &lt; n \\
-&amp; 解释：i 和 j 相等就是说面前只有一堆石头 piles[i] \\
-&amp; 那么显然先手的得分为 piles[i] \\
-&amp; 后手没有石头拿了，得分为 0 \\
-\end{align*}
-\]</span></p>
-<img src="/2019/10/27/leetcode题解-877-石子游戏/dp_table_2.png" title="dp_table">
-<p>这里需要注意一点，我们发现 <span class="math inline">\(base\ case\)</span>是斜着的，而且我们推算 <code>dp[i][j]</code> 时需要用到 <code>dp[i+1][j]</code> 和 <code>dp[i][j-1]</code>：</p>
-<img src="/2019/10/27/leetcode题解-877-石子游戏/dp_table_3.png" title="dp_table">
-<p>所以说算法不能简单的一行一行遍历 <code>dp</code> 数组，<strong>而要斜着遍历数组</strong>：</p>
-<img src="/2019/10/27/leetcode题解-877-石子游戏/dp_table_4.png" title="dp_table">
-<h4 id="实现">实现</h4>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">stoneGame</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; piles)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = piles.size();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// initialize dp array</span></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt;&gt; dp(n, <span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt;(n, make_pair(<span class="number">0</span>, <span class="number">0</span>)));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// fill with base case</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            dp[i][i].first = piles[i];</span><br><span class="line">            dp[i][i].second = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// traverse array in a diagonal way</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">2</span>; l &lt;= n; ++l)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n - l; ++i)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">int</span> j = i + l - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 先手选择最左边或者最右边的分数</span></span><br><span class="line">                <span class="keyword">int</span> left = piles[i] + dp[i+<span class="number">1</span>][j].second;</span><br><span class="line">                <span class="keyword">int</span> right = piles[j] + dp[i][j<span class="number">-1</span>].second;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 套用状态转移方程</span></span><br><span class="line">                <span class="keyword">if</span> (left &gt; right)</span><br><span class="line">                &#123;</span><br><span class="line">                    dp[i][j].first = left;</span><br><span class="line">                    dp[i][j].second = dp[i+<span class="number">1</span>][j].first;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    dp[i][j].first = right;</span><br><span class="line">                    dp[i][j].second = dp[i][j<span class="number">-1</span>].first;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; res(dp[<span class="number">0</span>][n<span class="number">-1</span>]);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res.first - res.second;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>综评Java实现</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 返回游戏最后先手和后手的得分之差 */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">stoneGame</span><span class="params">(<span class="keyword">int</span>[] piles)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = piles.length;</span><br><span class="line">    <span class="comment">// 初始化 dp 数组</span></span><br><span class="line">    Pair[][] dp = <span class="keyword">new</span> Pair[n][n];</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; n; j++)</span><br><span class="line">            dp[i][j] = <span class="keyword">new</span> Pair(<span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    <span class="comment">// 填入 base case</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        dp[i][i].fir = piles[i];</span><br><span class="line">        dp[i][i].sec = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 斜着遍历数组</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">2</span>; l &lt;= n; l++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n - l; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> j = l + i - <span class="number">1</span>;</span><br><span class="line">            <span class="comment">// 先手选择最左边或最右边的分数</span></span><br><span class="line">            <span class="keyword">int</span> left = piles[i] + dp[i+<span class="number">1</span>][j].sec;</span><br><span class="line">            <span class="keyword">int</span> right = piles[j] + dp[i][j-<span class="number">1</span>].sec;</span><br><span class="line">            <span class="comment">// 套用状态转移方程</span></span><br><span class="line">            <span class="keyword">if</span> (left &gt; right) &#123;</span><br><span class="line">                dp[i][j].fir = left;</span><br><span class="line">                dp[i][j].sec = dp[i+<span class="number">1</span>][j].fir;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                dp[i][j].fir = right;</span><br><span class="line">                dp[i][j].sec = dp[i][j-<span class="number">1</span>].fir;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    Pair res = dp[<span class="number">0</span>][n-<span class="number">1</span>];</span><br><span class="line">    <span class="keyword">return</span> res.fir - res.sec;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="总结">总结</h2>
+        <h2 id="题目"><a href="https://leetcode-cn.com/problems/construct-string-from-binary-tree/" target="_blank" rel="noopener">题目</a></h2>
+<h3 id="官方"><a href="https://leetcode-cn.com/problems/construct-string-from-binary-tree/solution/gen-ju-er-cha-shu-chuang-jian-zi-fu-chuan-by-leetc/" target="_blank" rel="noopener">官方</a></h3>
+<h4 id="递归实现">递归实现</h4>
+<p>考虑4种情况：</p>
+<ol type="1">
+<li>如果当前节点有两个孩子，那我们在递归时，需要在两个孩子的结果外都加上一层括号；</li>
+<li>如果当前节点没有孩子，那我们不需要在节点后面加上任何括号；</li>
+<li>如果当前节点只有左孩子，那我们在递归时，只需要在左孩子的结果外加上一层括号，而不需要给右孩子加上任何括号；</li>
+<li>如果当前节点只有右孩子，那我们在递归时，需要先加上一层空的括号 <code>()</code> 表示左孩子为空，再对右孩子进行递归，并在结果外加上一层括号。</li>
+</ol>
+<h5 id="java实现">java实现</h5>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * public class TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode left;</span></span><br><span class="line"><span class="comment"> *     TreeNode right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) &#123; val = x; &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">tree2str</span><span class="params">(TreeNode t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(t==<span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">if</span>(t.left==<span class="keyword">null</span> &amp;&amp; t.right==<span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> t.val+<span class="string">""</span>;</span><br><span class="line">        <span class="keyword">if</span>(t.right==<span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> t.val+<span class="string">"("</span>+tree2str(t.left)+<span class="string">")"</span>;</span><br><span class="line">        <span class="keyword">return</span> t.val+<span class="string">"("</span>+tree2str(t.left)+<span class="string">")("</span>+tree2str(t.right)+<span class="string">")"</span>;   </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>改下排版</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">tree2str</span><span class="params">(TreeNode t)</span> </span>&#123;</span><br><span class="line">    	<span class="keyword">if</span> (!t)		<span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">if</span> (!t.left &amp;&amp; !t.right)	<span class="keyword">return</span> t.val + <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">if</span> (!t.right)	<span class="keyword">return</span> t.val + <span class="string">"("</span> + tree2str(t.left) + <span class="string">")"</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> t.val+<span class="string">"("</span>+tree2str(t.left)+<span class="string">")("</span>+tree2str(t.right)+<span class="string">")"</span>;  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="c实现">C++实现</h5>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">tree2str</span><span class="params">(TreeNode* t)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">    	<span class="keyword">if</span> (!t)	<span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">if</span> (!t-&gt;left &amp;&amp; !t-&gt;right)	<span class="keyword">return</span> to_string(t-&gt;val);</span><br><span class="line">        <span class="keyword">if</span> (!t-&gt;right)	<span class="keyword">return</span> to_string(t-&gt;val) + <span class="string">"("</span> + tree2str(t-&gt;left) + <span class="string">")"</span>;</span><br><span class="line">        <span class="keyword">return</span>	to_string(t-&gt;val) + <span class="string">"("</span> + tree2str(t-&gt;left) + <span class="string">")("</span> + tree2str(t-&gt;right) + <span class="string">")"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="非递归手动压栈">非递归手动压栈</h3>
 <ul>
-<li><p>二维DP，也是递推问题，但是给人的没有一维DP那么好处理。</p>
-<ul>
-<li><strong>状态定义</strong>，一般涉及到2个状态<span class="math inline">\(i,\ j\)</span>。可以用表格法表示，有点类似0-1背包问题。</li>
-<li><strong>状态转移方程</strong>，一般涉及到上一状态的2个状态。</li>
-<li><strong>base case</strong>, 我的理解是一般类似于 <strong>corner case</strong>的存在，是一个需要考虑到的初始条件。</li>
-</ul></li>
-<li><p><strong>斜着遍历数组</strong>，这个在实现的时候，也不是一件非常容易的事情。</p>
-<ul>
-<li><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// traverse array in a diagonal way</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">2</span>; l &lt;= n; ++l)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n - l; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">    	<span class="keyword">int</span> j = i + l - <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// ...</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-若<span class="math inline">\(n = 4\)</span>, 则依次遍历： <span class="math display">\[
-\begin{align*}
-&amp; [0,\ 1],\ [1,\ 2], [2,\ 3], [3,\ 4] \\ 
-&amp; [0,\ 2],\ [1,\ 3], [2,\ 4] \\
-&amp; [0,\ 3],\ [1,\ 4] \\
-&amp; [0,\ 4] \\
-\end{align*}
-\]</span></li>
-</ul></li>
+<li>因为要保存括号，所以需要一个集合存储所有遍历过的节点</li>
+<li>它没有子节点，什么都不做</li>
+<li>有两个节点，右孩子先入栈，再左孩子入栈，保证先序遍历顺序</li>
+<li>如果只有左孩子，则左孩子入栈</li>
+<li>如果只有右孩子，则末尾添加一个<code>()</code>后，再将右孩子入栈</li>
 </ul>
-<h2 id="reference">Reference</h2>
-<p><a href="https://leetcode-cn.com/problems/stone-game/solution/jie-jue-bo-yi-wen-ti-de-dong-tai-gui-hua-tong-yong/" target="_blank" rel="noopener">labuladong: leetcode解</a></p>
-<p><a href="https://leetcode-cn.com/problems/stone-game/solution/shi-zi-you-xi-by-leetcode/" target="_blank" rel="noopener">leetcode 官方解</a></p>
-<h3 id="extended">extended</h3>
-<p><a href="https://en.cppreference.com/w/cpp/utility/pair" target="_blank" rel="noopener">std::pair</a></p>
-<p><a href="https://en.cppreference.com/w/cpp/container/vector" target="_blank" rel="noopener">std::vector</a></p>
+<h5 id="java实现-1">java实现</h5>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">tree2str</span><span class="params">(TreeNode t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (t == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        Stack &lt; TreeNode &gt; stack = <span class="keyword">new</span> Stack &lt; &gt; ();</span><br><span class="line">        stack.push(t);</span><br><span class="line">        Set &lt; TreeNode &gt; visited = <span class="keyword">new</span> HashSet &lt; &gt; ();</span><br><span class="line">        StringBuilder s = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">while</span> (!stack.isEmpty()) &#123;</span><br><span class="line">            t = stack.peek();</span><br><span class="line">            <span class="keyword">if</span> (visited.contains(t)) &#123;</span><br><span class="line">                stack.pop();</span><br><span class="line">                s.append(<span class="string">")"</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                visited.add(t);</span><br><span class="line">                s.append(<span class="string">"("</span> + t.val);</span><br><span class="line">                <span class="keyword">if</span> (t.left == <span class="keyword">null</span> &amp;&amp; t.right != <span class="keyword">null</span>)</span><br><span class="line">                    s.append(<span class="string">"()"</span>);</span><br><span class="line">                <span class="keyword">if</span> (t.right != <span class="keyword">null</span>)</span><br><span class="line">                    stack.push(t.right);</span><br><span class="line">                <span class="keyword">if</span> (t.left != <span class="keyword">null</span>)</span><br><span class="line">                    stack.push(t.left);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s.substring(<span class="number">1</span>, s.length() - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="c实现-1">C++实现</h5>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">tree2str</span><span class="params">(TreeNode* t)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (!t)	<span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">string</span> str = <span class="string">""</span>;</span><br><span class="line">        <span class="built_in">set</span>&lt;TreeNode*&gt; visited;</span><br><span class="line">        <span class="built_in">stack</span>&lt;TreeNode*&gt; s;</span><br><span class="line">        s.push(t);</span><br><span class="line">       	</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (!s.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            t = s.top();</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (visited.find(t) != visited.end())</span><br><span class="line">            &#123;</span><br><span class="line">            	s.pop();</span><br><span class="line">                str += <span class="string">")"</span>;</span><br><span class="line">			&#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                visited.insert(t);</span><br><span class="line">                str += <span class="string">"("</span> + to_string(t-&gt;val);</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span> (!t-&gt;left &amp;&amp; t-&gt;right)	str += <span class="string">"()"</span>;</span><br><span class="line">                <span class="keyword">if</span> (t-&gt;right)	s.push(t-&gt;right);</span><br><span class="line">                <span class="keyword">if</span> (t-&gt;left)	s.push(t-&gt;left);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> str.substr(<span class="number">1</span>, str.size() - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="mrhuang"><a href="https://leetcode-cn.com/problems/construct-string-from-binary-tree/solution/cgao-xiao-di-cun-fang-fa-by-mrhuang-3/" target="_blank" rel="noopener">MrHuang</a></h3>
+<ul>
+<li>用<code>stringstream</code>代替<code>string</code></li>
+<li>用<code>lambda</code>表达式代替<code>函数</code></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">tree2str</span><span class="params">(TreeNode* t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(t==<span class="literal">nullptr</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        <span class="built_in">stringstream</span> ss;</span><br><span class="line">        function&lt;<span class="keyword">void</span>(TreeNode*)&gt; helper = [&amp;ss, &amp;helper](TreeNode* t)&#123;</span><br><span class="line">            ss&lt;&lt;t-&gt;val;</span><br><span class="line">            <span class="keyword">if</span>(t-&gt;left==<span class="literal">nullptr</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(t-&gt;right!=<span class="literal">nullptr</span>)&#123;</span><br><span class="line">                    ss&lt;&lt;<span class="string">"()("</span>;</span><br><span class="line">                    helper(t-&gt;right);</span><br><span class="line">                    ss&lt;&lt;<span class="string">')'</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(t-&gt;right==<span class="literal">nullptr</span>)&#123;</span><br><span class="line">                ss&lt;&lt;<span class="string">'('</span>;</span><br><span class="line">                helper(t-&gt;left);</span><br><span class="line">                ss&lt;&lt;<span class="string">')'</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                ss&lt;&lt;<span class="string">'('</span>;</span><br><span class="line">                helper(t-&gt;left);</span><br><span class="line">                ss&lt;&lt;<span class="string">")("</span>;</span><br><span class="line">                helper(t-&gt;right);</span><br><span class="line">                ss&lt;&lt;<span class="string">')'</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        helper(t);</span><br><span class="line">        <span class="built_in">string</span> s;</span><br><span class="line">        ss&gt;&gt;s;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="references">References</h2>
+<p>https://leetcode-cn.com/problems/construct-string-from-binary-tree/solution/gen-ju-er-cha-shu-chuang-jian-zi-fu-chuan-by-leetc/</p>
+<p>https://leetcode-cn.com/problems/construct-string-from-binary-tree/solution/cgao-xiao-di-cun-fang-fa-by-mrhuang-3/</p>
+<p>https://stackoverflow.com/questions/1701067/how-to-check-that-an-element-is-in-a-stdset</p>
 
       
     </div>
@@ -604,13 +537,19 @@ dp[i][j].fir = max(piles[i] + dp[i+1][j].sec, piles[j] + dp[i][j-1].sec) \\
           
             <a href="/tags/leetcode/" rel="tag"># leetcode</a>
           
-            <a href="/tags/×/" rel="tag"># ×</a>
+            <a href="/tags/递归/" rel="tag"># 递归</a>
           
-            <a href="/tags/DP/" rel="tag"># DP</a>
+            <a href="/tags/树/" rel="tag"># 树</a>
           
-            <a href="/tags/二维dp/" rel="tag"># 二维dp</a>
+            <a href="/tags/树的遍历/" rel="tag"># 树的遍历</a>
           
-            <a href="/tags/博弈问题/" rel="tag"># 博弈问题</a>
+            <a href="/tags/√/" rel="tag"># √</a>
+          
+            <a href="/tags/栈/" rel="tag"># 栈</a>
+          
+            <a href="/tags/括号匹配/" rel="tag"># 括号匹配</a>
+          
+            <a href="/tags/stringstream/" rel="tag"># stringstream</a>
           
         </div>
       
@@ -623,8 +562,8 @@ dp[i][j].fir = max(piles[i] + dp[i+1][j].sec, piles[j] + dp[i][j-1].sec) \\
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/10/24/leetcode题解-1025-除数博弈/" rel="next" title="leetcode题解: 1025.除数博弈">
-                <i class="fa fa-chevron-left"></i> leetcode题解: 1025.除数博弈
+              <a href="/2019/12/09/leetcode题解-297-二叉树的序列化与反序列化/" rel="next" title="leetcode题解-297-二叉树的序列化与反序列化">
+                <i class="fa fa-chevron-left"></i> leetcode题解-297-二叉树的序列化与反序列化
               </a>
             
           </div>
@@ -632,10 +571,6 @@ dp[i][j].fir = max(piles[i] + dp[i+1][j].sec, piles[j] + dp[i][j-1].sec) \\
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/10/28/leetcode题解-1221-分割平衡字符串/" rel="prev" title="leetcode题解-1221-分割平衡字符串">
-                leetcode题解-1221-分割平衡字符串 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -898,7 +833,7 @@ dp[i][j].fir = max(piles[i] + dp[i+1][j].sec, piles[j] + dp[i][j-1].sec) \\
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#官方解"><span class="nav-number">2.</span> <span class="nav-text">官方解</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数学way"><span class="nav-number">2.1.</span> <span class="nav-text">数学way</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#综评最高解"><span class="nav-number">3.</span> <span class="nav-text">综评最高解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义状态"><span class="nav-number">3.0.1.</span> <span class="nav-text">定义状态：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#状态转移方程为"><span class="nav-number">3.0.2.</span> <span class="nav-text">状态转移方程为：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#base-case"><span class="nav-number">3.0.3.</span> <span class="nav-text">base case</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现"><span class="nav-number">3.0.4.</span> <span class="nav-text">实现</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reference"><span class="nav-number">5.</span> <span class="nav-text">Reference</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#extended"><span class="nav-number">5.1.</span> <span class="nav-text">extended</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#官方"><span class="nav-number">1.1.</span> <span class="nav-text">官方</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#递归实现"><span class="nav-number">1.1.1.</span> <span class="nav-text">递归实现</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#java实现"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">java实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#c实现"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">C++实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非递归手动压栈"><span class="nav-number">1.2.</span> <span class="nav-text">非递归手动压栈</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#java实现-1"><span class="nav-number">1.2.0.1.</span> <span class="nav-text">java实现</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#c实现-1"><span class="nav-number">1.2.0.2.</span> <span class="nav-text">C++实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mrhuang"><span class="nav-number">1.3.</span> <span class="nav-text">MrHuang</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#references"><span class="nav-number">2.</span> <span class="nav-text">References</span></a></li></div>
             
 
           </div>
@@ -1374,60 +1309,7 @@ dp[i][j].fir = max(piles[i] + dp[i+1][j].sec, piles[j] + dp[i][j-1].sec) \\
         onPopupClose();
       }
     });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-  
-
-  
-  
-
-  
-    
-      <script type="text/x-mathjax-config">
-  
-
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
-        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
-      }
-    });
-  });
-</script>
-
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
-    }
-  });
-</script>
-<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -1446,7 +1328,20 @@ dp[i][j].fir = max(piles[i] + dp[i+1][j].sec, piles[j] + dp[i][j-1].sec) \\
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
 
-    
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
   
 
 
