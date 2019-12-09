@@ -11,8 +11,8 @@
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
         <tag>树的遍历</tag>
+        <tag>×</tag>
         <tag>字符串</tag>
         <tag>序列化</tag>
         <tag>stringstream</tag>
@@ -132,9 +132,9 @@
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
         <tag>树的遍历</tag>
         <tag>BFS</tag>
+        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -148,9 +148,9 @@
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
         <tag>树的遍历</tag>
         <tag>BFS</tag>
+        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -164,8 +164,8 @@
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>DFS</tag>
         <tag>×</tag>
+        <tag>DFS</tag>
       </tags>
   </entry>
   <entry>
@@ -179,8 +179,8 @@
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>DFS</tag>
         <tag>×</tag>
+        <tag>DFS</tag>
       </tags>
   </entry>
   <entry>
@@ -194,8 +194,8 @@
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>DFS</tag>
         <tag>×</tag>
+        <tag>DFS</tag>
       </tags>
   </entry>
   <entry>
@@ -209,8 +209,8 @@
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>DFS</tag>
         <tag>×</tag>
+        <tag>DFS</tag>
       </tags>
   </entry>
   <entry>
@@ -337,9 +337,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>DFS</tag>
         <tag>×</tag>
         <tag>DP</tag>
+        <tag>DFS</tag>
         <tag>数组</tag>
         <tag>特殊DP数组</tag>
       </tags>
@@ -353,9 +353,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>DFS</tag>
         <tag>×</tag>
         <tag>DP</tag>
+        <tag>DFS</tag>
         <tag>数组</tag>
         <tag>完全背包</tag>
       </tags>
@@ -450,9 +450,9 @@
       <tags>
         <tag>leetcode</tag>
         <tag>DP</tag>
+        <tag>√</tag>
         <tag>2维dp</tag>
         <tag>2维DP-to-1维DP</tag>
-        <tag>√</tag>
       </tags>
   </entry>
   <entry>
@@ -512,8 +512,8 @@
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
         <tag>树的遍历</tag>
+        <tag>×</tag>
         <tag>动态规划</tag>
       </tags>
   </entry>
@@ -561,10 +561,10 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>√</tag>
         <tag>动态规划</tag>
         <tag>2维DP</tag>
         <tag>2维DP-to-1维DP</tag>
-        <tag>√</tag>
         <tag>数组对角遍历</tag>
       </tags>
   </entry>
