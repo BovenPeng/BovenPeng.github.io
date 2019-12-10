@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="Boven&#39;s Blog">
 <meta property="og:description" content="题目 123456class Solution &amp;#123;public:    bool isPowerOfTwo(int n) &amp;#123;        return n &amp;gt; 0 &amp;amp;&amp;amp; !(n&amp;amp;(n-1));    &amp;#125;&amp;#125;; 考虑：  num &amp;gt; 0时，才会是一个数的幂。负数和0不会是一个正整数的幂。 !(num&amp;amp;(nu">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-02T08:12:49.859Z">
+<meta property="og:updated_time" content="2019-12-10T08:30:50.258Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode题解-231-2的幂">
 <meta name="twitter:description" content="题目 123456class Solution &amp;#123;public:    bool isPowerOfTwo(int n) &amp;#123;        return n &amp;gt; 0 &amp;amp;&amp;amp; !(n&amp;amp;(n-1));    &amp;#125;&amp;#125;; 考虑：  num &amp;gt; 0时，才会是一个数的幂。负数和0不会是一个正整数的幂。 !(num&amp;amp;(nu">
@@ -417,12 +417,24 @@
                 
               
 
-              <time title="创建时间：2019-12-02 16:07:54 / 修改时间：16:12:49" itemprop="dateCreated datePublished" datetime="2019-12-02T16:07:54+08:00">2019-12-02</time>
+              <time title="创建时间：2019-12-02 16:07:54" itemprop="dateCreated datePublished" datetime="2019-12-02T16:07:54+08:00">2019-12-02</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-12-10 16:30:50" itemprop="dateModified" datetime="2019-12-10T16:30:50+08:00">2019-12-10</time>
               
             
           </span>
@@ -1278,7 +1290,60 @@
         onPopupClose();
       }
     });
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -1297,20 +1362,7 @@
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
 
-
-
-
-
-  
-
-  
-
-  
-  
-
-  
-  
-
+    
   
 
 

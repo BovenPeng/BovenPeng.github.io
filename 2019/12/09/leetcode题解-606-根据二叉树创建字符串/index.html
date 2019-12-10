@@ -97,14 +97,14 @@
 
 
   <meta name="description" content="题目 官方 递归实现 考虑4种情况：  如果当前节点有两个孩子，那我们在递归时，需要在两个孩子的结果外都加上一层括号； 如果当前节点没有孩子，那我们不需要在节点后面加上任何括号； 如果当前节点只有左孩子，那我们在递归时，只需要在左孩子的结果外加上一层括号，而不需要给右孩子加上任何括号； 如果当前节点只有右孩子，那我们在递归时，需要先加上一层空的括号 () 表示左孩子为空，再对右孩子">
-<meta name="keywords" content="leetcode,递归,树,树的遍历,√,栈,括号匹配,stringstream">
+<meta name="keywords" content="leetcode,递归,树,树的遍历,×,栈,括号匹配,stringstream">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode题解-606-根据二叉树创建字符串">
 <meta property="og:url" content="http://yoursite.com/2019/12/09/leetcode题解-606-根据二叉树创建字符串/index.html">
 <meta property="og:site_name" content="Boven&#39;s Blog">
 <meta property="og:description" content="题目 官方 递归实现 考虑4种情况：  如果当前节点有两个孩子，那我们在递归时，需要在两个孩子的结果外都加上一层括号； 如果当前节点没有孩子，那我们不需要在节点后面加上任何括号； 如果当前节点只有左孩子，那我们在递归时，只需要在左孩子的结果外加上一层括号，而不需要给右孩子加上任何括号； 如果当前节点只有右孩子，那我们在递归时，需要先加上一层空的括号 () 表示左孩子为空，再对右孩子">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-09T14:34:00.214Z">
+<meta property="og:updated_time" content="2019-12-10T08:29:38.984Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode题解-606-根据二叉树创建字符串">
 <meta name="twitter:description" content="题目 官方 递归实现 考虑4种情况：  如果当前节点有两个孩子，那我们在递归时，需要在两个孩子的结果外都加上一层括号； 如果当前节点没有孩子，那我们不需要在节点后面加上任何括号； 如果当前节点只有左孩子，那我们在递归时，只需要在左孩子的结果外加上一层括号，而不需要给右孩子加上任何括号； 如果当前节点只有右孩子，那我们在递归时，需要先加上一层空的括号 () 表示左孩子为空，再对右孩子">
@@ -417,12 +417,24 @@
                 
               
 
-              <time title="创建时间：2019-12-09 21:25:07 / 修改时间：22:34:00" itemprop="dateCreated datePublished" datetime="2019-12-09T21:25:07+08:00">2019-12-09</time>
+              <time title="创建时间：2019-12-09 21:25:07" itemprop="dateCreated datePublished" datetime="2019-12-09T21:25:07+08:00">2019-12-09</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-12-10 16:29:38" itemprop="dateModified" datetime="2019-12-10T16:29:38+08:00">2019-12-10</time>
               
             
           </span>
@@ -501,7 +513,13 @@
 <h5 id="java实现-1">java实现</h5>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">tree2str</span><span class="params">(TreeNode t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (t == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        Stack &lt; TreeNode &gt; stack = <span class="keyword">new</span> Stack &lt; &gt; ();</span><br><span class="line">        stack.push(t);</span><br><span class="line">        Set &lt; TreeNode &gt; visited = <span class="keyword">new</span> HashSet &lt; &gt; ();</span><br><span class="line">        StringBuilder s = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">while</span> (!stack.isEmpty()) &#123;</span><br><span class="line">            t = stack.peek();</span><br><span class="line">            <span class="keyword">if</span> (visited.contains(t)) &#123;</span><br><span class="line">                stack.pop();</span><br><span class="line">                s.append(<span class="string">")"</span>);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                visited.add(t);</span><br><span class="line">                s.append(<span class="string">"("</span> + t.val);</span><br><span class="line">                <span class="keyword">if</span> (t.left == <span class="keyword">null</span> &amp;&amp; t.right != <span class="keyword">null</span>)</span><br><span class="line">                    s.append(<span class="string">"()"</span>);</span><br><span class="line">                <span class="keyword">if</span> (t.right != <span class="keyword">null</span>)</span><br><span class="line">                    stack.push(t.right);</span><br><span class="line">                <span class="keyword">if</span> (t.left != <span class="keyword">null</span>)</span><br><span class="line">                    stack.push(t.left);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s.substring(<span class="number">1</span>, s.length() - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h5 id="c实现-1">C++实现</h5>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">tree2str</span><span class="params">(TreeNode* t)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (!t)	<span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">string</span> str = <span class="string">""</span>;</span><br><span class="line">        <span class="built_in">set</span>&lt;TreeNode*&gt; visited;</span><br><span class="line">        <span class="built_in">stack</span>&lt;TreeNode*&gt; s;</span><br><span class="line">        s.push(t);</span><br><span class="line">       	</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (!s.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            t = s.top();</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (visited.find(t) != visited.end())</span><br><span class="line">            &#123;</span><br><span class="line">            	s.pop();</span><br><span class="line">                str += <span class="string">")"</span>;</span><br><span class="line">			&#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                visited.insert(t);</span><br><span class="line">                str += <span class="string">"("</span> + to_string(t-&gt;val);</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span> (!t-&gt;left &amp;&amp; t-&gt;right)	str += <span class="string">"()"</span>;</span><br><span class="line">                <span class="keyword">if</span> (t-&gt;right)	s.push(t-&gt;right);</span><br><span class="line">                <span class="keyword">if</span> (t-&gt;left)	s.push(t-&gt;left);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> str.substr(<span class="number">1</span>, str.size() - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">tree2str</span><span class="params">(TreeNode* t)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (!t)	<span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">string</span> str = <span class="string">""</span>;</span><br><span class="line">        <span class="built_in">set</span>&lt;TreeNode*&gt; visited;</span><br><span class="line">        <span class="built_in">stack</span>&lt;TreeNode*&gt; s;</span><br><span class="line">        s.push(t);</span><br><span class="line">       	</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> (!s.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            t = s.top();</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> (visited.find(t) != visited.end())</span><br><span class="line">            &#123;</span><br><span class="line">            	s.pop();</span><br><span class="line">                str += <span class="string">")"</span>;</span><br><span class="line">			&#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                visited.insert(t);</span><br><span class="line">                str += <span class="string">"("</span> + to_string(t-&gt;val);</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span> (!t-&gt;left &amp;&amp; t-&gt;right)	str += <span class="string">"()"</span>;</span><br><span class="line">                <span class="keyword">if</span> (t-&gt;right)	s.push(t-&gt;right);</span><br><span class="line">                <span class="keyword">if</span> (t-&gt;left)	s.push(t-&gt;left);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> str.substr(<span class="number">1</span>, str.size() - <span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p><span class="math display">\[
+e.g. \\
+INPUT: 
+[1,2,3,4] \\
+OUTPUT: \\
+\]</span></p>
 <h3 id="mrhuang"><a href="https://leetcode-cn.com/problems/construct-string-from-binary-tree/solution/cgao-xiao-di-cun-fang-fa-by-mrhuang-3/" target="_blank" rel="noopener">MrHuang</a></h3>
 <ul>
 <li>用<code>stringstream</code>代替<code>string</code></li>
@@ -543,7 +561,7 @@
           
             <a href="/tags/树的遍历/" rel="tag"># 树的遍历</a>
           
-            <a href="/tags/√/" rel="tag"># √</a>
+            <a href="/tags/×/" rel="tag"># ×</a>
           
             <a href="/tags/栈/" rel="tag"># 栈</a>
           
@@ -1309,7 +1327,60 @@
         onPopupClose();
       }
     });
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -1328,20 +1399,7 @@
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
 
-
-
-
-
-  
-
-  
-
-  
-  
-
-  
-  
-
+    
   
 
 

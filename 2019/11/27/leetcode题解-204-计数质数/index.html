@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="Boven&#39;s Blog">
 <meta property="og:description" content="题目 最佳思路，Sieve of Eratosthenes 又或者叫 数筛 12345678910111213141516class Solution &amp;#123;    public int countPrimes(int n) &amp;#123;    boolean[] isPrim = new boolean[n];    Arrays.fill(isPrim, true);    fo">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-29T13:45:03.641Z">
+<meta property="og:updated_time" content="2019-12-10T08:30:35.938Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode题解-204-计数质数">
 <meta name="twitter:description" content="题目 最佳思路，Sieve of Eratosthenes 又或者叫 数筛 12345678910111213141516class Solution &amp;#123;    public int countPrimes(int n) &amp;#123;    boolean[] isPrim = new boolean[n];    Arrays.fill(isPrim, true);    fo">
@@ -434,7 +434,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-11-29 21:45:03" itemprop="dateModified" datetime="2019-11-29T21:45:03+08:00">2019-11-29</time>
+                <time title="修改时间：2019-12-10 16:30:35" itemprop="dateModified" datetime="2019-12-10T16:30:35+08:00">2019-12-10</time>
               
             
           </span>
@@ -1300,7 +1300,60 @@
         onPopupClose();
       }
     });
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -1319,20 +1372,7 @@
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
 
-
-
-
-
-  
-
-  
-
-  
-  
-
-  
-  
-
+    
   
 
 

@@ -97,14 +97,14 @@
 
 
   <meta name="description" content="题目 My way 1.暴力解 12345678910111213141516171819202122232425class Solution &amp;#123;public:    bool canCross(vector&amp;lt;int&amp;gt;&amp;amp; stones) &amp;#123;        return helper(stones, 0, 0);    &amp;#125;    bool he">
-<meta name="keywords" content="leetcode,×,DP,DFS,数组,特殊DP数组">
+<meta name="keywords" content="leetcode,×,DFS,DP,数组,特殊DP数组">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode题解-403-青蛙过河">
 <meta property="og:url" content="http://yoursite.com/2019/11/14/leetcode题解-403-青蛙过河/index.html">
 <meta property="og:site_name" content="Boven&#39;s Blog">
 <meta property="og:description" content="题目 My way 1.暴力解 12345678910111213141516171819202122232425class Solution &amp;#123;public:    bool canCross(vector&amp;lt;int&amp;gt;&amp;amp; stones) &amp;#123;        return helper(stones, 0, 0);    &amp;#125;    bool he">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-14T13:42:44.185Z">
+<meta property="og:updated_time" content="2019-12-10T08:31:19.330Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode题解-403-青蛙过河">
 <meta name="twitter:description" content="题目 My way 1.暴力解 12345678910111213141516171819202122232425class Solution &amp;#123;public:    bool canCross(vector&amp;lt;int&amp;gt;&amp;amp; stones) &amp;#123;        return helper(stones, 0, 0);    &amp;#125;    bool he">
@@ -417,12 +417,24 @@
                 
               
 
-              <time title="创建时间：2019-11-14 21:15:10 / 修改时间：21:42:44" itemprop="dateCreated datePublished" datetime="2019-11-14T21:15:10+08:00">2019-11-14</time>
+              <time title="创建时间：2019-11-14 21:15:10" itemprop="dateCreated datePublished" datetime="2019-11-14T21:15:10+08:00">2019-11-14</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-12-10 16:31:19" itemprop="dateModified" datetime="2019-12-10T16:31:19+08:00">2019-12-10</time>
               
             
           </span>
@@ -526,9 +538,9 @@
           
             <a href="/tags/×/" rel="tag"># ×</a>
           
-            <a href="/tags/DP/" rel="tag"># DP</a>
-          
             <a href="/tags/DFS/" rel="tag"># DFS</a>
+          
+            <a href="/tags/DP/" rel="tag"># DP</a>
           
             <a href="/tags/数组/" rel="tag"># 数组</a>
           
@@ -1296,7 +1308,60 @@
         onPopupClose();
       }
     });
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -1315,20 +1380,7 @@
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
 
-
-
-
-
-  
-
-  
-
-  
-  
-
-  
-  
-
+    
   
 
 

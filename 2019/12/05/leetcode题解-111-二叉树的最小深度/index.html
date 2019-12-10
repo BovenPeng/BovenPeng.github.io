@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="Boven&#39;s Blog">
 <meta property="og:description" content="题目 My way 递归实现 1234567891011121314151617181920/** * Definition for a binary tree node. * struct TreeNode &amp;#123; *     int val; *     TreeNode *left; *     TreeNode *right; *     TreeNode(int x) : v">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-05T03:36:21.366Z">
+<meta property="og:updated_time" content="2019-12-10T08:31:30.269Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode题解-111-二叉树的最小深度">
 <meta name="twitter:description" content="题目 My way 递归实现 1234567891011121314151617181920/** * Definition for a binary tree node. * struct TreeNode &amp;#123; *     int val; *     TreeNode *left; *     TreeNode *right; *     TreeNode(int x) : v">
@@ -417,12 +417,24 @@
                 
               
 
-              <time title="创建时间：2019-12-05 10:02:21 / 修改时间：11:36:21" itemprop="dateCreated datePublished" datetime="2019-12-05T10:02:21+08:00">2019-12-05</time>
+              <time title="创建时间：2019-12-05 10:02:21" itemprop="dateCreated datePublished" datetime="2019-12-05T10:02:21+08:00">2019-12-05</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-12-10 16:31:30" itemprop="dateModified" datetime="2019-12-10T16:31:30+08:00">2019-12-10</time>
               
             
           </span>
@@ -1289,7 +1301,60 @@
         onPopupClose();
       }
     });
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -1308,20 +1373,7 @@
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
 
-
-
-
-
-  
-
-  
-
-  
-  
-
-  
-  
-
+    
   
 
 

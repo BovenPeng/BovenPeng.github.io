@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="Boven&#39;s Blog">
 <meta property="og:description" content="12345678910111213141516171819202122232425262728293031323334353637383940class Solution &amp;#123;public:    int numRollsToTarget(int d, int f, int target)     &amp;#123;        if (d &amp;lt; 1 || f &amp;lt; 1 || targ">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-29T11:46:04.142Z">
+<meta property="og:updated_time" content="2019-12-10T08:31:13.383Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode题解-1155-掷骰子的N种方法">
 <meta name="twitter:description" content="12345678910111213141516171819202122232425262728293031323334353637383940class Solution &amp;#123;public:    int numRollsToTarget(int d, int f, int target)     &amp;#123;        if (d &amp;lt; 1 || f &amp;lt; 1 || targ">
@@ -434,7 +434,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-11-29 19:46:04" itemprop="dateModified" datetime="2019-11-29T19:46:04+08:00">2019-11-29</time>
+                <time title="修改时间：2019-12-10 16:31:13" itemprop="dateModified" datetime="2019-12-10T16:31:13+08:00">2019-12-10</time>
               
             
           </span>
@@ -1252,7 +1252,60 @@
         onPopupClose();
       }
     });
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -1271,20 +1324,7 @@
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
 
-
-
-
-
-  
-
-  
-
-  
-  
-
-  
-  
-
+    
   
 
 
