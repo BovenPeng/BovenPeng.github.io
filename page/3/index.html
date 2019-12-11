@@ -373,6 +373,191 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/04/leetcode题解-104-二叉树的最大深度/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bowen Peng">
+      <meta itemprop="description" content="something about myself and my career development.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boven's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/12/04/leetcode题解-104-二叉树的最大深度/" class="post-title-link" itemprop="url">leetcode题解-104-二叉树的最大深度</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-04 21:57:18" itemprop="dateCreated datePublished" datetime="2019-12-04T21:57:18+08:00">2019-12-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-12-10 16:31:01" itemprop="dateModified" datetime="2019-12-10T16:31:01+08:00">2019-12-10</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/刷题/" itemprop="url" rel="index"><span itemprop="name">刷题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/" target="_blank" rel="noopener">题目</a></h2>
+<h3 id="my-way">My way</h3>
+<h4 id="简单递归实现">简单递归实现</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxDepth</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root)  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> max(maxDepth(root-&gt;left)+<span class="number">1</span>, maxDepth(root-&gt;right)+<span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>时间<span class="math inline">\(O(N)\)</span>仅超过51%，空间<span class="math inline">\(O(log(N)) + O(N) = O(N)\)</span>超过19%，说明递归压栈吃了不少空间，尝试改成非递归。</p>
+<h4 id="手动压栈">手动压栈</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maxDepth</span><span class="params">(TreeNode* root)</span></span>&#123;</span><br><span class="line">	<span class="built_in">stack</span>&lt;pair&lt;TreeNode*, <span class="keyword">int</span>&gt;&gt; <span class="built_in">stack</span>;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">if</span> (root)	<span class="built_in">stack</span>.push(pair(root, <span class="number">1</span>));</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">int</span> depth = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (!<span class="built_in">stack</span>.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		pair&lt;TreeNode*, <span class="keyword">int</span>&gt; cur = <span class="built_in">stack</span>.top();</span><br><span class="line">        <span class="built_in">stack</span>.pop();</span><br><span class="line">        root = cur.first;</span><br><span class="line">        <span class="keyword">int</span> cur_depth = cur.second;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (root)</span><br><span class="line">        &#123;</span><br><span class="line">            depth = max(depth, cur_depth);</span><br><span class="line">            <span class="built_in">stack</span>.push(pair(root-&gt;left, cur_depth+<span class="number">1</span>));</span><br><span class="line">            <span class="built_in">stack</span>.push(pair(root-&gt;right, cur_depth+<span class="number">1</span>));</span><br><span class="line">        &#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> depth;</span><br><span class="line">&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>时间<span class="math inline">\(O(N)\)</span>仅超过51%，空间<span class="math inline">\(O(N)\)</span>超过50%，手动压栈节省了不少空间。</p>
+<p>有没有时间上更优化的解法呢？</p>
+<h4 id="层次遍历">层次遍历</h4>
+<h3 id="section"></h3>
+<h2 id="references">References</h2>
+<p>https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/solution/er-cha-shu-de-zui-da-shen-du-by-leetcode/</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/02/leetcode题解-326-3的幂/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2156,208 +2341,11 @@ dp[i] = min(2*dp[l_2], 3*dp[l_3], 5*dp[l_5])
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/14/leetcode题解-403-青蛙过河/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bowen Peng">
-      <meta itemprop="description" content="something about myself and my career development.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Boven's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/11/14/leetcode题解-403-青蛙过河/" class="post-title-link" itemprop="url">leetcode题解-403-青蛙过河</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-11-14 21:15:10" itemprop="dateCreated datePublished" datetime="2019-11-14T21:15:10+08:00">2019-11-14</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-12-10 16:31:19" itemprop="dateModified" datetime="2019-12-10T16:31:19+08:00">2019-12-10</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/刷题/" itemprop="url" rel="index"><span itemprop="name">刷题</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="https://leetcode-cn.com/problems/frog-jump/" target="_blank" rel="noopener">题目</a></h2>
-<h2 id="my-way">My way</h2>
-<h3 id="暴力解">1.暴力解</h3>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">canCross</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; stones)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> helper(stones, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">helper</span><span class="params">(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; stones, <span class="keyword">int</span> curPos, <span class="keyword">int</span> jumpSize)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> nextPos = curPos+<span class="number">1</span>; nextPos &lt; stones.size(); ++nextPos)</span><br><span class="line">        &#123;</span><br><span class="line">        	<span class="comment">// gap值表示curPos位置 跳到 i位置 的跳跃距离</span></span><br><span class="line">            <span class="keyword">int</span> gap = stones[nextPos] - stones[curPos];</span><br><span class="line">            <span class="keyword">if</span> (gap &gt;= jumpSize - <span class="number">1</span> &amp;&amp; gap &lt;= jumpSize + <span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">            	<span class="comment">// 能跳到i位置，则递归下去</span></span><br><span class="line">                <span class="keyword">if</span> (helper(stones, nextPos, gap))</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> curPos == stones.size() - <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="记忆化搜索">2. 记忆化搜索</h3>
-<p>利用暴力解的递归关系，使用一个数组提前存储好对应的值，然后查询的时候遇到已有的结果则提前跳出。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">helper</span><span class="params">(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; stones, <span class="keyword">int</span> curPos, <span class="keyword">int</span> jumpSize, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; mem)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 已有的计算结果则提前跳出</span></span><br><span class="line">        <span class="keyword">if</span> (mem[curPos][jumpSize] &gt;= <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> mem[curPos][jumpSize];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> nextPos = curPos+<span class="number">1</span>; i &lt; stones.size(); ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// gap值表示curPos位置 跳到 i位置 的跳跃距离</span></span><br><span class="line">            <span class="keyword">int</span> gap = stones[nextPos] - stones[curPos];</span><br><span class="line">            <span class="keyword">if</span> (gap &gt;= jumpSize - <span class="number">1</span> &amp;&amp; gap &lt;= jumpSize + <span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">// 能从curPos位置 跳到 i位置上，则记录为1</span></span><br><span class="line">                <span class="keyword">if</span> (helper(stones, nextPos, gap, mem) == <span class="number">1</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    mem[nextPos][gap] = <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">		</span><br><span class="line">        <span class="comment">// 假如能跳到最后一个位置上，则记录下，反之同理</span></span><br><span class="line">        mem[curPos][jumpSize] = (curPos == stones.size()<span class="number">-1</span>) ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> mem[curPos][jumpSize];</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">canCross</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; stones)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = stones.size();</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; mem(n, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(n, <span class="number">-1</span>));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> (helper(stones, <span class="number">0</span>, <span class="number">0</span>, mem) == <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="dp">3.<del>DP</del></h3>
-<p>在思考怎么通过已有的递归中的依赖关系 &lt;=&gt; dp的状态转移方程上去。</p>
-<p>发现假如是使用2维DP表的话，是不可成立的，因为一个i值需要对应多个j值，所以无从下手。</p>
-<h2 id="官方解">官方解</h2>
-<h3 id="记忆化搜索-二分查找">1.记忆化搜索 + 二分查找</h3>
-<p>在检索位置<code>curPos</code> + <code>jumpSize</code>时候，使用二分搜索来查找位置上是否有石头</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canCross</span><span class="params">(<span class="keyword">int</span>[] stones)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[][] memo = <span class="keyword">new</span> <span class="keyword">int</span>[stones.length][stones.length];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span>[] row : memo) &#123;</span><br><span class="line">            Arrays.fill(row, -<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> can_Cross(stones, <span class="number">0</span>, <span class="number">0</span>, memo) == <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">can_Cross</span><span class="params">(<span class="keyword">int</span>[] stones, <span class="keyword">int</span> ind, <span class="keyword">int</span> jumpsize, <span class="keyword">int</span>[][] memo)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (memo[ind][jumpsize] &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> memo[ind][jumpsize];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ind1 = Arrays.binarySearch(stones, ind + <span class="number">1</span>, stones.length, stones[ind] + jumpsize);</span><br><span class="line">        <span class="keyword">if</span> (ind1 &gt;= <span class="number">0</span> &amp;&amp; can_Cross(stones, ind1, jumpsize, memo) == <span class="number">1</span>) &#123;</span><br><span class="line">            memo[ind][jumpsize] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ind2 = Arrays.binarySearch(stones, ind + <span class="number">1</span>, stones.length, stones[ind] + jumpsize - <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span> (ind2 &gt;= <span class="number">0</span> &amp;&amp; can_Cross(stones, ind2, jumpsize - <span class="number">1</span>, memo) == <span class="number">1</span>) &#123;</span><br><span class="line">            memo[ind][jumpsize - <span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ind3 = Arrays.binarySearch(stones, ind + <span class="number">1</span>, stones.length, stones[ind] + jumpsize + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span> (ind3 &gt;= <span class="number">0</span> &amp;&amp; can_Cross(stones, ind3, jumpsize + <span class="number">1</span>, memo) == <span class="number">1</span>) &#123;</span><br><span class="line">            memo[ind][jumpsize + <span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        memo[ind][jumpsize] = ((ind == stones.length - <span class="number">1</span>) ? <span class="number">1</span> : <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> memo[ind][jumpsize];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="dp-1">2.DP</h3>
-<p>在动态规划方法中，我们会利用散列表 mapmap，对于散列表中的 key:valuekey:value，keykey 表示当前石头的位置，valuevalue 是一个包含 jumpsizejumpsize 的集合，其中每个 jumpsizejumpsize 代表可以通过大小为 jumpysizejumpysize 的一跳到达当前位置。</p>
-<p>首先我们对散列表初始化，keykey 为所有石头的位置，除了位置 0 对应的 valuevalue 为包含一个值 0 的集合以外，其余都初始化为空集。接下来，依次遍历每个位置上的石头。对于每个 currentPositioncurrentPosition，遍历 valuevalue 中每个 jumpsizejumpsize，判断位置 currentPosition + newjumpsizecurrentPosition+newjumpsize 是否存在于 mapmap 中，对于每个 jumpsizejumpsize，newjumpsizenewjumpsize 分别为 jumpsize-1jumpsize−1，jumpsizejumpsize，jumpsize+1jumpsize+1。如果找到了，就在对应的 valuevalue 集合里新增 newjumpsizenewjumpsize。重复这个过程直到结束。如果在结束的时候，最后一个位置对应的集合非空，那也就意味着我们可以到达终点，如果还是空集那就意味着不能到达终点。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">canCross</span><span class="params">(<span class="keyword">int</span>[] stones)</span> </span>&#123;</span><br><span class="line">        HashMap&lt;Integer, Set&lt;Integer&gt;&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; stones.length; i++) &#123;</span><br><span class="line">            map.put(stones[i], <span class="keyword">new</span> HashSet&lt;Integer&gt;());</span><br><span class="line">        &#125;</span><br><span class="line">        map.get(<span class="number">0</span>).add(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; stones.length; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> k : map.get(stones[i])) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> step = k - <span class="number">1</span>; step &lt;= k + <span class="number">1</span>; step++) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (step &gt; <span class="number">0</span> &amp;&amp; map.containsKey(stones[i] + step)) &#123;</span><br><span class="line">                        map.get(stones[i] + step).add(step);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> map.get(stones[stones.length - <span class="number">1</span>]).size() &gt; <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="总结">总结</h2>
-<ul>
-<li>暴力递归解总是有的，不过要找出一个靠谱的递归实现，然后可以通过其优化为 用一个数组存好结果的记忆化搜索的方式；</li>
-<li>dp数组可以是 <strong>hash散列</strong> 这种存储方式，不一定是 数组 的存储方式。</li>
-</ul>
-<h2 id="reference">Reference</h2>
-<p><a href="https://leetcode-cn.com/problems/frog-jump/solution/qing-wa-guo-he-by-leetcode/" target="_blank" rel="noopener">官方解</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2399,7 +2387,7 @@ dp[i] = min(2*dp[l_2], 3*dp[l_3], 5*dp[l_5])
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">60</span>
+                    <span class="site-state-item-count">61</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2559,7 +2547,11 @@ dp[i] = min(2*dp[l_2], 3*dp[l_3], 5*dp[l_5])
                     
                       
                     
-                    <span class="site-state-item-count">56</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">58</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
