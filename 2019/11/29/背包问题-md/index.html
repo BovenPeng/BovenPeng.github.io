@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="Boven&#39;s Blog">
 <meta property="og:description" content="背包问题总共有9种，称为背包9讲。  01背包问题 完全背包问题 多重背包问题 混合背包问题 二维费用的背包问题 分组背包问题 背包问题求方案数 求背包问题的方案 有依赖的背包问题  有\(N\)件物品和一个容量是\(V\)的背包。  不同背包问题的条件：每件物品只能使用一次。  第\(i\)件物品的体积是 \(v_i\)，价值是 \(w_i\)。 求解将哪些物品">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-29T13:00:38.904Z">
+<meta property="og:updated_time" content="2019-12-11T12:22:05.111Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="背包问题.md">
 <meta name="twitter:description" content="背包问题总共有9种，称为背包9讲。  01背包问题 完全背包问题 多重背包问题 混合背包问题 二维费用的背包问题 分组背包问题 背包问题求方案数 求背包问题的方案 有依赖的背包问题  有\(N\)件物品和一个容量是\(V\)的背包。  不同背包问题的条件：每件物品只能使用一次。  第\(i\)件物品的体积是 \(v_i\)，价值是 \(w_i\)。 求解将哪些物品">
@@ -417,16 +417,46 @@
                 
               
 
-              <time title="创建时间：2019-11-29 19:43:14 / 修改时间：21:00:38" itemprop="dateCreated datePublished" datetime="2019-11-29T19:43:14+08:00">2019-11-29</time>
+              <time title="创建时间：2019-11-29 19:43:14" itemprop="dateCreated datePublished" datetime="2019-11-29T19:43:14+08:00">2019-11-29</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-12-11 20:22:05" itemprop="dateModified" datetime="2019-12-11T20:22:05+08:00">2019-12-11</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/总结/" itemprop="url" rel="index"><span itemprop="name">总结</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -556,6 +586,7 @@
 <h2 id="references">References</h2>
 <p>https://www.cnblogs.com/jbelial/articles/2116074.html</p>
 <p>https://www.bilibili.com/video/av33930433?p=1</p>
+<p>https://www.acwing.com/solution/acwing/content/3982/</p>
 
       
     </div>
@@ -675,7 +706,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">57</span>
+                    <span class="site-state-item-count">60</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -704,7 +735,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1347,7 +1380,60 @@
         onPopupClose();
       }
     });
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -1366,20 +1452,7 @@
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
 
-
-
-
-
-  
-
-  
-
-  
-  
-
-  
-  
-
+    
   
 
 
