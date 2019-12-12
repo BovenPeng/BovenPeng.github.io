@@ -96,16 +96,18 @@
 
 
 
-  <meta name="description" content="something about myself and my career development.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Boven&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/archives/2019/page/7/index.html">
+  <meta name="description" content="题目 没能理解题意。。。 我感觉是给了一个已经构造好的最大二叉树，然后新插入一个值为val的结点进来。 这个解答告诉了这个题是要做啥。然后发现是对比三幅例子的树图可以得到插入val结点进来的要求。 分成如下2种情况：  大于root，则把 root作为val节点的左子树； 小于root，则把 val节点作为root的右子树；  secretname way 1234567891">
+<meta name="keywords" content="leetcode,×,递归,树,树的构造">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode题解-998-最大二叉树Ⅱ">
+<meta property="og:url" content="http://yoursite.com/2019/12/11/leetcode题解-998-最大二叉树Ⅱ/index.html">
 <meta property="og:site_name" content="Boven&#39;s Blog">
-<meta property="og:description" content="something about myself and my career development.">
+<meta property="og:description" content="题目 没能理解题意。。。 我感觉是给了一个已经构造好的最大二叉树，然后新插入一个值为val的结点进来。 这个解答告诉了这个题是要做啥。然后发现是对比三幅例子的树图可以得到插入val结点进来的要求。 分成如下2种情况：  大于root，则把 root作为val节点的左子树； 小于root，则把 val节点作为root的右子树；  secretname way 1234567891">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-12-12T13:07:22.828Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Boven&#39;s Blog">
-<meta name="twitter:description" content="something about myself and my career development.">
+<meta name="twitter:title" content="leetcode题解-998-最大二叉树Ⅱ">
+<meta name="twitter:description" content="题目 没能理解题意。。。 我感觉是给了一个已经构造好的最大二叉树，然后新插入一个值为val的结点进来。 这个解答告诉了这个题是要做啥。然后发现是对比三幅例子的树图可以得到插入val结点进来的要求。 分成如下2种情况：  大于root，则把 root作为val节点的左子树； 小于root，则把 val节点作为root的右子树；  secretname way 1234567891">
 
 
 
@@ -113,7 +115,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/archives/2019/page/7/">
+  <link rel="canonical" href="http://yoursite.com/2019/12/11/leetcode题解-998-最大二叉树Ⅱ/">
 
 
 
@@ -123,7 +125,7 @@
   };
 </script>
 
-  <title>归档 | Boven's Blog</title>
+  <title>leetcode题解-998-最大二叉树Ⅱ | Boven's Blog</title>
   
 
 
@@ -171,7 +173,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-archive">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -281,7 +283,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -310,28 +312,6 @@
 
   
     
-
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
 
   
 
@@ -378,116 +358,225 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      
-      <span class="archive-page-counter">
-        
-        
-         
-          
-        不错! 目前共计 62 篇日志。 继续努力。
-      </span>
-      
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
-
-        
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/11/leetcode题解-998-最大二叉树Ⅱ/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bowen Peng">
+      <meta itemprop="description" content="something about myself and my career development.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boven's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-          <a class="post-title-link" href="/2019/04/11/一些学习计划/" itemprop="url">
-            
-              <span itemprop="name">一些学习计划</span>
-            
-          </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">leetcode题解-998-最大二叉树Ⅱ
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-11T21:00:32+08:00" content="2019-04-11">
-          04-11
-        </time>
-      </div>
+              
+            
+          </h1>
+        
 
-    </header>
-  </article>
+        <div class="post-meta">
+          <span class="post-time">
 
+            
+            
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-11 23:06:07" itemprop="dateCreated datePublished" datetime="2019-12-11T23:06:07+08:00">2019-12-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-12-12 21:07:22" itemprop="dateModified" datetime="2019-12-12T21:07:22+08:00">2019-12-12</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/刷题/" itemprop="url" rel="index"><span itemprop="name">刷题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/04/11/杂谈-为什么要搭一个blog/" itemprop="url">
-            
-              <span itemprop="name">杂谈-为什么要搭一个blog</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-04-11T15:46:47+08:00" content="2019-04-11">
-          04-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
+      
+        <h2 id="题目"><a href="https://leetcode-cn.com/problems/maximum-binary-tree-ii/" target="_blank" rel="noopener">题目</a></h2>
+<p>没能理解题意。。。</p>
+<p>我感觉是给了一个已经构造好的最大二叉树，然后新插入一个值为<code>val</code>的结点进来。</p>
+<p><a href="https://leetcode-cn.com/problems/maximum-binary-tree-ii/solution/go-0ms-wu-di-gui-by-yuhhen/" target="_blank" rel="noopener">这个解答</a>告诉了这个题是要做啥。然后发现是对比三幅例子的树图可以得到插入<code>val</code>结点进来的要求。</p>
+<p>分成如下2种情况：</p>
+<ol type="1">
+<li>大于<code>root</code>，则把 <code>root</code>作为<code>val节点</code>的左子树；</li>
+<li>小于<code>root</code>，则把 <code>val节点</code>作为<code>root</code>的右子树；</li>
+</ol>
+<h3 id="secretname-way"><a href="https://leetcode-cn.com/problems/maximum-binary-tree-ii/solution/c-di-gui-jian-ji-dai-ma-by-secretname/" target="_blank" rel="noopener">secretname way</a></h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">TreeNode* <span class="title">insertIntoMaxTree</span><span class="params">(TreeNode* root, <span class="keyword">int</span> val)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root || root-&gt;val &lt; val)</span><br><span class="line">        &#123;</span><br><span class="line">            TreeNode* node = <span class="keyword">new</span> TreeNode(val);</span><br><span class="line">            node-&gt;left = root;</span><br><span class="line">            <span class="keyword">return</span> node;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        root-&gt;right = insertIntoMaxTree(root-&gt;right, val);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="references">References</h2>
+<p>https://leetcode-cn.com/problems/maximum-binary-tree-ii/solution/go-0ms-wu-di-gui-by-yuhhen/</p>
+<p>https://leetcode-cn.com/problems/maximum-binary-tree-ii/solution/c-di-gui-jian-ji-dai-ma-by-secretname/</p>
+
+      
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          
+            <a href="/tags/×/" rel="tag"># ×</a>
+          
+            <a href="/tags/递归/" rel="tag"># 递归</a>
+          
+            <a href="/tags/树/" rel="tag"># 树</a>
+          
+            <a href="/tags/树的构造/" rel="tag"># 树的构造</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/11/leetcode题解-654-最大二叉树/" rel="next" title="leetcode题解-654-最大二叉树">
+                <i class="fa fa-chevron-left"></i> leetcode题解-654-最大二叉树
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2019/page/6/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/archives/2019/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2019/page/6/">6</a><span class="page-number current">7</span>
-  </nav>
+  </article>
 
 
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -507,8 +596,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -715,6 +813,23 @@
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#secretname-way"><span class="nav-number">1.1.</span> <span class="nav-text">secretname way</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#references"><span class="nav-number">2.</span> <span class="nav-text">References</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
 
@@ -842,6 +957,10 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
 
   
 
@@ -857,6 +976,8 @@
 
   
 
+
+  
 
 
   
@@ -1178,7 +1299,60 @@
         onPopupClose();
       }
     });
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -1197,20 +1371,7 @@
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
 
-
-
-
-
-  
-
-  
-
-  
-  
-
-  
-  
-
+    
   
 
 
