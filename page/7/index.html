@@ -373,6 +373,206 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/22/在matplotlib的一个figure中画多个subplots/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bowen Peng">
+      <meta itemprop="description" content="something about myself and my career development.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boven's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/22/在matplotlib的一个figure中画多个subplots/" class="post-title-link" itemprop="url">在matplotlib的一个figure中画多个subplots</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-22 20:10:02" itemprop="dateCreated datePublished" datetime="2019-04-22T20:10:02+08:00">2019-04-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-25 22:03:48" itemprop="dateModified" datetime="2019-04-25T22:03:48+08:00">2019-04-25</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EDA/" itemprop="url" rel="index"><span itemprop="name">EDA</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="在一个figure中画多个subplots">在一个figure中画多个subplots</h2>
+<p>在做EDA和Data Visualization中常常会用到的一个code snippet,在这里以<a href="https://www.kaggle.com/c/titanic" title="Titanic in Kaggle" target="_blank" rel="noopener">kaggle上的titianic数据为例子</a>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 先导入packages</span></span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line">%matplotlib inline</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 导入数据</span></span><br><span class="line"><span class="comment"># path需根据具体环境作调节</span></span><br><span class="line">path = <span class="string">'input'</span></span><br><span class="line"></span><br><span class="line">train_df = pd.read_csv(<span class="string">''</span>.join([path, <span class="string">'/train.csv'</span>]))</span><br><span class="line">test_df = pd.read_csv(<span class="string">''</span>.join([path, <span class="string">'/test.csv'</span>]))</span><br><span class="line">gender_sub_df = pd.read_csv(<span class="string">''</span>.join([path, <span class="string">'/gender_submission.csv'</span>]))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 以Survived特征为例子</span></span><br><span class="line">fig, (ax1, ax2) = plt.subplots(nrows=<span class="number">1</span>, ncols=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ax1</span></span><br><span class="line">sns.countplot(train_df[<span class="string">'Survived'</span>], ax=ax1)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ax2</span></span><br><span class="line"><span class="comment"># autopct参数是用来显示饼图上百分比的</span></span><br><span class="line">ax2.pie(train_df[<span class="string">'Survived'</span>].value_counts(), autopct=<span class="string">'%1.1f%%'</span>)</span><br><span class="line"><span class="comment"># set_aspect('equal')是为了让饼图成圆形(circle)而不是椭圆(ellipse， oval)</span></span><br><span class="line">ax2.set_aspect(<span class="string">'equal'</span>)</span><br><span class="line">plt.set_xlabel(<span class="string">'Survived'</span>)</span><br></pre></td></tr></table></figure>
+<p>其中部分代码也可重写为如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fig, ax = plt.subplots(nrows=<span class="number">1</span>, ncols=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ax1</span></span><br><span class="line">sns.countplot(train_df[<span class="string">'Survived'</span>], ax=ax[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># ax2</span></span><br><span class="line">ax[<span class="number">1</span>].pie(train_df[<span class="string">'Survived'</span>].value_counts(), autopct=<span class="string">'%1.1f%%'</span>)</span><br><span class="line">ax[<span class="number">1</span>].set_aspect(<span class="string">'equal'</span>)</span><br><span class="line">plt.set_xlabel(<span class="string">'Survived'</span>)</span><br></pre></td></tr></table></figure>
+<img src="/2019/04/22/在matplotlib的一个figure中画多个subplots/countplot_and_pieplot_in_one_figure.jpg" title="This is an image">
+<p>也可以根据修改<code>nrows</code>, <code>ncols</code>参数来适用多行多列的情况：(这里举得这个例子只是为了举例而举例，没有过多实际意义)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">fig, ax = plt.subplots(nrows=<span class="number">2</span>, ncols=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ax[0, 0]</span></span><br><span class="line">sns.countplot(train_df[<span class="string">'Survived'</span>], ax=ax[<span class="number">0</span>, <span class="number">0</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># ax[0, 1]</span></span><br><span class="line">ax[<span class="number">0</span>, <span class="number">1</span>].pie(train_df[<span class="string">'Survived'</span>].value_counts(), autopct=<span class="string">'%1.1f%%'</span>)</span><br><span class="line">ax[<span class="number">0</span>, <span class="number">1</span>].set_aspect(<span class="string">'equal'</span>)</span><br><span class="line">ax[<span class="number">0</span>, <span class="number">1</span>].set_xlabel(<span class="string">'Survived'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ax[1, 0]</span></span><br><span class="line">sns.countplot(train_df[<span class="string">'Pclass'</span>], ax=ax[<span class="number">1</span>, <span class="number">0</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># ax[1, 1]</span></span><br><span class="line">ax[<span class="number">1</span>, <span class="number">1</span>].pie(train_df[<span class="string">'Pclass'</span>].value_counts(), autopct=<span class="string">'%1.1f%%'</span>)</span><br><span class="line">ax[<span class="number">1</span>, <span class="number">1</span>].set_aspect(<span class="string">'equal'</span>)</span><br><span class="line">ax[<span class="number">1</span>, <span class="number">1</span>].set_xlabel(<span class="string">'Pclass'</span>)</span><br></pre></td></tr></table></figure>
+<figure>
+<img src="/2019/04/22/在matplotlib的一个figure中画多个subplots/four_subplots_in_one_figure.jpg" alt="four_subplots_in_one_figure"><figcaption>four_subplots_in_one_figure</figcaption>
+</figure>
+<p>当然也可以用循环来实现，在此不对这举例了。</p>
+<p>中间还有2个小插曲，就是我实现的时候，发现<code>ax[0, 0]</code>的subplot没有<code>x_label</code>,所以还去StackOverflow上面提了个<a href="https://stackoverflow.com/questions/55794894/set-xlabel-is-in-invalid-in-ax0-0-when-drawing-4-subplots-in-one-plot" title="ax[0, 0]的subplot的set_xlabel无效" target="_blank" rel="noopener">Question</a>，发现仅仅是被hidden住了，加上一行<code>plt.tight_layer()</code>代码即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">fig, ax = plt.subplots(nrows=<span class="number">2</span>, ncols=<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ax[0, 0]</span></span><br><span class="line">sns.countplot(train_df[<span class="string">'Survived'</span>], ax=ax[<span class="number">0</span>, <span class="number">0</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># ax[0, 1]</span></span><br><span class="line">ax[<span class="number">0</span>, <span class="number">1</span>].pie(train_df[<span class="string">'Survived'</span>].value_counts(), autopct=<span class="string">'%1.1f%%'</span>)</span><br><span class="line">ax[<span class="number">0</span>, <span class="number">1</span>].set_aspect(<span class="string">'equal'</span>)</span><br><span class="line">ax[<span class="number">0</span>, <span class="number">1</span>].set_xlabel(<span class="string">'Survived'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># ax[1, 0]</span></span><br><span class="line">sns.countplot(train_df[<span class="string">'Pclass'</span>], ax=ax[<span class="number">1</span>, <span class="number">0</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># ax[1, 1]</span></span><br><span class="line">ax[<span class="number">1</span>, <span class="number">1</span>].pie(train_df[<span class="string">'Pclass'</span>].value_counts(), autopct=<span class="string">'%1.1f%%'</span>)</span><br><span class="line">ax[<span class="number">1</span>, <span class="number">1</span>].set_aspect(<span class="string">'equal'</span>)</span><br><span class="line">ax[<span class="number">1</span>, <span class="number">1</span>].set_xlabel(<span class="string">'Pclass'</span>)</span><br><span class="line"></span><br><span class="line">plt.tight_layout(h_pad=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<figure>
+<img src="/2019/04/22/在matplotlib的一个figure中画多个subplots/four_subplots_in_one_figure_plt_tight_layout.jpg" alt="four_subplots_in_one_figure_plt_tight_layout"><figcaption>four_subplots_in_one_figure_plt_tight_layout</figcaption>
+</figure>
+<p>还有就是hexo插图片时，若用markdown语法，说是文章在首页无法显示图片，点进去后仍可，所以只可采用最好用标签插件语法来实现，例如：</p>
+<blockquote>
+<img src="/2019/04/22/在matplotlib的一个figure中画多个subplots/image.jpg" title="This is an image">
+</blockquote>
+<h2 id="reference">Reference</h2>
+<p><a href="https://www.kaggle.com/c/titanic" target="_blank" rel="noopener">Titanic in Kaggle</a></p>
+<p><a href="https://stackoverflow.com/questions/9230389/why-is-matplotlib-plotting-my-circles-as-ovals" target="_blank" rel="noopener">why-is-matplotlib-plotting-my-circles-as-ovals</a></p>
+<p><a href="https://stackoverflow.com/questions/7082345/how-to-set-the-labels-size-on-a-pie-chart-in-python" target="_blank" rel="noopener">how-to-set-the-labels-size-on-a-pie-chart-in-python</a></p>
+<p><a href="https://stackoverflow.com/questions/55794894/set-xlabel-is-in-invalid-in-ax0-0-when-drawing-4-subplots-in-one-plot" target="_blank" rel="noopener">set-xlabel-is-in-invalid-in-ax0-0-when-drawing-4-subplots-in-one-plot</a></p>
+<p><a href="https://yanyinhong.github.io/2017/05/02/How-to-insert-image-in-hexo-post/" target="_blank" rel="noopener">How-to-insert-image-in-hexo-post</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/22/Stantar-2019有感/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1009,7 +1209,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">63</span>
+                    <span class="site-state-item-count">64</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1696,6 +1896,8 @@
 
   
   
+    
+      
     
       
     

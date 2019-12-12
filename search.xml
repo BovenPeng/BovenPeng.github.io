@@ -1,9 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode题解-617-合并二叉树]]></title>
+    <url>%2F2019%2F12%2F12%2Fleetcode%E9%A2%98%E8%A7%A3-617-%E5%90%88%E5%B9%B6%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
+    <content type="text"><![CDATA[题目 递归实现 12345678910111213141516171819202122/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: TreeNode* mergeTrees(TreeNode* t1, TreeNode* t2) &#123; if (!t1) return t2; if (!t2) return t1; t1-&gt;val += t2-&gt;val; t1-&gt;left = mergeTrees(t1-&gt;left, t2-&gt;left); t1-&gt;right = mergeTrees(t1-&gt;right, t2-&gt;right); return t1; &#125;&#125;; 手动压栈实现 总结 可以用t1, t2的根节点来代替为新的根节点，实现起来会很方便。 当你遍历到一个结点，其中只有一棵树有这样的结点的时候，递归实现直接返回另外一棵树的该节点即可。 Reference https://leetcode-cn.com/problems/merge-two-binary-trees/solution/he-bing-er-cha-shu-by-leetcode/]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>递归</tag>
+        <tag>树</tag>
+        <tag>×</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解-938-二叉树搜索树的范围和]]></title>
     <url>%2F2019%2F12%2F12%2Fleetcode%E9%A2%98%E8%A7%A3-938-%E4%BA%8C%E5%8F%89%E6%A0%91%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E8%8C%83%E5%9B%B4%E5%92%8C%2F</url>
     <content type="text"><![CDATA[题目 My way 递归解 要考虑3种情况： L，R分别在root的左，右子树上, \(val \in [L,\ R]\) L，R均在root的左子树上, \(L&lt; R &lt;val\) L，R均在root的右子树上, \(val &gt; L &gt; R\) 1234567891011121314151617181920212223242526272829303132333435363738/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;private: int sum = 0; void helper(TreeNode* root, int L, int R) &#123; if (!root) return ; if (L &lt;= root-&gt;val &amp;&amp; R &gt;= root-&gt;val) &#123; sum += root-&gt;val; &#125; else if (L &lt; root-&gt;val) &#123; helper(root-&gt;right, L, R); &#125; else if (R &gt; root-&gt;val) &#123; helper(root-&gt;left, L, R); &#125; &#125;public: int rangeSumBST(TreeNode* root, int L, int R) &#123; helper(root, L, R); return sum; &#125;&#125;; 手动压栈 1234567891011121314151617181920212223242526272829/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: int rangeSumBST(TreeNode* root, int L, int R) &#123; int sum = 0; stack&lt;TreeNode*&gt; s; s.push(root); while (!s.empty()) &#123; root = s.top(); s.pop(); if (!root) continue; if (L &lt;= root-&gt;val &amp;&amp; root-&gt;val &lt;= R) sum += root-&gt;val; if (L &lt; root-&gt;val) s.push(root-&gt;left); if (R &gt; root-&gt;val) s.push(root-&gt;right); &#125; return sum; &#125;&#125;;]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>递归</tag>
+        <tag>树</tag>
+        <tag>×</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[leetcode题解-998-最大二叉树Ⅱ]]></title>
@@ -14,9 +37,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
+        <tag>×</tag>
         <tag>树的构造</tag>
       </tags>
   </entry>
@@ -55,10 +78,10 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
+        <tag>×</tag>
         <tag>栈</tag>
       </tags>
   </entry>
@@ -71,10 +94,10 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
+        <tag>×</tag>
         <tag>hash</tag>
         <tag>序列化</tag>
         <tag>innovative solution</tag>
@@ -89,10 +112,10 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
+        <tag>×</tag>
         <tag>栈</tag>
         <tag>括号匹配</tag>
         <tag>stringstream</tag>
@@ -107,10 +130,10 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
+        <tag>×</tag>
         <tag>stringstream</tag>
         <tag>字符串</tag>
         <tag>序列化</tag>
@@ -228,11 +251,11 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
         <tag>BFS</tag>
+        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -244,11 +267,11 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
         <tag>BFS</tag>
+        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -260,9 +283,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
+        <tag>×</tag>
         <tag>DFS</tag>
       </tags>
   </entry>
@@ -275,9 +298,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
+        <tag>×</tag>
         <tag>DFS</tag>
       </tags>
   </entry>
@@ -290,9 +313,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
+        <tag>×</tag>
         <tag>DFS</tag>
       </tags>
   </entry>
@@ -305,9 +328,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
+        <tag>×</tag>
         <tag>DFS</tag>
       </tags>
   </entry>
@@ -371,8 +394,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>DP</tag>
         <tag>×</tag>
+        <tag>DP</tag>
         <tag>堆</tag>
       </tags>
   </entry>
@@ -385,8 +408,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>DP</tag>
         <tag>×</tag>
+        <tag>DP</tag>
         <tag>数学</tag>
       </tags>
   </entry>
@@ -412,8 +435,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>DP</tag>
         <tag>×</tag>
+        <tag>DP</tag>
       </tags>
   </entry>
   <entry>
@@ -425,8 +448,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>DP</tag>
         <tag>×</tag>
+        <tag>DP</tag>
       </tags>
   </entry>
   <entry>
@@ -438,8 +461,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>DP</tag>
         <tag>×</tag>
+        <tag>DP</tag>
         <tag>DFS</tag>
         <tag>数组</tag>
         <tag>特殊DP数组</tag>
@@ -454,8 +477,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>DP</tag>
         <tag>×</tag>
+        <tag>DP</tag>
         <tag>DFS</tag>
         <tag>数组</tag>
         <tag>完全背包</tag>
@@ -470,8 +493,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>DP</tag>
         <tag>×</tag>
+        <tag>DP</tag>
         <tag>分治算法</tag>
         <tag>哨兵</tag>
       </tags>
@@ -485,10 +508,10 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>DP</tag>
         <tag>×</tag>
-        <tag>组合数学</tag>
+        <tag>DP</tag>
         <tag>2维DP-to-1维DP</tag>
+        <tag>组合数学</tag>
         <tag>数组</tag>
       </tags>
   </entry>
@@ -501,9 +524,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>DP</tag>
-        <tag>×</tag>
         <tag>递归</tag>
+        <tag>×</tag>
+        <tag>DP</tag>
         <tag>数组</tag>
       </tags>
   </entry>
@@ -516,8 +539,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>DP</tag>
         <tag>×</tag>
+        <tag>DP</tag>
         <tag>2维dp</tag>
         <tag>插入1个虚拟0</tag>
         <tag>数组</tag>
@@ -534,8 +557,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>DP</tag>
         <tag>×</tag>
+        <tag>DP</tag>
         <tag>2维dp</tag>
         <tag>最大公共子序列</tag>
         <tag>插入1个虚拟0</tag>
@@ -611,10 +634,10 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
+        <tag>×</tag>
         <tag>动态规划</tag>
       </tags>
   </entry>
@@ -627,8 +650,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>数学题</tag>
         <tag>×</tag>
+        <tag>数学题</tag>
         <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>组合数学</tag>
@@ -643,8 +666,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>树</tag>
+        <tag>×</tag>
         <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>2维DP</tag>
@@ -678,8 +701,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>树</tag>
+        <tag>×</tag>
         <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>Catalan数</tag>
@@ -710,8 +733,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>DP</tag>
         <tag>×</tag>
+        <tag>DP</tag>
         <tag>二维dp</tag>
         <tag>博弈问题</tag>
       </tags>
@@ -725,9 +748,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>数学题</tag>
         <tag>DP</tag>
-        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -739,8 +762,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>DP</tag>
         <tag>×</tag>
+        <tag>DP</tag>
         <tag>插入1个虚拟0</tag>
         <tag>位运算</tag>
       </tags>
@@ -775,9 +798,9 @@
       </categories>
       <tags>
         <tag>code snippet</tag>
+        <tag>data visualization</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
-        <tag>data visualization</tag>
       </tags>
   </entry>
   <entry>
@@ -803,9 +826,9 @@
       </categories>
       <tags>
         <tag>pandas</tag>
-        <tag>Code Snippet</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
+        <tag>Code Snippet</tag>
       </tags>
   </entry>
   <entry>
@@ -832,9 +855,9 @@
       <tags>
         <tag>code snippet</tag>
         <tag>EDA</tag>
+        <tag>data visualization</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
-        <tag>data visualization</tag>
         <tag>hexo</tag>
       </tags>
   </entry>
