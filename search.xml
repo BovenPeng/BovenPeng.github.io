@@ -3,15 +3,15 @@
   <entry>
     <title><![CDATA[leetcode题解-617-合并二叉树]]></title>
     <url>%2F2019%2F12%2F12%2Fleetcode%E9%A2%98%E8%A7%A3-617-%E5%90%88%E5%B9%B6%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
-    <content type="text"><![CDATA[题目 递归实现 12345678910111213141516171819202122/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: TreeNode* mergeTrees(TreeNode* t1, TreeNode* t2) &#123; if (!t1) return t2; if (!t2) return t1; t1-&gt;val += t2-&gt;val; t1-&gt;left = mergeTrees(t1-&gt;left, t2-&gt;left); t1-&gt;right = mergeTrees(t1-&gt;right, t2-&gt;right); return t1; &#125;&#125;; 手动压栈实现 总结 可以用t1, t2的根节点来代替为新的根节点，实现起来会很方便。 当你遍历到一个结点，其中只有一棵树有这样的结点的时候，递归实现直接返回另外一棵树的该节点即可。 Reference https://leetcode-cn.com/problems/merge-two-binary-trees/solution/he-bing-er-cha-shu-by-leetcode/]]></content>
+    <content type="text"><![CDATA[题目 递归实现 12345678910111213141516171819202122/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: TreeNode* mergeTrees(TreeNode* t1, TreeNode* t2) &#123; if (!t1) return t2; if (!t2) return t1; t1-&gt;val += t2-&gt;val; t1-&gt;left = mergeTrees(t1-&gt;left, t2-&gt;left); t1-&gt;right = mergeTrees(t1-&gt;right, t2-&gt;right); return t1; &#125;&#125;; 手动压栈实现 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: TreeNode* mergeTrees(TreeNode* t1, TreeNode* t2) &#123; if (!t1) return t2; if (!t2) return t1; stack&lt;pair&lt;TreeNode*, TreeNode*&gt;&gt; s; s.push(make_pair(t1, t2)); while (!s.empty()) &#123; auto root = s.top(); s.pop(); if (!root.first|| !root.second) continue; root.first-&gt;val += root.second-&gt;val; if (!root.first-&gt;left) &#123; root.first-&gt;left = root.second-&gt;left; &#125; else &#123; s.push(make_pair(root.first-&gt;left, root.second-&gt;left)); &#125; if (!root.first-&gt;right) &#123; root.first-&gt;right = root.second-&gt;right; &#125; else &#123; s.push(make_pair(root.first-&gt;right, root.second-&gt;right)); &#125; &#125; return t1; &#125;&#125;; 总结 可以用t1, t2的根节点来代替为新的根节点，实现起来会很方便。 当你遍历到一个结点，其中只有一棵树有这样的结点的时候，递归实现直接返回另外一棵树的该节点即可。 Reference https://leetcode-cn.com/problems/merge-two-binary-trees/solution/he-bing-er-cha-shu-by-leetcode/]]></content>
       <categories>
         <category>刷题</category>
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -23,9 +23,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -37,9 +37,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
         <tag>树的构造</tag>
       </tags>
   </entry>
@@ -78,10 +78,10 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
-        <tag>×</tag>
         <tag>栈</tag>
       </tags>
   </entry>
@@ -94,10 +94,10 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
-        <tag>×</tag>
         <tag>hash</tag>
         <tag>序列化</tag>
         <tag>innovative solution</tag>
@@ -112,10 +112,10 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
-        <tag>×</tag>
         <tag>栈</tag>
         <tag>括号匹配</tag>
         <tag>stringstream</tag>
@@ -130,10 +130,10 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
-        <tag>×</tag>
         <tag>stringstream</tag>
         <tag>字符串</tag>
         <tag>序列化</tag>
@@ -251,11 +251,11 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
         <tag>BFS</tag>
-        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -267,11 +267,11 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
         <tag>BFS</tag>
-        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -283,9 +283,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
         <tag>DFS</tag>
       </tags>
   </entry>
@@ -298,9 +298,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
         <tag>DFS</tag>
       </tags>
   </entry>
@@ -313,9 +313,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
         <tag>DFS</tag>
       </tags>
   </entry>
@@ -328,9 +328,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
         <tag>DFS</tag>
       </tags>
   </entry>
@@ -394,8 +394,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>堆</tag>
       </tags>
   </entry>
@@ -408,8 +408,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>数学</tag>
       </tags>
   </entry>
@@ -435,8 +435,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -448,8 +448,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -461,8 +461,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>DFS</tag>
         <tag>数组</tag>
         <tag>特殊DP数组</tag>
@@ -477,8 +477,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>DFS</tag>
         <tag>数组</tag>
         <tag>完全背包</tag>
@@ -493,8 +493,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>分治算法</tag>
         <tag>哨兵</tag>
       </tags>
@@ -508,8 +508,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>2维DP-to-1维DP</tag>
         <tag>组合数学</tag>
         <tag>数组</tag>
@@ -524,9 +524,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>递归</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
+        <tag>递归</tag>
         <tag>数组</tag>
       </tags>
   </entry>
@@ -539,8 +539,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>2维dp</tag>
         <tag>插入1个虚拟0</tag>
         <tag>数组</tag>
@@ -557,8 +557,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>2维dp</tag>
         <tag>最大公共子序列</tag>
         <tag>插入1个虚拟0</tag>
@@ -589,8 +589,8 @@
       <tags>
         <tag>leetcode</tag>
         <tag>×</tag>
-        <tag>贪心算法</tag>
         <tag>动态规划</tag>
+        <tag>贪心算法</tag>
         <tag>数组</tag>
       </tags>
   </entry>
@@ -634,10 +634,10 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
-        <tag>×</tag>
         <tag>动态规划</tag>
       </tags>
   </entry>
@@ -650,8 +650,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>数学题</tag>
+        <tag>×</tag>
         <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>组合数学</tag>
@@ -666,8 +666,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>树</tag>
         <tag>×</tag>
+        <tag>树</tag>
         <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>2维DP</tag>
@@ -701,8 +701,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>树</tag>
         <tag>×</tag>
+        <tag>树</tag>
         <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>Catalan数</tag>
@@ -733,8 +733,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>二维dp</tag>
         <tag>博弈问题</tag>
       </tags>
@@ -748,9 +748,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>数学题</tag>
         <tag>DP</tag>
+        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -762,8 +762,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>插入1个虚拟0</tag>
         <tag>位运算</tag>
       </tags>
