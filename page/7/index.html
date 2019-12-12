@@ -373,6 +373,206 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/22/Stantar-2019有感/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bowen Peng">
+      <meta itemprop="description" content="something about myself and my career development.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boven's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/22/Stantar-2019有感/" class="post-title-link" itemprop="url">Stantar 2019有感</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-22 14:17:54" itemprop="dateCreated datePublished" datetime="2019-04-22T14:17:54+08:00">2019-04-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-04-25 22:03:04" itemprop="dateModified" datetime="2019-04-25T22:03:04+08:00">2019-04-25</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/data-competition/" itemprop="url" rel="index"><span itemprop="name">data competition</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="stantar-2019有感">Stantar 2019有感</h1>
+<p>看了很多个top solution，尤其是<a href="https://www.kaggle.com/c/santander-customer-transaction-prediction/discussion/88926#latest-518288" target="_blank" rel="noopener">金牌区域的</a>。</p>
+<p>给我感觉在这个比赛中的几个重要的<strong>magic</strong>有：</p>
+<ul>
+<li>frequency coding；在对于匿名数据或者categorical feature上，可以先试着这样做下，一般是会提升local CV之类；</li>
+<li>fake data；对于training set和testing set中的unique value的数量明显不同，让人怀疑testing set中的数据包含伪造数据。对于testing set中的伪造数据进行删除即可。<a href="https://www.kaggle.com/yag320/list-of-fake-samples-and-public-private-lb-split" target="_blank" rel="noopener">List of Fake Samples and Public/Private LB split</a></li>
+<li>independent feature；利用feature间的相互独立性，在用LightGBM训练时，只对某一特征训练，故有200个lgb classifier再对预测结果进行简单的simple linear blending。<a href="https://www.kaggle.com/titericz/giba-single-model-public-0-9245-private-0-9234" target="_blank" rel="noopener">a single model using all features vstacked that is enough for a top20 on Private</a></li>
+</ul>
+<p>感受颇深的是对于这些<strong>magic</strong>，一是自己确实没有通过EDA来发现到，能力有限；二是其实在kernel和discussion中都有多多少少提及到，自己未引起重视又或者不知如何是好。</p>
+<p>个人主要感觉还是：</p>
+<ol type="1">
+<li>在EDA方面考虑得不够到位，而且可以利用：
+<ol type="1">
+<li>Local CV和LB的提升上差异来分析是哪里的问题，然后解决并使得Local CV和LB的提升近似。比如此次中，一开始无论local CV提升有多高，LB都会锁在9.001上。而解决到fake data的存在后，local CV提升，LB也会随之提升，使得LB锁在9.001的情况不复存在；</li>
+<li>可以根据kernel和discussion区域中，若在新的发布后，上的存在着许多人的大幅度增长，则说明某个kernel或discussion揭露了<strong>magic</strong>；</li>
+</ol></li>
+<li><strong>Model</strong>这一块也是有问题，很明显在NN上存在很多问题，尤其是现在去看top solution中开源的NN代码，会存在很多逻辑看不太懂的情况；</li>
+<li><strong>Parameter Tuning</strong>上面也有问题，除了最基本的<strong>Grid Search</strong>和<strong>Random Search</strong>外，对于<strong>Bayesian optimization</strong>没有理解且无法应用出来。<a href="https://www.kaggle.com/c/santander-customer-transaction-prediction/discussion/89320#517455" target="_blank" rel="noopener">Chris这个discussion给了很多inspirations</a>；</li>
+<li>对于Data Science这块Coding能力上也存在着问题，不能很流畅的阅读代码逻辑；</li>
+<li>这个比赛没有用到<strong>Feature Selection</strong>, 然而这块也是我的弱项；</li>
+<li>在最后如何选取2个<strong>the most robust model</strong>用于提交到PB上也仍未解决。</li>
+</ol>
+<p>不过感觉还是收获了不少，在我上述几方面加强后，还是需要回来reiview Stantar这个比赛的各个solution。</p>
+<h1 id="reference">Reference</h1>
+<p><a href="https://www.kaggle.com/c/santander-customer-transaction-prediction/discussion/88926#latest-518288" target="_blank" rel="noopener">Gold Medal Solutions of Stantar 2019</a></p>
+<p><a href="https://www.kaggle.com/yag320/list-of-fake-samples-and-public-private-lb-split" target="_blank" rel="noopener">List of Fake Samples and Public/Private LB split</a></p>
+<p><a href="https://www.kaggle.com/titericz/giba-single-model-public-0-9245-private-0-9234" target="_blank" rel="noopener">Giba: a single model using all features vstacked that is enough for a top20 on Private</a></p>
+<p><a href="https://www.kaggle.com/c/santander-customer-transaction-prediction/discussion/89320#517455" target="_blank" rel="noopener">Chirs: How do we optimize GBM hyperparameters?</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/11/一些学习计划/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -809,7 +1009,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">62</span>
+                    <span class="site-state-item-count">63</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1496,6 +1696,8 @@
 
   
   
+    
+      
     
       
     

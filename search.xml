@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode题解-938-二叉树搜索树的范围和]]></title>
+    <url>%2F2019%2F12%2F12%2Fleetcode%E9%A2%98%E8%A7%A3-938-%E4%BA%8C%E5%8F%89%E6%A0%91%E6%90%9C%E7%B4%A2%E6%A0%91%E7%9A%84%E8%8C%83%E5%9B%B4%E5%92%8C%2F</url>
+    <content type="text"><![CDATA[题目 My way 递归解 要考虑3种情况： L，R分别在root的左，右子树上, \(val \in [L,\ R]\) L，R均在root的左子树上, \(L&lt; R &lt;val\) L，R均在root的右子树上, \(val &gt; L &gt; R\) 1234567891011121314151617181920212223242526272829303132333435363738/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;private: int sum = 0; void helper(TreeNode* root, int L, int R) &#123; if (!root) return ; if (L &lt;= root-&gt;val &amp;&amp; R &gt;= root-&gt;val) &#123; sum += root-&gt;val; &#125; else if (L &lt; root-&gt;val) &#123; helper(root-&gt;right, L, R); &#125; else if (R &gt; root-&gt;val) &#123; helper(root-&gt;left, L, R); &#125; &#125;public: int rangeSumBST(TreeNode* root, int L, int R) &#123; helper(root, L, R); return sum; &#125;&#125;; 手动压栈 1234567891011121314151617181920212223242526272829/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: int rangeSumBST(TreeNode* root, int L, int R) &#123; int sum = 0; stack&lt;TreeNode*&gt; s; s.push(root); while (!s.empty()) &#123; root = s.top(); s.pop(); if (!root) continue; if (L &lt;= root-&gt;val &amp;&amp; root-&gt;val &lt;= R) sum += root-&gt;val; if (L &lt; root-&gt;val) s.push(root-&gt;left); if (R &gt; root-&gt;val) s.push(root-&gt;right); &#125; return sum; &#125;&#125;;]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解-998-最大二叉树Ⅱ]]></title>
     <url>%2F2019%2F12%2F11%2Fleetcode%E9%A2%98%E8%A7%A3-998-%E6%9C%80%E5%A4%A7%E4%BA%8C%E5%8F%89%E6%A0%91%E2%85%A1%2F</url>
     <content type="text"><![CDATA[题目 没能理解题意。。。 我感觉是给了一个已经构造好的最大二叉树，然后新插入一个值为val的结点进来。 这个解答告诉了这个题是要做啥。然后发现是对比三幅例子的树图可以得到插入val结点进来的要求。 分成如下2种情况： 大于root，则把 root作为val节点的左子树； 小于root，则把 val节点作为root的右子树； secretname way 123456789101112131415161718192021222324/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: TreeNode* insertIntoMaxTree(TreeNode* root, int val) &#123; if (!root || root-&gt;val &lt; val) &#123; TreeNode* node = new TreeNode(val); node-&gt;left = root; return node; &#125; root-&gt;right = insertIntoMaxTree(root-&gt;right, val); return root; &#125;&#125;; References https://leetcode-cn.com/problems/maximum-binary-tree-ii/solution/go-0ms-wu-di-gui-by-yuhhen/ https://leetcode-cn.com/problems/maximum-binary-tree-ii/solution/c-di-gui-jian-ji-dai-ma-by-secretname/]]></content>
@@ -482,8 +487,8 @@
         <tag>leetcode</tag>
         <tag>DP</tag>
         <tag>×</tag>
-        <tag>2维DP-to-1维DP</tag>
         <tag>组合数学</tag>
+        <tag>2维DP-to-1维DP</tag>
         <tag>数组</tag>
       </tags>
   </entry>
@@ -561,8 +566,8 @@
       <tags>
         <tag>leetcode</tag>
         <tag>×</tag>
-        <tag>动态规划</tag>
         <tag>贪心算法</tag>
+        <tag>动态规划</tag>
         <tag>数组</tag>
       </tags>
   </entry>
@@ -770,9 +775,9 @@
       </categories>
       <tags>
         <tag>code snippet</tag>
-        <tag>data visualization</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
+        <tag>data visualization</tag>
       </tags>
   </entry>
   <entry>
@@ -798,9 +803,9 @@
       </categories>
       <tags>
         <tag>pandas</tag>
+        <tag>Code Snippet</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
-        <tag>Code Snippet</tag>
       </tags>
   </entry>
   <entry>
@@ -827,9 +832,9 @@
       <tags>
         <tag>code snippet</tag>
         <tag>EDA</tag>
-        <tag>data visualization</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
+        <tag>data visualization</tag>
         <tag>hexo</tag>
       </tags>
   </entry>
