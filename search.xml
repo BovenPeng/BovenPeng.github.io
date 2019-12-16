@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode题解-814-二叉树剪枝]]></title>
+    <url>%2F2019%2F12%2F16%2Fleetcode%E9%A2%98%E8%A7%A3-814-%E4%BA%8C%E5%8F%89%E6%A0%91%E5%89%AA%E6%9E%9D%2F</url>
+    <content type="text"><![CDATA[题目 官方way 递归 java实现 1234567891011121314class Solution &#123; public TreeNode pruneTree(TreeNode root) &#123; return containsOne(root) ? root : null; &#125; public boolean containsOne(TreeNode node) &#123; if (node == null) return false; boolean a1 = containsOne(node.left); boolean a2 = containsOne(node.right); if (!a1) node.left = null; if (!a2) node.right = null; return node.val == 1 || a1 || a2; &#125;&#125; C++实现 123456789101112131415161718192021222324252627282930/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;private: bool helper(TreeNode* root) &#123; if (!root) return false; bool lDel = helper(root-&gt;left); bool lRig = helper(root-&gt;right); if (!lDel) root-&gt;left = nullptr; if (!lRig) root-&gt;right = nullptr; return root-&gt;val == 1 | lDel | lRig; &#125;public: TreeNode* pruneTree(TreeNode* root) &#123; return helper(root) ? root : nullptr; &#125;&#125;; 总结 自己一开始的递归思路不合理。 递归终止条件： 到达nullptr处，return false 递归状态： 当前结点值 == 1 左子树 == 全为1 右子树 == 全为1 Reference https://leetcode-cn.com/problems/binary-tree-pruning/solution/er-cha-shu-jian-zhi-by-leetcode/]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解-226-翻转二叉树]]></title>
     <url>%2F2019%2F12%2F16%2Fleetcode%E9%A2%98%E8%A7%A3-226-%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
     <content type="text"><![CDATA[题目 My way 递归实现 12345678910111213141516171819202122/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: TreeNode* invertTree(TreeNode* root) &#123; if (!root) return nullptr; TreeNode* tmp = invertTree(root-&gt;right); root-&gt;right = invertTree(root-&gt;left); root-&gt;left = tmp; return root; &#125;&#125;; 手动队列，层次遍历 1234567891011121314151617181920212223242526272829303132/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: TreeNode* invertTree(TreeNode* root) &#123; queue&lt;TreeNode*&gt; q; q.push(root); while(!q.empty()) &#123; auto front = q.front(); q.pop(); if (!front) continue; auto tmp = front-&gt;right; front-&gt;right = front-&gt;left; front-&gt;left = tmp; q.push(front-&gt;left); q.push(front-&gt;right); &#125; return root; &#125;&#125;;]]></content>
@@ -588,8 +593,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>DP</tag>
         <tag>√</tag>
+        <tag>DP</tag>
         <tag>2维dp</tag>
         <tag>2维DP-to-1维DP</tag>
       </tags>
