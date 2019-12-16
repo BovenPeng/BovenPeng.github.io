@@ -8,7 +8,7 @@
   <entry>
     <title><![CDATA[leetcode题解-1008-先序遍历构造二叉树]]></title>
     <url>%2F2019%2F12%2F16%2Fleetcode%E9%A2%98%E8%A7%A3-1008-%E5%85%88%E5%BA%8F%E9%81%8D%E5%8E%86%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
-    <content type="text"><![CDATA[题目 NoNN way 递归实现 利用二叉搜索树的前序遍历结果中的左子树序列中的值都小于根节点。 123456789101112131415161718192021222324252627282930313233343536/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;private: TreeNode* helper(const vector&lt;int&gt;&amp; nums, int l, int r) &#123; if (l &gt; r) return nullptr; TreeNode* root = new TreeNode(nums[l]); if (l == r) return root; int j = l + 1; while(nums[j] &lt; nums[l]) &#123; ++j; if (j &gt;= nums.size()) break; &#125; root-&gt;left = helper(nums, l+1, j-1); root-&gt;right = helper(nums, j, r); return root; &#125;public: TreeNode* bstFromPreorder(vector&lt;int&gt;&amp; preorder) &#123; return helper(preorder, 0, preorder.size() - 1); &#125;&#125;; 手动压栈实现]]></content>
+    <content type="text"><![CDATA[题目 递归实现 利用二叉搜索树的前序遍历结果中的左子树序列中的值都小于根节点。 123456789101112131415161718192021222324252627282930313233343536/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;private: TreeNode* helper(const vector&lt;int&gt;&amp; nums, int l, int r) &#123; if (l &gt; r) return nullptr; TreeNode* root = new TreeNode(nums[l]); if (l == r) return root; int j = l + 1; while(nums[j] &lt; nums[l]) &#123; ++j; if (j &gt;= nums.size()) break; &#125; root-&gt;left = helper(nums, l+1, j-1); root-&gt;right = helper(nums, j, r); return root; &#125;public: TreeNode* bstFromPreorder(vector&lt;int&gt;&amp; preorder) &#123; return helper(preorder, 0, preorder.size() - 1); &#125;&#125;; 手动压栈实现 12345678910111213141516171819202122232425class Solution &#123;public: TreeNode* bstFromPreorder(vector&lt;int&gt;&amp; preorder) &#123; int n = preorder.size(); if (!n) return nullptr; TreeNode* root = new TreeNode(preorder[0]); stack&lt;TreeNode*&gt; s; s.push(root); for (int i = 1; i &lt; n; i++) &#123; TreeNode* node = s.top(); TreeNode* child = new TreeNode(preorder[i]); while (!s.empty() &amp;&amp; s.top()-&gt;val &lt; child-&gt;val) &#123; node = s.top(); s.pop(); &#125; if (node-&gt;val &lt; child-&gt;val) node-&gt;right = child; else node-&gt;left = child; s.push(child); &#125; return root; &#125;&#125;; References NoNN way https://leetcode-cn.com/problems/construct-binary-search-tree-from-preorder-traversal/solution/jian-kong-er-cha-shu-by-leetcode/]]></content>
   </entry>
   <entry>
     <title><![CDATA[leetcode题解-894-所有可能的满二叉树]]></title>
@@ -96,8 +96,8 @@
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
-        <tag>栈</tag>
         <tag>×</tag>
+        <tag>栈</tag>
       </tags>
   </entry>
   <entry>
@@ -130,8 +130,8 @@
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
-        <tag>栈</tag>
         <tag>×</tag>
+        <tag>栈</tag>
         <tag>括号匹配</tag>
         <tag>stringstream</tag>
       </tags>
@@ -149,9 +149,9 @@
         <tag>树</tag>
         <tag>树的遍历</tag>
         <tag>×</tag>
+        <tag>stringstream</tag>
         <tag>字符串</tag>
         <tag>序列化</tag>
-        <tag>stringstream</tag>
       </tags>
   </entry>
   <entry>
@@ -588,8 +588,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>√</tag>
         <tag>DP</tag>
+        <tag>√</tag>
         <tag>2维dp</tag>
         <tag>2维DP-to-1维DP</tag>
       </tags>
@@ -732,8 +732,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>栈</tag>
         <tag>×</tag>
+        <tag>栈</tag>
         <tag>贪心算法</tag>
         <tag>线性表</tag>
         <tag>括号匹配</tag>
