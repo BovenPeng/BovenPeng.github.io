@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode题解-226-翻转二叉树]]></title>
+    <url>%2F2019%2F12%2F16%2Fleetcode%E9%A2%98%E8%A7%A3-226-%E7%BF%BB%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
+    <content type="text"><![CDATA[题目 My way 递归实现 12345678910111213141516171819202122/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: TreeNode* invertTree(TreeNode* root) &#123; if (!root) return nullptr; TreeNode* tmp = invertTree(root-&gt;right); root-&gt;right = invertTree(root-&gt;left); root-&gt;left = tmp; return root; &#125;&#125;; 手动队列，层次遍历 1234567891011121314151617181920212223242526272829303132/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: TreeNode* invertTree(TreeNode* root) &#123; queue&lt;TreeNode*&gt; q; q.push(root); while(!q.empty()) &#123; auto front = q.front(); q.pop(); if (!front) continue; auto tmp = front-&gt;right; front-&gt;right = front-&gt;left; front-&gt;left = tmp; q.push(front-&gt;left); q.push(front-&gt;right); &#125; return root; &#125;&#125;;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[leetcode题解-1008-先序遍历构造二叉树]]></title>
+    <url>%2F2019%2F12%2F16%2Fleetcode%E9%A2%98%E8%A7%A3-1008-%E5%85%88%E5%BA%8F%E9%81%8D%E5%8E%86%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
+    <content type="text"><![CDATA[题目 NoNN way 递归实现 利用二叉搜索树的前序遍历结果中的左子树序列中的值都小于根节点。 123456789101112131415161718192021222324252627282930313233343536/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;private: TreeNode* helper(const vector&lt;int&gt;&amp; nums, int l, int r) &#123; if (l &gt; r) return nullptr; TreeNode* root = new TreeNode(nums[l]); if (l == r) return root; int j = l + 1; while(nums[j] &lt; nums[l]) &#123; ++j; if (j &gt;= nums.size()) break; &#125; root-&gt;left = helper(nums, l+1, j-1); root-&gt;right = helper(nums, j, r); return root; &#125;public: TreeNode* bstFromPreorder(vector&lt;int&gt;&amp; preorder) &#123; return helper(preorder, 0, preorder.size() - 1); &#125;&#125;; 手动压栈实现]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[leetcode题解-894-所有可能的满二叉树]]></title>
+    <url>%2F2019%2F12%2F16%2Fleetcode%E9%A2%98%E8%A7%A3-894-%E6%89%80%E6%9C%89%E5%8F%AF%E8%83%BD%E7%9A%84%E6%BB%A1%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
+    <content type="text"><![CDATA[题目 My way 记忆化搜索 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */// 使用记忆化搜索，避免每次重新计算测试用例class Solution &#123;private:unordered_map&lt;int, vector&lt;TreeNode*&gt;&gt; memo;public: vector&lt;TreeNode*&gt; allPossibleFBT(int N) &#123; if (N % 2 == 0) return vector&lt;TreeNode*&gt;(); //if (memo.count(N)) return memo[N]; auto it = memo.find(N); if (it != memo.end()) return it-&gt;second; vector&lt;TreeNode*&gt; vt; if (N == 1) &#123; vt.push_back(new TreeNode(0)); &#125; else if (N % 2 == 1) &#123; for (int x = 0; x &lt; N; ++x) &#123; int y = N - 1 - x; for (auto left: allPossibleFBT(x)) &#123; for (auto right: allPossibleFBT(y)) &#123; TreeNode* bns = new TreeNode(0); bns-&gt;left = left; bns-&gt;right = right; vt.push_back(bns); &#125; &#125; &#125; &#125; memo.insert(make_pair(N, vt)); return memo[N]; &#125;&#125;;]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解-617-合并二叉树]]></title>
     <url>%2F2019%2F12%2F12%2Fleetcode%E9%A2%98%E8%A7%A3-617-%E5%90%88%E5%B9%B6%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
     <content type="text"><![CDATA[题目 递归实现 12345678910111213141516171819202122/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: TreeNode* mergeTrees(TreeNode* t1, TreeNode* t2) &#123; if (!t1) return t2; if (!t2) return t1; t1-&gt;val += t2-&gt;val; t1-&gt;left = mergeTrees(t1-&gt;left, t2-&gt;left); t1-&gt;right = mergeTrees(t1-&gt;right, t2-&gt;right); return t1; &#125;&#125;; 手动压栈实现 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: TreeNode* mergeTrees(TreeNode* t1, TreeNode* t2) &#123; if (!t1) return t2; if (!t2) return t1; stack&lt;pair&lt;TreeNode*, TreeNode*&gt;&gt; s; s.push(make_pair(t1, t2)); while (!s.empty()) &#123; auto root = s.top(); s.pop(); if (!root.first|| !root.second) continue; root.first-&gt;val += root.second-&gt;val; if (!root.first-&gt;left) &#123; root.first-&gt;left = root.second-&gt;left; &#125; else &#123; s.push(make_pair(root.first-&gt;left, root.second-&gt;left)); &#125; if (!root.first-&gt;right) &#123; root.first-&gt;right = root.second-&gt;right; &#125; else &#123; s.push(make_pair(root.first-&gt;right, root.second-&gt;right)); &#125; &#125; return t1; &#125;&#125;; 总结 可以用t1, t2的根节点来代替为新的根节点，实现起来会很方便。 当你遍历到一个结点，其中只有一棵树有这样的结点的时候，递归实现直接返回另外一棵树的该节点即可。 Reference https://leetcode-cn.com/problems/merge-two-binary-trees/solution/he-bing-er-cha-shu-by-leetcode/]]></content>
@@ -81,8 +96,8 @@
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
-        <tag>×</tag>
         <tag>栈</tag>
+        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -115,8 +130,8 @@
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
-        <tag>×</tag>
         <tag>栈</tag>
+        <tag>×</tag>
         <tag>括号匹配</tag>
         <tag>stringstream</tag>
       </tags>
@@ -134,9 +149,9 @@
         <tag>树</tag>
         <tag>树的遍历</tag>
         <tag>×</tag>
-        <tag>stringstream</tag>
         <tag>字符串</tag>
         <tag>序列化</tag>
+        <tag>stringstream</tag>
       </tags>
   </entry>
   <entry>
@@ -589,8 +604,8 @@
       <tags>
         <tag>leetcode</tag>
         <tag>×</tag>
-        <tag>贪心算法</tag>
         <tag>动态规划</tag>
+        <tag>贪心算法</tag>
         <tag>数组</tag>
       </tags>
   </entry>
@@ -717,8 +732,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>栈</tag>
+        <tag>×</tag>
         <tag>贪心算法</tag>
         <tag>线性表</tag>
         <tag>括号匹配</tag>
