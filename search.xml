@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode题解-1261-在受污染的二叉树中查找元素]]></title>
+    <url>%2F2019%2F12%2F18%2Fleetcode%E9%A2%98%E8%A7%A3-1261-%E5%9C%A8%E5%8F%97%E6%B1%A1%E6%9F%93%E7%9A%84%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E6%9F%A5%E6%89%BE%E5%85%83%E7%B4%A0%2F</url>
+    <content type="text"><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[leetcode题解-109-将有序数组转换为二叉搜索树]]></title>
+    <url>%2F2019%2F12%2F17%2Fleetcode%E9%A2%98%E8%A7%A3-109-%E5%B0%86%E6%9C%89%E5%BA%8F%E6%95%B0%E7%BB%84%E8%BD%AC%E6%8D%A2%E4%B8%BA%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%2F</url>
+    <content type="text"><![CDATA[题目 My way 递归实现 123456789101112131415161718192021222324252627282930/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;private: TreeNode* helper(const vector&lt;int&gt;&amp; nums, int l, int r) &#123; if (l &gt; r) return nullptr; int mid = (r - l)/2 + l; auto root = new TreeNode(nums[mid]); root-&gt;left = helper(nums, l, mid-1); root-&gt;right = helper(nums, mid+1, r); return root; &#125;public: TreeNode* sortedArrayToBST(vector&lt;int&gt;&amp; nums) &#123; return !nums.size()? nullptr: helper(nums, 0, nums.size()-1); &#125;&#125;;]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[leetcode题解-284-顶端迭代器]]></title>
+    <url>%2F2019%2F12%2F17%2Fleetcode%E9%A2%98%E8%A7%A3-284-%E9%A1%B6%E7%AB%AF%E8%BF%AD%E4%BB%A3%E5%99%A8%2F</url>
+    <content type="text"><![CDATA[题目 大力王way 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657// Below is the interface for Iterator, which is already defined for you.// **DO NOT** modify the interface for Iterator.class Iterator &#123; struct Data; Data* data;public: Iterator(const vector&lt;int&gt;&amp; nums); Iterator(const Iterator&amp; iter); virtual ~Iterator(); // Returns the next element in the iteration. int next(); // Returns true if the iteration has more elements. bool hasNext() const;&#125;;class PeekingIterator : public Iterator &#123;public: int curr; bool hit_end; PeekingIterator(const vector&lt;int&gt;&amp; nums) : Iterator(nums) &#123; // Initialize any member here. // **DO NOT** save a copy of nums and manipulate it directly. // You should only use the Iterator interface methods. hit_end = false; if (Iterator::hasNext()) &#123; curr = Iterator::next(); &#125; else &#123; hit_end = true; &#125; &#125; // Returns the next element in the iteration without advancing the iterator. int peek() &#123; return curr; &#125; // hasNext() and next() should behave the same as in the Iterator interface. // Override them if needed. int next() &#123; if (hit_end) &#123; return -1; &#125; int res = curr; if (Iterator::hasNext()) &#123; curr = Iterator::next(); &#125; else &#123; hit_end = true; &#125; return res; &#125; bool hasNext() const &#123; return !hit_end; &#125;&#125;; 简单修改了一下，把cur, hit_end放到private作用域里了。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869// Below is the interface for Iterator, which is already defined for you.// **DO NOT** modify the interface for Iterator.class Iterator &#123; struct Data; Data* data;public: Iterator(const vector&lt;int&gt;&amp; nums); Iterator(const Iterator&amp; iter); virtual ~Iterator(); // Returns the next element in the iteration. int next(); // Returns true if the iteration has more elements. bool hasNext() const;&#125;;class PeekingIterator : public Iterator &#123;private: int cur; bool hit_end;public: PeekingIterator(const vector&lt;int&gt;&amp; nums) : Iterator(nums) &#123; // Initialize any member here. // **DO NOT** save a copy of nums and manipulate it directly. // You should only use the Iterator interface methods. hit_end = false; if (Iterator::hasNext()) &#123; cur = Iterator::next(); &#125; else &#123; hit_end = true; &#125; &#125; // Returns the next element in the iteration without advancing the iterator. int peek() &#123; return cur; &#125; // hasNext() and next() should behave the same as in the Iterator interface. // Override them if needed. int next() &#123; int res = -1; if (hit_end) return -1; res = cur; if (Iterator::hasNext()) &#123; cur = Iterator::next(); &#125; else &#123; hit_end = true; &#125; return res; &#125; bool hasNext() const &#123; return !hit_end; &#125;&#125;; 总结 不能拷贝一个基类对象进行直接操作，会涉及到子类调用父类接口的一些写法： 这种没有加virtual的override是通过class::function_name来调用的 用cur表示最前面元素，hit_end表示是否到了尾部]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[leetcode题解-173-二叉搜索树迭代器]]></title>
+    <url>%2F2019%2F12%2F17%2Fleetcode%E9%A2%98%E8%A7%A3-173-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E8%BF%AD%E4%BB%A3%E5%99%A8%2F</url>
+    <content type="text"><![CDATA[题目 windliang 队列保存了所有的节点值 java实现 123456789101112131415161718192021222324252627class BSTIterator &#123; Queue&lt;Integer&gt; queue = new LinkedList&lt;&gt;(); public BSTIterator(TreeNode root) &#123; inorderTraversal(root); &#125; private void inorderTraversal(TreeNode root) &#123; if (root == null) &#123; return; &#125; inorderTraversal(root.left); queue.offer(root.val); inorderTraversal(root.right); &#125; /** @return the next smallest number */ public int next() &#123; return queue.poll(); &#125; /** @return whether we have a next smallest number */ public boolean hasNext() &#123; return !queue.isEmpty(); &#125;&#125; C++实现 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class BSTIterator &#123;private: queue&lt;int&gt; q; void inOrder(TreeNode* root) &#123; if (!root) return; inOrder(root-&gt;left); q.push(root-&gt;val); inOrder(root-&gt;right); &#125;public: BSTIterator(TreeNode* root) &#123; inOrder(root); &#125; /** @return the next smallest number */ int next() &#123; auto front = q.front(); q.pop(); return front; &#125; /** @return whether we have a next smallest number */ bool hasNext() &#123; return !q.empty(); &#125;&#125;;/** * Your BSTIterator object will be instantiated and called as such: * BSTIterator* obj = new BSTIterator(root); * int param_1 = obj-&gt;next(); * bool param_2 = obj-&gt;hasNext(); */ 要控制中序遍历的进程，一个一个输出 java实现 123456789101112131415161718192021222324252627282930313233class BSTIterator &#123; Stack&lt;TreeNode&gt; stack = new Stack&lt;&gt;(); TreeNode cur = null; public BSTIterator(TreeNode root) &#123; cur = root; &#125; /** @return the next smallest number */ public int next() &#123; int res = -1; while (cur != null || !stack.isEmpty()) &#123; // 节点不为空一直压栈 while (cur != null) &#123; stack.push(cur); cur = cur.left; // 考虑左子树 &#125; // 节点为空，就出栈 cur = stack.pop(); res = cur.val; // 考虑右子树 cur = cur.right; break; &#125; return res; &#125; /** @return whether we have a next smallest number */ public boolean hasNext() &#123; return cur != null || !stack.isEmpty(); &#125;&#125; C++实现 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class BSTIterator &#123;private: stack&lt;TreeNode*&gt; s; TreeNode* cur = nullptr;public: BSTIterator(TreeNode* root) &#123; cur = root; &#125; /** @return the next smallest number */ int next() &#123; int res = -1; while (cur || !s.empty()) &#123; while (cur != nullptr) &#123; s.push(cur); cur = cur-&gt;left; &#125; cur = s.top(); s.pop(); res = cur-&gt;val; cur = cur-&gt;right; break; &#125; return res; &#125; /** @return whether we have a next smallest number */ bool hasNext() &#123; return cur || !s.empty(); &#125;&#125;;/** * Your BSTIterator object will be instantiated and called as such: * BSTIterator* obj = new BSTIterator(root); * int param_1 = obj-&gt;next(); * bool param_2 = obj-&gt;hasNext(); */ 总结 利用 二叉搜索树 的 中序遍历 是 升序序列 的特点，可以提前将树的结构以中序遍历结果存储起来]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[leetcode题解-701-二叉搜索树中的插入操作]]></title>
+    <url>%2F2019%2F12%2F16%2Fleetcode%E9%A2%98%E8%A7%A3-701-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E6%8F%92%E5%85%A5%E6%93%8D%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[题目 My way 递归实现 12345678910111213141516171819202122232425262728/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: TreeNode* insertIntoBST(TreeNode* root, int val) &#123; auto node = root; TreeNode* tmp; while (node) &#123; tmp = node; if (node-&gt;val == val) return root; if (node-&gt;val &gt; val) node = node-&gt;left; else node = node-&gt;right; &#125; if (tmp-&gt;val &gt; val) tmp-&gt;left = new TreeNode(val); else tmp-&gt;right = new TreeNode(val); return root; &#125;&#125;; 很简单的题目，就不写非递归实现了。]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[leetcode题解-700-二叉搜索树中的搜索]]></title>
+    <url>%2F2019%2F12%2F16%2Fleetcode%E9%A2%98%E8%A7%A3-700-%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%E4%B8%AD%E7%9A%84%E6%90%9C%E7%B4%A2%2F</url>
+    <content type="text"><![CDATA[题目 My way 递归 1234567891011121314151617181920212223/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: TreeNode* searchBST(TreeNode* root, int val) &#123; while (root) &#123; if (root-&gt;val == val) return root; if (root-&gt;val &gt; val) root = root-&gt;left; else root = root-&gt;right; &#125; return root; &#125;&#125;; 很简单的题目，就不写非递归实现了]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解-814-二叉树剪枝]]></title>
     <url>%2F2019%2F12%2F16%2Fleetcode%E9%A2%98%E8%A7%A3-814-%E4%BA%8C%E5%8F%89%E6%A0%91%E5%89%AA%E6%9E%9D%2F</url>
     <content type="text"><![CDATA[题目 官方way 递归 java实现 1234567891011121314class Solution &#123; public TreeNode pruneTree(TreeNode root) &#123; return containsOne(root) ? root : null; &#125; public boolean containsOne(TreeNode node) &#123; if (node == null) return false; boolean a1 = containsOne(node.left); boolean a2 = containsOne(node.right); if (!a1) node.left = null; if (!a2) node.right = null; return node.val == 1 || a1 || a2; &#125;&#125; C++实现 123456789101112131415161718192021222324252627282930/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;private: bool helper(TreeNode* root) &#123; if (!root) return false; bool lDel = helper(root-&gt;left); bool lRig = helper(root-&gt;right); if (!lDel) root-&gt;left = nullptr; if (!lRig) root-&gt;right = nullptr; return root-&gt;val == 1 | lDel | lRig; &#125;public: TreeNode* pruneTree(TreeNode* root) &#123; return helper(root) ? root : nullptr; &#125;&#125;; 总结 自己一开始的递归思路不合理。 递归终止条件： 到达nullptr处，return false 递归状态： 当前结点值 == 1 左子树 == 全为1 右子树 == 全为1 Reference https://leetcode-cn.com/problems/binary-tree-pruning/solution/er-cha-shu-jian-zhi-by-leetcode/]]></content>
@@ -29,9 +59,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -43,9 +73,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -57,9 +87,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
         <tag>树的构造</tag>
       </tags>
   </entry>
@@ -98,10 +128,10 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
-        <tag>×</tag>
         <tag>栈</tag>
       </tags>
   </entry>
@@ -114,10 +144,10 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
-        <tag>×</tag>
         <tag>hash</tag>
         <tag>序列化</tag>
         <tag>innovative solution</tag>
@@ -132,10 +162,10 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
-        <tag>×</tag>
         <tag>栈</tag>
         <tag>括号匹配</tag>
         <tag>stringstream</tag>
@@ -150,13 +180,13 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
-        <tag>×</tag>
-        <tag>stringstream</tag>
         <tag>字符串</tag>
         <tag>序列化</tag>
+        <tag>stringstream</tag>
       </tags>
   </entry>
   <entry>
@@ -271,11 +301,11 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
         <tag>BFS</tag>
-        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -287,11 +317,11 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
         <tag>BFS</tag>
-        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -303,9 +333,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
         <tag>DFS</tag>
       </tags>
   </entry>
@@ -318,9 +348,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
         <tag>DFS</tag>
       </tags>
   </entry>
@@ -333,9 +363,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
         <tag>DFS</tag>
       </tags>
   </entry>
@@ -348,9 +378,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
         <tag>DFS</tag>
       </tags>
   </entry>
@@ -414,8 +444,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>堆</tag>
       </tags>
   </entry>
@@ -428,8 +458,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>数学</tag>
       </tags>
   </entry>
@@ -455,8 +485,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -468,8 +498,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -481,8 +511,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>DFS</tag>
         <tag>数组</tag>
         <tag>特殊DP数组</tag>
@@ -497,8 +527,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>DFS</tag>
         <tag>数组</tag>
         <tag>完全背包</tag>
@@ -513,8 +543,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>分治算法</tag>
         <tag>哨兵</tag>
       </tags>
@@ -528,10 +558,10 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
-        <tag>2维DP-to-1维DP</tag>
+        <tag>×</tag>
         <tag>组合数学</tag>
+        <tag>2维DP-to-1维DP</tag>
         <tag>数组</tag>
       </tags>
   </entry>
@@ -544,9 +574,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>递归</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
+        <tag>递归</tag>
         <tag>数组</tag>
       </tags>
   </entry>
@@ -559,8 +589,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>2维dp</tag>
         <tag>插入1个虚拟0</tag>
         <tag>数组</tag>
@@ -577,8 +607,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>2维dp</tag>
         <tag>最大公共子序列</tag>
         <tag>插入1个虚拟0</tag>
@@ -593,8 +623,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>√</tag>
         <tag>DP</tag>
+        <tag>√</tag>
         <tag>2维dp</tag>
         <tag>2维DP-to-1维DP</tag>
       </tags>
@@ -609,8 +639,8 @@
       <tags>
         <tag>leetcode</tag>
         <tag>×</tag>
-        <tag>动态规划</tag>
         <tag>贪心算法</tag>
+        <tag>动态规划</tag>
         <tag>数组</tag>
       </tags>
   </entry>
@@ -654,10 +684,10 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
-        <tag>×</tag>
         <tag>动态规划</tag>
       </tags>
   </entry>
@@ -670,8 +700,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>数学题</tag>
+        <tag>×</tag>
         <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>组合数学</tag>
@@ -686,8 +716,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>树</tag>
         <tag>×</tag>
+        <tag>树</tag>
         <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>2维DP</tag>
@@ -721,8 +751,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>树</tag>
         <tag>×</tag>
+        <tag>树</tag>
         <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>Catalan数</tag>
@@ -753,8 +783,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>二维dp</tag>
         <tag>博弈问题</tag>
       </tags>
@@ -768,9 +798,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>数学题</tag>
         <tag>DP</tag>
+        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -782,8 +812,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>×</tag>
         <tag>DP</tag>
+        <tag>×</tag>
         <tag>插入1个虚拟0</tag>
         <tag>位运算</tag>
       </tags>
@@ -845,9 +875,9 @@
         <category>Pandas</category>
       </categories>
       <tags>
-        <tag>pandas</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
+        <tag>pandas</tag>
         <tag>Code Snippet</tag>
       </tags>
   </entry>
@@ -874,10 +904,10 @@
       </categories>
       <tags>
         <tag>code snippet</tag>
-        <tag>EDA</tag>
         <tag>data visualization</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
+        <tag>EDA</tag>
         <tag>hexo</tag>
       </tags>
   </entry>
