@@ -96,22 +96,17 @@
 
 
 
-  <meta name="description" content="内存不够时，替代sns.countplot()的实现方法 最近做EDA的的时候会存在这样一种情况，数据量过大时，直接使用sns.countplot()内存很容易直接被榨干掉。 暂时没想清为什么会直接占用那么多内存，应该去StackOverflow提个Q的。 不过想了下又查了下StackOverflow，应该有用df.value_counts() 和 matplotlib来实现sns.coun">
-<meta name="keywords" content="code snippet,data visualization,matplotlib,seaborn">
+  <meta name="description" content="题目 My way 递归实现 12345678910111213141516171819202122232425262728293031323334353637/** * Definition for a binary tree node. * struct TreeNode &amp;#123; *     int val; *     TreeNode *left; *     TreeNode">
 <meta property="og:type" content="article">
-<meta property="og:title" content="内存不够时，替代sns.countplot()的实现方法">
-<meta property="og:url" content="http://yoursite.com/2019/06/24/内存不够时，替代sns-countplot-的实现方法/index.html">
+<meta property="og:title" content="leetcode题解-112-路径总和">
+<meta property="og:url" content="http://yoursite.com/2019/12/25/leetcode题解-112-路径总和/index.html">
 <meta property="og:site_name" content="Boven&#39;s Blog">
-<meta property="og:description" content="内存不够时，替代sns.countplot()的实现方法 最近做EDA的的时候会存在这样一种情况，数据量过大时，直接使用sns.countplot()内存很容易直接被榨干掉。 暂时没想清为什么会直接占用那么多内存，应该去StackOverflow提个Q的。 不过想了下又查了下StackOverflow，应该有用df.value_counts() 和 matplotlib来实现sns.coun">
+<meta property="og:description" content="题目 My way 递归实现 12345678910111213141516171819202122232425262728293031323334353637/** * Definition for a binary tree node. * struct TreeNode &amp;#123; *     int val; *     TreeNode *left; *     TreeNode">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2019/06/24/内存不够时，替代sns-countplot-的实现方法/countplot.jpg">
-<meta property="og:image" content="http://yoursite.com/2019/06/24/内存不够时，替代sns-countplot-的实现方法/plt_bar.jpg">
-<meta property="og:image" content="http://yoursite.com/2019/06/24/内存不够时，替代sns-countplot-的实现方法/value_counts_plot_bar.jpg">
-<meta property="og:updated_time" content="2019-06-29T11:52:10.649Z">
+<meta property="og:updated_time" content="2019-12-25T15:22:02.514Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="内存不够时，替代sns.countplot()的实现方法">
-<meta name="twitter:description" content="内存不够时，替代sns.countplot()的实现方法 最近做EDA的的时候会存在这样一种情况，数据量过大时，直接使用sns.countplot()内存很容易直接被榨干掉。 暂时没想清为什么会直接占用那么多内存，应该去StackOverflow提个Q的。 不过想了下又查了下StackOverflow，应该有用df.value_counts() 和 matplotlib来实现sns.coun">
-<meta name="twitter:image" content="http://yoursite.com/2019/06/24/内存不够时，替代sns-countplot-的实现方法/countplot.jpg">
+<meta name="twitter:title" content="leetcode题解-112-路径总和">
+<meta name="twitter:description" content="题目 My way 递归实现 12345678910111213141516171819202122232425262728293031323334353637/** * Definition for a binary tree node. * struct TreeNode &amp;#123; *     int val; *     TreeNode *left; *     TreeNode">
 
 
 
@@ -119,7 +114,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/06/24/内存不够时，替代sns-countplot-的实现方法/">
+  <link rel="canonical" href="http://yoursite.com/2019/12/25/leetcode题解-112-路径总和/">
 
 
 
@@ -129,7 +124,7 @@
   };
 </script>
 
-  <title>内存不够时，替代sns.countplot()的实现方法 | Boven's Blog</title>
+  <title>leetcode题解-112-路径总和 | Boven's Blog</title>
   
 
 
@@ -378,7 +373,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/24/内存不够时，替代sns-countplot-的实现方法/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/25/leetcode题解-112-路径总和/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bowen Peng">
@@ -395,7 +390,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">内存不够时，替代sns.countplot()的实现方法
+          <h1 class="post-title" itemprop="name headline">leetcode题解-112-路径总和
 
               
             
@@ -421,46 +416,16 @@
                 
               
 
-              <time title="创建时间：2019-06-24 15:33:13" itemprop="dateCreated datePublished" datetime="2019-06-24T15:33:13+08:00">2019-06-24</time>
+              <time title="创建时间：2019-12-25 23:19:16 / 修改时间：23:22:02" itemprop="dateCreated datePublished" datetime="2019-12-25T23:19:16+08:00">2019-12-25</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-06-29 19:52:10" itemprop="dateModified" datetime="2019-06-29T19:52:10+08:00">2019-06-29</time>
               
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EDA/" itemprop="url" rel="index"><span itemprop="name">EDA</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -490,27 +455,10 @@
       
 
       
-        <h1 id="内存不够时替代sns.countplot的实现方法">内存不够时，替代sns.countplot()的实现方法</h1>
-<p>最近做EDA的的时候会存在这样一种情况，<strong>数据量过大</strong>时，直接使用<code>sns.countplot()</code>内存很容易直接被榨干掉。</p>
-<p>暂时没想清为什么会直接占用那么多内存，应该去StackOverflow提个Q的。</p>
-<p>不过想了下又查了下StackOverflow，应该有用<code>df.value_counts() 和</code> <code>matplotlib</code>来实现<code>sns.countplot()</code>的实现方法，如此，<a href="https://stackoverflow.com/questions/55667185/what-is-matplotlibs-alternative-for-countplot-from-seaborn" target="_blank" rel="noopener">What is Matplotlib's alternative for countplot from seaborn?</a></p>
-<p>引用自StackOverflow，<a href="https://stackoverflow.com/users/4124317/importanceofbeingernest" target="_blank" rel="noopener">ImportanceOfBeingErnest</a></p>
-<p>Say you have this data:</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np; np.random.seed(<span class="number">42</span>)</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">df = pd.DataFrame(&#123;<span class="string">"Sex"</span> : np.random.choice([<span class="string">"male"</span>,  <span class="string">"female"</span>], size=<span class="number">1310</span>, p=[<span class="number">.65</span>, <span class="number">.35</span>]),</span><br><span class="line">                   <span class="string">"other"</span> : np.random.randint(<span class="number">0</span>,<span class="number">80</span>, size=<span class="number">1310</span>)&#125;)</span><br></pre></td></tr></table></figure>
-<p>You can plot a countplot in seaborn as</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">sns.countplot(x=<span class="string">"Sex"</span>, data=df)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<img src="/2019/06/24/内存不够时，替代sns-countplot-的实现方法/countplot.jpg" title="sns.countplot">
-<p>Or you can create a bar plot in pandas</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">"Sex"</span>].value_counts().plot.bar()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<img src="/2019/06/24/内存不够时，替代sns-countplot-的实现方法/plt_bar.jpg" title="df[Sex].value_counts().plot.bar()">
-<p>Or you can create a bar plot in matplotlib</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">counts = df[<span class="string">"Sex"</span>].value_counts()</span><br><span class="line">plt.bar(counts.index, counts.values)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<img src="/2019/06/24/内存不够时，替代sns-countplot-的实现方法/value_counts_plot_bar.jpg" title="plt.bar(df[Sex].value_counts().index, df[Sex].value_counts().values)">
-<h1 id="reference">Reference</h1>
-<ul>
-<li><a href="https://stackoverflow.com/questions/55667185/what-is-matplotlibs-alternative-for-countplot-from-seaborn" target="_blank" rel="noopener">What is Matplotlib's alternative for countplot from seaborn?</a></li>
-<li><a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/visualization.html" target="_blank" rel="noopener">Pandas:Visualization Guide</a></li>
-</ul>
+        <h2 id="题目"><a href="https://leetcode-cn.com/problems/path-sum/" target="_blank" rel="noopener">题目</a></h2>
+<h3 id="my-way">My way</h3>
+<h4 id="递归实现">递归实现</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode* root, <span class="keyword">int</span>&amp; pathSum, <span class="keyword">int</span> sum, <span class="keyword">bool</span>&amp; res)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root || res)  <span class="keyword">return</span> ;</span><br><span class="line"></span><br><span class="line">        pathSum += root-&gt;val;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 到达叶子结点时</span></span><br><span class="line">        <span class="keyword">if</span> (!root-&gt;left &amp;&amp; !root-&gt;right &amp;&amp; pathSum == sum) res = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">        dfs(root-&gt;left, pathSum, sum, res);</span><br><span class="line">        dfs(root-&gt;right, pathSum, sum, res);</span><br><span class="line"></span><br><span class="line">        pathSum -= root-&gt;val;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">hasPathSum</span><span class="params">(TreeNode* root, <span class="keyword">int</span> sum)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> pathSum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">bool</span> res = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">        dfs(root, pathSum, sum, res);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res;    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -532,18 +480,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/code-snippet/" rel="tag"># code snippet</a>
-          
-            <a href="/tags/data-visualization/" rel="tag"># data visualization</a>
-          
-            <a href="/tags/matplotlib/" rel="tag"># matplotlib</a>
-          
-            <a href="/tags/seaborn/" rel="tag"># seaborn</a>
-          
-        </div>
-      
 
       
       
@@ -553,8 +489,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/06/24/如何指定xtick在一个特定的范围/" rel="next" title="如何指定xtick在一个特定的范围">
-                <i class="fa fa-chevron-left"></i> 如何指定xtick在一个特定的范围
+              <a href="/2019/12/19/leetcode题解-113-路径总和Ⅱ/" rel="next" title="leetcode题解-113-路径总和Ⅱ">
+                <i class="fa fa-chevron-left"></i> leetcode题解-113-路径总和Ⅱ
               </a>
             
           </div>
@@ -562,10 +498,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/07/01/如何将相对unix初始时间的时间差转换为当前时间轴/" rel="prev" title="'如何将相对unix初始时间的时间差转换为当前时间轴'">
-                '如何将相对unix初始时间的时间差转换为当前时间轴' <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -836,7 +768,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#内存不够时替代sns.countplot的实现方法"><span class="nav-number">1.</span> <span class="nav-text">内存不够时，替代sns.countplot()的实现方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#reference"><span class="nav-number">2.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#my-way"><span class="nav-number">1.1.</span> <span class="nav-text">My way</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#递归实现"><span class="nav-number">1.1.1.</span> <span class="nav-text">递归实现</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -1312,7 +1244,60 @@
         onPopupClose();
       }
     });
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config("");
 </script>
@@ -1331,20 +1316,7 @@
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
 
-
-
-
-
-  
-
-  
-
-  
-  
-
-  
-  
-
+    
   
 
 

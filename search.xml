@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode题解-112-路径总和]]></title>
+    <url>%2F2019%2F12%2F25%2Fleetcode%E9%A2%98%E8%A7%A3-112-%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C%2F</url>
+    <content type="text"><![CDATA[题目 My way 递归实现 12345678910111213141516171819202122232425262728293031323334353637/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;private: void dfs(TreeNode* root, int&amp; pathSum, int sum, bool&amp; res) &#123; if (!root || res) return ; pathSum += root-&gt;val; // 到达叶子结点时 if (!root-&gt;left &amp;&amp; !root-&gt;right &amp;&amp; pathSum == sum) res = true; dfs(root-&gt;left, pathSum, sum, res); dfs(root-&gt;right, pathSum, sum, res); pathSum -= root-&gt;val; &#125;public: bool hasPathSum(TreeNode* root, int sum) &#123; int pathSum = 0; bool res = false; dfs(root, pathSum, sum, res); return res; &#125;&#125;;]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解-113-路径总和Ⅱ]]></title>
     <url>%2F2019%2F12%2F19%2Fleetcode%E9%A2%98%E8%A7%A3-113-%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C%E2%85%A1%2F</url>
     <content type="text"><![CDATA[题目 My way 递归实现 123456789101112131415161718192021222324252627282930313233343536373839404142/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;private: vector&lt;vector&lt;int&gt;&gt; res; void dfs(TreeNode* root, int&amp; pathSum, int sum, vector&lt;int&gt;&amp; path) &#123; if (!root) return; pathSum += root-&gt;val; path.push_back(root-&gt;val); if (!root-&gt;left &amp;&amp; !root-&gt;right &amp;&amp; pathSum==sum) &#123; res.push_back(path); &#125; dfs(root-&gt;left, pathSum, sum, path); dfs(root-&gt;right, pathSum, sum, path); pathSum -= root-&gt;val; path.pop_back(); &#125;public: vector&lt;vector&lt;int&gt;&gt; pathSum(TreeNode* root, int sum) &#123; int pathSum = 0; vector&lt;int&gt; path; dfs(root, pathSum, sum, path); return res; &#125;&#125;; 简单递归即可实现 使用pathSum变量来记录当前root结点上的路径和]]></content>
@@ -676,8 +681,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>√</tag>
         <tag>DP</tag>
+        <tag>√</tag>
         <tag>2维dp</tag>
         <tag>2维DP-to-1维DP</tag>
       </tags>
@@ -692,8 +697,8 @@
       <tags>
         <tag>leetcode</tag>
         <tag>×</tag>
-        <tag>贪心算法</tag>
         <tag>动态规划</tag>
+        <tag>贪心算法</tag>
         <tag>数组</tag>
       </tags>
   </entry>
@@ -708,8 +713,8 @@
         <tag>leetcode</tag>
         <tag>×</tag>
         <tag>动态规划</tag>
-        <tag>字符串</tag>
         <tag>数组对角遍历</tag>
+        <tag>字符串</tag>
         <tag>中心扩散法</tag>
       </tags>
   </entry>
@@ -928,9 +933,9 @@
         <category>Pandas</category>
       </categories>
       <tags>
+        <tag>pandas</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
-        <tag>pandas</tag>
         <tag>Code Snippet</tag>
       </tags>
   </entry>
@@ -957,10 +962,10 @@
       </categories>
       <tags>
         <tag>code snippet</tag>
+        <tag>EDA</tag>
         <tag>data visualization</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
-        <tag>EDA</tag>
         <tag>hexo</tag>
       </tags>
   </entry>
