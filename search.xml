@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode题解-1104-二叉树寻路]]></title>
+    <url>%2F2019%2F12%2F27%2Fleetcode%E9%A2%98%E8%A7%A3-1104-%E4%BA%8C%E5%8F%89%E6%A0%91%E5%AF%BB%E8%B7%AF%2F</url>
+    <content type="text"><![CDATA[]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解-112-路径总和]]></title>
     <url>%2F2019%2F12%2F25%2Fleetcode%E9%A2%98%E8%A7%A3-112-%E8%B7%AF%E5%BE%84%E6%80%BB%E5%92%8C%2F</url>
     <content type="text"><![CDATA[题目 My way 递归实现 12345678910111213141516171819202122232425262728293031323334353637/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;private: void dfs(TreeNode* root, int&amp; pathSum, int sum, bool&amp; res) &#123; if (!root || res) return ; pathSum += root-&gt;val; // 到达叶子结点时 if (!root-&gt;left &amp;&amp; !root-&gt;right &amp;&amp; pathSum == sum) res = true; dfs(root-&gt;left, pathSum, sum, res); dfs(root-&gt;right, pathSum, sum, res); pathSum -= root-&gt;val; &#125;public: bool hasPathSum(TreeNode* root, int sum) &#123; int pathSum = 0; bool res = false; dfs(root, pathSum, sum, res); return res; &#125;&#125;;]]></content>
@@ -116,10 +121,10 @@
         <category>刷题</category>
       </categories>
       <tags>
+        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -130,10 +135,10 @@
         <category>刷题</category>
       </categories>
       <tags>
+        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -144,10 +149,10 @@
         <category>刷题</category>
       </categories>
       <tags>
+        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
         <tag>树的构造</tag>
       </tags>
   </entry>
@@ -185,11 +190,11 @@
         <category>刷题</category>
       </categories>
       <tags>
+        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
-        <tag>×</tag>
         <tag>栈</tag>
       </tags>
   </entry>
@@ -201,11 +206,11 @@
         <category>刷题</category>
       </categories>
       <tags>
+        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
-        <tag>×</tag>
         <tag>hash</tag>
         <tag>序列化</tag>
         <tag>innovative solution</tag>
@@ -219,11 +224,11 @@
         <category>刷题</category>
       </categories>
       <tags>
+        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
-        <tag>×</tag>
         <tag>栈</tag>
         <tag>括号匹配</tag>
         <tag>stringstream</tag>
@@ -237,11 +242,11 @@
         <category>刷题</category>
       </categories>
       <tags>
+        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
-        <tag>×</tag>
         <tag>stringstream</tag>
         <tag>字符串</tag>
         <tag>序列化</tag>
@@ -358,12 +363,12 @@
         <category>刷题</category>
       </categories>
       <tags>
+        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
         <tag>BFS</tag>
-        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -374,12 +379,12 @@
         <category>刷题</category>
       </categories>
       <tags>
+        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
         <tag>BFS</tag>
-        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -390,10 +395,10 @@
         <category>刷题</category>
       </categories>
       <tags>
+        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
         <tag>DFS</tag>
       </tags>
   </entry>
@@ -405,10 +410,10 @@
         <category>刷题</category>
       </categories>
       <tags>
+        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
         <tag>DFS</tag>
       </tags>
   </entry>
@@ -420,10 +425,10 @@
         <category>刷题</category>
       </categories>
       <tags>
+        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
         <tag>DFS</tag>
       </tags>
   </entry>
@@ -435,10 +440,10 @@
         <category>刷题</category>
       </categories>
       <tags>
+        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
         <tag>DFS</tag>
       </tags>
   </entry>
@@ -450,8 +455,8 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>×</tag>
+        <tag>leetcode</tag>
         <tag>数学</tag>
       </tags>
   </entry>
@@ -463,8 +468,8 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>×</tag>
+        <tag>leetcode</tag>
         <tag>位运算</tag>
       </tags>
   </entry>
@@ -476,8 +481,8 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>×</tag>
+        <tag>leetcode</tag>
         <tag>位运算</tag>
       </tags>
   </entry>
@@ -501,8 +506,8 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>×</tag>
+        <tag>leetcode</tag>
         <tag>DP</tag>
         <tag>堆</tag>
       </tags>
@@ -515,8 +520,8 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>×</tag>
+        <tag>leetcode</tag>
         <tag>DP</tag>
         <tag>数学</tag>
       </tags>
@@ -529,8 +534,8 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>×</tag>
+        <tag>leetcode</tag>
         <tag>数学</tag>
       </tags>
   </entry>
@@ -542,8 +547,8 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>×</tag>
+        <tag>leetcode</tag>
         <tag>DP</tag>
       </tags>
   </entry>
@@ -555,8 +560,8 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>×</tag>
+        <tag>leetcode</tag>
         <tag>DP</tag>
       </tags>
   </entry>
@@ -568,8 +573,8 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>×</tag>
+        <tag>leetcode</tag>
         <tag>DP</tag>
         <tag>DFS</tag>
         <tag>数组</tag>
@@ -584,8 +589,8 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>×</tag>
+        <tag>leetcode</tag>
         <tag>DP</tag>
         <tag>DFS</tag>
         <tag>数组</tag>
@@ -600,8 +605,8 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>×</tag>
+        <tag>leetcode</tag>
         <tag>DP</tag>
         <tag>分治算法</tag>
         <tag>哨兵</tag>
@@ -615,11 +620,11 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>×</tag>
+        <tag>leetcode</tag>
         <tag>DP</tag>
-        <tag>2维DP-to-1维DP</tag>
         <tag>组合数学</tag>
+        <tag>2维DP-to-1维DP</tag>
         <tag>数组</tag>
       </tags>
   </entry>
@@ -631,9 +636,9 @@
         <category>刷题</category>
       </categories>
       <tags>
+        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>递归</tag>
-        <tag>×</tag>
         <tag>DP</tag>
         <tag>数组</tag>
       </tags>
@@ -646,8 +651,8 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>×</tag>
+        <tag>leetcode</tag>
         <tag>DP</tag>
         <tag>2维dp</tag>
         <tag>插入1个虚拟0</tag>
@@ -664,8 +669,8 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>×</tag>
+        <tag>leetcode</tag>
         <tag>DP</tag>
         <tag>2维dp</tag>
         <tag>最大公共子序列</tag>
@@ -681,8 +686,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>DP</tag>
         <tag>√</tag>
+        <tag>DP</tag>
         <tag>2维dp</tag>
         <tag>2维DP-to-1维DP</tag>
       </tags>
@@ -695,10 +700,10 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>×</tag>
-        <tag>动态规划</tag>
+        <tag>leetcode</tag>
         <tag>贪心算法</tag>
+        <tag>动态规划</tag>
         <tag>数组</tag>
       </tags>
   </entry>
@@ -710,11 +715,11 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>×</tag>
+        <tag>leetcode</tag>
         <tag>动态规划</tag>
-        <tag>数组对角遍历</tag>
         <tag>字符串</tag>
+        <tag>数组对角遍历</tag>
         <tag>中心扩散法</tag>
       </tags>
   </entry>
@@ -726,8 +731,8 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>×</tag>
+        <tag>leetcode</tag>
         <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>字符串</tag>
@@ -741,11 +746,11 @@
         <category>刷题</category>
       </categories>
       <tags>
+        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
-        <tag>×</tag>
         <tag>动态规划</tag>
       </tags>
   </entry>
@@ -757,8 +762,8 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>×</tag>
+        <tag>leetcode</tag>
         <tag>数学题</tag>
         <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
@@ -773,9 +778,9 @@
         <category>刷题</category>
       </categories>
       <tags>
+        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>树</tag>
-        <tag>×</tag>
         <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>2维DP</tag>
@@ -808,9 +813,9 @@
         <category>刷题</category>
       </categories>
       <tags>
+        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>树</tag>
-        <tag>×</tag>
         <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>Catalan数</tag>
@@ -824,8 +829,8 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>×</tag>
+        <tag>leetcode</tag>
         <tag>栈</tag>
         <tag>贪心算法</tag>
         <tag>线性表</tag>
@@ -840,8 +845,8 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>×</tag>
+        <tag>leetcode</tag>
         <tag>DP</tag>
         <tag>二维dp</tag>
         <tag>博弈问题</tag>
@@ -855,8 +860,8 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>×</tag>
+        <tag>leetcode</tag>
         <tag>数学题</tag>
         <tag>DP</tag>
       </tags>
@@ -869,8 +874,8 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
         <tag>×</tag>
+        <tag>leetcode</tag>
         <tag>DP</tag>
         <tag>插入1个虚拟0</tag>
         <tag>位运算</tag>
