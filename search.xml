@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode题解-1302-层数最深叶子节点的和]]></title>
+    <url>%2F2019%2F12%2F30%2Fleetcode%E9%A2%98%E8%A7%A3-1302-%E5%B1%82%E6%95%B0%E6%9C%80%E6%B7%B1%E5%8F%B6%E5%AD%90%E8%8A%82%E7%82%B9%E7%9A%84%E5%92%8C%2F</url>
+    <content type="text"><![CDATA[题目 My way dfs带层数状态遍历 123456789101112131415161718192021222324252627282930313233343536373839/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;private: int sum = 0; int maxLevel = -1; void dfs(TreeNode* root, int level) &#123; if (!root) return; if (maxLevel &lt; level) &#123; maxLevel = level; sum = root-&gt;val; &#125; else if (maxLevel == level) &#123; sum += root-&gt;val; &#125; dfs(root-&gt;left, level+1); dfs(root-&gt;right, level+1); &#125;public: int deepestLeavesSum(TreeNode* root) &#123; dfs(root, 0); return sum; &#125;&#125;; sum, maxLevel也可以改成dfs函数的引用参数。]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解-1104-二叉树寻路]]></title>
     <url>%2F2019%2F12%2F27%2Fleetcode%E9%A2%98%E8%A7%A3-1104-%E4%BA%8C%E5%8F%89%E6%A0%91%E5%AF%BB%E8%B7%AF%2F</url>
-    <content type="text"><![CDATA[题目 MY way 我的思路是，自顶向下遍历到label所在那一层的结点，赋值出来，然后先序遍历输出结果。感觉就不是最优解。 麦麦麦麦子way 12345678def pathInZigZagTree(self, label: int) -&gt; List[int]: res = [] while label != 1: res.append(label) label &gt;&gt;= 1 # 这里我采用异或实现 label = label ^(1 &lt;&lt; (label.bit_length() - 1)) - 1 return [1]+res[::-1] 因为以1为根节点层次编号的满二叉树可以对应到位的表示，所以用位运算的思路即可。 因为每层的顺序在变，所以每次需要对首位外的其它位取反。 举例14=1110b， 先将14右移，变为111b，然后对除第一位外所有位取反变为100b，即它的根节点4， 同理100b，右移变为10b，对除第一位外所有位取反变为11b，即它的根节点3 一直到1结束。 总结 这是一道具有数学规律的题，不是很容易地可以发现根节点和两个孩子结点的规律。 根节点label = (孩子结点label / 2)除最高的1位之外后的所有位按位取反 怎么在C++里面统计一个数以二进制时，最后一位到最高的&quot;1&quot;位的位数。 123// 循环统计位数unsigned bits, var = (x &lt; 0) ? -x : x;for (bits = 0; var != 0; ++bits) var &gt;&gt;= 1; 1int numberOfBits = floor(log2(label)) + 1; Reference https://stackoverflow.com/questions/25754082/how-to-take-twos-complement-of-a-byte-in-c https://stackoverflow.com/questions/29388711/c-how-to-get-length-of-bits-of-a-variable std::floor向下取整]]></content>
+    <content type="text"><![CDATA[题目 MY way 我的思路是，自顶向下遍历到label所在那一层的结点，赋值出来，然后先序遍历输出结果。感觉就不是最优解。 麦麦麦麦子way 12345678def pathInZigZagTree(self, label: int) -&gt; List[int]: res = [] while label != 1: res.append(label) label &gt;&gt;= 1 # 这里我采用异或实现 label = label ^(1 &lt;&lt; (label.bit_length() - 1)) - 1 return [1]+res[::-1] 因为以1为根节点层次编号的满二叉树可以对应到位的表示，所以用位运算的思路即可。 因为每层的顺序在变，所以每次需要对首位外的其它位取反。 举例14=1110b， 先将14右移，变为111b，然后对除第一位外所有位取反变为100b，即它的根节点4， 同理100b，右移变为10b，对除第一位外所有位取反变为11b，即它的根节点3 一直到1结束。 总结 这是一道具有数学规律的题，不是很容易地可以发现根节点和两个孩子结点的规律。 根节点label = (孩子结点label / 2)除最高的1位之外后的所有位按位取反 怎么在C++里面统计一个数以二进制时，最后一位到最高的&quot;1&quot;位的位数。 123// 循环统计位数unsigned bits, var = (x &lt; 0) ? -x : x;for (bits = 0; var != 0; ++bits) var &gt;&gt;= 1; 123// 2^n &gt; label &gt;= 2^(n-1) - 1// n是label结点的层数int numberOfBits = floor(log2(label)) + 1; Reference https://stackoverflow.com/questions/25754082/how-to-take-twos-complement-of-a-byte-in-c https://stackoverflow.com/questions/29388711/c-how-to-get-length-of-bits-of-a-variable std::floor向下取整]]></content>
       <tags>
         <tag>位运算</tag>
       </tags>
@@ -250,9 +255,9 @@
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
+        <tag>stringstream</tag>
         <tag>字符串</tag>
         <tag>序列化</tag>
-        <tag>stringstream</tag>
       </tags>
   </entry>
   <entry>
@@ -641,8 +646,8 @@
       <tags>
         <tag>×</tag>
         <tag>leetcode</tag>
-        <tag>DP</tag>
         <tag>递归</tag>
+        <tag>DP</tag>
         <tag>数组</tag>
       </tags>
   </entry>
@@ -721,8 +726,8 @@
         <tag>×</tag>
         <tag>leetcode</tag>
         <tag>动态规划</tag>
-        <tag>数组对角遍历</tag>
         <tag>字符串</tag>
+        <tag>数组对角遍历</tag>
         <tag>中心扩散法</tag>
       </tags>
   </entry>
