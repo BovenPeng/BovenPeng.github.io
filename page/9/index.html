@@ -373,6 +373,196 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/23/以DataFrame的数据格式按序输出关联矩阵(correlation matrix)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bowen Peng">
+      <meta itemprop="description" content="something about myself and my career development.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boven's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/23/以DataFrame的数据格式按序输出关联矩阵(correlation matrix)/" class="post-title-link" itemprop="url">以DataFrame的形式按序输出关联矩阵(correlation matrix)</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-23 20:45:53" itemprop="dateCreated datePublished" datetime="2019-04-23T20:45:53+08:00">2019-04-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-06 11:01:07" itemprop="dateModified" datetime="2019-05-06T11:01:07+08:00">2019-05-06</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EDA/" itemprop="url" rel="index"><span itemprop="name">EDA</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="以dataframe的形式按序输出关联矩阵correlation-matrix">以DataFrame的形式按序输出关联矩阵(correlation matrix)</h1>
+<p>一般来说在做EDA的时候，我们都是输出相关矩阵的热力图或者是以表格形式输出。</p>
+<p>但是我在Stantar 2019的一个<a href="https://www.kaggle.com/artgor/santander-eda-fe-fs-and-models" target="_blank" rel="noopener">kernel</a>见到了按序输出关联矩阵系数的代码，故在此基础上进行了一定修改，实现了一个自己的code snippet.</p>
+<p>具体例子见下：(此处数据采用<a href="https://www.kaggle.com/c/titanic" target="_blank" rel="noopener">Titanic in Kaggle</a>)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">train_corr = train_df.drop([<span class="string">'PassengerId'</span>], axis=<span class="number">1</span>).corr()</span><br><span class="line">train_corr</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置热力图尺寸为(20, 12)</span></span><br><span class="line">plt.subplots(figsize=(<span class="number">20</span>, <span class="number">12</span>))</span><br><span class="line">sns.heatmap(train_corr, vmin=<span class="number">-1</span>, vmax=<span class="number">1</span>, annot=<span class="literal">True</span>, square=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<img src="/2019/04/23/以DataFrame的数据格式按序输出关联矩阵(correlation%20matrix)/heatmap.jpg" title="heatmap">
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">corr = train_corr.abs().unstack().sort_values(kind=<span class="string">'quicksort'</span>, ascending=<span class="literal">False</span>).reset_index()</span><br><span class="line">corr = corr[(corr[<span class="string">'level_0'</span>] != corr[<span class="string">'level_1'</span>]) &amp; (corr[<span class="string">'level_0'</span>] == <span class="string">'Survived'</span>)]</span><br><span class="line">corr</span><br></pre></td></tr></table></figure>
+<img src="/2019/04/23/以DataFrame的数据格式按序输出关联矩阵(correlation%20matrix)/correlation_matrix_HD.jpg" title="correlation_matrx">
+<p>一般是设置<code>ascending</code>参数，来看你是想要按序输出高或低相关度.</p>
+<p>这里feature数量比较少，故直接输出，一般是<code>corr</code>调用<code>tail()</code>或者<code>head()</code>来输出该顺序中的后或前几个相关系数。例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">corr.tail(<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<p>下一篇会在再讲下，如何将<code>Pandas.DataFrame</code>的表格存储为图片，这也是在写这篇blog过程中的一点idea的实现.</p>
+<h1 id="reference">Reference</h1>
+<p><a href="https://www.kaggle.com/c/titanic" target="_blank" rel="noopener">Titanic in Kaggle</a></p>
+<p><a href="https://www.kaggle.com/artgor/santander-eda-fe-fs-and-models" target="_blank" rel="noopener">按序输出correlation matrix出处</a></p>
+<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.unstack.html" target="_blank" rel="noopener">Pandas.DataFrame.unstack</a></p>
+<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.reset_index.html" target="_blank" rel="noopener">Pandas.DataFrame.reset_index</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/22/在matplotlib的一个figure中画多个subplots/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1209,7 +1399,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">84</span>
+                    <span class="site-state-item-count">85</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1246,7 +1436,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">10</span>
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1902,6 +2094,8 @@
 
   
   
+    
+      
     
       
     

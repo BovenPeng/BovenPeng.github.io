@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode题解-965-单值二叉树]]></title>
+    <url>%2F2019%2F12%2F30%2Fleetcode%E9%A2%98%E8%A7%A3-965-%E5%8D%95%E5%80%BC%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
+    <content type="text"><![CDATA[题目 My way dfs遍历 12345678910111213141516171819202122232425262728293031323334/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;private: int val; bool isUT = true; void dfs(TreeNode* root) &#123; if (!root || !isUT) return; isUT = (val == root-&gt;val ? true : false); dfs(root-&gt;left); dfs(root-&gt;right); &#125;public: bool isUnivalTree(TreeNode* root) &#123; val = root-&gt;val; dfs(root); return isUT; &#125;&#125;;]]></content>
+      <categories>
+        <category>树的遍历</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解-114-二叉树展开为链表]]></title>
     <url>%2F2019%2F12%2F30%2Fleetcode%E9%A2%98%E8%A7%A3-114-%E4%BA%8C%E5%8F%89%E6%A0%91%E5%B1%95%E5%BC%80%E4%B8%BA%E9%93%BE%E8%A1%A8%2F</url>
-    <content type="text"><![CDATA[题目 windliang way 对左右子树进行拼接的过程 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748 1 / \ 2 5 / \ \3 4 6//将 1 的左子树插入到右子树的地方 1 \ 2 5 / \ \ 3 4 6 //将原来的右子树接到左子树的最右边节点 1 \ 2 / \ 3 4 \ 5 \ 6 //将 2 的左子树插入到右子树的地方 1 \ 2 \ 3 4 \ 5 \ 6 //将原来的右子树接到左子树的最右边节点 1 \ 2 \ 3 \ 4 \ 5 \ 6 ...... 123456789101112131415161718192021222324252627282930313233343536373839404142/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: void flatten(TreeNode* root) &#123; while (root) &#123; // root-&gt;left is nullptr if (!root-&gt;left) &#123; root = root-&gt;right; &#125; else &#123; // find the righest node of leftSubTree TreeNode* pre = root-&gt;left; while (pre-&gt;right) &#123; pre = pre-&gt;right; &#125; // make 'pre' node 'right' pointed to the origin rightSubTree pre-&gt;right = root-&gt;right; // make leftSubTree insert to rightSubTree root-&gt;right = root-&gt;left; root-&gt;left = nullptr; // consider next right node root = root-&gt;right; &#125; &#125; &#125;&#125;; 后序遍历 二叉树展开成为链表的结果就是 先序遍历 的结果。 但是按 先序遍历 结果来处理的话，更新当前结点的右指针的时候，当前结点的右指针就没有保存下来了。 12345678 1 / \ 2 5 / \ \3 4 6 // preOrder 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; 6 所以思考 反过来，通过后序遍历 来处理。 12// postOrder 6 &lt;- 5 &lt;- 4 &lt;- 3 &lt;- 2 &lt;- 1 即，每遍历一个节点，考虑将当前节点的 右指针 指向上一个节点。 12345678910111213141516171819202122232425/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;private: TreeNode* pre = nullptr;public: void flatten(TreeNode* root) &#123; if (!root) return; flatten(root-&gt;right); flatten(root-&gt;left); root-&gt;right = pre; root-&gt;left = nullptr; pre = root; &#125;&#125;; Reference https://leetcode-cn.com/problems/flatten-binary-tree-to-linked-list/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-by--26/]]></content>
+    <content type="text"><![CDATA[题目 windliang way 对左右子树进行拼接的过程 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748 1 / \ 2 5 / \ \3 4 6//将 1 的左子树插入到右子树的地方 1 \ 2 5 / \ \ 3 4 6 //将原来的右子树接到左子树的最右边节点 1 \ 2 / \ 3 4 \ 5 \ 6 //将 2 的左子树插入到右子树的地方 1 \ 2 \ 3 4 \ 5 \ 6 //将原来的右子树接到左子树的最右边节点 1 \ 2 \ 3 \ 4 \ 5 \ 6 ...... 123456789101112131415161718192021222324252627282930313233343536373839404142/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: void flatten(TreeNode* root) &#123; while (root) &#123; // root-&gt;left is nullptr if (!root-&gt;left) &#123; root = root-&gt;right; &#125; else &#123; // find the righest node of leftSubTree TreeNode* pre = root-&gt;left; while (pre-&gt;right) &#123; pre = pre-&gt;right; &#125; // make 'pre' node 'right' pointed to the origin rightSubTree pre-&gt;right = root-&gt;right; // make leftSubTree insert to rightSubTree root-&gt;right = root-&gt;left; root-&gt;left = nullptr; // consider next right node root = root-&gt;right; &#125; &#125; &#125;&#125;; 后序遍历 二叉树展开成为链表的结果就是 先序遍历 的结果。 但是按 先序遍历 结果来处理的话，更新当前结点的右指针的时候，当前结点的右指针就没有保存下来了。 12345678 1 / \ 2 5 / \ \3 4 6 // preOrder 1 -&gt; 2 -&gt; 3 -&gt; 4 -&gt; 5 -&gt; 6 所以思考 反过来，通过后序遍历 来处理。 12// postOrder 6 &lt;- 5 &lt;- 4 &lt;- 3 &lt;- 2 &lt;- 1 即，每遍历一个节点，考虑将当前节点的 右指针 指向上一个节点。 12345678910111213141516171819202122232425/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;private: TreeNode* pre = nullptr;public: void flatten(TreeNode* root) &#123; if (!root) return; flatten(root-&gt;right); flatten(root-&gt;left); root-&gt;right = pre; root-&gt;left = nullptr; pre = root; &#125;&#125;; 非递归先序遍历 利用栈保存上一个节点的右指针，并将其更新为当前节点。 12345678910111213141516171819202122232425262728293031323334353637/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: void flatten(TreeNode* root) &#123; if (!root) return; stack&lt;TreeNode*&gt; s; s.push(root); TreeNode* pre = nullptr; while (!s.empty()) &#123; auto tmp = s.top(); s.pop(); // binary tree expend to linked list if (pre) &#123; pre-&gt;right = tmp; pre-&gt;left = nullptr; &#125; if (tmp-&gt;right) s.push(tmp-&gt;right); if (tmp-&gt;left) s.push(tmp-&gt;left); // update 'pre' node to 'tmp' pre = tmp; &#125; &#125;&#125;; Reference https://leetcode-cn.com/problems/flatten-binary-tree-to-linked-list/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-by--26/]]></content>
       <categories>
         <category>后序遍历</category>
       </categories>
@@ -277,9 +285,9 @@
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
+        <tag>stringstream</tag>
         <tag>字符串</tag>
         <tag>序列化</tag>
-        <tag>stringstream</tag>
       </tags>
   </entry>
   <entry>
@@ -668,8 +676,8 @@
       <tags>
         <tag>×</tag>
         <tag>leetcode</tag>
-        <tag>DP</tag>
         <tag>递归</tag>
+        <tag>DP</tag>
         <tag>数组</tag>
       </tags>
   </entry>
@@ -732,8 +740,8 @@
       <tags>
         <tag>×</tag>
         <tag>leetcode</tag>
-        <tag>贪心算法</tag>
         <tag>动态规划</tag>
+        <tag>贪心算法</tag>
         <tag>数组</tag>
       </tags>
   </entry>
@@ -954,8 +962,8 @@
         <category>EDA</category>
       </categories>
       <tags>
-        <tag>EDA</tag>
         <tag>code snippet</tag>
+        <tag>EDA</tag>
         <tag>pandas</tag>
         <tag>data disualization</tag>
       </tags>
@@ -968,9 +976,9 @@
         <category>Pandas</category>
       </categories>
       <tags>
+        <tag>pandas</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
-        <tag>pandas</tag>
         <tag>Code Snippet</tag>
       </tags>
   </entry>
@@ -982,8 +990,8 @@
         <category>EDA</category>
       </categories>
       <tags>
-        <tag>EDA</tag>
         <tag>code snippet</tag>
+        <tag>EDA</tag>
         <tag>pandas</tag>
         <tag>data disualization</tag>
       </tags>
@@ -996,8 +1004,8 @@
         <category>EDA</category>
       </categories>
       <tags>
-        <tag>EDA</tag>
         <tag>code snippet</tag>
+        <tag>EDA</tag>
         <tag>data visualization</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
