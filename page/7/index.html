@@ -373,6 +373,233 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/01/leetcode题解-647-回文子串/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bowen Peng">
+      <meta itemprop="description" content="something about myself and my career development.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boven's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/11/01/leetcode题解-647-回文子串/" class="post-title-link" itemprop="url">leetcode题解-647-回文子串</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-01 16:35:48" itemprop="dateCreated datePublished" datetime="2019-11-01T16:35:48+08:00">2019-11-01</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-11-03 20:13:52" itemprop="dateModified" datetime="2019-11-03T20:13:52+08:00">2019-11-03</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/刷题/" itemprop="url" rel="index"><span itemprop="name">刷题</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="https://leetcode-cn.com/problems/palindromic-substrings/" target="_blank" rel="noopener">题目</a></h2>
+<h2 id="my-way"><del>My way</del></h2>
+<h4 id="状态定义">状态定义：</h4>
+<p><span class="math display">\[
+\begin{align*}
+&amp; s:\ 字符串s\\
+&amp; i:\ 字符串s第i位\\
+&amp; j:\ 字符串s第j位\\
+&amp; s[i:j]:\ 字符串s第i位到第j位的子串, s[i,j]\\
+&amp; dp[i][j]:\ dp数组在s[i,j]上是否为回文串的记录。
+\end{align*}
+\]</span></p>
+<h4 id="base-case">Base case：</h4>
+<p><span class="math display">\[
+\begin{align*}
+&amp;s[i][j] = 1, &amp;\text{if $i==j$}\ 
+\end{align*}
+\]</span></p>
+<h4 id="状态转移方程">状态转移方程：</h4>
+<p><span class="math display">\[
+s[i-1][j+1] = 
+\begin{cases}
+&amp; 1,\ \text{if $s[i] == s[j]$}\\
+&amp; 0,\ otherwise
+\end{cases}
+\]</span></p>
+<h3 id="error">Error:</h3>
+<p>在如何实现数组遍历上面，出现了问题。</p>
+<p>套用了 <strong>glamour</strong>的逆向对角遍历思路：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countSubstrings</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> m = s.size();</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;&gt; dp(m, <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;(m, <span class="literal">false</span>));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">// base case</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            dp[i][i] = <span class="literal">true</span>;</span><br><span class="line">            ++cnt;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; m; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt;= m - i - <span class="number">1</span>; ++j)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">int</span> row = j;</span><br><span class="line">                <span class="keyword">int</span> column = i + j;</span><br><span class="line">                <span class="keyword">bool</span> cur = s[row] == s[column];</span><br><span class="line">                <span class="keyword">if</span> (cur &amp;&amp; (i == <span class="number">1</span> || dp[row+<span class="number">1</span>][column<span class="number">-1</span>]))</span><br><span class="line">                &#123;</span><br><span class="line">                    dp[row][column] = <span class="literal">true</span>;</span><br><span class="line">                    ++cnt;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> cnt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="glamour-way">Glamour way</h2>
+<h3 id="dp-逆向对角遍历">1.DP + 逆向对角遍历</h3>
+<h4 id="逆向对角遍历思路">逆向对角遍历思路：</h4>
+<img src="/2019/11/01/leetcode题解-647-回文子串/dp1.png" title="pic1">
+<p>上图中同一条直线上的值有前者依赖于后者的关系，因此我们应该以对角线方向遍历</p>
+<img src="/2019/11/01/leetcode题解-647-回文子串/dp2.png" title="pic2">
+<blockquote>
+<p>但是本方法在發現一字符串不是回文串后，仍然對包含其的字符串進行回文判斷。</p>
+<p>此方法包含了<strong>冗餘的判斷，因此還有優化的地方。</strong></p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countSubstrings</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> len = s.length();</span><br><span class="line">       <span class="keyword">if</span>(len &lt;= <span class="number">1</span>) <span class="keyword">return</span> len;</span><br><span class="line">       <span class="keyword">boolean</span>[][] dp = <span class="keyword">new</span> <span class="keyword">boolean</span>[len][len];</span><br><span class="line">       <span class="keyword">int</span> i;</span><br><span class="line">       <span class="keyword">int</span> j;</span><br><span class="line">       <span class="keyword">int</span> row, column;</span><br><span class="line">       <span class="keyword">boolean</span> current;</span><br><span class="line">       <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">           dp[i][i] = <span class="keyword">true</span>;</span><br><span class="line">           count++;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">for</span>(i = <span class="number">1</span>; i &lt; len; i++)&#123;</span><br><span class="line">           <span class="keyword">for</span>(j = <span class="number">0</span>; j &lt;= len - i - <span class="number">1</span>; j++)&#123;</span><br><span class="line">               row = j;</span><br><span class="line">               column = i + j;</span><br><span class="line">               current = s.charAt(row) == s.charAt(column);</span><br><span class="line">               <span class="keyword">if</span>(current &amp;&amp; (i == <span class="number">1</span> || dp[row + <span class="number">1</span>][column - <span class="number">1</span>]))&#123;</span><br><span class="line">                   dp[row][column] = <span class="keyword">true</span>;</span><br><span class="line">                   count++;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">          </span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> count;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="分治法-中心扩散法">2. 分治法 + 中心扩散法</h3>
+<blockquote>
+<p><strong>分治法</strong>，对以不同字符为中心的回文分而治之，同时又将回文的长度分为奇数和偶数，奇数的中心有一个，而偶数的中心有两个.</p>
+<p>有一個規律：</p>
+<ul>
+<li>回文串左右兩邊同時去掉一個字符仍然是回文串；反之一個字符串不是回文串，</li>
+<li>那麽他左右兩邊不論加上什麽字符都不可能是回文串.</li>
+</ul>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countSubstrings</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">int</span> i;</span><br><span class="line">       <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; s.length(); i++)&#123;</span><br><span class="line">           count += countPalindrome(s, i, i);</span><br><span class="line">           count += countPalindrome(s, i, i + <span class="number">1</span>);</span><br><span class="line">       &#125;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">countPalindrome</span> <span class="params">(String s, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">       <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">while</span>(left &gt;= <span class="number">0</span> &amp;&amp; right &lt; s.length() &amp;&amp; s.charAt(left--) == s.charAt(right++))&#123;</span><br><span class="line">           count++;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> count;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>C++实现</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countSubstrings</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> m = s.size();</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            cnt += countPalindrome(s, i, i);    <span class="comment">// even length of string</span></span><br><span class="line">            cnt += countPalindrome(s, i, i+<span class="number">1</span>);  <span class="comment">// old length of string</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> cnt;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countPalindrome</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; s, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (l &gt;= <span class="number">0</span> &amp;&amp; r &lt; s.size() &amp;&amp; s[l--] == s[r++])</span><br><span class="line">        &#123;</span><br><span class="line">            ++cnt;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> cnt;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="reference">Reference</h2>
+<p><a href="https://leetcode-cn.com/problems/palindromic-substrings/solution/dong-tai-gui-hua-yun-xing-shi-jian-11mszhong-xin-k/" target="_blank" rel="noopener">glamour解法</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/01/leetcode题解-712-两个字符串的最小ASCII删除和/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2432,288 +2659,6 @@ false, &amp; \text{otherwise}
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/23/leetcode题解-338-比特位计数/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bowen Peng">
-      <meta itemprop="description" content="something about myself and my career development.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Boven's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/10/23/leetcode题解-338-比特位计数/" class="post-title-link" itemprop="url">leetcode题解: 338.比特位计数</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-10-23 21:29:29" itemprop="dateCreated datePublished" datetime="2019-10-23T21:29:29+08:00">2019-10-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-11-03 21:13:25" itemprop="dateModified" datetime="2019-11-03T21:13:25+08:00">2019-11-03</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/刷题/" itemprop="url" rel="index"><span itemprop="name">刷题</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="https://leetcode-cn.com/problems/counting-bits/" target="_blank" rel="noopener">题目</a></h2>
-<h2 id="my-way">My way:</h2>
-<p>这题tag是dp，按着dp的思路写出了 <strong>状态</strong>， <strong>状态转移方程</strong>包括 <em>边界条件</em>， <em>常规情况</em>。</p>
-<p>大致思路如下：</p>
-<ul>
-<li><p>定义状态：</p>
-<ul>
-<li><span class="math inline">\(i\)</span>: 数字为<span class="math inline">\(i\)</span>时；</li>
-<li><span class="math inline">\(f[i]\)</span>: 数字为i时，<span class="math inline">\(f[i]\)</span>表示有多少个1，在数字<span class="math inline">\(i\)</span>的二进制表示形式下。</li>
-</ul></li>
-<li><p>状态转移方程：</p>
-<ul>
-<li><p>边界：<span class="math inline">\(f[0] = [\ \ ]\)</span></p></li>
-<li><p>正常情况：(第一时间也拿不出来，通过举例拿到的，)</p>
-<p>eg.</p>
-<p><span class="math inline">\(f[1] = 1\)</span></p>
-<p><span class="math inline">\(f[2] = 1\)</span></p>
-<p><span class="math inline">\(f[3] = 1 + 1 = f[2] + f[1]\)</span></p>
-<p><span class="math inline">\(f[4] = 1\)</span></p>
-<p><span class="math inline">\(f[5] = 2 = f[4] + f[1]\)</span></p>
-<p><span class="math inline">\(f[6] = 2 = f[4] + f[2]\)</span></p>
-<p><span class="math inline">\(f[7] = 3 = f[4] + f[2] + f[1]\)</span></p>
-<p>得到： <span class="math display">\[
-f[i] = \begin{cases}
-[\ \ ], &amp; \text{if}\ i == 0 \\
-1, &amp; \text{if}\ i == 2^m,\ \text{m is unisgned integer} \\
-1 + f[i - j], &amp; \text{if}\ 2^j &lt; i &lt; 2^{j+1},\ \text{j is unsigned integer}
-\end{cases}
-\]</span> 合并下情况有： <span class="math display">\[
-f[i] = 1 + f[i-j],\ \text{if}\ 2^j &lt; i &lt; 2^{j+1},\ \text{j is unsigned integer}
-\]</span></p></li>
-</ul></li>
-</ul>
-<p>然后以Cpp实现了如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">        <span class="keyword">if</span> (num == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&#123;<span class="number">0</span>&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (num == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &#123;<span class="number">0</span>, <span class="number">1</span>&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi &#123;<span class="number">0</span>, <span class="number">1</span>&#125;;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; num+<span class="number">1</span>; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> j;</span><br><span class="line">            <span class="keyword">for</span> (j = <span class="number">0</span>; <span class="built_in">pow</span>(<span class="number">2</span>, j) &lt;= i; ++j)</span><br><span class="line">            &#123;&#125;</span><br><span class="line">            j = <span class="built_in">pow</span>(<span class="number">2</span>, j<span class="number">-1</span>);</span><br><span class="line">                    </span><br><span class="line">            <span class="keyword">int</span> val;</span><br><span class="line">            <span class="keyword">if</span> (i-j<span class="number">-1</span> == <span class="number">-1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                val = <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                val = <span class="number">1</span> + vi[i-j];</span><br><span class="line">            &#125;</span><br><span class="line">            vi.push_back(val);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> vi;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>不过很遗憾这是一种<strong>很低效的解法</strong></p>
-<h2 id="standard-way">Standard Way</h2>
-<p>详细解释见之后reference的官方解释link处，这里只给出最后的思路/状态转移方程和我的一些理解及实现。</p>
-<h3 id="pop-count">1.Pop Count</h3>
-<h4 id="思路">思路</h4>
-<p>利用位运算<code>x &amp; (x - 1)</code>来不断消除最右边的一位1，直至数字为0时，可以算出这个数字有多少位1。</p>
-<p><strong>PS</strong>：确实没想到位运算这块，思维狭隘了。</p>
-<h4 id="实现">实现</h4>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">        <span class="keyword">if</span> (num == <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&#123;<span class="number">0</span>&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (num == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &#123;<span class="number">0</span>, <span class="number">1</span>&#125;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi &#123;<span class="number">0</span>, <span class="number">1</span>, &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt; num + <span class="number">1</span>; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            vi.push_back(pop_count(i));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> vi;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">pop_count</span><span class="params">(<span class="keyword">int</span> num)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="comment">// 通过 x &amp;= x - 1 的位运算操作，来消除掉一个数从左到右的最右边的一个1</span></span><br><span class="line">        <span class="keyword">int</span> count;</span><br><span class="line">        <span class="keyword">for</span> (count = <span class="number">0</span>; num != <span class="number">0</span>; ++count)</span><br><span class="line">        &#123;</span><br><span class="line">            num &amp;= num - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>官方解这里利用了 default initialization来implicit初始化 未初始化的结果。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">        <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[num + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= num; ++i)</span><br><span class="line">            ans[i] = popcount(i);</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">popcount</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count;</span><br><span class="line">        <span class="keyword">for</span> (count = <span class="number">0</span>; x != <span class="number">0</span>; ++count)</span><br><span class="line">          x &amp;= x - <span class="number">1</span>; <span class="comment">//zeroing out the least significant nonzero bit</span></span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="动态规划-最高有效位">2. 动态规划 + 最高有效位</h3>
-<h4 id="状态转移方程">状态转移方程</h4>
-<p>结合1解法的<code>pop_count</code> <span class="math inline">\(P(x)\)</span>函数来，有以下状态转移函数： <span class="math display">\[
-P(x+b) = P(x) + 1, b= 2^m &gt; x
-\]</span></p>
-<h4 id="我的理解">我的理解</h4>
-<p>能想到最左最高有效位刚好多一个1的情况，这个1在m位的话，则是多了<span class="math inline">\(2^m\)</span>值。</p>
-<h4 id="实现-1">实现</h4>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi(num+<span class="number">1</span>);</span><br><span class="line">        <span class="comment">// 可以不初始化为，gcc, clang下，float, double, size_t, unsigned会由default initialization初始化0</span></span><br><span class="line">        <span class="comment">// 同理, string会初始化为''</span></span><br><span class="line">        <span class="comment">//vi[0] = 0;</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> x = <span class="number">0</span>, b = <span class="number">1</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 利用外部循环来找到满足 b = 2^m &gt; x的情况</span></span><br><span class="line">        <span class="comment">// i = 0是因为每4个一循环，给下4个取值</span></span><br><span class="line">        <span class="keyword">for</span> ( ; b &lt;= num; b &lt;&lt;= <span class="number">1</span>, x = <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span> (x &lt; b &amp;&amp; x + b &lt;= num)</span><br><span class="line">            &#123;</span><br><span class="line">                vi[x+b] = vi[x] + <span class="number">1</span>;</span><br><span class="line">                ++x;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> vi;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>这里官方解的Java实现有个非常巧妙的地方：</p>
-<ul>
-<li>利用了 <code>while (b &lt;= num) {...}</code>的外部循环来找到 <span class="math inline">\(b = 2^m &gt; x\)</span> 的<span class="math inline">\(b\)</span>值</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># standard solution</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">int</span>[] countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">        <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[num + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">0</span>, b = <span class="number">1</span>;</span><br><span class="line">        <span class="comment">// [0, b) is calculated</span></span><br><span class="line">        <span class="keyword">while</span> (b &lt;= num) &#123;</span><br><span class="line">            <span class="comment">// generate [b, 2b) or [b, num) from [0, b)</span></span><br><span class="line">            <span class="keyword">while</span>(i &lt; b &amp;&amp; i + b &lt;= num)&#123;</span><br><span class="line">                ans[i + b] = ans[i] + <span class="number">1</span>;</span><br><span class="line">                ++i;</span><br><span class="line">            &#125;</span><br><span class="line">            i = <span class="number">0</span>;   <span class="comment">// reset i</span></span><br><span class="line">            b &lt;&lt;= <span class="number">1</span>; <span class="comment">// b = 2b</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="动态规划-最低有效位">3. 动态规划 + 最低有效位</h3>
-<h4 id="状态转移方程-1">状态转移方程</h4>
-<p>同样基于<code>pop_count()</code>函数 <span class="math display">\[
-P(x) = P(x/2) + (x\ mod\ 2)
-\]</span></p>
-<h4 id="我的理解-1">我的理解</h4>
-<p>同理2解法，由最高有效位，想到最低有效位：</p>
-<h4 id="实现-2">实现</h4>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi(num+<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> ( ; i &lt; num + <span class="number">1</span>; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            vi[i] = vi[i/<span class="number">2</span>] + (i % <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> vi;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>这里官方解，利用了位运算来代替已有的<code>/</code>和<code>%</code>运算：</p>
-<ul>
-<li><code>x &gt;&gt; 1</code> &lt;=&gt; <code>x / 2</code></li>
-<li><code>x &amp; 1</code> &lt;=&gt; <code>x % 2</code></li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">int</span>[] countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">      <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[num + <span class="number">1</span>];</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= num; ++i)</span><br><span class="line">        ans[i] = ans[i &gt;&gt; <span class="number">1</span>] + (i &amp; <span class="number">1</span>); <span class="comment">// x / 2 is x &gt;&gt; 1 and x % 2 is x &amp; 1</span></span><br><span class="line">      <span class="keyword">return</span> ans;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="动态规划-最后设置位">4.动态规划 + 最后设置位</h3>
-<h4 id="状态转移方程-2">状态转移方程</h4>
-<p>同样基于<code>pop_count()</code>函数 <span class="math display">\[
-P(x) = P(x\ \&amp;\ (x-1)) + 1
-\]</span></p>
-<h4 id="我的理解-2">我的理解</h4>
-<p>利用位运算<code>x &amp; (x-1)</code>消除最右边的一位“1”，</p>
-<p>使得 <code>x</code> 比 <code>x &amp; (x-1)</code> 少一位“1”， 加上这个“1”即可.</p>
-<h4 id="实现-3">实现</h4>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi(num+<span class="number">1</span>);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; num + <span class="number">1</span>; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            vi[i] = vi[i &amp; (i - <span class="number">1</span>)] + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> vi;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>官方解：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">int</span>[] countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">      <span class="keyword">int</span>[] ans = <span class="keyword">new</span> <span class="keyword">int</span>[num + <span class="number">1</span>];</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= num; ++i)</span><br><span class="line">        ans[i] = ans[i &amp; (i - <span class="number">1</span>)] + <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">return</span> ans;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="总结">总结</h2>
-<ul>
-<li><p>简单DP，注意定义好状态，写出状态转移方程，然后注意corner case。写成代码即可。</p></li>
-<li><p>注意涉及到 <strong>2进制</strong>， <strong>全0 1 的数字</strong>， <strong>非负整数, unsigned, size_t, size_type</strong>等等，</p>
-<p>往位运算上面想。</p></li>
-<li><p>总结这里的位运算操作，之后考虑全部总结下常见位运算操作, 我记得耗子有篇文章总结了很多这方面的。</p>
-<ul>
-<li><code>x &amp; (x - 1)</code> 消除 <code>x</code> 的最右边的一位1. (PS: 这一个确实不熟悉，虽然也见过)</li>
-<li><code>x &lt;&lt; 2</code> &lt;=&gt; <code>x * 2</code></li>
-<li><code>x &gt;&gt; 2</code> &lt;=&gt; <code>x / 2</code></li>
-<li><code>x &amp; 1</code> &lt;=&gt; <code>x % 2</code></li>
-</ul>
-<p>(PS：那篇文章link找不到了)</p></li>
-</ul>
-<h2 id="reference">Reference</h2>
-<p><a href="https://leetcode-cn.com/problems/counting-bits/solution/bi-te-wei-ji-shu-by-leetcode/" target="_blank" rel="noopener">leetcode官方解答</a></p>
-<p><a href="https://tex.stackexchange.com/questions/9065/large-braces-for-specifying-values-of-variables-by-condition" target="_blank" rel="noopener">Large braces for specifying values of variables by condition</a></p>
-<h3 id="extended-knowledge">Extended knowledge</h3>
-<p><a href="https://en.cppreference.com/w/cpp/utility/bitset/bitset" target="_blank" rel="noopener">std::bitset<n>::bitset in cppreference</n></a></p>
-<p><a href="https://stackoverflow.com/questions/7349689/how-to-print-using-cout-a-number-in-binary-form" target="_blank" rel="noopener">How to print (using cout) a number in binary form?</a></p>
-<p><a href="http://www.enseignement.polytechnique.fr/informatique/INF478/docs/Cpp/en/cpp/language/default_initialization.html" target="_blank" rel="noopener">default initialization</a></p>
-<p><a href="https://en.cppreference.com/w/cpp/language/lifetime" target="_blank" rel="noopener">lifetime</a></p>
-<p><a href="https://stackoverflow.com/questions/48775464/why-does-c-initialise-a-stdvector-with-zeros-but-not-a-stdarray" target="_blank" rel="noopener">Why does c++ initialise a std::vector with zeros, but not a std::array?</a></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2760,7 +2705,7 @@ P(x) = P(x\ \&amp;\ (x-1)) + 1
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">81</span>
+                    <span class="site-state-item-count">82</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
