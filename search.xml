@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[位运算的总结]]></title>
+    <url>%2F2019%2F12%2F30%2F%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E6%80%BB%E7%BB%93%2F</url>
+    <content type="text"><![CDATA[之后会再专门总结，目前就先这样挖个坑。 Referece https://blog.csdn.net/shimazhuge/article/details/24913417]]></content>
+      <categories>
+        <category>位运算</category>
+      </categories>
+      <tags>
+        <tag>总结</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解-965-单值二叉树]]></title>
     <url>%2F2019%2F12%2F30%2Fleetcode%E9%A2%98%E8%A7%A3-965-%E5%8D%95%E5%80%BC%E4%BA%8C%E5%8F%89%E6%A0%91%2F</url>
     <content type="text"><![CDATA[题目 My way dfs遍历 12345678910111213141516171819202122232425262728293031323334/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;private: int val; bool isUT = true; void dfs(TreeNode* root) &#123; if (!root || !isUT) return; isUT = (val == root-&gt;val ? true : false); dfs(root-&gt;left); dfs(root-&gt;right); &#125;public: bool isUnivalTree(TreeNode* root) &#123; val = root-&gt;val; dfs(root); return isUT; &#125;&#125;;]]></content>
@@ -286,8 +297,8 @@
         <tag>树</tag>
         <tag>树的遍历</tag>
         <tag>stringstream</tag>
-        <tag>字符串</tag>
         <tag>序列化</tag>
+        <tag>字符串</tag>
       </tags>
   </entry>
   <entry>
