@@ -373,6 +373,199 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/24/内存不够时，替代sns-countplot-的实现方法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bowen Peng">
+      <meta itemprop="description" content="something about myself and my career development.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boven's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/24/内存不够时，替代sns-countplot-的实现方法/" class="post-title-link" itemprop="url">内存不够时，替代sns.countplot()的实现方法</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-24 15:33:13" itemprop="dateCreated datePublished" datetime="2019-06-24T15:33:13+08:00">2019-06-24</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-06-29 19:52:10" itemprop="dateModified" datetime="2019-06-29T19:52:10+08:00">2019-06-29</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/EDA/" itemprop="url" rel="index"><span itemprop="name">EDA</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="内存不够时替代sns.countplot的实现方法">内存不够时，替代sns.countplot()的实现方法</h1>
+<p>最近做EDA的的时候会存在这样一种情况，<strong>数据量过大</strong>时，直接使用<code>sns.countplot()</code>内存很容易直接被榨干掉。</p>
+<p>暂时没想清为什么会直接占用那么多内存，应该去StackOverflow提个Q的。</p>
+<p>不过想了下又查了下StackOverflow，应该有用<code>df.value_counts() 和</code> <code>matplotlib</code>来实现<code>sns.countplot()</code>的实现方法，如此，<a href="https://stackoverflow.com/questions/55667185/what-is-matplotlibs-alternative-for-countplot-from-seaborn" target="_blank" rel="noopener">What is Matplotlib's alternative for countplot from seaborn?</a></p>
+<p>引用自StackOverflow，<a href="https://stackoverflow.com/users/4124317/importanceofbeingernest" target="_blank" rel="noopener">ImportanceOfBeingErnest</a></p>
+<p>Say you have this data:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np; np.random.seed(<span class="number">42</span>)</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">df = pd.DataFrame(&#123;<span class="string">"Sex"</span> : np.random.choice([<span class="string">"male"</span>,  <span class="string">"female"</span>], size=<span class="number">1310</span>, p=[<span class="number">.65</span>, <span class="number">.35</span>]),</span><br><span class="line">                   <span class="string">"other"</span> : np.random.randint(<span class="number">0</span>,<span class="number">80</span>, size=<span class="number">1310</span>)&#125;)</span><br></pre></td></tr></table></figure>
+<p>You can plot a countplot in seaborn as</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">sns.countplot(x=<span class="string">"Sex"</span>, data=df)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<img src="/2019/06/24/内存不够时，替代sns-countplot-的实现方法/countplot.jpg" title="sns.countplot">
+<p>Or you can create a bar plot in pandas</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">"Sex"</span>].value_counts().plot.bar()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<img src="/2019/06/24/内存不够时，替代sns-countplot-的实现方法/plt_bar.jpg" title="df[Sex].value_counts().plot.bar()">
+<p>Or you can create a bar plot in matplotlib</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">counts = df[<span class="string">"Sex"</span>].value_counts()</span><br><span class="line">plt.bar(counts.index, counts.values)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<img src="/2019/06/24/内存不够时，替代sns-countplot-的实现方法/value_counts_plot_bar.jpg" title="plt.bar(df[Sex].value_counts().index, df[Sex].value_counts().values)">
+<h1 id="reference">Reference</h1>
+<ul>
+<li><a href="https://stackoverflow.com/questions/55667185/what-is-matplotlibs-alternative-for-countplot-from-seaborn" target="_blank" rel="noopener">What is Matplotlib's alternative for countplot from seaborn?</a></li>
+<li><a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/visualization.html" target="_blank" rel="noopener">Pandas:Visualization Guide</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/24/如何指定xtick在一个特定的范围/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1774,7 +1967,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">87</span>
+                    <span class="site-state-item-count">88</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2473,6 +2666,8 @@
 
   
   
+    
+      
     
       
     
