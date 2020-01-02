@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode题解-897-递增顺序查找树]]></title>
+    <url>%2F2020%2F01%2F02%2Fleetcode%E9%A2%98%E8%A7%A3-897-%E9%80%92%E5%A2%9E%E9%A1%BA%E5%BA%8F%E6%9F%A5%E6%89%BE%E6%A0%91%2F</url>
+    <content type="text"><![CDATA[题目 My way 中序遍历用vector存储结果 + 按vector中结果依次构建树 12345678910111213141516171819202122232425262728293031323334353637/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;private: void inOrder(TreeNode* root, vector&lt;int&gt;&amp; vi) &#123; if (!root) return ; inOrder(root-&gt;left, vi); vi.push_back(root-&gt;val); inOrder(root-&gt;right, vi); &#125;public: TreeNode* increasingBST(TreeNode* root) &#123; vector&lt;int&gt; vi; inOrder(root, vi); TreeNode* res = new TreeNode(0); TreeNode* cur = res; for (auto&amp; it: vi) &#123; cur-&gt;right = new TreeNode(it); cur = cur-&gt;right; &#125; return res-&gt;right; &#125;&#125;; 就地拼接 + 不使用额外空间复杂度 1234567891011121314151617181920212223242526272829303132333435/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;private: TreeNode* cur; void inOrder(TreeNode* node) &#123; if (!node) return; inOrder(node-&gt;left); node-&gt;left = nullptr; cur-&gt;right = node; cur = node; inOrder(node-&gt;right); &#125;public: TreeNode* increasingBST(TreeNode* root) &#123; TreeNode* res = new TreeNode(0); cur = res; inOrder(root); return res-&gt;right; &#125;&#125;; Reference https://leetcode-cn.com/problems/increasing-order-search-tree/solution/di-zeng-shun-xu-cha-zhao-shu-by-leetcode/]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解-979-在二叉树中分配硬币]]></title>
     <url>%2F2020%2F01%2F02%2Fleetcode%E9%A2%98%E8%A7%A3-979-%E5%9C%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%AD%E5%88%86%E9%85%8D%E7%A1%AC%E5%B8%81%2F</url>
     <content type="text"><![CDATA[题目 官方way 12345678910111213141516class Solution &#123; int ans; public int distributeCoins(TreeNode root) &#123; ans = 0; dfs(root); return ans; &#125; public int dfs(TreeNode node) &#123; if (node == null) return 0; int L = dfs(node.left); int R = dfs(node.right); ans += Math.abs(L) + Math.abs(R); return node.val + L + R - 1; &#125;&#125; 一种抽象的思维： 抽象：硬币数 \(\rightarrow\) 负载量，考虑成: \(一个节点的负载量 = abs(硬币数-1)\) 节点间的硬币的移动数量: abs(dfs(node-&gt;left)) + abs(dfs(node-&gt;right)) Reference https://leetcode-cn.com/problems/distribute-coins-in-binary-tree/solution/zai-er-cha-shu-zhong-fen-pei-ying-bi-by-leetcode/]]></content>
@@ -317,9 +322,9 @@
         <tag>树</tag>
         <tag>树的遍历</tag>
         <tag>×</tag>
-        <tag>stringstream</tag>
         <tag>字符串</tag>
         <tag>序列化</tag>
+        <tag>stringstream</tag>
       </tags>
   </entry>
   <entry>
@@ -724,8 +729,8 @@
         <tag>leetcode</tag>
         <tag>×</tag>
         <tag>DP</tag>
-        <tag>2维dp</tag>
         <tag>插入1个虚拟0</tag>
+        <tag>2维dp</tag>
         <tag>数组</tag>
         <tag>hash</tag>
         <tag>缓存</tag>
@@ -742,9 +747,9 @@
         <tag>leetcode</tag>
         <tag>×</tag>
         <tag>DP</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>2维dp</tag>
         <tag>最大公共子序列</tag>
-        <tag>插入1个虚拟0</tag>
       </tags>
   </entry>
   <entry>
@@ -758,8 +763,8 @@
         <tag>leetcode</tag>
         <tag>DP</tag>
         <tag>√</tag>
-        <tag>2维dp</tag>
         <tag>2维DP-to-1维DP</tag>
+        <tag>2维dp</tag>
       </tags>
   </entry>
   <entry>
@@ -788,8 +793,8 @@
         <tag>leetcode</tag>
         <tag>×</tag>
         <tag>动态规划</tag>
-        <tag>数组对角遍历</tag>
         <tag>字符串</tag>
+        <tag>数组对角遍历</tag>
         <tag>中心扩散法</tag>
       </tags>
   </entry>
@@ -803,8 +808,8 @@
       <tags>
         <tag>leetcode</tag>
         <tag>×</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>字符串</tag>
       </tags>
   </entry>
@@ -835,8 +840,8 @@
         <tag>leetcode</tag>
         <tag>×</tag>
         <tag>数学题</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>组合数学</tag>
       </tags>
   </entry>
@@ -851,12 +856,12 @@
         <tag>leetcode</tag>
         <tag>树</tag>
         <tag>×</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>2维DP</tag>
         <tag>2维DP-to-1维DP</tag>
         <tag>自顶向下DP</tag>
         <tag>自底向上DP</tag>
+        <tag>插入1个虚拟0</tag>
       </tags>
   </entry>
   <entry>
@@ -886,8 +891,8 @@
         <tag>leetcode</tag>
         <tag>树</tag>
         <tag>×</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>Catalan数</tag>
       </tags>
   </entry>
