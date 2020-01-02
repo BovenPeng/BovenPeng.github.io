@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode题解-222-完全二叉树的节点个数]]></title>
+    <url>%2F2020%2F01%2F02%2Fleetcode%E9%A2%98%E8%A7%A3-222-%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E8%8A%82%E7%82%B9%E4%B8%AA%E6%95%B0%2F</url>
+    <content type="text"><![CDATA[题目 Wanglihao way 12345678910111213141516171819202122232425262728293031/** * Definition for a binary tree node. * public class TreeNode &#123; * int val; * TreeNode left; * TreeNode right; * TreeNode(int x) &#123; val = x; &#125; * &#125; */class Solution &#123; public int countNodes(TreeNode root) &#123; if(root == null)&#123; return 0; &#125; int left = countLevel(root.left); int right = countLevel(root.right); if(left == right)&#123; return countNodes(root.right) + (1&lt;&lt;left); &#125;else&#123; return countNodes(root.left) + (1&lt;&lt;right); &#125; &#125; private int countLevel(TreeNode root)&#123; int level = 0; while(root != null)&#123; level++; root = root.left; &#125; return level; &#125;&#125; 利用了完全二叉树定义： 它是一棵空树或者它的叶子节点只出在最后两层，若最后一层不满则叶子节点只在最左侧。 left == right. 说明左子树一定是满二叉树，因为节点已经填充到右子树了，左子树必然填满了。所以左子树的节点总数我们可以直接得到，是\(2^{left }- 1\)，加上当前这个root节点，则正好是\(2^{left}\)。再对右子树进行递归统计。 left != right. 说明此时到了树的倒数第二层了，且倒数第二层已经满了，可以直接得到右子树的节点个数。同理，右子树节点+root节点，总数为\(2^{right}\). 再对左子树进行递归查找。 总结 完全二叉树的定义引申出通过对左右孩子的判断，来得到对于节点个数的计算： left == right. 说明左子树一定是满二叉树，因为节点已经填充到右子树了，左子树必然填满了。所以左子树的节点总数我们可以直接得到，是\(2^{left }- 1\)，加上当前这个root节点，则正好是\(2^{left}\)。再对右子树进行递归统计。 left != right. 说明此时到了树的倒数第二层了，且倒数第二层已经满了，可以直接得到右子树的节点个数。同理，右子树节点+root节点，总数为\(2^{right}\). 再对左子树进行递归查找。 完全二叉树的高度： 树的高度 = 树的最左节点的深度 简单的位运算： \(2^{left} = (1 &lt; &lt; left)\) References https://leetcode-cn.com/problems/count-complete-tree-nodes/]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[位运算的总结]]></title>
     <url>%2F2019%2F12%2F30%2F%E4%BD%8D%E8%BF%90%E7%AE%97%E7%9A%84%E6%80%BB%E7%BB%93%2F</url>
     <content type="text"><![CDATA[之后会再专门总结，目前就先这样挖个坑。 Referece https://blog.csdn.net/shimazhuge/article/details/24913417]]></content>
@@ -307,8 +312,8 @@
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
-        <tag>字符串</tag>
         <tag>stringstream</tag>
+        <tag>字符串</tag>
         <tag>序列化</tag>
       </tags>
   </entry>
@@ -746,8 +751,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>√</tag>
         <tag>DP</tag>
+        <tag>√</tag>
         <tag>2维dp</tag>
         <tag>2维DP-to-1维DP</tag>
       </tags>
@@ -778,8 +783,8 @@
         <tag>×</tag>
         <tag>leetcode</tag>
         <tag>动态规划</tag>
-        <tag>字符串</tag>
         <tag>数组对角遍历</tag>
+        <tag>字符串</tag>
         <tag>中心扩散法</tag>
       </tags>
   </entry>
@@ -937,8 +942,8 @@
         <tag>×</tag>
         <tag>leetcode</tag>
         <tag>DP</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>位运算</tag>
+        <tag>插入1个虚拟0</tag>
       </tags>
   </entry>
   <entry>
