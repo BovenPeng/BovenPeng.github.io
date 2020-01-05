@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode题解-199-二叉树的右视图]]></title>
+    <url>%2F2020%2F01%2F05%2Fleetcode%E9%A2%98%E8%A7%A3-199-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E5%8F%B3%E8%A7%86%E5%9B%BE%2F</url>
+    <content type="text"><![CDATA[官方解 非递归dfs 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123; public: vector&lt;int&gt; rightSideView(TreeNode* root) &#123; unordered_map&lt;int, int&gt; rightMostValAtDepth; stack&lt;TreeNode*&gt; nodeStack; stack&lt;int&gt; heightStack; int maxDepth = -1; nodeStack.push(root); heightStack.push(0); while(!nodeStack.empty()) &#123; root = nodeStack.top(); nodeStack.pop(); int depth = heightStack.top(); heightStack.pop(); if (root) &#123; maxDepth = max(maxDepth, depth); if (!rightMostValAtDepth.count(depth)) &#123; rightMostValAtDepth[depth] = root-&gt;val; &#125; nodeStack.push(root-&gt;left); nodeStack.push(root-&gt;right); heightStack.push(depth+1); heightStack.push(depth+1); &#125; &#125; vector&lt;int&gt; vi; for (int depth = 0; depth &lt;= maxDepth; ++depth) &#123; vi.push_back(rightMostValAtDepth[depth]); &#125; return vi; &#125;&#125;; 非递归实现DFS遍历 + 带 树高 状态 非递归BFS java实现 12345678910111213141516171819202122232425262728293031323334353637383940class Solution &#123; public List&lt;Integer&gt; rightSideView(TreeNode root) &#123; Map&lt;Integer, Integer&gt; rightmostValueAtDepth = new HashMap&lt;Integer, Integer&gt;(); int max_depth = -1; /* These two Queues are always synchronized, providing an implicit * association values with the same offset on each Queue. */ Queue&lt;TreeNode&gt; nodeQueue = new LinkedList&lt;TreeNode&gt;(); Queue&lt;Integer&gt; depthQueue = new LinkedList&lt;Integer&gt;(); nodeQueue.add(root); depthQueue.add(0); while (!nodeQueue.isEmpty()) &#123; TreeNode node = nodeQueue.remove(); int depth = depthQueue.remove(); if (node != null) &#123; max_depth = Math.max(max_depth, depth); /* The last node that we encounter at a particular depth contains * the correct value, so the correct value is never overwritten. */ rightmostValueAtDepth.put(depth, node.val); nodeQueue.add(node.left); nodeQueue.add(node.right); depthQueue.add(depth+1); depthQueue.add(depth+1); &#125; &#125; /* Construct the solution based on the values that we end up with at the * end. */ List&lt;Integer&gt; rightView = new ArrayList&lt;Integer&gt;(); for (int depth = 0; depth &lt;= max_depth; depth++) &#123; rightView.add(rightmostValueAtDepth.get(depth)); &#125; return rightView; &#125;&#125; C++实现 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748/** * Definition for a binary tree node. * struct TreeNode &#123; * int val; * TreeNode *left; * TreeNode *right; * TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125; * &#125;; */class Solution &#123;public: vector&lt;int&gt; rightSideView(TreeNode* root) &#123; unordered_map&lt;int, int&gt; rightMostValAtDep; queue&lt;TreeNode*&gt; nodeQue; queue&lt;int&gt; heightQue; int maxDepth = -1; nodeQue.push(root); heightQue.push(0); while(!nodeQue.empty()) &#123; root = nodeQue.front(); nodeQue.pop(); int height = heightQue.front(); heightQue.pop(); if (root) &#123; maxDepth = max(maxDepth, height); rightMostValAtDep[height] = root-&gt;val; nodeQue.push(root-&gt;left); nodeQue.push(root-&gt;right); heightQue.push(height+1); heightQue.push(height+1); &#125; &#125; vector&lt;int&gt; vi; for (int i = 0; i &lt;= maxDepth; ++i) &#123; vi.push_back(rightMostValAtDep[i]); &#125; return vi; &#125;&#125;; 非递归实现BFS遍历 + 带 树高 状态]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解-669-修剪二叉搜索树]]></title>
     <url>%2F2020%2F01%2F02%2Fleetcode%E9%A2%98%E8%A7%A3-669-%E4%BF%AE%E5%89%AA%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91%2F</url>
     <content type="text"><![CDATA[题目 我的思路是先得到满足要求的节点，再重新构建二叉搜索树，不过显然不是最优解。 官方way 递归 + 状态判断 1234567891011class Solution &#123; public TreeNode trimBST(TreeNode root, int L, int R) &#123; if (root == null) return root; if (root.val &gt; R) return trimBST(root.left, L, R); if (root.val &lt; L) return trimBST(root.right, L, R); root.left = trimBST(root.left, L, R); root.right = trimBST(root.right, L, R); return root; &#125;&#125; 剪枝思路： root-&gt;val &lt; L, root及左孩子剪枝，右孩子提升为root root-&gt;val &gt; R root及右孩子剪枝，左孩子提升为root L &lt;= root-&gt;val &amp;&amp; root-&gt;val &lt;= R 不需要对root剪枝，递归调用左右孩子 References https://leetcode-cn.com/problems/trim-a-binary-search-tree/solution/xiu-jian-er-cha-sou-suo-shu-by-leetcode/]]></content>
@@ -723,8 +728,8 @@
       <tags>
         <tag>×</tag>
         <tag>leetcode</tag>
-        <tag>递归</tag>
         <tag>DP</tag>
+        <tag>递归</tag>
         <tag>数组</tag>
       </tags>
   </entry>
@@ -739,8 +744,8 @@
         <tag>×</tag>
         <tag>leetcode</tag>
         <tag>DP</tag>
-        <tag>2维dp</tag>
         <tag>插入1个虚拟0</tag>
+        <tag>2维dp</tag>
         <tag>数组</tag>
         <tag>hash</tag>
         <tag>缓存</tag>
@@ -757,9 +762,9 @@
         <tag>×</tag>
         <tag>leetcode</tag>
         <tag>DP</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>2维dp</tag>
         <tag>最大公共子序列</tag>
-        <tag>插入1个虚拟0</tag>
       </tags>
   </entry>
   <entry>
@@ -773,8 +778,8 @@
         <tag>leetcode</tag>
         <tag>DP</tag>
         <tag>√</tag>
-        <tag>2维dp</tag>
         <tag>2维DP-to-1维DP</tag>
+        <tag>2维dp</tag>
       </tags>
   </entry>
   <entry>
@@ -818,8 +823,8 @@
       <tags>
         <tag>×</tag>
         <tag>leetcode</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>字符串</tag>
       </tags>
   </entry>
@@ -850,8 +855,8 @@
         <tag>×</tag>
         <tag>leetcode</tag>
         <tag>数学题</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>组合数学</tag>
       </tags>
   </entry>
@@ -866,12 +871,12 @@
         <tag>×</tag>
         <tag>leetcode</tag>
         <tag>树</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>2维DP</tag>
         <tag>2维DP-to-1维DP</tag>
         <tag>自顶向下DP</tag>
         <tag>自底向上DP</tag>
+        <tag>插入1个虚拟0</tag>
       </tags>
   </entry>
   <entry>
@@ -901,8 +906,8 @@
         <tag>×</tag>
         <tag>leetcode</tag>
         <tag>树</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>Catalan数</tag>
       </tags>
   </entry>
@@ -996,9 +1001,9 @@
       </categories>
       <tags>
         <tag>code snippet</tag>
-        <tag>data visualization</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
+        <tag>data visualization</tag>
       </tags>
   </entry>
   <entry>
@@ -1024,9 +1029,9 @@
       </categories>
       <tags>
         <tag>pandas</tag>
+        <tag>Code Snippet</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
-        <tag>Code Snippet</tag>
       </tags>
   </entry>
   <entry>
@@ -1053,9 +1058,9 @@
       <tags>
         <tag>code snippet</tag>
         <tag>EDA</tag>
-        <tag>data visualization</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
+        <tag>data visualization</tag>
         <tag>hexo</tag>
       </tags>
   </entry>
