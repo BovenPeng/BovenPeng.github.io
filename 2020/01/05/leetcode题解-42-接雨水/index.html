@@ -96,17 +96,17 @@
 
 
 
-  <meta name="description" content="题目 官方way 3. (最大)单调栈 12345678910111213141516171819202122232425262728class Solution &amp;#123;public:    int trap(vector&amp;lt;int&amp;gt;&amp;amp; height)     &amp;#123;        stack&amp;lt;int&amp;gt; s;        int cur = 0;">
+  <meta name="description" content="题目 官方way 3. (最大)单调递减栈 12345678910111213141516171819202122232425262728class Solution &amp;#123;public:    int trap(vector&amp;lt;int&amp;gt;&amp;amp; height)     &amp;#123;        stack&amp;lt;int&amp;gt; s;        int cur = 0">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode题解-42-接雨水">
 <meta property="og:url" content="http://yoursite.com/2020/01/05/leetcode题解-42-接雨水/index.html">
 <meta property="og:site_name" content="Boven&#39;s Blog">
-<meta property="og:description" content="题目 官方way 3. (最大)单调栈 12345678910111213141516171819202122232425262728class Solution &amp;#123;public:    int trap(vector&amp;lt;int&amp;gt;&amp;amp; height)     &amp;#123;        stack&amp;lt;int&amp;gt; s;        int cur = 0;">
+<meta property="og:description" content="题目 官方way 3. (最大)单调递减栈 12345678910111213141516171819202122232425262728class Solution &amp;#123;public:    int trap(vector&amp;lt;int&amp;gt;&amp;amp; height)     &amp;#123;        stack&amp;lt;int&amp;gt; s;        int cur = 0">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-05T13:42:07.153Z">
+<meta property="og:updated_time" content="2020-01-05T13:53:03.447Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode题解-42-接雨水">
-<meta name="twitter:description" content="题目 官方way 3. (最大)单调栈 12345678910111213141516171819202122232425262728class Solution &amp;#123;public:    int trap(vector&amp;lt;int&amp;gt;&amp;amp; height)     &amp;#123;        stack&amp;lt;int&amp;gt; s;        int cur = 0;">
+<meta name="twitter:description" content="题目 官方way 3. (最大)单调递减栈 12345678910111213141516171819202122232425262728class Solution &amp;#123;public:    int trap(vector&amp;lt;int&amp;gt;&amp;amp; height)     &amp;#123;        stack&amp;lt;int&amp;gt; s;        int cur = 0">
 
 
 
@@ -416,7 +416,7 @@
                 
               
 
-              <time title="创建时间：2020-01-05 21:32:52 / 修改时间：21:42:07" itemprop="dateCreated datePublished" datetime="2020-01-05T21:32:52+08:00">2020-01-05</time>
+              <time title="创建时间：2020-01-05 21:32:52 / 修改时间：21:53:03" itemprop="dateCreated datePublished" datetime="2020-01-05T21:32:52+08:00">2020-01-05</time>
             
 
             
@@ -457,10 +457,10 @@
       
         <h2 id="题目"><a href="https://leetcode-cn.com/problems/trapping-rain-water/" target="_blank" rel="noopener">题目</a></h2>
 <h3 id="官方way">官方way</h3>
-<h4 id="最大单调栈">3. (最大)单调栈</h4>
+<h4 id="最大单调递减栈">3. (最大)单调递减栈</h4>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">trap</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; height)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; s;</span><br><span class="line">        <span class="keyword">int</span> cur = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (cur != height.size())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span> (!s.empty() &amp;&amp; height[cur] &gt; height[s.top()])</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">int</span> top = s.top();</span><br><span class="line">                s.pop();</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (s.empty())  <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">int</span> dist = cur - s.top() - <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">int</span> bounded_height = min(height[s.top()], height[cur]) - height[top];</span><br><span class="line">                ans += dist * bounded_height;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            s.push(cur++);</span><br><span class="line">        &#125;    </span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h5 id="维护一个最大单调栈的流程如下">维护一个最大单调栈的流程如下</h5>
-<p>维护一个栈，让数组中元素依次进栈:</p>
+<h5 id="维护一个最大单调递减栈的流程如下">维护一个最大单调递减栈的流程如下</h5>
+<p>让数组中元素依次进栈:</p>
 <ul>
 <li><p><strong>假如栈空</strong>，元素直接进栈；</p></li>
 <li><p><strong>假如栈顶top元素小于数组cur元素</strong>，则将数组内元素依次弹出直至：</p>
@@ -477,6 +477,7 @@
 </ul></li>
 <li><p><strong>假如数组中无元素</strong>，则对栈中元素依次出栈;</p></li>
 </ul>
+<p>PS：在这里是对数组的索引进行进栈操作，而不是具体到元素。</p>
 
       
     </div>
@@ -516,6 +517,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/01/06/leetcode题解-496-下一个更大元素Ⅰ/" rel="prev" title="leetcode题解-496-下一个更大元素Ⅰ">
+                leetcode题解-496-下一个更大元素Ⅰ <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -584,7 +589,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">93</span>
+                    <span class="site-state-item-count">94</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -798,7 +803,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#官方way"><span class="nav-number">1.1.</span> <span class="nav-text">官方way</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#最大单调栈"><span class="nav-number">1.1.1.</span> <span class="nav-text">3. (最大)单调栈</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#维护一个最大单调栈的流程如下"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">维护一个最大单调栈的流程如下</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#官方way"><span class="nav-number">1.1.</span> <span class="nav-text">官方way</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#最大单调递减栈"><span class="nav-number">1.1.1.</span> <span class="nav-text">3. (最大)单调递减栈</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#维护一个最大单调递减栈的流程如下"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">维护一个最大单调递减栈的流程如下</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
