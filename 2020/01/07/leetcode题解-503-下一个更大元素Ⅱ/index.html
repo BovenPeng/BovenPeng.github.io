@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="Boven&#39;s Blog">
 <meta property="og:description" content="labuladong way 不严格单调递增栈 1234567891011121314vector&amp;lt;int&amp;gt; nextGreaterElements(vector&amp;lt;int&amp;gt;&amp;amp; nums) &amp;#123;    int n = nums.size();    vector&amp;lt;int&amp;gt; res(n); // 存放结果    stack&amp;lt;int&amp;gt;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-07T08:25:45.135Z">
+<meta property="og:updated_time" content="2020-01-07T08:31:09.767Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode题解-503-下一个更大元素Ⅱ">
 <meta name="twitter:description" content="labuladong way 不严格单调递增栈 1234567891011121314vector&amp;lt;int&amp;gt; nextGreaterElements(vector&amp;lt;int&amp;gt;&amp;amp; nums) &amp;#123;    int n = nums.size();    vector&amp;lt;int&amp;gt; res(n); // 存放结果    stack&amp;lt;int&amp;gt;">
@@ -417,7 +417,7 @@
                 
               
 
-              <time title="创建时间：2020-01-07 11:11:54 / 修改时间：16:25:45" itemprop="dateCreated datePublished" datetime="2020-01-07T11:11:54+08:00">2020-01-07</time>
+              <time title="创建时间：2020-01-07 11:11:54 / 修改时间：16:31:09" itemprop="dateCreated datePublished" datetime="2020-01-07T11:11:54+08:00">2020-01-07</time>
             
 
             
@@ -468,6 +468,12 @@
 <ul>
 <li><p>通过<strong>索引翻倍-1</strong> 和 <strong>%</strong>运算，来达到模拟数组中元素翻倍的效果。</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假装这个数组长度翻倍了</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span> * n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) </span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">while</span> (!s.empty() &amp;&amp; s.top() &lt;= nums[i % n])</span><br><span class="line">		s.pop();</span><br><span class="line">	res[i % n] = s.empty() ? <span class="number">-1</span> : s.top();</span><br><span class="line">	s.push(nums[i % n]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>同时，在元素出栈后，对栈空状态进行判断，</p>
+<ul>
+<li>若空了则，<code>res</code>对应值为<code>-1</code></li>
+<li>若不空则，<code>res</code>对应值为<code>n</code></li>
+<li>省去了一个存放<code>tuple</code>的容器的空间大小</li>
+</ul></li>
 </ul>
 <h2 id="reference">Reference</h2>
 <p>https://leetcode-cn.com/problems/next-greater-element-ii/solution/dan-diao-zhan-jie-jue-next-greater-number-yi-lei-2/</p>
@@ -518,6 +524,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/01/07/leetcode题解-739-每日温度/" rel="prev" title="leetcode题解-739-每日温度">
+                leetcode题解-739-每日温度 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -586,7 +596,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">95</span>
+                    <span class="site-state-item-count">96</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
