@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode题解-503-下一个更大元素Ⅱ]]></title>
+    <url>%2F2020%2F01%2F07%2Fleetcode%E9%A2%98%E8%A7%A3-503-%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%9B%B4%E5%A4%A7%E5%85%83%E7%B4%A0%E2%85%A1%2F</url>
+    <content type="text"><![CDATA[labuladong way 不严格单调递增栈 1234567891011121314vector&lt;int&gt; nextGreaterElements(vector&lt;int&gt;&amp; nums) &#123; int n = nums.size(); vector&lt;int&gt; res(n); // 存放结果 stack&lt;int&gt; s; // 假装这个数组长度翻倍了 for (int i = 2 * n - 1; i &gt;= 0; i--) &#123; while (!s.empty() &amp;&amp; s.top() &lt;= nums[i % n]) s.pop(); res[i % n] = s.empty() ? -1 : s.top(); s.push(nums[i % n]); &#125; return res;&#125; Why? 为什么这里是用 不严格的单调递增栈 而不是 严格的单调递增栈 为什么通过索引翻倍-1后，是选择方向遍历元素的，而不是正向遍历？ 总结 通过索引翻倍-1 和 %运算，来达到模拟数组中元素翻倍的效果。 12345678// 假装这个数组长度翻倍了for (int i = 2 * n - 1; i &gt;= 0; i--) &#123; while (!s.empty() &amp;&amp; s.top() &lt;= nums[i % n]) s.pop(); res[i % n] = s.empty() ? -1 : s.top(); s.push(nums[i % n]);&#125; Reference https://leetcode-cn.com/problems/next-greater-element-ii/solution/dan-diao-zhan-jie-jue-next-greater-number-yi-lei-2/]]></content>
+      <tags>
+        <tag>循环数组</tag>
+        <tag>Next Great Number</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解-496-下一个更大元素Ⅰ]]></title>
     <url>%2F2020%2F01%2F06%2Fleetcode%E9%A2%98%E8%A7%A3-496-%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%9B%B4%E5%A4%A7%E5%85%83%E7%B4%A0%E2%85%A0%2F</url>
     <content type="text"><![CDATA[题目 官方解way 最大单调递增栈 12345678910111213141516171819202122232425262728293031class Solution &#123;public: vector&lt;int&gt; nextGreaterElement(vector&lt;int&gt;&amp; nums1, vector&lt;int&gt;&amp; nums2) &#123; unordered_map&lt;int, int&gt; map; stack&lt;int&gt; s; for (int i = 0; i &lt; nums2.size(); ++i) &#123; while (!s.empty() &amp;&amp; s.top() &lt; nums2[i]) &#123; map[s.top()] = nums2[i]; s.pop(); &#125; s.push(nums2[i]); &#125; while (!s.empty()) &#123; map[s.top()] = -1; s.pop(); &#125; vector&lt;int&gt; vi; for (int i = 0; i &lt; nums1.size(); ++i) &#123; vi.push_back(map[nums1[i]]); &#125; return vi; &#125;&#125;; 最大单调递增栈的流程： 数组中元素依次进栈: 假如栈不为空 且 栈顶元素小于数组当前元素, 则将 栈顶元素出栈 直至 栈不为空 或 栈顶元素 大于等于 数组当前元素 将栈顶元素和第一个大于栈顶(的栈顶右边)元素，形成一个tuple 此处是放到unordered_map中来 当前元素进栈 当数组中所有元素遍历完之后，将栈中元素依次弹出 遍历存放tuple的容器 总结 这是一个很经典的单调栈题。 Reference https://leetcode-cn.com/problems/next-greater-element-i/solution/xia-yi-ge-geng-da-yuan-su-i-by-leetcode/]]></content>
@@ -214,9 +223,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -228,9 +237,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -242,9 +251,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
         <tag>树的构造</tag>
       </tags>
   </entry>
@@ -278,10 +287,10 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
-        <tag>×</tag>
         <tag>栈</tag>
       </tags>
   </entry>
@@ -294,10 +303,10 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
-        <tag>×</tag>
         <tag>栈</tag>
       </tags>
   </entry>
@@ -310,10 +319,10 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
-        <tag>×</tag>
         <tag>hash</tag>
         <tag>序列化</tag>
         <tag>innovative solution</tag>
@@ -328,10 +337,10 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
-        <tag>×</tag>
         <tag>栈</tag>
         <tag>括号匹配</tag>
         <tag>stringstream</tag>
@@ -346,13 +355,13 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
-        <tag>×</tag>
+        <tag>序列化</tag>
         <tag>字符串</tag>
         <tag>stringstream</tag>
-        <tag>序列化</tag>
       </tags>
   </entry>
   <entry>
@@ -467,11 +476,11 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
         <tag>BFS</tag>
-        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -483,11 +492,11 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
         <tag>BFS</tag>
-        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -499,9 +508,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
         <tag>DFS</tag>
       </tags>
   </entry>
@@ -514,9 +523,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
         <tag>DFS</tag>
       </tags>
   </entry>
@@ -529,9 +538,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
         <tag>DFS</tag>
       </tags>
   </entry>
@@ -544,9 +553,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
-        <tag>×</tag>
         <tag>DFS</tag>
       </tags>
   </entry>
@@ -740,9 +749,9 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>递归</tag>
         <tag>DP</tag>
         <tag>×</tag>
+        <tag>递归</tag>
         <tag>数组</tag>
       </tags>
   </entry>
@@ -789,8 +798,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>√</tag>
         <tag>DP</tag>
+        <tag>√</tag>
         <tag>2维dp</tag>
         <tag>2维DP-to-1维DP</tag>
       </tags>
@@ -850,10 +859,10 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
-        <tag>×</tag>
         <tag>动态规划</tag>
       </tags>
   </entry>
@@ -882,8 +891,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>树</tag>
         <tag>×</tag>
+        <tag>树</tag>
         <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>2维DP</tag>
@@ -917,8 +926,8 @@
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>树</tag>
         <tag>×</tag>
+        <tag>树</tag>
         <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>Catalan数</tag>
@@ -1041,9 +1050,9 @@
         <category>Pandas</category>
       </categories>
       <tags>
+        <tag>pandas</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
-        <tag>pandas</tag>
         <tag>Code Snippet</tag>
       </tags>
   </entry>
@@ -1070,10 +1079,10 @@
       </categories>
       <tags>
         <tag>code snippet</tag>
+        <tag>EDA</tag>
         <tag>data visualization</tag>
         <tag>matplotlib</tag>
         <tag>seaborn</tag>
-        <tag>EDA</tag>
         <tag>hexo</tag>
       </tags>
   </entry>
