@@ -418,9 +418,13 @@
                 
               
 
-              <time title="创建时间：2020-01-07 21:19:38" itemprop="dateCreated datePublished" datetime="2020-01-07T21:19:38+08:00">2020-01-07</time>
+              <time title="创建时间：2020-01-07 21:19:38 / 修改时间：21:44:14" itemprop="dateCreated datePublished" datetime="2020-01-07T21:19:38+08:00">2020-01-07</time>
             
 
+            
+              
+
+              
             
           </span>
 
@@ -455,7 +459,25 @@
       
         
           
-            
+            <h2 id="题目"><a href="https://leetcode-cn.com/problems/online-stock-span/" target="_blank" rel="noopener">题目</a></h2>
+<h4 id="单调递增最大栈">单调递增最大栈</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StockSpanner</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; prices, cache;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">next</span><span class="params">(<span class="keyword">int</span> price)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> w = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (!prices.empty() &amp;&amp; prices.top() &lt;= price)</span><br><span class="line">        &#123;</span><br><span class="line">            w += cache.top();</span><br><span class="line">            prices.pop();</span><br><span class="line">            cache.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        prices.push(price);</span><br><span class="line">        cache.push(w);</span><br><span class="line">        <span class="keyword">return</span> w;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your StockSpanner object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * StockSpanner* obj = new StockSpanner();</span></span><br><span class="line"><span class="comment"> * int param_1 = obj-&gt;next(price);</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<p>单调栈模板的伪代码:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Stack stack = <span class="keyword">new</span> Stack();</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (遍历这个数组)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">while</span> (栈不为空 &amp;&amp; 栈顶元素小于当前元素)</span><br><span class="line">	&#123;</span><br><span class="line">		栈顶元素出栈;</span><br><span class="line">		对这个出栈值做a操作;</span><br><span class="line">	&#125;</span><br><span class="line">	入栈当前数据;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (栈不为空)</span><br><span class="line">&#123;</span><br><span class="line">	栈顶元素出栈;</span><br><span class="line">	对这个出栈值做b操作;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>问题在于，因为单调栈是要把元素都丢弃的，状态都被“折叠”了，我们会丢失长度，所以容易想到，我们需要cache一下之前栈内元素被折叠的长度 cache有很多种方式，可以用hash表等数据结构，也可以用动态规划 但这题的更优解是，使用另一个同步栈来缓存，读者可以根据下面第一版的代码，动笔推导一下折叠过程，就能体会同步栈工作的原理了。</p>
+<p>都说编程旷世难题是取名字，名字取好了，问题也就解决了一半（才怪 我们可以将两个栈分别命名为 prices 和 cache</p>
+<p>然后就有了下面初版的代码</p>
+<p>我们如果发现插入元素满足本身栈的递减需求，则直接返回1，因为该值前一个值是比它大的 如果不满足，则开始折叠，并将栈中，值比它小的所有段落都累计起来，再将自己插入栈中即可</p>
+<h2 id="总结">总结</h2>
+<ul>
+<li>单调栈的题目复杂化方法
+<ul>
+<li>总会在 <strong>对出栈值做a操作</strong> 和 <strong>对出栈值做b操作</strong> 这2个地方进行一些复杂化</li>
+<li>会在 <strong>出栈值出栈的存储方式/处理方式</strong> 进行一些复杂化的操作</li>
+</ul></li>
+</ul>
+<h2 id="reference">Reference</h2>
+<p>https://leetcode-cn.com/problems/online-stock-span/solution/gu-piao-jie-ge-kua-du-by-leetcode/</p>
 
           
         
