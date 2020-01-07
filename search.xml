@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[leetcode题解-901-股票价格跨度]]></title>
+    <url>%2F2020%2F01%2F07%2Fleetcode%E9%A2%98%E8%A7%A3-901-%E8%82%A1%E7%A5%A8%E4%BB%B7%E6%A0%BC%E8%B7%A8%E5%BA%A6%2F</url>
+    <content type="text"><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[单调栈.md]]></title>
+    <url>%2F2020%2F01%2F07%2F%E5%8D%95%E8%B0%83%E6%A0%88-md%2F</url>
+    <content type="text"><![CDATA[单调栈 单调栈模板的伪代码: 1234567891011121314151617Stack stack = new Stack();for (遍历这个数组)&#123; while (栈不为空 &amp;&amp; 栈顶元素小于当前元素) &#123; 栈顶元素出栈; 对这个出栈值做a操作; &#125; 入栈当前数据;&#125;while (栈不为空)&#123; 栈顶元素出栈; 对这个出栈值做b操作;&#125; Reference https://leetcode-cn.com/problems/online-stock-span/solution/dan-diao-zhan-tao-lu-xie-fa-you-hua-wei-guan-fang-/]]></content>
+      <categories>
+        <category>总结</category>
+      </categories>
+      <tags>
+        <tag>总结</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[leetcode题解-739-每日温度]]></title>
     <url>%2F2020%2F01%2F07%2Fleetcode%E9%A2%98%E8%A7%A3-739-%E6%AF%8F%E6%97%A5%E6%B8%A9%E5%BA%A6%2F</url>
-    <content type="text"><![CDATA[123456789101112131415161718192021222324252627282930313233class Solution &#123;public: vector&lt;int&gt; dailyTemperatures(vector&lt;int&gt;&amp; T) &#123; stack&lt;int&gt; s; vector&lt;int&gt; res(T.size()); unordered_map&lt;int, int&gt; map; for (size_t i = 0; i &lt; T.size(); ++i) &#123; while(!s.empty() &amp;&amp; T[s.top()] &lt; T[i]) &#123; map[s.top()] = i - s.top(); s.pop(); &#125; s.push(i); &#125; while (!s.empty()) &#123; map[s.top()] = 0; s.pop(); &#125; for (size_t i = 0; i &lt; res.size(); ++i) &#123; res[i] = map[i]; &#125; return res; &#125;&#125;; 但是发现时间/空间复杂度都很低， 不应该是所有的元素和右边最大(小)元素都用tuple存放在一个容器内。 而应该遍历的时候就直接将结果存放起来 优化代码结构后： 12345678910111213141516171819202122class Solution &#123;public: vector&lt;int&gt; dailyTemperatures(vector&lt;int&gt;&amp; T) &#123; stack&lt;int&gt; s; vector&lt;int&gt; res(T.size()); for (size_t i = 0; i &lt; T.size(); ++i) &#123; while(!s.empty() &amp;&amp; T[s.top()] &lt; T[i]) &#123; res[s.top()] = i - s.top(); s.pop(); &#125; s.push(i); &#125; return res; &#125;&#125;; Reference https://leetcode-cn.com/problems/daily-temperatures/solution/mei-ri-wen-du-by-leetcode/]]></content>
+    <content type="text"><![CDATA[题目 My way 最大单调递增栈 123456789101112131415161718192021222324252627282930313233class Solution &#123;public: vector&lt;int&gt; dailyTemperatures(vector&lt;int&gt;&amp; T) &#123; stack&lt;int&gt; s; vector&lt;int&gt; res(T.size()); unordered_map&lt;int, int&gt; map; for (size_t i = 0; i &lt; T.size(); ++i) &#123; while(!s.empty() &amp;&amp; T[s.top()] &lt; T[i]) &#123; map[s.top()] = i - s.top(); s.pop(); &#125; s.push(i); &#125; while (!s.empty()) &#123; map[s.top()] = 0; s.pop(); &#125; for (size_t i = 0; i &lt; res.size(); ++i) &#123; res[i] = map[i]; &#125; return res; &#125;&#125;; 但是发现时间/空间复杂度都很低， 不应该是所有的元素和右边最大(小)元素都用tuple存放在一个容器内。 而应该遍历的时候就直接将结果存放起来 优化代码结构后： 12345678910111213141516171819202122class Solution &#123;public: vector&lt;int&gt; dailyTemperatures(vector&lt;int&gt;&amp; T) &#123; stack&lt;int&gt; s; vector&lt;int&gt; res(T.size()); for (size_t i = 0; i &lt; T.size(); ++i) &#123; while(!s.empty() &amp;&amp; T[s.top()] &lt; T[i]) &#123; res[s.top()] = i - s.top(); s.pop(); &#125; s.push(i); &#125; return res; &#125;&#125;; Reference https://leetcode-cn.com/problems/daily-temperatures/solution/mei-ri-wen-du-by-leetcode/]]></content>
       <tags>
         <tag>单调栈</tag>
       </tags>
@@ -367,9 +383,9 @@
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
-        <tag>stringstream</tag>
         <tag>字符串</tag>
         <tag>序列化</tag>
+        <tag>stringstream</tag>
       </tags>
   </entry>
   <entry>
@@ -758,8 +774,8 @@
       <tags>
         <tag>×</tag>
         <tag>leetcode</tag>
-        <tag>递归</tag>
         <tag>DP</tag>
+        <tag>递归</tag>
         <tag>数组</tag>
       </tags>
   </entry>
@@ -774,8 +790,8 @@
         <tag>×</tag>
         <tag>leetcode</tag>
         <tag>DP</tag>
-        <tag>2维dp</tag>
         <tag>插入1个虚拟0</tag>
+        <tag>2维dp</tag>
         <tag>数组</tag>
         <tag>hash</tag>
         <tag>缓存</tag>
@@ -792,9 +808,9 @@
         <tag>×</tag>
         <tag>leetcode</tag>
         <tag>DP</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>2维dp</tag>
         <tag>最大公共子序列</tag>
-        <tag>插入1个虚拟0</tag>
       </tags>
   </entry>
   <entry>
@@ -808,8 +824,8 @@
         <tag>leetcode</tag>
         <tag>DP</tag>
         <tag>√</tag>
-        <tag>2维dp</tag>
         <tag>2维DP-to-1维DP</tag>
+        <tag>2维dp</tag>
       </tags>
   </entry>
   <entry>
@@ -838,8 +854,8 @@
         <tag>×</tag>
         <tag>leetcode</tag>
         <tag>动态规划</tag>
-        <tag>字符串</tag>
         <tag>数组对角遍历</tag>
+        <tag>字符串</tag>
         <tag>中心扩散法</tag>
       </tags>
   </entry>
@@ -853,8 +869,8 @@
       <tags>
         <tag>×</tag>
         <tag>leetcode</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>字符串</tag>
       </tags>
   </entry>
@@ -885,8 +901,8 @@
         <tag>×</tag>
         <tag>leetcode</tag>
         <tag>数学题</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>组合数学</tag>
       </tags>
   </entry>
@@ -901,12 +917,12 @@
         <tag>×</tag>
         <tag>leetcode</tag>
         <tag>树</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>2维DP</tag>
         <tag>2维DP-to-1维DP</tag>
         <tag>自顶向下DP</tag>
         <tag>自底向上DP</tag>
+        <tag>插入1个虚拟0</tag>
       </tags>
   </entry>
   <entry>
@@ -936,8 +952,8 @@
         <tag>×</tag>
         <tag>leetcode</tag>
         <tag>树</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>Catalan数</tag>
       </tags>
   </entry>
