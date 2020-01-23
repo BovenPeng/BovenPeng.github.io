@@ -96,18 +96,18 @@
 
 
 
-  <meta name="description" content="题目 c++实现 12345678910111213141516171819202122232425class Solution &amp;#123;public:    bool isAnagram(string s, string t) &amp;#123;        unordered_map&amp;lt;char, int&amp;gt; m;        if (s.size() &amp;lt; t.size()">
+  <meta name="description" content="题目 My way c++实现 12345678910111213141516171819202122232425class Solution &amp;#123;public:    bool isAnagram(string s, string t) &amp;#123;        unordered_map&amp;lt;char, int&amp;gt; m;        if (s.size() &amp;lt;">
 <meta name="keywords" content="哈希">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode题解-242-有效的字母异位词">
 <meta property="og:url" content="http://yoursite.com/2020/01/23/leetcode题解-242-有效的字母异位词/index.html">
 <meta property="og:site_name" content="Boven&#39;s Blog">
-<meta property="og:description" content="题目 c++实现 12345678910111213141516171819202122232425class Solution &amp;#123;public:    bool isAnagram(string s, string t) &amp;#123;        unordered_map&amp;lt;char, int&amp;gt; m;        if (s.size() &amp;lt; t.size()">
+<meta property="og:description" content="题目 My way c++实现 12345678910111213141516171819202122232425class Solution &amp;#123;public:    bool isAnagram(string s, string t) &amp;#123;        unordered_map&amp;lt;char, int&amp;gt; m;        if (s.size() &amp;lt;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-23T14:41:42.351Z">
+<meta property="og:updated_time" content="2020-01-23T15:11:41.903Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode题解-242-有效的字母异位词">
-<meta name="twitter:description" content="题目 c++实现 12345678910111213141516171819202122232425class Solution &amp;#123;public:    bool isAnagram(string s, string t) &amp;#123;        unordered_map&amp;lt;char, int&amp;gt; m;        if (s.size() &amp;lt; t.size()">
+<meta name="twitter:description" content="题目 My way c++实现 12345678910111213141516171819202122232425class Solution &amp;#123;public:    bool isAnagram(string s, string t) &amp;#123;        unordered_map&amp;lt;char, int&amp;gt; m;        if (s.size() &amp;lt;">
 
 
 
@@ -417,7 +417,7 @@
                 
               
 
-              <time title="创建时间：2020-01-23 22:35:25 / 修改时间：22:41:42" itemprop="dateCreated datePublished" datetime="2020-01-23T22:35:25+08:00">2020-01-23</time>
+              <time title="创建时间：2020-01-23 22:35:25 / 修改时间：23:11:41" itemprop="dateCreated datePublished" datetime="2020-01-23T22:35:25+08:00">2020-01-23</time>
             
 
             
@@ -457,17 +457,25 @@
 
       
         <h2 id="题目"><a href="https://leetcode-cn.com/problems/valid-anagram/" target="_blank" rel="noopener">题目</a></h2>
+<h3 id="my-way">My way</h3>
 <h4 id="c实现">c++实现</h4>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isAnagram</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> t)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt; m;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (s.size() &lt; t.size())    swap(s, t);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; it : s)</span><br><span class="line">        &#123;</span><br><span class="line">            --m[it];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; it: t)</span><br><span class="line">        &#123;</span><br><span class="line">            ++m[it];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; it: m)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (it.second != <span class="number">0</span>)  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>利用哈希表构成一个<strong>计数器</strong>的效果。</li>
-<li>利用<code>int</code>默认值是0，
+<li>利用<code>ctor</code>初始化<code>int</code>变量默认值是0，
 <ul>
 <li>在<code>s</code>里出现过，则自减1；</li>
 <li>在<code>t</code>里出现过，则自增1；</li>
 </ul></li>
 <li>要注意，<code>s</code>, <code>t</code>字符串的大小可能不一样。所以需要在计数前，交换一次。</li>
 </ul>
+<h3 id="官方-way"><a href="https://leetcode-cn.com/problems/valid-anagram/solution/you-xiao-de-zi-mu-yi-wei-ci-by-leetcode/" target="_blank" rel="noopener">官方 way</a></h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isAnagram</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (s.size() != t.size())   <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> counter[<span class="number">26</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; s.size(); ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            ++counter[s[i] - <span class="string">'a'</span>];</span><br><span class="line">            --counter[t[i] - <span class="string">'a'</span>];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; it: counter)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (it != <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>利用一个<code>int</code>数组构造出一个计数器</li>
+</ul>
+<h2 id="references">References</h2>
+<p>https://leetcode-cn.com/problems/valid-anagram/solution/you-xiao-de-zi-mu-yi-wei-ci-by-leetcode/</p>
 
       
     </div>
@@ -803,7 +811,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#c实现"><span class="nav-number">1.0.1.</span> <span class="nav-text">c++实现</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#my-way"><span class="nav-number">1.1.</span> <span class="nav-text">My way</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#c实现"><span class="nav-number">1.1.1.</span> <span class="nav-text">c++实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#官方-way"><span class="nav-number">1.2.</span> <span class="nav-text">官方 way</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#references"><span class="nav-number">2.</span> <span class="nav-text">References</span></a></li></ol></div>
             
 
           </div>
