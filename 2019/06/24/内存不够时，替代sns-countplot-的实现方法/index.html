@@ -15,7 +15,7 @@
 
 
 <html class="theme-next muse use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -104,14 +104,14 @@
 <meta property="og:site_name" content="Boven&#39;s Blog">
 <meta property="og:description" content="内存不够时，替代sns.countplot()的实现方法 最近做EDA的的时候会存在这样一种情况，数据量过大时，直接使用sns.countplot()内存很容易直接被榨干掉。 暂时没想清为什么会直接占用那么多内存，应该去StackOverflow提个Q的。 不过想了下又查了下StackOverflow，应该有用df.value_counts() 和 matplotlib来实现sns.coun">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2019/06/24/内存不够时，替代sns-countplot-的实现方法/countplot.jpg">
-<meta property="og:image" content="http://yoursite.com/2019/06/24/内存不够时，替代sns-countplot-的实现方法/plt_bar.jpg">
-<meta property="og:image" content="http://yoursite.com/2019/06/24/内存不够时，替代sns-countplot-的实现方法/value_counts_plot_bar.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/06/24/内存不够时，替代sns-countplot-的实现方法/06/24/内存不够时，替代sns-countplot-的实现方法/countplot.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/06/24/内存不够时，替代sns-countplot-的实现方法/06/24/内存不够时，替代sns-countplot-的实现方法/plt_bar.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/06/24/内存不够时，替代sns-countplot-的实现方法/06/24/内存不够时，替代sns-countplot-的实现方法/value_counts_plot_bar.jpg">
 <meta property="og:updated_time" content="2019-06-29T11:52:10.649Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="内存不够时，替代sns.countplot()的实现方法">
 <meta name="twitter:description" content="内存不够时，替代sns.countplot()的实现方法 最近做EDA的的时候会存在这样一种情况，数据量过大时，直接使用sns.countplot()内存很容易直接被榨干掉。 暂时没想清为什么会直接占用那么多内存，应该去StackOverflow提个Q的。 不过想了下又查了下StackOverflow，应该有用df.value_counts() 和 matplotlib来实现sns.coun">
-<meta name="twitter:image" content="http://yoursite.com/2019/06/24/内存不够时，替代sns-countplot-的实现方法/countplot.jpg">
+<meta name="twitter:image" content="http://yoursite.com/2019/06/24/内存不够时，替代sns-countplot-的实现方法/06/24/内存不够时，替代sns-countplot-的实现方法/countplot.jpg">
 
 
 
@@ -499,13 +499,13 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np; np.random.seed(<span class="number">42</span>)</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">df = pd.DataFrame(&#123;<span class="string">"Sex"</span> : np.random.choice([<span class="string">"male"</span>,  <span class="string">"female"</span>], size=<span class="number">1310</span>, p=[<span class="number">.65</span>, <span class="number">.35</span>]),</span><br><span class="line">                   <span class="string">"other"</span> : np.random.randint(<span class="number">0</span>,<span class="number">80</span>, size=<span class="number">1310</span>)&#125;)</span><br></pre></td></tr></table></figure>
 <p>You can plot a countplot in seaborn as</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">sns.countplot(x=<span class="string">"Sex"</span>, data=df)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<img src="/2019/06/24/内存不够时，替代sns-countplot-的实现方法/countplot.jpg" title="sns.countplot">
+<img src="/2019/06/24/内存不够时，替代sns-countplot-的实现方法/06/24/内存不够时，替代sns-countplot-的实现方法/countplot.jpg" title="sns.countplot">
 <p>Or you can create a bar plot in pandas</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">"Sex"</span>].value_counts().plot.bar()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<img src="/2019/06/24/内存不够时，替代sns-countplot-的实现方法/plt_bar.jpg" title="df[Sex].value_counts().plot.bar()">
+<img src="/2019/06/24/内存不够时，替代sns-countplot-的实现方法/06/24/内存不够时，替代sns-countplot-的实现方法/plt_bar.jpg" title="df[Sex].value_counts().plot.bar()">
 <p>Or you can create a bar plot in matplotlib</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">counts = df[<span class="string">"Sex"</span>].value_counts()</span><br><span class="line">plt.bar(counts.index, counts.values)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<img src="/2019/06/24/内存不够时，替代sns-countplot-的实现方法/value_counts_plot_bar.jpg" title="plt.bar(df[Sex].value_counts().index, df[Sex].value_counts().values)">
+<img src="/2019/06/24/内存不够时，替代sns-countplot-的实现方法/06/24/内存不够时，替代sns-countplot-的实现方法/value_counts_plot_bar.jpg" title="plt.bar(df[Sex].value_counts().index, df[Sex].value_counts().values)">
 <h1 id="reference">Reference</h1>
 <ul>
 <li><a href="https://stackoverflow.com/questions/55667185/what-is-matplotlibs-alternative-for-countplot-from-seaborn" target="_blank" rel="noopener">What is Matplotlib's alternative for countplot from seaborn?</a></li>
@@ -634,7 +634,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">100</span>
+                    <span class="site-state-item-count">102</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -816,7 +816,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">62</span>
+                      
+                    
+                    <span class="site-state-item-count">63</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -887,7 +889,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 

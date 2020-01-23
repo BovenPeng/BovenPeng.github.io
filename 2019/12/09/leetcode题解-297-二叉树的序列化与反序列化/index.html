@@ -15,7 +15,7 @@
 
 
 <html class="theme-next muse use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -97,19 +97,19 @@
 
 
   <meta name="description" content="题目 My way 手动队列序列化 + 手动出队反序列化 因为C++ STL没有split, boost里面有。 所以考虑自己实现一个split函数。 1234567891011121314vector&amp;lt;string&amp;gt; splitStrToStrArray(string s, string delimiter)&amp;#123;	string token;	vector&amp;lt;st">
-<meta name="keywords" content="×,leetcode,递归,树,树的遍历,stringstream,字符串,序列化">
+<meta name="keywords" content="leetcode,×,递归,树,树的遍历,stringstream,字符串,序列化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode题解-297-二叉树的序列化与反序列化">
 <meta property="og:url" content="http://yoursite.com/2019/12/09/leetcode题解-297-二叉树的序列化与反序列化/index.html">
 <meta property="og:site_name" content="Boven&#39;s Blog">
 <meta property="og:description" content="题目 My way 手动队列序列化 + 手动出队反序列化 因为C++ STL没有split, boost里面有。 所以考虑自己实现一个split函数。 1234567891011121314vector&amp;lt;string&amp;gt; splitStrToStrArray(string s, string delimiter)&amp;#123;	string token;	vector&amp;lt;st">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2019/12/09/leetcode题解-297-二叉树的序列化与反序列化/serial_deserial.png">
+<meta property="og:image" content="http://yoursite.com/2019/12/09/leetcode题解-297-二叉树的序列化与反序列化/12/09/leetcode题解-297-二叉树的序列化与反序列化/serial_deserial.png">
 <meta property="og:updated_time" content="2019-12-10T08:29:56.721Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode题解-297-二叉树的序列化与反序列化">
 <meta name="twitter:description" content="题目 My way 手动队列序列化 + 手动出队反序列化 因为C++ STL没有split, boost里面有。 所以考虑自己实现一个split函数。 1234567891011121314vector&amp;lt;string&amp;gt; splitStrToStrArray(string s, string delimiter)&amp;#123;	string token;	vector&amp;lt;st">
-<meta name="twitter:image" content="http://yoursite.com/2019/12/09/leetcode题解-297-二叉树的序列化与反序列化/serial_deserial.png">
+<meta name="twitter:image" content="http://yoursite.com/2019/12/09/leetcode题解-297-二叉树的序列化与反序列化/12/09/leetcode题解-297-二叉树的序列化与反序列化/serial_deserial.png">
 
 
 
@@ -504,7 +504,7 @@
 <h3 id="ting-yu-way"><a href="https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree/solution/c-version-by-zzyuting/" target="_blank" rel="noopener">Ting Yu way</a></h3>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Codec</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">// Encodes a tree to a single string.</span></span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">serialize</span><span class="params">(TreeNode* root)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">ostringstream</span> out;</span><br><span class="line">        serialize(root,out);</span><br><span class="line">        <span class="keyword">return</span> out.str();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Decodes your encoded data to tree.</span></span><br><span class="line">    <span class="function">TreeNode* <span class="title">deserialize</span><span class="params">(<span class="built_in">string</span> data)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="function"><span class="built_in">istringstream</span> <span class="title">in</span><span class="params">(data)</span></span>;</span><br><span class="line">        <span class="keyword">return</span> deserialize(in);</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">serialize</span><span class="params">(TreeNode* root,<span class="built_in">ostringstream</span>&amp; out)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root)</span><br><span class="line">        &#123;</span><br><span class="line">            out&lt;&lt;root-&gt;val&lt;&lt;<span class="string">' '</span>;</span><br><span class="line">            serialize(root-&gt;left,out);</span><br><span class="line">            serialize(root-&gt;right,out);</span><br><span class="line">        &#125;<span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 这里一定要带着空格，因为在输入的时候用来表示当前输入结束</span></span><br><span class="line">            out&lt;&lt;<span class="string">"# "</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function">TreeNode* <span class="title">deserialize</span><span class="params">(<span class="built_in">istringstream</span>&amp; in)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">string</span> val;</span><br><span class="line">        in&gt;&gt;val;</span><br><span class="line">        <span class="keyword">if</span>(val==<span class="string">"#"</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        TreeNode* root=<span class="keyword">new</span> TreeNode(stoi(val));</span><br><span class="line">        root-&gt;left=deserialize(in);</span><br><span class="line">        root-&gt;right=deserialize(in);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h2 id="官方"><a href="https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree/solution/er-cha-shu-de-xu-lie-hua-yu-fan-xu-lie-hua-by-leet/" target="_blank" rel="noopener">官方</a></h2>
-<img src="/2019/12/09/leetcode题解-297-二叉树的序列化与反序列化/serial_deserial.png" title="serial_to_deserial">
+<img src="/2019/12/09/leetcode题解-297-二叉树的序列化与反序列化/12/09/leetcode题解-297-二叉树的序列化与反序列化/serial_deserial.png" title="serial_to_deserial">
 <p><code>Binary Search Tree</code> 的序列化本质上是对其值进行编码，更重要的是对其结构进行编码。</p>
 <p>可以遍历树来完成上述任务。众所周知，我们有两个一般策略：</p>
 <ul>
@@ -549,9 +549,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/×/" rel="tag"># ×</a>
-          
             <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          
+            <a href="/tags/×/" rel="tag"># ×</a>
           
             <a href="/tags/递归/" rel="tag"># 递归</a>
           
@@ -657,7 +657,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">100</span>
+                    <span class="site-state-item-count">102</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -839,7 +839,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">62</span>
+                      
+                    
+                    <span class="site-state-item-count">63</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -910,7 +912,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 

@@ -15,7 +15,7 @@
 
 
 <html class="theme-next muse use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -97,20 +97,20 @@
 
 
   <meta name="description" content="题目 My way 状态定义： \[ \begin{align*} &amp;amp; s:\ 字符串s\\ &amp;amp; i:\ 字符串s第i位\\ &amp;amp; j:\ 字符串s第j位\\ &amp;amp; s[i:j]:\ 字符串s第i位到第j位的子串, s[i,j]\\ &amp;amp; dp[i][j]:\ dp数组在s[i,j]上是否为回文串的记录。 \end{align*} \] B">
-<meta name="keywords" content="×,leetcode,动态规划,数组对角遍历,字符串,中心扩散法">
+<meta name="keywords" content="leetcode,×,动态规划,字符串,数组对角遍历,中心扩散法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode题解-647-回文子串">
 <meta property="og:url" content="http://yoursite.com/2019/11/01/leetcode题解-647-回文子串/index.html">
 <meta property="og:site_name" content="Boven&#39;s Blog">
 <meta property="og:description" content="题目 My way 状态定义： \[ \begin{align*} &amp;amp; s:\ 字符串s\\ &amp;amp; i:\ 字符串s第i位\\ &amp;amp; j:\ 字符串s第j位\\ &amp;amp; s[i:j]:\ 字符串s第i位到第j位的子串, s[i,j]\\ &amp;amp; dp[i][j]:\ dp数组在s[i,j]上是否为回文串的记录。 \end{align*} \] B">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2019/11/01/leetcode题解-647-回文子串/dp1.png">
-<meta property="og:image" content="http://yoursite.com/2019/11/01/leetcode题解-647-回文子串/dp2.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/01/leetcode题解-647-回文子串/11/01/leetcode题解-647-回文子串/dp1.png">
+<meta property="og:image" content="http://yoursite.com/2019/11/01/leetcode题解-647-回文子串/11/01/leetcode题解-647-回文子串/dp2.png">
 <meta property="og:updated_time" content="2019-11-03T12:13:52.257Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode题解-647-回文子串">
 <meta name="twitter:description" content="题目 My way 状态定义： \[ \begin{align*} &amp;amp; s:\ 字符串s\\ &amp;amp; i:\ 字符串s第i位\\ &amp;amp; j:\ 字符串s第j位\\ &amp;amp; s[i:j]:\ 字符串s第i位到第j位的子串, s[i,j]\\ &amp;amp; dp[i][j]:\ dp数组在s[i,j]上是否为回文串的记录。 \end{align*} \] B">
-<meta name="twitter:image" content="http://yoursite.com/2019/11/01/leetcode题解-647-回文子串/dp1.png">
+<meta name="twitter:image" content="http://yoursite.com/2019/11/01/leetcode题解-647-回文子串/11/01/leetcode题解-647-回文子串/dp1.png">
 
 
 
@@ -522,9 +522,9 @@ s[i-1][j+1] =
 <h2 id="glamour-way">Glamour way</h2>
 <h3 id="dp-逆向对角遍历">1.DP + 逆向对角遍历</h3>
 <h4 id="逆向对角遍历思路">逆向对角遍历思路：</h4>
-<img src="/2019/11/01/leetcode题解-647-回文子串/dp1.png" title="pic1">
+<img src="/2019/11/01/leetcode题解-647-回文子串/11/01/leetcode题解-647-回文子串/dp1.png" title="pic1">
 <p>上图中同一条直线上的值有前者依赖于后者的关系，因此我们应该以对角线方向遍历</p>
-<img src="/2019/11/01/leetcode题解-647-回文子串/dp2.png" title="pic2">
+<img src="/2019/11/01/leetcode题解-647-回文子串/11/01/leetcode题解-647-回文子串/dp2.png" title="pic2">
 <blockquote>
 <p>但是本方法在發現一字符串不是回文串后，仍然對包含其的字符串進行回文判斷。</p>
 <p>此方法包含了<strong>冗餘的判斷，因此還有優化的地方。</strong></p>
@@ -567,15 +567,15 @@ s[i-1][j+1] =
       
         <div class="post-tags">
           
-            <a href="/tags/×/" rel="tag"># ×</a>
-          
             <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+          
+            <a href="/tags/×/" rel="tag"># ×</a>
           
             <a href="/tags/动态规划/" rel="tag"># 动态规划</a>
           
-            <a href="/tags/数组对角遍历/" rel="tag"># 数组对角遍历</a>
-          
             <a href="/tags/字符串/" rel="tag"># 字符串</a>
+          
+            <a href="/tags/数组对角遍历/" rel="tag"># 数组对角遍历</a>
           
             <a href="/tags/中心扩散法/" rel="tag"># 中心扩散法</a>
           
@@ -671,7 +671,7 @@ s[i-1][j+1] =
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">100</span>
+                    <span class="site-state-item-count">102</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -853,7 +853,9 @@ s[i-1][j+1] =
                     
                       
                     
-                    <span class="site-state-item-count">62</span>
+                      
+                    
+                    <span class="site-state-item-count">63</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -924,7 +926,7 @@ s[i-1][j+1] =
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 

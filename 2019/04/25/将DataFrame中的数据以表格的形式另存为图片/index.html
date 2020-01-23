@@ -15,7 +15,7 @@
 
 
 <html class="theme-next muse use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -97,7 +97,7 @@
 
 
   <meta name="description" content="将DataFrame中的数据以表格的形式另存为图片 在上次按序输出关联矩阵的blog中有了将DataFrame中的数据以表格形式另存储为图片的想法。 起初，Google了在StackOverflow上找到了相关问题，并将代码修改应用于Titanic的数据上，具体如下： 12345678910from pandas.plotting import  tablefig = plt.figure(">
-<meta name="keywords" content="matplotlib,seaborn,pandas,Code Snippet">
+<meta name="keywords" content="pandas,matplotlib,seaborn,Code Snippet">
 <meta property="og:type" content="article">
 <meta property="og:title" content="将DataFrame中的数据以表格的形式另存为图片">
 <meta property="og:url" content="http://yoursite.com/2019/04/25/将DataFrame中的数据以表格的形式另存为图片/index.html">
@@ -105,7 +105,7 @@
 <meta property="og:description" content="将DataFrame中的数据以表格的形式另存为图片 在上次按序输出关联矩阵的blog中有了将DataFrame中的数据以表格形式另存储为图片的想法。 起初，Google了在StackOverflow上找到了相关问题，并将代码修改应用于Titanic的数据上，具体如下： 12345678910from pandas.plotting import  tablefig = plt.figure(">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2019/04/25/将DataFrame中的数据以表格的形式另存为图片/correlation_matrix_vague.jpg">
-<meta property="og:image" content="http://yoursite.com/2019/04/25/将DataFrame中的数据以表格的形式另存为图片/correlation_matrix_HD.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/04/25/将DataFrame中的数据以表格的形式另存为图片/04/25/将DataFrame中的数据以表格的形式另存为图片/correlation_matrix_HD.jpg">
 <meta property="og:updated_time" content="2019-04-25T14:13:15.702Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="将DataFrame中的数据以表格的形式另存为图片">
@@ -486,7 +486,7 @@
 </figure>
 <p>但是，发现另存为的图片极为模糊，再思考并查询相关文档未果后，并在StackOverflow上提出了<a href="https://stackoverflow.com/questions/55813270/how-to-make-picture-clear-when-saving-the-table-of-dataframe-as-a-picture" target="_blank" rel="noopener">相关问题</a>，发现是因为没有设置合适的<code>dpi</code>参数，故设置合适的<code>dpi</code>参数并修改代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pandas.plotting <span class="keyword">import</span>  table</span><br><span class="line"></span><br><span class="line">fig = plt.figure(figsize=(<span class="number">5</span>, <span class="number">6</span>), dpi=<span class="number">1400</span>)</span><br><span class="line">ax = fig.add_subplot(<span class="number">111</span>, frame_on=<span class="literal">False</span>) <span class="comment"># no visible frame</span></span><br><span class="line">ax.xaxis.set_visible(<span class="literal">False</span>)  <span class="comment"># hide the x axis</span></span><br><span class="line">ax.yaxis.set_visible(<span class="literal">False</span>)  <span class="comment"># hide the y axis</span></span><br><span class="line"></span><br><span class="line">table(ax, train_corr, loc=<span class="string">'center'</span>)  <span class="comment"># where df is your data frame</span></span><br><span class="line"></span><br><span class="line">plt.savefig(<span class="string">'correlation_matrix_HD.jpg'</span>)</span><br></pre></td></tr></table></figure>
-<img src="/2019/04/25/将DataFrame中的数据以表格的形式另存为图片/correlation_matrix_HD.jpg" title="This is a HD image of correlation matrix">
+<img src="/2019/04/25/将DataFrame中的数据以表格的形式另存为图片/04/25/将DataFrame中的数据以表格的形式另存为图片/correlation_matrix_HD.jpg" title="This is a HD image of correlation matrix">
 <h1 id="reference">Reference</h1>
 <p><a href="%5Bhttps://bovenpeng.github.io/2019/04/22/%E5%9C%A8matplotlib%E7%9A%84%E4%B8%80%E4%B8%AAfigure%E4%B8%AD%E7%94%BB%E5%A4%9A%E4%B8%AAsubplots/%5D(https://bovenpeng.github.io/2019/04/22/在matplotlib的一个figure中画多个subplots/)">在matplotlib的一个figure中画多个subplots</a></p>
 <p><a href="https://stackoverflow.com/questions/35634238/how-to-save-a-pandas-dataframe-table-as-a-png" target="_blank" rel="noopener">How to save a pandas DataFrame table as a png</a></p>
@@ -518,11 +518,11 @@
       
         <div class="post-tags">
           
+            <a href="/tags/pandas/" rel="tag"># pandas</a>
+          
             <a href="/tags/matplotlib/" rel="tag"># matplotlib</a>
           
             <a href="/tags/seaborn/" rel="tag"># seaborn</a>
-          
-            <a href="/tags/pandas/" rel="tag"># pandas</a>
           
             <a href="/tags/Code-Snippet/" rel="tag"># Code Snippet</a>
           
@@ -618,7 +618,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">100</span>
+                    <span class="site-state-item-count">102</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -800,7 +800,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">62</span>
+                      
+                    
+                    <span class="site-state-item-count">63</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -871,7 +873,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 

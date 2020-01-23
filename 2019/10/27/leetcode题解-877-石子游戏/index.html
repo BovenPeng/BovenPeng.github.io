@@ -15,7 +15,7 @@
 
 
 <html class="theme-next muse use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -97,22 +97,22 @@
 
 
   <meta name="description" content="题目 官方解 数学way 直接从官方解处摘抄过来，很有意思的数学归纳证明思想。如下： 显然，亚历克斯总是赢得 2 堆时的游戏。 通过一些努力，我们可以获知她总是赢得 4 堆时的游戏。 如果亚历克斯最初获得第一堆，她总是可以拿第三堆。 如果她最初取到第四堆，她总是可以取第二堆。第一 + 第三，第二 + 第四 中的至少一组是更大的，所以她总能获胜。 我们可以将这个想法扩展到 N 堆的情况下">
-<meta name="keywords" content="×,leetcode,DP,二维dp,博弈问题">
+<meta name="keywords" content="leetcode,DP,×,二维dp,博弈问题">
 <meta property="og:type" content="article">
 <meta property="og:title" content="leetcode题解: 877.石子游戏">
 <meta property="og:url" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/index.html">
 <meta property="og:site_name" content="Boven&#39;s Blog">
 <meta property="og:description" content="题目 官方解 数学way 直接从官方解处摘抄过来，很有意思的数学归纳证明思想。如下： 显然，亚历克斯总是赢得 2 堆时的游戏。 通过一些努力，我们可以获知她总是赢得 4 堆时的游戏。 如果亚历克斯最初获得第一堆，她总是可以拿第三堆。 如果她最初取到第四堆，她总是可以取第二堆。第一 + 第三，第二 + 第四 中的至少一组是更大的，所以她总能获胜。 我们可以将这个想法扩展到 N 堆的情况下">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/dp_table_1.png">
-<meta property="og:image" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/dp_table_2.png">
-<meta property="og:image" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/dp_table_3.png">
-<meta property="og:image" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/dp_table_4.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/10/27/leetcode题解-877-石子游戏/dp_table_1.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/10/27/leetcode题解-877-石子游戏/dp_table_2.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/10/27/leetcode题解-877-石子游戏/dp_table_3.png">
+<meta property="og:image" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/10/27/leetcode题解-877-石子游戏/dp_table_4.png">
 <meta property="og:updated_time" content="2019-11-03T12:13:31.030Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode题解: 877.石子游戏">
 <meta name="twitter:description" content="题目 官方解 数学way 直接从官方解处摘抄过来，很有意思的数学归纳证明思想。如下： 显然，亚历克斯总是赢得 2 堆时的游戏。 通过一些努力，我们可以获知她总是赢得 4 堆时的游戏。 如果亚历克斯最初获得第一堆，她总是可以拿第三堆。 如果她最初取到第四堆，她总是可以取第二堆。第一 + 第三，第二 + 第四 中的至少一组是更大的，所以她总能获胜。 我们可以将这个想法扩展到 N 堆的情况下">
-<meta name="twitter:image" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/dp_table_1.png">
+<meta name="twitter:image" content="http://yoursite.com/2019/10/27/leetcode题解-877-石子游戏/10/27/leetcode题解-877-石子游戏/dp_table_1.png">
 
 
 
@@ -503,7 +503,7 @@
 <h2 id="综评最高解">综评最高解</h2>
 <p>在dp解释上强于官方解，简要摘取部分过程，详细见reference处。</p>
 <p>对于<span class="math inline">\(piles=[3, 9, 1, 2]\)</span>,</p>
-<img src="/2019/10/27/leetcode题解-877-石子游戏/dp_table_1.png" title="dp_table">
+<img src="/2019/10/27/leetcode题解-877-石子游戏/10/27/leetcode题解-877-石子游戏/dp_table_1.png" title="dp_table">
 <h4 id="定义状态">定义<strong>状态</strong>：</h4>
 <p><span class="math display">\[
 dp[i][j].fir\ or\ dp[i][j].sec\\
@@ -543,11 +543,11 @@ dp[i][j].fir = max(piles[i] + dp[i+1][j].sec, piles[j] + dp[i][j-1].sec) \\
 &amp; 后手没有石头拿了，得分为 0 \\
 \end{align*}
 \]</span></p>
-<img src="/2019/10/27/leetcode题解-877-石子游戏/dp_table_2.png" title="dp_table">
+<img src="/2019/10/27/leetcode题解-877-石子游戏/10/27/leetcode题解-877-石子游戏/dp_table_2.png" title="dp_table">
 <p>这里需要注意一点，我们发现 <span class="math inline">\(base\ case\)</span>是斜着的，而且我们推算 <code>dp[i][j]</code> 时需要用到 <code>dp[i+1][j]</code> 和 <code>dp[i][j-1]</code>：</p>
-<img src="/2019/10/27/leetcode题解-877-石子游戏/dp_table_3.png" title="dp_table">
+<img src="/2019/10/27/leetcode题解-877-石子游戏/10/27/leetcode题解-877-石子游戏/dp_table_3.png" title="dp_table">
 <p>所以说算法不能简单的一行一行遍历 <code>dp</code> 数组，<strong>而要斜着遍历数组</strong>：</p>
-<img src="/2019/10/27/leetcode题解-877-石子游戏/dp_table_4.png" title="dp_table">
+<img src="/2019/10/27/leetcode题解-877-石子游戏/10/27/leetcode题解-877-石子游戏/dp_table_4.png" title="dp_table">
 <h4 id="实现">实现</h4>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">stoneGame</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; piles)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = piles.size();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// initialize dp array</span></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt;&gt; dp(n, <span class="built_in">vector</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt;(n, make_pair(<span class="number">0</span>, <span class="number">0</span>)));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// fill with base case</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            dp[i][i].first = piles[i];</span><br><span class="line">            dp[i][i].second = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// traverse array in a diagonal way</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> l = <span class="number">2</span>; l &lt;= n; ++l)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= n - l; ++i)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">int</span> j = i + l - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 先手选择最左边或者最右边的分数</span></span><br><span class="line">                <span class="keyword">int</span> left = piles[i] + dp[i+<span class="number">1</span>][j].second;</span><br><span class="line">                <span class="keyword">int</span> right = piles[j] + dp[i][j<span class="number">-1</span>].second;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 套用状态转移方程</span></span><br><span class="line">                <span class="keyword">if</span> (left &gt; right)</span><br><span class="line">                &#123;</span><br><span class="line">                    dp[i][j].first = left;</span><br><span class="line">                    dp[i][j].second = dp[i+<span class="number">1</span>][j].first;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    dp[i][j].first = right;</span><br><span class="line">                    dp[i][j].second = dp[i][j<span class="number">-1</span>].first;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; res(dp[<span class="number">0</span>][n<span class="number">-1</span>]);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res.first - res.second;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>综评Java实现</p>
@@ -602,11 +602,11 @@ dp[i][j].fir = max(piles[i] + dp[i+1][j].sec, piles[j] + dp[i][j-1].sec) \\
       
         <div class="post-tags">
           
-            <a href="/tags/×/" rel="tag"># ×</a>
-          
             <a href="/tags/leetcode/" rel="tag"># leetcode</a>
           
             <a href="/tags/DP/" rel="tag"># DP</a>
+          
+            <a href="/tags/×/" rel="tag"># ×</a>
           
             <a href="/tags/二维dp/" rel="tag"># 二维dp</a>
           
@@ -704,7 +704,7 @@ dp[i][j].fir = max(piles[i] + dp[i+1][j].sec, piles[j] + dp[i][j-1].sec) \\
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">100</span>
+                    <span class="site-state-item-count">102</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -886,7 +886,9 @@ dp[i][j].fir = max(piles[i] + dp[i+1][j].sec, piles[j] + dp[i][j-1].sec) \\
                     
                       
                     
-                    <span class="site-state-item-count">62</span>
+                      
+                    
+                    <span class="site-state-item-count">63</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -957,7 +959,7 @@ dp[i][j].fir = max(piles[i] + dp[i+1][j].sec, piles[j] + dp[i][j-1].sec) \\
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 

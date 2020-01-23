@@ -15,7 +15,7 @@
 
 
 <html class="theme-next muse use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<head><meta name="generator" content="Hexo 3.9.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
@@ -104,15 +104,15 @@
 <meta property="og:site_name" content="Boven&#39;s Blog">
 <meta property="og:description" content="在做EDA的时候，会有种情况，时序数据所做的plot的x-axis会存在过于密集的情况，如下  所以我们要做的就是只用将数据所在范围按一定频率切分开就行了，如这个Q，[how to change the xticks to a specific range [duplicate\]](https://stackoverflow.com/questions/56713197/how-to-cha">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2019/06/24/如何指定xtick在一个特定的范围/high_frequency_x_axis_plot.png">
-<meta property="og:image" content="http://yoursite.com/2019/06/24/如何指定xtick在一个特定的范围/set_xticks_plot.png">
-<meta property="og:image" content="http://yoursite.com/2019/06/24/如何指定xtick在一个特定的范围/plot_with_blank.png">
-<meta property="og:image" content="http://yoursite.com/2019/06/24/如何指定xtick在一个特定的范围/define_label_plot.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/24/如何指定xtick在一个特定的范围/06/24/如何指定xtick在一个特定的范围/high_frequency_x_axis_plot.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/24/如何指定xtick在一个特定的范围/06/24/如何指定xtick在一个特定的范围/set_xticks_plot.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/24/如何指定xtick在一个特定的范围/06/24/如何指定xtick在一个特定的范围/plot_with_blank.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/24/如何指定xtick在一个特定的范围/06/24/如何指定xtick在一个特定的范围/define_label_plot.png">
 <meta property="og:updated_time" content="2019-06-30T10:51:53.032Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何指定xtick在一个特定的范围">
 <meta name="twitter:description" content="在做EDA的时候，会有种情况，时序数据所做的plot的x-axis会存在过于密集的情况，如下  所以我们要做的就是只用将数据所在范围按一定频率切分开就行了，如这个Q，[how to change the xticks to a specific range [duplicate\]](https://stackoverflow.com/questions/56713197/how-to-cha">
-<meta name="twitter:image" content="http://yoursite.com/2019/06/24/如何指定xtick在一个特定的范围/high_frequency_x_axis_plot.png">
+<meta name="twitter:image" content="http://yoursite.com/2019/06/24/如何指定xtick在一个特定的范围/06/24/如何指定xtick在一个特定的范围/high_frequency_x_axis_plot.png">
 
 
 
@@ -492,7 +492,7 @@
 
       
         <p>在做EDA的时候，会有种情况，时序数据所做的<code>plot</code>的x-axis会存在过于密集的情况，如下</p>
-<img src="/2019/06/24/如何指定xtick在一个特定的范围/high_frequency_x_axis_plot.png" title="high_frequency_x_axis_plot">
+<img src="/2019/06/24/如何指定xtick在一个特定的范围/06/24/如何指定xtick在一个特定的范围/high_frequency_x_axis_plot.png" title="high_frequency_x_axis_plot">
 <p>所以我们要做的就是只用将数据所在范围按一定频率切分开就行了，如这个Q，[how to change the xticks to a specific range [duplicate\]](https://stackoverflow.com/questions/56713197/how-to-change-the-xticks-to-a-specific-range) 和 <a href="https://stackoverflow.com/questions/12608788/changing-the-tick-frequency-on-x-or-y-axis-in-matplotlib" target="_blank" rel="noopener">Changing the “tick frequency” on x or y axis in matplotlib?</a></p>
 <p>分别引用自StackOverflow用户 <a href="https://stackoverflow.com/users/840947/heike" target="_blank" rel="noopener">Heike</a>和<a href="https://stackoverflow.com/users/10041823/alexandre-b" target="_blank" rel="noopener">Alexandre B.</a>并作出了一定修改。</p>
 <p>在comment和answer处提供了两种解决方案：</p>
@@ -501,14 +501,14 @@
 <p>这里第一个参数是是将xtick分块显示，第二个参数是各个分块处显示的数字.(这里原来的数据找不到了，就用了answer中随机生成的数据为例子).</p>
 <p>例子:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Your data to count</span></span><br><span class="line">y = np.random.randint(<span class="number">0</span>,<span class="number">41</span>,<span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create plot</span></span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line">sns.countplot(y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Show graph</span></span><br><span class="line">plt.xticks(range(<span class="number">0</span>, <span class="number">41</span>, <span class="number">10</span>), range(<span class="number">0</span>, <span class="number">41</span>, <span class="number">10</span>))</span><br><span class="line">plt.xlabel(<span class="string">'user_id'</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<img src="/2019/06/24/如何指定xtick在一个特定的范围/set_xticks_plot.png" title="plot_with_setting_xticks">
+<img src="/2019/06/24/如何指定xtick在一个特定的范围/06/24/如何指定xtick在一个特定的范围/set_xticks_plot.png" title="plot_with_setting_xticks">
 <p>但是假如将第一个参数设置的分块范围超过数据已有的范围，则会在plot超出数据已有范围处显示出一段blank。</p>
-<img src="/2019/06/24/如何指定xtick在一个特定的范围/plot_with_blank.png" title="plot_with_blank"></li>
+<img src="/2019/06/24/如何指定xtick在一个特定的范围/06/24/如何指定xtick在一个特定的范围/plot_with_blank.png" title="plot_with_blank"></li>
 <li><p>One way is to define the labels on the x-axis. The <code>set_xticklabels</code> method from <code>matplotlib</code>module do the job <a href="https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.set_xticklabels.html" target="_blank" rel="noopener">(doc)</a>. By defining your own labels, you can hide them by setting the label equal to <code>''</code>.</p>
 <p>By defining your own labels, you <strong>need to take care</strong> that they are still <strong>consistent with your data</strong>.</p>
 <p>Here is one example:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># import modules</span></span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment">#Init seaborn</span></span><br><span class="line">sns.set()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Your data to count</span></span><br><span class="line">y = np.random.randint(<span class="number">0</span>,<span class="number">41</span>,<span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create the new x-axis labels </span></span><br><span class="line">x_labels = [<span class="string">''</span> <span class="keyword">if</span> i%<span class="number">10</span> != <span class="number">0</span> <span class="keyword">else</span> str(i) <span class="keyword">for</span> i <span class="keyword">in</span> range(len(np.unique(y)))]</span><br><span class="line">print(x_labels)</span><br><span class="line"><span class="comment"># ['0', '', '', '', '', '', '', '', '', '', </span></span><br><span class="line"><span class="comment"># '10', '', '', '', '', '', '', '', '', '', </span></span><br><span class="line"><span class="comment"># '20', '', '', '', '', '', '', '', '', '', </span></span><br><span class="line"><span class="comment"># '30', '', '', '', '', '', '', '', '', '', '40']</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Create plot</span></span><br><span class="line">fig, ax = plt.subplots()</span><br><span class="line">sns.countplot(y)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Set the new x axis labels</span></span><br><span class="line">ax.set_xticklabels(x_labels)</span><br><span class="line"><span class="comment"># Show graph</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
-<img src="/2019/06/24/如何指定xtick在一个特定的范围/define_label_plot.png" title="defined_own_label_plot"></li>
+<img src="/2019/06/24/如何指定xtick在一个特定的范围/06/24/如何指定xtick在一个特定的范围/define_label_plot.png" title="defined_own_label_plot"></li>
 </ul>
 <h1 id="reference">Reference</h1>
 <ul>
@@ -639,7 +639,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">100</span>
+                    <span class="site-state-item-count">102</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -821,7 +821,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">62</span>
+                      
+                    
+                    <span class="site-state-item-count">63</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -892,7 +894,7 @@
 </div>
 
 
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
 
 
 
