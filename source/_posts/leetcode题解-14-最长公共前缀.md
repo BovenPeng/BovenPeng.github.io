@@ -39,10 +39,10 @@ public:
 
         for (auto& str: strs)
         {
-            # 前缀串s_0 与 串str的前s_0.size()部分不等，则前缀串s_0去掉末尾字符
+            // 前缀串s_0 与 串str的前s_0.size()部分不等，则前缀串s_0去掉末尾字符
             while (str.substr(0, s_0.size()) != s_0)
             {
-                s_0 = s_0.substr(0, s_0.size()-1);
+                s_0 = s_0.substr(0, s_0.size()-1); 
                 if (s_0 == "")  return "";
             }
         }
@@ -51,4 +51,8 @@ public:
     }
 };
 ```
+
+同时可以用`s_0.pop_back();` 或者 `s_0.erase(s_0.size() - 1);`
+
+替换掉 `s_0 = s_0.substr(0, s_0.size() - 1)`
 
