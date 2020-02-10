@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>leetcode题解-14-最长公共前缀</title>
+    <url>/2020/02/11/leetcode%E9%A2%98%E8%A7%A3-14-%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%89%8D%E7%BC%80/</url>
+    <content><![CDATA[<h2 id="题目"><a href="https://leetcode-cn.com/problems/longest-common-prefix/" target="_blank" rel="noopener">题目</a></h2>
+<h3 id="官方解">官方解</h3>
+<h4 id="水平扫描法">1.水平扫描法</h4>
+<h5 id="思路">思路：</h5>
+<p><span class="math display">\[
+LCP(S_1 ...S_n) = LCP(LCP(LCP(S_1, S_2), S_3), ...Sn)
+\]</span></p>
+<p>求<span class="math inline">\(2\)</span>个字符串的最长前缀一般来说是每个字符串从头比较到尾，直到不相等为止。</p>
+<p>但假如是<span class="math inline">\(n\)</span>个字符串之间的比较的话，为了避免每次比较从头到尾进行，可以根据如上述公式，</p>
+<ul>
+<li>选取一个字符串<span class="math inline">\(A\)</span>作为前缀，长度为<span class="math inline">\(k\)</span>;</li>
+<li><p>若该字符串<span class="math inline">\(A\)</span>与另一个<span class="math inline">\(B\)</span>的前<span class="math inline">\(k\)</span>字符串不同；</p></li>
+<li><p>则去掉一个字符串<span class="math inline">\(A\)</span>中的末尾字符，形成新字符串<span class="math inline">\(A&#39;\)</span>，</p></li>
+<li><p>与串<span class="math inline">\(B\)</span>比较直至满足前缀完全相等的情况；</p></li>
+<li><p>再将得到的最大公共前缀与串<span class="math inline">\(C,...,N\)</span>比较，按上述循环进行，直至满足条件。</p></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">longestCommonPrefix</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; strs)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">string</span> s_0 = strs.size() ? strs[<span class="number">0</span>] : <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; str: strs)</span><br><span class="line">        &#123;</span><br><span class="line">            # 前缀串s_0 与 串str的前s_0.size()部分不等，则前缀串s_0去掉末尾字符</span><br><span class="line">            <span class="keyword">while</span> (str.substr(<span class="number">0</span>, s_0.size()) != s_0)</span><br><span class="line">            &#123;</span><br><span class="line">                s_0 = s_0.substr(<span class="number">0</span>, s_0.size()<span class="number">-1</span>);</span><br><span class="line">                <span class="keyword">if</span> (s_0 == <span class="string">""</span>)  <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> s_0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+]]></content>
+  </entry>
+  <entry>
+    <title>leetcode题解-78-子集</title>
+    <url>/2020/01/28/leetcode%E9%A2%98%E8%A7%A3-78-%E5%AD%90%E9%9B%86/</url>
+    <content><![CDATA[
+]]></content>
+  </entry>
+  <entry>
     <title>leetcode题解-237-删除链表中的节点</title>
     <url>/2020/01/27/leetcode%E9%A2%98%E8%A7%A3-237-%E5%88%A0%E9%99%A4%E9%93%BE%E8%A1%A8%E4%B8%AD%E7%9A%84%E8%8A%82%E7%82%B9/</url>
     <content><![CDATA[<h2 id="题目"><a href="https://leetcode-cn.com/problems/delete-node-in-a-linked-list/" target="_blank" rel="noopener">题目</a></h2>
@@ -722,10 +750,10 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
+        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -748,10 +776,10 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
+        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -776,10 +804,10 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
+        <tag>×</tag>
         <tag>树的构造</tag>
       </tags>
   </entry>
@@ -837,11 +865,11 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
+        <tag>×</tag>
         <tag>栈</tag>
       </tags>
   </entry>
@@ -859,11 +887,11 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
+        <tag>×</tag>
         <tag>栈</tag>
       </tags>
   </entry>
@@ -896,11 +924,11 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
+        <tag>×</tag>
         <tag>hash</tag>
         <tag>序列化</tag>
         <tag>innovative solution</tag>
@@ -966,11 +994,11 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
+        <tag>×</tag>
         <tag>栈</tag>
         <tag>括号匹配</tag>
         <tag>stringstream</tag>
@@ -1022,14 +1050,14 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
+        <tag>×</tag>
         <tag>stringstream</tag>
-        <tag>字符串</tag>
         <tag>序列化</tag>
+        <tag>字符串</tag>
       </tags>
   </entry>
   <entry>
@@ -1209,12 +1237,12 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
         <tag>BFS</tag>
+        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -1247,12 +1275,12 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
         <tag>BFS</tag>
+        <tag>×</tag>
       </tags>
   </entry>
   <entry>
@@ -1266,10 +1294,10 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
+        <tag>×</tag>
         <tag>DFS</tag>
       </tags>
   </entry>
@@ -1289,10 +1317,10 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
+        <tag>×</tag>
         <tag>DFS</tag>
       </tags>
   </entry>
@@ -1324,10 +1352,10 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
+        <tag>×</tag>
         <tag>DFS</tag>
       </tags>
   </entry>
@@ -1352,10 +1380,10 @@
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
+        <tag>×</tag>
         <tag>DFS</tag>
       </tags>
   </entry>
@@ -1395,8 +1423,8 @@ n = 3^i i = log_3(n)i = \frac{log_b(n)}{log_b(3)}
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>数学</tag>
       </tags>
   </entry>
@@ -1421,8 +1449,8 @@ n = 3^i i = log_3(n)i = \frac{log_b(n)}{log_b(3)}
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>位运算</tag>
       </tags>
   </entry>
@@ -1462,8 +1490,8 @@ n = 3^i i = log_3(n)i = \frac{log_b(n)}{log_b(3)}
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>位运算</tag>
       </tags>
   </entry>
@@ -1625,8 +1653,8 @@ dp[i] = min(2*dp[l_2], 3*dp[l_3], 5*dp[l_5])
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>DP</tag>
         <tag>堆</tag>
       </tags>
@@ -1660,8 +1688,8 @@ dp[i] = min(2*dp[l_2], 3*dp[l_3], 5*dp[l_5])
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>DP</tag>
         <tag>数学</tag>
       </tags>
@@ -1694,8 +1722,8 @@ dp[i] = min(2*dp[l_2], 3*dp[l_3], 5*dp[l_5])
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>数学</tag>
       </tags>
   </entry>
@@ -1708,8 +1736,8 @@ dp[i] = min(2*dp[l_2], 3*dp[l_3], 5*dp[l_5])
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>DP</tag>
       </tags>
   </entry>
@@ -1722,8 +1750,8 @@ dp[i] = min(2*dp[l_2], 3*dp[l_3], 5*dp[l_5])
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>DP</tag>
       </tags>
   </entry>
@@ -1760,8 +1788,8 @@ dp[i] = min(2*dp[l_2], 3*dp[l_3], 5*dp[l_5])
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>DP</tag>
         <tag>DFS</tag>
         <tag>数组</tag>
@@ -1779,8 +1807,8 @@ dp[i] = min(2*dp[l_2], 3*dp[l_3], 5*dp[l_5])
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>DP</tag>
         <tag>DFS</tag>
         <tag>数组</tag>
@@ -1827,8 +1855,8 @@ dp[i][j] = max(dp[i][j],\ nums[i]*nums[k]*nums[j] + dp[i][k] + dp[k][j]), \text{
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>DP</tag>
         <tag>分治算法</tag>
         <tag>哨兵</tag>
@@ -1871,8 +1899,8 @@ dp[i][j] = max(dp[i][j],\ nums[i]*nums[k]*nums[j] + dp[i][k] + dp[k][j]), \text{
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>DP</tag>
         <tag>2维DP-to-1维DP</tag>
         <tag>组合数学</tag>
@@ -1935,9 +1963,9 @@ dp[i][j] =
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>递归</tag>
+        <tag>×</tag>
         <tag>DP</tag>
         <tag>数组</tag>
       </tags>
@@ -2008,11 +2036,11 @@ sumrange(i,\ j)= sum[j+1] - sum[i]
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>DP</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>2维dp</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>数组</tag>
         <tag>hash</tag>
         <tag>缓存</tag>
@@ -2046,12 +2074,12 @@ dp[i][j] =
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>DP</tag>
-        <tag>插入1个虚拟0</tag>
         <tag>2维dp</tag>
         <tag>最大公共子序列</tag>
+        <tag>插入1个虚拟0</tag>
       </tags>
   </entry>
   <entry>
@@ -2072,8 +2100,8 @@ dp[i][j] =
         <tag>leetcode</tag>
         <tag>DP</tag>
         <tag>√</tag>
-        <tag>2维DP-to-1维DP</tag>
         <tag>2维dp</tag>
+        <tag>2维DP-to-1维DP</tag>
       </tags>
   </entry>
   <entry>
@@ -2169,8 +2197,8 @@ dp[i][j] =
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>动态规划</tag>
         <tag>贪心算法</tag>
         <tag>数组</tag>
@@ -2239,8 +2267,8 @@ s[i-1][j+1] =
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>动态规划</tag>
         <tag>数组对角遍历</tag>
         <tag>字符串</tag>
@@ -2307,10 +2335,10 @@ dp[i][j] =
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
-        <tag>动态规划</tag>
+        <tag>×</tag>
         <tag>插入1个虚拟0</tag>
+        <tag>动态规划</tag>
         <tag>字符串</tag>
       </tags>
   </entry>
@@ -2337,11 +2365,11 @@ dp[i][j] =
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>递归</tag>
         <tag>树</tag>
         <tag>树的遍历</tag>
+        <tag>×</tag>
         <tag>动态规划</tag>
       </tags>
   </entry>
@@ -2428,11 +2456,11 @@ f(n) = &amp; 1/n                      &amp; // \text{1st person picks his own se
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>数学题</tag>
-        <tag>动态规划</tag>
         <tag>插入1个虚拟0</tag>
+        <tag>动态规划</tag>
         <tag>组合数学</tag>
       </tags>
   </entry>
@@ -2526,15 +2554,15 @@ dp[j] = triangle[i][j] + dp[j-1],\ \text{if $i == j$}
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>树</tag>
+        <tag>×</tag>
+        <tag>插入1个虚拟0</tag>
         <tag>动态规划</tag>
         <tag>2维DP</tag>
         <tag>2维DP-to-1维DP</tag>
         <tag>自顶向下DP</tag>
         <tag>自底向上DP</tag>
-        <tag>插入1个虚拟0</tag>
       </tags>
   </entry>
   <entry>
@@ -2682,11 +2710,11 @@ dp[j] = triangle[i][j] + dp[j-1],\ \text{if $i == j$}
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
         <tag>树</tag>
-        <tag>动态规划</tag>
+        <tag>×</tag>
         <tag>插入1个虚拟0</tag>
+        <tag>动态规划</tag>
         <tag>Catalan数</tag>
       </tags>
   </entry>
@@ -2738,8 +2766,8 @@ dp[j] = triangle[i][j] + dp[j-1],\ \text{if $i == j$}
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>栈</tag>
         <tag>贪心算法</tag>
         <tag>线性表</tag>
@@ -2842,8 +2870,8 @@ dp[i][j].fir = max(piles[i] + dp[i+1][j].sec, piles[j] + dp[i][j-1].sec) \\
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>DP</tag>
         <tag>二维dp</tag>
         <tag>博弈问题</tag>
@@ -2910,8 +2938,8 @@ false, &amp; \text{otherwise}
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>数学题</tag>
         <tag>DP</tag>
       </tags>
@@ -3034,8 +3062,8 @@ P(x) = P(x\ \&amp;\ (x-1)) + 1
         <category>刷题</category>
       </categories>
       <tags>
-        <tag>×</tag>
         <tag>leetcode</tag>
+        <tag>×</tag>
         <tag>DP</tag>
         <tag>位运算</tag>
         <tag>插入1个虚拟0</tag>

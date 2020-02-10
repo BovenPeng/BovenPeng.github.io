@@ -373,6 +373,331 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/07/leetcode题解-503-下一个更大元素Ⅱ/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bowen Peng">
+      <meta itemprop="description" content="something about myself and my career development.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boven's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/01/07/leetcode题解-503-下一个更大元素Ⅱ/" class="post-title-link" itemprop="url">leetcode题解-503-下一个更大元素Ⅱ</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-01-07 11:11:54 / 修改时间：16:31:09" itemprop="dateCreated datePublished" datetime="2020-01-07T11:11:54+08:00">2020-01-07</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="labuladong-way"><a href="https://leetcode-cn.com/problems/next-greater-element-ii/solution/dan-diao-zhan-jie-jue-next-greater-number-yi-lei-2/" target="_blank" rel="noopener">labuladong way</a></h3>
+<h4 id="不严格单调递增栈">不严格单调递增栈</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nextGreaterElements(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> n = nums.size();</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res(n); <span class="comment">// 存放结果</span></span><br><span class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; s;</span><br><span class="line">    <span class="comment">// 假装这个数组长度翻倍了</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span> * n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">while</span> (!s.empty() &amp;&amp; s.top() &lt;= nums[i % n])</span><br><span class="line">            s.pop();</span><br><span class="line">        res[i % n] = s.empty() ? <span class="number">-1</span> : s.top();</span><br><span class="line">        s.push(nums[i % n]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="why">Why?</h3>
+<ul>
+<li>为什么这里是用 <strong>不严格的单调递增栈</strong> 而不是 <strong>严格的单调递增栈</strong></li>
+<li>为什么通过<strong>索引翻倍-1</strong>后，是选择方向遍历元素的，而不是正向遍历？</li>
+</ul>
+<h2 id="总结">总结</h2>
+<ul>
+<li><p>通过<strong>索引翻倍-1</strong> 和 <strong>%</strong>运算，来达到模拟数组中元素翻倍的效果。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假装这个数组长度翻倍了</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span> * n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) </span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">while</span> (!s.empty() &amp;&amp; s.top() &lt;= nums[i % n])</span><br><span class="line">		s.pop();</span><br><span class="line">	res[i % n] = s.empty() ? <span class="number">-1</span> : s.top();</span><br><span class="line">	s.push(nums[i % n]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>同时，在元素出栈后，对栈空状态进行判断，</p>
+<ul>
+<li>若空了则，<code>res</code>对应值为<code>-1</code></li>
+<li>若不空则，<code>res</code>对应值为<code>n</code></li>
+<li>省去了一个存放<code>tuple</code>的容器的空间大小</li>
+</ul></li>
+</ul>
+<h2 id="reference">Reference</h2>
+<p>https://leetcode-cn.com/problems/next-greater-element-ii/solution/dan-diao-zhan-jie-jue-next-greater-number-yi-lei-2/</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/06/leetcode题解-496-下一个更大元素Ⅰ/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bowen Peng">
+      <meta itemprop="description" content="something about myself and my career development.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boven's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/01/06/leetcode题解-496-下一个更大元素Ⅰ/" class="post-title-link" itemprop="url">leetcode题解-496-下一个更大元素Ⅰ</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-01-06 14:40:05 / 修改时间：19:27:49" itemprop="dateCreated datePublished" datetime="2020-01-06T14:40:05+08:00">2020-01-06</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="https://leetcode-cn.com/problems/next-greater-element-i/" target="_blank" rel="noopener">题目</a></h2>
+<h3 id="官方解way"><a href="https://leetcode-cn.com/problems/next-greater-element-i/solution/xia-yi-ge-geng-da-yuan-su-i-by-leetcode/" target="_blank" rel="noopener">官方解way</a></h3>
+<h4 id="最大单调递增栈">最大单调递增栈</h4>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nextGreaterElement(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums1, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums2) &#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; <span class="built_in">map</span>;</span><br><span class="line">        <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; s;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums2.size(); ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">while</span> (!s.empty() &amp;&amp; s.top() &lt; nums2[i])</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">map</span>[s.top()] = nums2[i];</span><br><span class="line">                s.pop();</span><br><span class="line">            &#125;</span><br><span class="line">            s.push(nums2[i]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (!s.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">map</span>[s.top()] = <span class="number">-1</span>;</span><br><span class="line">            s.pop();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; vi;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums1.size(); ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            vi.push_back(<span class="built_in">map</span>[nums1[i]]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> vi;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="最大单调递增栈的流程">最大单调递增栈的流程：</h4>
+<p>数组中元素依次进栈:</p>
+<ol type="1">
+<li>假如<strong>栈不为空</strong> 且 <strong>栈顶元素小于数组当前元素</strong>, 则将 <strong>栈顶元素出栈</strong> 直至 <strong>栈不为空</strong> 或 <strong>栈顶元素 大于等于 数组当前元素</strong>
+<ul>
+<li>将栈顶元素和第一个大于栈顶(的栈顶右边)元素，形成一个<code>tuple</code></li>
+<li>此处是放到<code>unordered_map</code>中来</li>
+</ul></li>
+<li>当前元素进栈</li>
+<li>当数组中所有元素遍历完之后，将栈中元素依次弹出</li>
+<li>遍历存放<code>tuple</code>的容器</li>
+</ol>
+<h2 id="总结">总结</h2>
+<p>这是一个很经典的单调栈题。</p>
+<h2 id="reference">Reference</h2>
+<p>https://leetcode-cn.com/problems/next-greater-element-i/solution/xia-yi-ge-geng-da-yuan-su-i-by-leetcode/</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/05/leetcode题解-42-接雨水/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1611,348 +1936,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/30/leetcode题解-965-单值二叉树/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bowen Peng">
-      <meta itemprop="description" content="something about myself and my career development.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Boven's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/12/30/leetcode题解-965-单值二叉树/" class="post-title-link" itemprop="url">leetcode题解-965-单值二叉树</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-12-30 22:36:59 / 修改时间：22:39:02" itemprop="dateCreated datePublished" datetime="2019-12-30T22:36:59+08:00">2019-12-30</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/树的遍历/" itemprop="url" rel="index"><span itemprop="name">树的遍历</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="https://leetcode-cn.com/problems/univalued-binary-tree/" target="_blank" rel="noopener">题目</a></h2>
-<h3 id="my-way">My way</h3>
-<h4 id="dfs遍历">dfs遍历</h4>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> val;</span><br><span class="line">    <span class="keyword">bool</span> isUT = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(TreeNode* root)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root || !isUT)  <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">        isUT = (val == root-&gt;val ? <span class="literal">true</span> : <span class="literal">false</span>);</span><br><span class="line"></span><br><span class="line">        dfs(root-&gt;left);</span><br><span class="line">        dfs(root-&gt;right);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isUnivalTree</span><span class="params">(TreeNode* root)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        val = root-&gt;val;</span><br><span class="line"></span><br><span class="line">        dfs(root);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> isUT;    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/30/leetcode题解-114-二叉树展开为链表/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bowen Peng">
-      <meta itemprop="description" content="something about myself and my career development.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Boven's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/12/30/leetcode题解-114-二叉树展开为链表/" class="post-title-link" itemprop="url">leetcode题解-114-二叉树展开为链表</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-12-30 21:37:22 / 修改时间：22:30:19" itemprop="dateCreated datePublished" datetime="2019-12-30T21:37:22+08:00">2019-12-30</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/后序遍历/" itemprop="url" rel="index"><span itemprop="name">后序遍历</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="https://leetcode-cn.com/problems/flatten-binary-tree-to-linked-list/" target="_blank" rel="noopener">题目</a></h2>
-<h3 id="windliang-way"><a href="https://leetcode-cn.com/problems/flatten-binary-tree-to-linked-list/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-by--26/" target="_blank" rel="noopener">windliang way</a></h3>
-<h4 id="对左右子树进行拼接的过程">对左右子树进行拼接的过程</h4>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">    <span class="number">1</span></span><br><span class="line">   / \</span><br><span class="line">  <span class="number">2</span>   <span class="number">5</span></span><br><span class="line"> / \   \</span><br><span class="line"><span class="number">3</span>   <span class="number">4</span>   <span class="number">6</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//将 1 的左子树插入到右子树的地方</span></span><br><span class="line">    <span class="number">1</span></span><br><span class="line">     \</span><br><span class="line">      <span class="number">2</span>         <span class="number">5</span></span><br><span class="line">     / \         \</span><br><span class="line">    <span class="number">3</span>   <span class="number">4</span>         <span class="number">6</span>        </span><br><span class="line"><span class="comment">//将原来的右子树接到左子树的最右边节点</span></span><br><span class="line">    <span class="number">1</span></span><br><span class="line">     \</span><br><span class="line">      <span class="number">2</span>          </span><br><span class="line">     / \          </span><br><span class="line">    <span class="number">3</span>   <span class="number">4</span>  </span><br><span class="line">         \</span><br><span class="line">          <span class="number">5</span></span><br><span class="line">           \</span><br><span class="line">            <span class="number">6</span></span><br><span class="line">            </span><br><span class="line"> <span class="comment">//将 2 的左子树插入到右子树的地方</span></span><br><span class="line">    <span class="number">1</span></span><br><span class="line">     \</span><br><span class="line">      <span class="number">2</span>          </span><br><span class="line">       \          </span><br><span class="line">        <span class="number">3</span>       <span class="number">4</span>  </span><br><span class="line">                 \</span><br><span class="line">                  <span class="number">5</span></span><br><span class="line">                   \</span><br><span class="line">                    <span class="number">6</span>   </span><br><span class="line">        </span><br><span class="line"> <span class="comment">//将原来的右子树接到左子树的最右边节点</span></span><br><span class="line">    <span class="number">1</span></span><br><span class="line">     \</span><br><span class="line">      <span class="number">2</span>          </span><br><span class="line">       \          </span><br><span class="line">        <span class="number">3</span>      </span><br><span class="line">         \</span><br><span class="line">          <span class="number">4</span>  </span><br><span class="line">           \</span><br><span class="line">            <span class="number">5</span></span><br><span class="line">             \</span><br><span class="line">              <span class="number">6</span>         </span><br><span class="line">  </span><br><span class="line">  ......</span><br></pre></td></tr></table></figure>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">flatten</span><span class="params">(TreeNode* root)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (root)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// root-&gt;left is nullptr</span></span><br><span class="line">            <span class="keyword">if</span> (!root-&gt;left)</span><br><span class="line">            &#123;</span><br><span class="line">                root = root-&gt;right;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="comment">// find the righest node of leftSubTree</span></span><br><span class="line">                TreeNode* pre = root-&gt;left;</span><br><span class="line">                <span class="keyword">while</span> (pre-&gt;right)</span><br><span class="line">                &#123;</span><br><span class="line">                    pre = pre-&gt;right;</span><br><span class="line">                &#125;</span><br><span class="line">                </span><br><span class="line">                <span class="comment">// make 'pre' node 'right' pointed to the origin rightSubTree</span></span><br><span class="line">                pre-&gt;right = root-&gt;right;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// make leftSubTree insert to rightSubTree</span></span><br><span class="line">                root-&gt;right = root-&gt;left;</span><br><span class="line">                root-&gt;left = <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line">                <span class="comment">// consider next right node</span></span><br><span class="line">                root = root-&gt;right;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="后序遍历">后序遍历</h4>
-<p>二叉树展开成为链表的结果就是 <strong>先序遍历</strong> 的结果。</p>
-<p>但是按 <strong>先序遍历</strong> 结果来处理的话，更新当前结点的右指针的时候，当前结点的右指针就没有保存下来了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">    <span class="number">1</span></span><br><span class="line">   / \</span><br><span class="line">  <span class="number">2</span>   <span class="number">5</span></span><br><span class="line"> / \   \</span><br><span class="line"><span class="number">3</span>   <span class="number">4</span>   <span class="number">6</span></span><br><span class="line">   </span><br><span class="line"><span class="comment">// preOrder </span></span><br><span class="line"><span class="number">1</span> -&gt; <span class="number">2</span> -&gt; <span class="number">3</span> -&gt; <span class="number">4</span> -&gt; <span class="number">5</span> -&gt; <span class="number">6</span></span><br></pre></td></tr></table></figure>
-<p>所以思考 <strong>反过来，通过后序遍历</strong> 来处理。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// postOrder </span></span><br><span class="line"><span class="number">6</span> &lt;- <span class="number">5</span> &lt;- <span class="number">4</span> &lt;- <span class="number">3</span> &lt;- <span class="number">2</span> &lt;- <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>即，每遍历一个节点，考虑将当前节点的 <strong>右指针</strong> 指向上一个节点。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    TreeNode* pre = <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">flatten</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root)  <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">        flatten(root-&gt;right);</span><br><span class="line">        flatten(root-&gt;left);</span><br><span class="line"></span><br><span class="line">        root-&gt;right = pre;</span><br><span class="line">        root-&gt;left = <span class="literal">nullptr</span>;</span><br><span class="line">        pre = root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="非递归先序遍历">非递归先序遍历</h4>
-<p>利用栈保存上一个节点的右指针，并将其更新为当前节点。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">flatten</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root)  <span class="keyword">return</span>;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">stack</span>&lt;TreeNode*&gt; s;</span><br><span class="line">        s.push(root);</span><br><span class="line">        TreeNode* pre = <span class="literal">nullptr</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (!s.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">auto</span> tmp = s.top(); s.pop();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// binary tree expend to linked list</span></span><br><span class="line">            <span class="keyword">if</span> (pre)</span><br><span class="line">            &#123;</span><br><span class="line">                pre-&gt;right = tmp;</span><br><span class="line">                pre-&gt;left = <span class="literal">nullptr</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (tmp-&gt;right) s.push(tmp-&gt;right);</span><br><span class="line">            <span class="keyword">if</span> (tmp-&gt;left)  s.push(tmp-&gt;left);</span><br><span class="line">			</span><br><span class="line">            <span class="comment">// update 'pre' node to 'tmp'</span></span><br><span class="line">            pre = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="reference">Reference</h2>
-<p>https://leetcode-cn.com/problems/flatten-binary-tree-to-linked-list/solution/xiang-xi-tong-su-de-si-lu-fen-xi-duo-jie-fa-by--26/</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1999,7 +1982,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">103</span>
+                    <span class="site-state-item-count">105</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
