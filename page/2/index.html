@@ -373,6 +373,167 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/11/leetcode题解-14-最长公共前缀/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bowen Peng">
+      <meta itemprop="description" content="something about myself and my career development.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boven's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/02/11/leetcode题解-14-最长公共前缀/" class="post-title-link" itemprop="url">leetcode题解-14-最长公共前缀</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-02-11 01:27:26 / 修改时间：02:00:50" itemprop="dateCreated datePublished" datetime="2020-02-11T01:27:26+08:00">2020-02-11</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目"><a href="https://leetcode-cn.com/problems/longest-common-prefix/" target="_blank" rel="noopener">题目</a></h2>
+<h3 id="官方解">官方解</h3>
+<h4 id="水平扫描法">1.水平扫描法</h4>
+<h5 id="思路">思路：</h5>
+<p><span class="math display">\[
+LCP(S_1 ...S_n) = LCP(LCP(LCP(S_1, S_2), S_3), ...Sn)
+\]</span></p>
+<p>求<span class="math inline">\(2\)</span>个字符串的最长前缀一般来说是每个字符串从头比较到尾，直到不相等为止。</p>
+<p>但假如是<span class="math inline">\(n\)</span>个字符串之间的比较的话，为了避免每次比较从头到尾进行，可以根据如上述公式，</p>
+<ul>
+<li>选取一个字符串<span class="math inline">\(A\)</span>作为前缀，长度为<span class="math inline">\(k\)</span>;</li>
+<li><p>若该字符串<span class="math inline">\(A\)</span>与另一个<span class="math inline">\(B\)</span>的前<span class="math inline">\(k\)</span>字符串不同；</p></li>
+<li><p>则去掉一个字符串<span class="math inline">\(A\)</span>中的末尾字符，形成新字符串<span class="math inline">\(A&#39;\)</span>，</p></li>
+<li><p>与串<span class="math inline">\(B\)</span>比较直至满足前缀完全相等的情况；</p></li>
+<li><p>再将得到的最大公共前缀与串<span class="math inline">\(C,...,N\)</span>比较，按上述循环进行，直至满足条件。</p></li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">longestCommonPrefix</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; strs)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">string</span> s_0 = strs.size() ? strs[<span class="number">0</span>] : <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; str: strs)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 前缀串s_0 与 串str的前s_0.size()部分不等，则前缀串s_0去掉末尾字符</span></span><br><span class="line">            <span class="keyword">while</span> (str.substr(<span class="number">0</span>, s_0.size()) != s_0)</span><br><span class="line">            &#123;</span><br><span class="line">                s_0 = s_0.substr(<span class="number">0</span>, s_0.size()<span class="number">-1</span>); </span><br><span class="line">                <span class="keyword">if</span> (s_0 == <span class="string">""</span>)  <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> s_0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>同时可以用<code>s_0.pop_back();</code> 或者 <code>s_0.erase(s_0.size() - 1);</code></p>
+<p>替换掉 <code>s_0 = s_0.substr(0, s_0.size() - 1)</code></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/28/leetcode题解-78-子集/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1746,169 +1907,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/07/leetcode题解-503-下一个更大元素Ⅱ/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bowen Peng">
-      <meta itemprop="description" content="something about myself and my career development.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Boven's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/01/07/leetcode题解-503-下一个更大元素Ⅱ/" class="post-title-link" itemprop="url">leetcode题解-503-下一个更大元素Ⅱ</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-01-07 11:11:54 / 修改时间：16:31:09" itemprop="dateCreated datePublished" datetime="2020-01-07T11:11:54+08:00">2020-01-07</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h3 id="labuladong-way"><a href="https://leetcode-cn.com/problems/next-greater-element-ii/solution/dan-diao-zhan-jie-jue-next-greater-number-yi-lei-2/" target="_blank" rel="noopener">labuladong way</a></h3>
-<h4 id="不严格单调递增栈">不严格单调递增栈</h4>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nextGreaterElements(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) </span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">int</span> n = nums.size();</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res(n); <span class="comment">// 存放结果</span></span><br><span class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; s;</span><br><span class="line">    <span class="comment">// 假装这个数组长度翻倍了</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span> * n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">while</span> (!s.empty() &amp;&amp; s.top() &lt;= nums[i % n])</span><br><span class="line">            s.pop();</span><br><span class="line">        res[i % n] = s.empty() ? <span class="number">-1</span> : s.top();</span><br><span class="line">        s.push(nums[i % n]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="why">Why?</h3>
-<ul>
-<li>为什么这里是用 <strong>不严格的单调递增栈</strong> 而不是 <strong>严格的单调递增栈</strong></li>
-<li>为什么通过<strong>索引翻倍-1</strong>后，是选择方向遍历元素的，而不是正向遍历？</li>
-</ul>
-<h2 id="总结">总结</h2>
-<ul>
-<li><p>通过<strong>索引翻倍-1</strong> 和 <strong>%</strong>运算，来达到模拟数组中元素翻倍的效果。</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 假装这个数组长度翻倍了</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span> * n - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) </span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">while</span> (!s.empty() &amp;&amp; s.top() &lt;= nums[i % n])</span><br><span class="line">		s.pop();</span><br><span class="line">	res[i % n] = s.empty() ? <span class="number">-1</span> : s.top();</span><br><span class="line">	s.push(nums[i % n]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>同时，在元素出栈后，对栈空状态进行判断，</p>
-<ul>
-<li>若空了则，<code>res</code>对应值为<code>-1</code></li>
-<li>若不空则，<code>res</code>对应值为<code>n</code></li>
-<li>省去了一个存放<code>tuple</code>的容器的空间大小</li>
-</ul></li>
-</ul>
-<h2 id="reference">Reference</h2>
-<p>https://leetcode-cn.com/problems/next-greater-element-ii/solution/dan-diao-zhan-jie-jue-next-greater-number-yi-lei-2/</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1955,7 +1953,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">114</span>
+                    <span class="site-state-item-count">115</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

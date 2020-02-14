@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="Boven&#39;s Blog">
 <meta property="og:description" content="MLP 多层感知机就是含有至少一个隐藏层的由全连接层组成的神经网络，且每个隐藏层的输出通过激活函数进行变换。多层感知机的层数和各隐藏层中隐藏单元个数都是超参数。 定义模型 1234567891011num_inputs, num_outputs, num_hiddens = 784, 10, 256net = nn.Sequential(        d2l.FlattenLayer(),">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-02-14T13:31:02.790Z">
+<meta property="og:updated_time" content="2020-02-14T13:48:10.786Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="t1_MLP.md">
 <meta name="twitter:description" content="MLP 多层感知机就是含有至少一个隐藏层的由全连接层组成的神经网络，且每个隐藏层的输出通过激活函数进行变换。多层感知机的层数和各隐藏层中隐藏单元个数都是超参数。 定义模型 1234567891011num_inputs, num_outputs, num_hiddens = 784, 10, 256net = nn.Sequential(        d2l.FlattenLayer(),">
@@ -416,7 +416,7 @@
                 
               
 
-              <time title="创建时间：2020-02-14 21:27:58 / 修改时间：21:31:02" itemprop="dateCreated datePublished" datetime="2020-02-14T21:27:58+08:00">2020-02-14</time>
+              <time title="创建时间：2020-02-14 21:27:58 / 修改时间：21:48:10" itemprop="dateCreated datePublished" datetime="2020-02-14T21:27:58+08:00">2020-02-14</time>
             
 
             
@@ -477,6 +477,8 @@
 <p>多层感知机就是含有至少一个隐藏层的由全连接层组成的神经网络，且每个隐藏层的输出通过激活函数进行变换。多层感知机的层数和各隐藏层中隐藏单元个数都是超参数。</p>
 <h3 id="定义模型">定义模型</h3>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">num_inputs, num_outputs, num_hiddens = <span class="number">784</span>, <span class="number">10</span>, <span class="number">256</span></span><br><span class="line"></span><br><span class="line">net = nn.Sequential(</span><br><span class="line">        d2l.FlattenLayer(),</span><br><span class="line">        nn.Linear(num_inputs, num_hiddens),</span><br><span class="line">        nn.ReLU(),</span><br><span class="line">        nn.Linear(num_hiddens, num_outputs),</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> params <span class="keyword">in</span> net.parameters():</span><br><span class="line">	init.normal_(params, mean=<span class="number">0</span>, std=<span class="number">0.01</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="reference">Reference</h2>
+<p><a href="https://zhuanlan.zhihu.com/p/23937778" target="_blank" rel="noopener">神经网络快速入门：什么是多层感知器和反向传播？ - 机器之心的文章 - 知乎</a></p>
 
       
     </div>
@@ -507,8 +509,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/02/14/t1-softmax-md/" rel="next" title="t1_softmax.md">
-                <i class="fa fa-chevron-left"></i> t1_softmax.md
+              <a href="/2020/02/14/t1-MLP/" rel="next" title="t1_MLP.md">
+                <i class="fa fa-chevron-left"></i> t1_MLP.md
               </a>
             
           </div>
@@ -516,6 +518,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/14/t2-文本预处理/" rel="prev" title="t2-文本预处理">
+                t2-文本预处理 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -584,7 +590,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">110</span>
+                    <span class="site-state-item-count">115</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -808,7 +814,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#mlp"><span class="nav-number">1.</span> <span class="nav-text">MLP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义模型"><span class="nav-number">1.1.</span> <span class="nav-text">定义模型</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#mlp"><span class="nav-number">1.</span> <span class="nav-text">MLP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义模型"><span class="nav-number">1.1.</span> <span class="nav-text">定义模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reference"><span class="nav-number">2.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>

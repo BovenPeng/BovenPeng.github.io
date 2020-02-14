@@ -130,6 +130,20 @@ P(w_1, w_2, w_3, w_4) = P(w_1)P(w_2|w_1)P(w_3|w_1,w_2)P(w_4|w_2, W_3)\\
   </entry>
   <entry>
     <title>t1_MLP.md</title>
+    <url>/2020/02/14/t1-MLP-md/</url>
+    <content><![CDATA[<h2 id="mlp">MLP</h2>
+<p>多层感知机就是含有至少一个隐藏层的由全连接层组成的神经网络，且每个隐藏层的输出通过激活函数进行变换。多层感知机的层数和各隐藏层中隐藏单元个数都是超参数。</p>
+<h3 id="定义模型">定义模型</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">num_inputs, num_outputs, num_hiddens = <span class="number">784</span>, <span class="number">10</span>, <span class="number">256</span></span><br><span class="line"></span><br><span class="line">net = nn.Sequential(</span><br><span class="line">        d2l.FlattenLayer(),</span><br><span class="line">        nn.Linear(num_inputs, num_hiddens),</span><br><span class="line">        nn.ReLU(),</span><br><span class="line">        nn.Linear(num_hiddens, num_outputs),</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> params <span class="keyword">in</span> net.parameters():</span><br><span class="line">	init.normal_(params, mean=<span class="number">0</span>, std=<span class="number">0.01</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="reference">Reference</h2>
+<p><a href="https://zhuanlan.zhihu.com/p/23937778" target="_blank" rel="noopener">神经网络快速入门：什么是多层感知器和反向传播？ - 机器之心的文章 - 知乎</a></p>
+]]></content>
+      <categories>
+        <category>动手深度学习</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>t1_MLP.md</title>
     <url>/2020/02/14/t1-MLP/</url>
     <content><![CDATA[<h2 id="mlp">MLP</h2>
 <p>多层感知机就是含有至少一个隐藏层的由全连接层组成的神经网络，且每个隐藏层的输出通过激活函数进行变换。多层感知机的层数和各隐藏层中隐藏单元个数都是超参数。</p>
@@ -2332,8 +2346,8 @@ dp[i][j] =
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>DP</tag>
         <tag>√</tag>
+        <tag>DP</tag>
         <tag>2维dp</tag>
         <tag>2维DP-to-1维DP</tag>
       </tags>

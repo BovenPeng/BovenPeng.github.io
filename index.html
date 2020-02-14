@@ -1109,6 +1109,172 @@ P(w_1, w_2, w_3, w_4) = P(w_1)P(w_2|w_1)P(w_3|w_1,w_2)P(w_4|w_2, W_3)\\
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/14/t1-MLP-md/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bowen Peng">
+      <meta itemprop="description" content="something about myself and my career development.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boven's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/02/14/t1-MLP-md/" class="post-title-link" itemprop="url">t1_MLP.md</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-02-14 21:27:58 / 修改时间：21:48:10" itemprop="dateCreated datePublished" datetime="2020-02-14T21:27:58+08:00">2020-02-14</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/动手深度学习/" itemprop="url" rel="index"><span itemprop="name">动手深度学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="mlp">MLP</h2>
+<p>多层感知机就是含有至少一个隐藏层的由全连接层组成的神经网络，且每个隐藏层的输出通过激活函数进行变换。多层感知机的层数和各隐藏层中隐藏单元个数都是超参数。</p>
+<h3 id="定义模型">定义模型</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">num_inputs, num_outputs, num_hiddens = <span class="number">784</span>, <span class="number">10</span>, <span class="number">256</span></span><br><span class="line"></span><br><span class="line">net = nn.Sequential(</span><br><span class="line">        d2l.FlattenLayer(),</span><br><span class="line">        nn.Linear(num_inputs, num_hiddens),</span><br><span class="line">        nn.ReLU(),</span><br><span class="line">        nn.Linear(num_hiddens, num_outputs),</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> params <span class="keyword">in</span> net.parameters():</span><br><span class="line">	init.normal_(params, mean=<span class="number">0</span>, std=<span class="number">0.01</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="reference">Reference</h2>
+<p><a href="https://zhuanlan.zhihu.com/p/23937778" target="_blank" rel="noopener">神经网络快速入门：什么是多层感知器和反向传播？ - 机器之心的文章 - 知乎</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/14/t1-MLP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1920,167 +2086,6 @@ l(\theta) = \frac{1}{2n}(\hat{y} - y)^T(\hat{y} - y)\\
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/11/leetcode题解-14-最长公共前缀/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bowen Peng">
-      <meta itemprop="description" content="something about myself and my career development.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Boven's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/02/11/leetcode题解-14-最长公共前缀/" class="post-title-link" itemprop="url">leetcode题解-14-最长公共前缀</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-02-11 01:27:26 / 修改时间：02:00:50" itemprop="dateCreated datePublished" datetime="2020-02-11T01:27:26+08:00">2020-02-11</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="https://leetcode-cn.com/problems/longest-common-prefix/" target="_blank" rel="noopener">题目</a></h2>
-<h3 id="官方解">官方解</h3>
-<h4 id="水平扫描法">1.水平扫描法</h4>
-<h5 id="思路">思路：</h5>
-<p><span class="math display">\[
-LCP(S_1 ...S_n) = LCP(LCP(LCP(S_1, S_2), S_3), ...Sn)
-\]</span></p>
-<p>求<span class="math inline">\(2\)</span>个字符串的最长前缀一般来说是每个字符串从头比较到尾，直到不相等为止。</p>
-<p>但假如是<span class="math inline">\(n\)</span>个字符串之间的比较的话，为了避免每次比较从头到尾进行，可以根据如上述公式，</p>
-<ul>
-<li>选取一个字符串<span class="math inline">\(A\)</span>作为前缀，长度为<span class="math inline">\(k\)</span>;</li>
-<li><p>若该字符串<span class="math inline">\(A\)</span>与另一个<span class="math inline">\(B\)</span>的前<span class="math inline">\(k\)</span>字符串不同；</p></li>
-<li><p>则去掉一个字符串<span class="math inline">\(A\)</span>中的末尾字符，形成新字符串<span class="math inline">\(A&#39;\)</span>，</p></li>
-<li><p>与串<span class="math inline">\(B\)</span>比较直至满足前缀完全相等的情况；</p></li>
-<li><p>再将得到的最大公共前缀与串<span class="math inline">\(C,...,N\)</span>比较，按上述循环进行，直至满足条件。</p></li>
-</ul>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="built_in">string</span> <span class="title">longestCommonPrefix</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; strs)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">string</span> s_0 = strs.size() ? strs[<span class="number">0</span>] : <span class="string">""</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; str: strs)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// 前缀串s_0 与 串str的前s_0.size()部分不等，则前缀串s_0去掉末尾字符</span></span><br><span class="line">            <span class="keyword">while</span> (str.substr(<span class="number">0</span>, s_0.size()) != s_0)</span><br><span class="line">            &#123;</span><br><span class="line">                s_0 = s_0.substr(<span class="number">0</span>, s_0.size()<span class="number">-1</span>); </span><br><span class="line">                <span class="keyword">if</span> (s_0 == <span class="string">""</span>)  <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> s_0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>同时可以用<code>s_0.pop_back();</code> 或者 <code>s_0.erase(s_0.size() - 1);</code></p>
-<p>替换掉 <code>s_0 = s_0.substr(0, s_0.size() - 1)</code></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2127,7 +2132,7 @@ LCP(S_1 ...S_n) = LCP(LCP(LCP(S_1, S_2), S_3), ...Sn)
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">114</span>
+                    <span class="site-state-item-count">115</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
