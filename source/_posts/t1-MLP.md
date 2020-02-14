@@ -27,3 +27,8 @@ for params in net.parameters():
 	init.normal_(params, mean=0, std=0.01)
 ```
 
+
+
+## Reference
+
+[神经网络快速入门：什么是多层感知器和反向传播？ - 机器之心的文章 - 知乎](https://zhuanlan.zhihu.com/p/23937778)
