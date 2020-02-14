@@ -373,7 +373,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/14/t1-MLP-md/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/14/task总结汇总/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bowen Peng">
@@ -393,7 +393,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/02/14/t1-MLP-md/" class="post-title-link" itemprop="url">t1_MLP.md</a>
+                <a href="/2020/02/14/task总结汇总/" class="post-title-link" itemprop="url">task总结汇总</a>
               
             
           </h1>
@@ -418,7 +418,707 @@
                 
               
 
-              <time title="创建时间：2020-02-14 21:27:58 / 修改时间：21:31:02" itemprop="dateCreated datePublished" datetime="2020-02-14T21:27:58+08:00">2020-02-14</time>
+              <time title="创建时间：2020-02-14 21:35:52" itemprop="dateCreated datePublished" datetime="2020-02-14T21:35:52+08:00">2020-02-14</time>
+            
+
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/14/t2-RNN基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bowen Peng">
+      <meta itemprop="description" content="something about myself and my career development.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boven's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/02/14/t2-RNN基础/" class="post-title-link" itemprop="url">t2-RNN基础</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-02-14 21:35:24 / 修改时间：21:36:56" itemprop="dateCreated datePublished" datetime="2020-02-14T21:35:24+08:00">2020-02-14</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/动手深度学习/" itemprop="url" rel="index"><span itemprop="name">动手深度学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="循环神经网络">循环神经网络</h2>
+<p>RNN网络在t时刻接收到输入<span class="math inline">\(x_t\)</span> 之后，隐藏层的值是<span class="math inline">\(s_t\)</span>) ，输出值是<span class="math inline">\(o_t\)</span>。关键一点是， <span class="math inline">\(s_t\)</span>的值不仅仅取决于取<span class="math inline">\(x_t\)</span>, 还决于<span class="math inline">\(s_{t-1}\)</span>.我们用下面可以的公式来表示<strong>循环神经网络</strong>的计算方法： <span class="math display">\[
+O_t = g(V \cdot S_t) \\
+S_t = f(U \cdot X_t + W \cdot S_{t-1})
+\]</span> #### 梯度剪裁</p>
+<p>存在 <strong>梯度消失</strong> 和 <strong>梯度爆炸</strong> 问题，所以考虑使用梯度剪裁。</p>
+<p>裁剪梯度（clip gradient）是一种应对梯度爆炸的方法。假设我们把所有模型参数的梯度拼接成一个向量 <span class="math inline">\(g\)</span>，并设裁剪的阈值是<span class="math inline">\(\theta\)</span>。裁剪后的梯度 <span class="math display">\[
+min(\frac{\theta}{||g||}, 1)g
+\]</span> 的<span class="math inline">\(L_2\)</span>范数不超过<span class="math inline">\(\theta\)</span></p>
+<h3 id="lstm超参数调整"><strong>LSTM超参数调整</strong></h3>
+<p>以下是手动优化RNN超参数时需要注意的一些情况：</p>
+<ul>
+<li>小心过拟合，神经网络基本在“记忆”训练数据时，就会发生过拟合。过拟合意味着你在训练数据上有很好的表现，在其他数据集上基本无用。</li>
+<li>正则化有好处：方法包括 l1、 l2和dropout等。</li>
+<li>要有一个单独的测试集，不要在这个测试集上训练网络。</li>
+<li>网络越大，功能就越强，但也更容易过拟合。 不要试图从10000个示例中学习一百万个参数，参数&gt;样例=麻烦。</li>
+<li>数据越多越好，因为它有助于防止过度拟合。</li>
+<li>训练要经过多个epoch(算法遍历训练数据集)。</li>
+<li>每个epoch之后，评估测试集表现，以了解何时停止(要提前停止)。</li>
+<li>学习速率是最重要的超参数。</li>
+<li>总体而言，堆叠层会有帮助。</li>
+<li>对于LSTM，可以使用softsign(而不是softmax)函数替代双曲正切函数，它更快，更不容易饱和( 梯度大概为0 )。</li>
+<li>更新器：RMSProp、AdaGrad或Nesterovs通常是不错的选择。AdaGrad也会降低学习率，这有时会有所帮助。</li>
+<li>记住，要将数据标准化、MSE损失函数+恒等激活函数用于回归、Xavier权重初始化</li>
+</ul>
+<h2 id="reference">Reference</h2>
+<p><a href="https://zhuanlan.zhihu.com/p/30844905" target="_blank" rel="noopener">一文搞懂RNN（循环神经网络）基础篇 - 忆臻的文章 - 知乎</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/55671493" target="_blank" rel="noopener">循环神经网络（RNN）和LSTM初学者指南 | 入门资料 - 量子位的文章 - 知乎</a></p>
+<p><a href="https://www.zhihu.com/question/34681168/answer/84061846" target="_blank" rel="noopener">CNN（卷积神经网络）、RNN（循环神经网络）、DNN（深度神经网络）的内部网络结构有什么区别？ - 科言君的回答 - 知乎</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/14/t2-语言模型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bowen Peng">
+      <meta itemprop="description" content="something about myself and my career development.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boven's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/02/14/t2-语言模型/" class="post-title-link" itemprop="url">t2-语言模型</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-02-14 21:34:50 / 修改时间：21:37:02" itemprop="dateCreated datePublished" datetime="2020-02-14T21:34:50+08:00">2020-02-14</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/动手深度学习/" itemprop="url" rel="index"><span itemprop="name">动手深度学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="语言模型">语言模型</h2>
+<h3 id="n-gram语言模型">N-gram语言模型</h3>
+<p>当序列长度增加时，计算和存储多个词共同出现的概率的复杂度会呈指数级增加。 元语法通过马尔可夫假设（虽然并不一定成立）简化了语言模型的计算。这里的马尔可夫假设是指一个词的出现只与前面<span class="math inline">\(n\)</span>个词相关 ， 即<span class="math inline">\(n\)</span>阶马尔可夫链 （ Markov chain of order ） 。 如果 ，那么有<span class="math inline">\(P(w_3 | w_1, w_2) = P(w_3 | w_2)\)</span>。如果基于 阶⻢马尔可夫链，我们可以将语⾔言模型改写为: <span class="math display">\[
+P(w_1, w_2, ..., w_r) \approx \prod_{t=1}^{T} P(w_t | w_{t-(n-1)},...,w_{t-1})
+\]</span> 当 分别为1、2和3时，我们将其分别称作一元语法（unigram）、二元语法（bigram）和三元语法（trigram）。例如，长度为4的序列在一元语法、二元语法和三元语法中的概率分别为: <span class="math display">\[
+P(w_1, w_2, w_3, w_4) = P(w_1)P(w_2)P(w_3)P(w_4),\\
+P(w_1, w_2, w_3, w_4) = P(w_1)P(w_2|w_1)P(w_3|w_2)P(w_4|w_3)\\
+P(w_1, w_2, w_3, w_4) = P(w_1)P(w_2|w_1)P(w_3|w_1,w_2)P(w_4|w_2, W_3)\\
+\]</span></p>
+<ul>
+<li><strong>n-gram模型用于评估语句是否</strong></li>
+<li><strong>二元语言模型判断句子是否合理</strong></li>
+<li><strong>N-gram模型的一个常见应用</strong>:
+<ul>
+<li>搜索引擎（Google或者Baidu）、或者输入法的猜想或者提示。你在用谷歌时，输入一个或几个词，<strong>搜索框通常会以下拉菜单的形式给出几个像下图一样的备选，这些备选其实是在猜想你想要搜索的那个词串。</strong></li>
+</ul></li>
+</ul>
+<h2 id="reference">Reference</h2>
+<p><a href="https://zhuanlan.zhihu.com/p/32829048" target="_blank" rel="noopener">自然语言处理中N-Gram模型介绍 - 忆臻的文章 - 知乎</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/14/t2-文本预处理/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bowen Peng">
+      <meta itemprop="description" content="something about myself and my career development.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boven's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/02/14/t2-文本预处理/" class="post-title-link" itemprop="url">t2-文本预处理</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-02-14 21:34:25 / 修改时间：21:37:09" itemprop="dateCreated datePublished" datetime="2020-02-14T21:34:25+08:00">2020-02-14</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/动手深度学习/" itemprop="url" rel="index"><span itemprop="name">动手深度学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="文本预处理">文本预处理</h2>
+<h3 id="常用得package有">常用得package有：</h3>
+<ul>
+<li>jiaba分词</li>
+<li>NLTK</li>
+<li>spaCy</li>
+<li>genism</li>
+</ul>
+<h3 id="大致流程">大致流程：</h3>
+<ol type="1">
+<li>去除非文本部分：利用正则表达式等</li>
+<li>分词</li>
+<li>去掉停用词</li>
+<li>英文单词还需要：
+<ol type="1">
+<li>词干提取：stemming</li>
+<li>词型还原：lemmazitation</li>
+<li>大小写转换</li>
+</ol></li>
+<li>特征处理：
+<ul>
+<li><strong>Tf-idf（Term Frequency-Inverse Document Frequency）</strong></li>
+<li><strong>N-gram语言模型</strong></li>
+<li><strong>Word2vec词向量</strong>
+<ul>
+<li><strong>CBOW（Continuous Bag-Of-Words）</strong>：利用词的上下文预测当前的词。</li>
+<li><strong>Skip-Gram</strong>：利用当前的词来预测上下文</li>
+</ul></li>
+</ul></li>
+</ol>
+<h2 id="reference">Reference</h2>
+<p><a href="https://zhuanlan.zhihu.com/p/53277723" target="_blank" rel="noopener">NLP入门-- 文本预处理Pre-processing - Lily的文章 - 知乎</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/76957566" target="_blank" rel="noopener">独家 | 关于NLP和机器学习之文本处理的你需要知道的一切 - 清华大学数据科学研究院的文章 - 知乎</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/14/t1-MLP/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bowen Peng">
+      <meta itemprop="description" content="something about myself and my career development.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boven's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/02/14/t1-MLP/" class="post-title-link" itemprop="url">t1_MLP.md</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-02-14 21:27:58 / 修改时间：21:38:13" itemprop="dateCreated datePublished" datetime="2020-02-14T21:27:58+08:00">2020-02-14</time>
             
 
             
@@ -481,6 +1181,8 @@
 <p>多层感知机就是含有至少一个隐藏层的由全连接层组成的神经网络，且每个隐藏层的输出通过激活函数进行变换。多层感知机的层数和各隐藏层中隐藏单元个数都是超参数。</p>
 <h3 id="定义模型">定义模型</h3>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">num_inputs, num_outputs, num_hiddens = <span class="number">784</span>, <span class="number">10</span>, <span class="number">256</span></span><br><span class="line"></span><br><span class="line">net = nn.Sequential(</span><br><span class="line">        d2l.FlattenLayer(),</span><br><span class="line">        nn.Linear(num_inputs, num_hiddens),</span><br><span class="line">        nn.ReLU(),</span><br><span class="line">        nn.Linear(num_hiddens, num_outputs),</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> params <span class="keyword">in</span> net.parameters():</span><br><span class="line">	init.normal_(params, mean=<span class="number">0</span>, std=<span class="number">0.01</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="reference">Reference</h2>
+<p><a href="https://zhuanlan.zhihu.com/p/23937778" target="_blank" rel="noopener">神经网络快速入门：什么是多层感知器和反向传播？ - 机器之心的文章 - 知乎</a></p>
 
           
         
@@ -537,7 +1239,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/14/t1-softmax-md/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/14/t1-softmax/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bowen Peng">
@@ -557,7 +1259,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/02/14/t1-softmax-md/" class="post-title-link" itemprop="url">t1_softmax.md</a>
+                <a href="/2020/02/14/t1-softmax/" class="post-title-link" itemprop="url">t1_softmax.md</a>
               
             
           </h1>
@@ -708,7 +1410,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/14/t1-linear-regression-md/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/14/t1-linear-regression/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bowen Peng">
@@ -728,7 +1430,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/02/14/t1-linear-regression-md/" class="post-title-link" itemprop="url">t1t1_linear_regression.md</a>
+                <a href="/2020/02/14/t1-linear-regression/" class="post-title-link" itemprop="url">t1t1_linear_regression.md</a>
               
             
           </h1>
@@ -1343,614 +2045,11 @@ LCP(S_1 ...S_n) = LCP(LCP(LCP(S_1, S_2), S_3), ...Sn)
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/28/leetcode题解-78-子集/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bowen Peng">
-      <meta itemprop="description" content="something about myself and my career development.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Boven's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/01/28/leetcode题解-78-子集/" class="post-title-link" itemprop="url">leetcode题解-78-子集</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-01-28 09:49:14 / 修改时间：09:49:15" itemprop="dateCreated datePublished" datetime="2020-01-28T09:49:14+08:00">2020-01-28</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/27/leetcode题解-237-删除链表中的节点/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bowen Peng">
-      <meta itemprop="description" content="something about myself and my career development.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Boven's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/01/27/leetcode题解-237-删除链表中的节点/" class="post-title-link" itemprop="url">leetcode题解-237-删除链表中的节点</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-01-27 21:45:37 / 修改时间：21:50:33" itemprop="dateCreated datePublished" datetime="2020-01-27T21:45:37+08:00">2020-01-27</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="https://leetcode-cn.com/problems/delete-node-in-a-linked-list/" target="_blank" rel="noopener">题目</a></h2>
-<h3 id="leetcode官方-way"><a href="https://leetcode-cn.com/problems/delete-node-in-a-linked-list/solution/shan-chu-lian-biao-zhong-de-jie-dian-by-leetcode/" target="_blank" rel="noopener">Leetcode官方 way</a></h3>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">deleteNode</span><span class="params">(ListNode* node)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        node-&gt;val = node-&gt;next-&gt;val;</span><br><span class="line">        node-&gt;next = node-&gt;next-&gt;next;    </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="reference">Reference</h2>
-<p>https://leetcode-cn.com/problems/delete-node-in-a-linked-list/solution/shan-chu-lian-biao-zhong-de-jie-dian-by-leetcode/</p>
-<h2 id="总结">总结</h2>
-<ul>
-<li>提供了一个新的删除节点的思路：
-<ul>
-<li><strong>在不考虑末尾节点的时候！！</strong></li>
-<li>跟下一个节点交换值之后，然后调整<code>next</code>指针为<code>next-&gt;next</code></li>
-</ul></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/23/leetcode题解-242-有效的字母异位词/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bowen Peng">
-      <meta itemprop="description" content="something about myself and my career development.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Boven's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/01/23/leetcode题解-242-有效的字母异位词/" class="post-title-link" itemprop="url">leetcode题解-242-有效的字母异位词</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-01-23 22:35:25 / 修改时间：23:11:41" itemprop="dateCreated datePublished" datetime="2020-01-23T22:35:25+08:00">2020-01-23</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="https://leetcode-cn.com/problems/valid-anagram/" target="_blank" rel="noopener">题目</a></h2>
-<h3 id="my-way">My way</h3>
-<h4 id="c实现">c++实现</h4>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isAnagram</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> t)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt; m;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (s.size() &lt; t.size())    swap(s, t);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; it : s)</span><br><span class="line">        &#123;</span><br><span class="line">            --m[it];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; it: t)</span><br><span class="line">        &#123;</span><br><span class="line">            ++m[it];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; it: m)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (it.second != <span class="number">0</span>)  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>利用哈希表构成一个<strong>计数器</strong>的效果。</li>
-<li>利用<code>ctor</code>初始化<code>int</code>变量默认值是0，
-<ul>
-<li>在<code>s</code>里出现过，则自减1；</li>
-<li>在<code>t</code>里出现过，则自增1；</li>
-</ul></li>
-<li>要注意，<code>s</code>, <code>t</code>字符串的大小可能不一样。所以需要在计数前，交换一次。</li>
-</ul>
-<h3 id="官方-way"><a href="https://leetcode-cn.com/problems/valid-anagram/solution/you-xiao-de-zi-mu-yi-wei-ci-by-leetcode/" target="_blank" rel="noopener">官方 way</a></h3>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isAnagram</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (s.size() != t.size())   <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> counter[<span class="number">26</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; s.size(); ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            ++counter[s[i] - <span class="string">'a'</span>];</span><br><span class="line">            --counter[t[i] - <span class="string">'a'</span>];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; it: counter)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (it != <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>利用一个<code>int</code>数组构造出一个计数器</li>
-</ul>
-<h2 id="references">References</h2>
-<p>https://leetcode-cn.com/problems/valid-anagram/solution/you-xiao-de-zi-mu-yi-wei-ci-by-leetcode/</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/19/leetcode题解-84-柱状图中最大的矩形/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bowen Peng">
-      <meta itemprop="description" content="something about myself and my career development.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Boven's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/01/19/leetcode题解-84-柱状图中最大的矩形/" class="post-title-link" itemprop="url">leetcode题解-84-柱状图中最大的矩形</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-01-19 18:25:12 / 修改时间：18:25:13" itemprop="dateCreated datePublished" datetime="2020-01-19T18:25:12+08:00">2020-01-19</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/11/">11</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1992,7 +2091,7 @@ LCP(S_1 ...S_n) = LCP(LCP(LCP(S_1, S_2), S_3), ...Sn)
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">110</span>
+                    <span class="site-state-item-count">114</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
