@@ -1,6 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>pytorch_APIS</title>
+    <url>/2020/02/16/pytorch-APIS/</url>
+    <content><![CDATA[<h2 id="梯度相关">1. 梯度相关</h2>
+<p>因为<code>PyTorch</code>存在梯度累加机制。</p>
+<p>好处：</p>
+<ul>
+<li>当内存不够使用更大的<code>batchsize</code>时，可以使用多次计算较小的<code>batchsize</code>的梯度平均值来替代。</li>
+</ul>
+<p>坏处：</p>
+<ul>
+<li>每次都需要对梯度进行清零</li>
+</ul>
+<p><a href="https://discuss.pytorch.org/t/how-are-optimizer-step-and-loss-backward-related/7350" target="_blank" rel="noopener">how are optimizer.step() and loss.backward() realted</a></p>
+<h2 id="optimizer-related">2. optimizer related</h2>
+<p>优化器optimizer，是根据神经网络的反向传播梯度信息来更新网络的参数，以达到降低loss的作用。</p>
+<p>所以要使optimizer有用，需要如下两点：</p>
+<ol type="1">
+<li><p><code>optimizer</code>需要知道当前模型(神经网络)的参数；所以再训练之前，需要将对应模型的参数放入<code>optimizer</code>之中去。类似如下代码：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">optimizer = Adam(model.parameter(), lr=train.lr)</span><br></pre></td></tr></table></figure></li>
+<li><p><code>optimizer</code>需要知道反向传播的梯度信息。</p>
+<p><code>optimizer</code>更新参数空间需要基于反向梯度，因此，当调用<code>optimizer.step()</code>的时候应当是<code>loss.backward()</code>的时候.</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">loss.backward()</span><br><span class="line">optimizer.step()</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="optimizer.step-和-scheduler.step异同"><code>optimizer.step()</code> 和 <code>scheduler.step()</code>异同</h3>
+<ul>
+<li><p><code>optimizer.step()</code> 只放在<code>mini-batch</code>之中。而不是<code>epoch</code>训练中，这是因为现在的<code>mini-batch</code>训练模式是假定每一个训练集就只有<code>mini-batch</code>这样大，因此实际上可以将每一次<code>mini-batch</code>看做是一次训练，一次训练更新一次参数空间，因而<code>optimizer.step()</code>放在这里。</p></li>
+<li><p><code>scheduler.step()</code>按照<code>Pytorch</code>的定义是用来更新优化器的学习率的，一般是按照<code>epoch</code>为单位进行更换，即多少个<code>epoch</code>后更换一次学习率，因而<code>scheduler.step()</code>放在<code>epoch</code>这个大循环下。</p>
+<p><code>scheduler.step()</code>的参数<code>step_size</code>表示<code>scheduler.step()</code>每调用<code>step_size</code>次，对应的学习率就会按照策略调整一次。所以如果<code>scheduler.step()</code>是放在<code>mini-batch</code>里面，那么<code>step_size</code>指的是经过这么多次迭代，学习率改变一次。</p></li>
+</ul>
+<p><a href="https://blog.csdn.net/xiaoxifei/article/details/87797935" target="_blank" rel="noopener">Pytorch optimizer.step() 和loss.backward()和scheduler.step()的关系与区别</a></p>
+<h2 id="tensor-related">3. Tensor related</h2>
+<h4 id="scatter_input-dim-index-src-tensor">scatter_(<em>input, dim, index, src</em>) → Tensor</h4>
+<p>将<code>src</code>中的所有值按照<code>index</code>确定的索引写入本tensor中。其中索引是根据给定的dimension，dim按照<code>gather()</code>描述的规则来确定。</p>
+<p>注意，index的值必须是在_0_到_(self.size(dim)-1)_之间，</p>
+<p><strong>参数：</strong> - <strong>input</strong> (<em>Tensor</em>)-源tensor - <strong>dim</strong> (<em>int</em>)-索引的轴向 - <strong>index</strong> (<em>LongTensor</em>)-散射元素的索引指数 - <strong>src</strong> (<em>Tensor or float</em>)-散射的源元素</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>x = torch.rand(<span class="number">2</span>, <span class="number">5</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>x</span><br><span class="line"></span><br><span class="line"> <span class="number">0.4319</span>  <span class="number">0.6500</span>  <span class="number">0.4080</span>  <span class="number">0.8760</span>  <span class="number">0.2355</span></span><br><span class="line"> <span class="number">0.2609</span>  <span class="number">0.4711</span>  <span class="number">0.8486</span>  <span class="number">0.8573</span>  <span class="number">0.1029</span></span><br><span class="line">[torch.FloatTensor of size <span class="number">2</span>x5]</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>torch.zeros(<span class="number">3</span>, <span class="number">5</span>).scatter_(<span class="number">0</span>, torch.LongTensor([[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">0</span>], [<span class="number">2</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>]]), x)</span><br><span class="line"></span><br><span class="line"> <span class="number">0.4319</span>  <span class="number">0.4711</span>  <span class="number">0.8486</span>  <span class="number">0.8760</span>  <span class="number">0.2355</span></span><br><span class="line"> <span class="number">0.0000</span>  <span class="number">0.6500</span>  <span class="number">0.0000</span>  <span class="number">0.8573</span>  <span class="number">0.0000</span></span><br><span class="line"> <span class="number">0.2609</span>  <span class="number">0.0000</span>  <span class="number">0.4080</span>  <span class="number">0.0000</span>  <span class="number">0.1029</span></span><br><span class="line">[torch.FloatTensor of size <span class="number">3</span>x5]</span><br><span class="line"></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>z = torch.zeros(<span class="number">2</span>, <span class="number">4</span>).scatter_(<span class="number">1</span>, torch.LongTensor([[<span class="number">2</span>], [<span class="number">3</span>]]), <span class="number">1.23</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>z</span><br><span class="line"></span><br><span class="line"> <span class="number">0.0000</span>  <span class="number">0.0000</span>  <span class="number">1.2300</span>  <span class="number">0.0000</span></span><br><span class="line"> <span class="number">0.0000</span>  <span class="number">0.0000</span>  <span class="number">0.0000</span>  <span class="number">1.2300</span></span><br><span class="line">[torch.FloatTensor of size <span class="number">2</span>x4]</span><br></pre></td></tr></table></figure>
+<h2 id="device-related">4. Device related</h2>
+<h3 id="pytorch-0.4.0代码与0.3.x上的变化">Pytorch 0.4.0代码与0.3.x上的变化。</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 定义device，是否使用GPU，依据计算机配置自动会选择</span></span><br><span class="line">device = torch.device(<span class="string">"cuda"</span> <span class="keyword">if</span> torch.cuda.is_available() <span class="keyword">else</span> <span class="string">"cpu"</span>)</span><br><span class="line"><span class="comment">#用.to(device)来决定模型使用GPU还是CPU</span></span><br><span class="line">model = CNN().to(device)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 训练</span></span><br><span class="line">total_loss = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> input, target <span class="keyword">in</span> train_loader:</span><br><span class="line">	<span class="comment">#不需要转化为Variable，直接用Tensors作为输入，用.to(device)来决定使用GPU还是CPU</span></span><br><span class="line">    input, target = input.to(device), target.to(device)</span><br><span class="line">    hidden = input.new_zeros(*h_shape)  </span><br><span class="line">   </span><br><span class="line">	<span class="comment"># 获得loss值，也与老版本不同</span></span><br><span class="line">    total_loss += loss.item()          </span><br><span class="line"></span><br><span class="line"><span class="comment"># 测试</span></span><br><span class="line"><span class="keyword">with</span> torch.no_grad():      <span class="comment"># 测试时不会进行梯度计算，节约内存</span></span><br><span class="line">    <span class="keyword">for</span> input, target <span class="keyword">in</span> test_loader:</span><br></pre></td></tr></table></figure>
+<p><a href="https://blog.csdn.net/sunqiande88/article/details/80172391" target="_blank" rel="noopener">PyTorch 0.4 迁移指南（与之前版本编程上的不同点）</a></p>
+]]></content>
+      <categories>
+        <category>动手深度学习</category>
+      </categories>
+  </entry>
+  <entry>
     <title>t2-RNN基础</title>
     <url>/2020/02/14/t2-RNN%E5%9F%BA%E7%A1%80/</url>
     <content><![CDATA[<h2 id="循环神经网络">循环神经网络</h2>
@@ -107,7 +153,7 @@ P(w_1, w_2, w_3, w_4) = P(w_1)P(w_2|w_1)P(w_3|w_1,w_2)P(w_4|w_2, W_3)\\
   </entry>
   <entry>
     <title>t1_MLP.md</title>
-    <url>/2020/02/14/t1-MLP-md/</url>
+    <url>/2020/02/14/t1-MLP/</url>
     <content><![CDATA[<h2 id="mlp">MLP</h2>
 <p>多层感知机就是含有至少一个隐藏层的由全连接层组成的神经网络，且每个隐藏层的输出通过激活函数进行变换。多层感知机的层数和各隐藏层中隐藏单元个数都是超参数。</p>
 <h3 id="定义模型">定义模型</h3>
@@ -121,7 +167,7 @@ P(w_1, w_2, w_3, w_4) = P(w_1)P(w_2|w_1)P(w_3|w_1,w_2)P(w_4|w_2, W_3)\\
   </entry>
   <entry>
     <title>t1_MLP.md</title>
-    <url>/2020/02/14/t1-MLP/</url>
+    <url>/2020/02/14/t1-MLP-md/</url>
     <content><![CDATA[<h2 id="mlp">MLP</h2>
 <p>多层感知机就是含有至少一个隐藏层的由全连接层组成的神经网络，且每个隐藏层的输出通过激活函数进行变换。多层感知机的层数和各隐藏层中隐藏单元个数都是超参数。</p>
 <h3 id="定义模型">定义模型</h3>
@@ -1359,8 +1405,8 @@ LCP(S_1 ...S_n) = LCP(LCP(LCP(S_1, S_2), S_3), ...Sn)
         <tag>树</tag>
         <tag>树的遍历</tag>
         <tag>stringstream</tag>
-        <tag>字符串</tag>
         <tag>序列化</tag>
+        <tag>字符串</tag>
       </tags>
   </entry>
   <entry>
@@ -2205,8 +2251,8 @@ dp[i][j] = max(dp[i][j],\ nums[i]*nums[k]*nums[j] + dp[i][k] + dp[k][j]), \text{
         <tag>×</tag>
         <tag>leetcode</tag>
         <tag>DP</tag>
-        <tag>2维DP-to-1维DP</tag>
         <tag>组合数学</tag>
+        <tag>2维DP-to-1维DP</tag>
         <tag>数组</tag>
       </tags>
   </entry>
@@ -2268,8 +2314,8 @@ dp[i][j] =
       <tags>
         <tag>×</tag>
         <tag>leetcode</tag>
-        <tag>递归</tag>
         <tag>DP</tag>
+        <tag>递归</tag>
         <tag>数组</tag>
       </tags>
   </entry>
