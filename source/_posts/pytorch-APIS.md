@@ -91,6 +91,36 @@ tags:
 
 
 
+### tensor 类型转换
+
+[torch.tensor.to](https://pytorch.org/docs/stable/tensors.html#torch.Tensor.to)
+
+[PyTorch中Tensor的类型转换](https://www.cnblogs.com/sbj123456789/p/10839020.html)
+
+
+
+### 数据拼接
+
+#### `torch.stack`
+
+![](https://img-blog.csdnimg.cn/20190709105547591.png)
+
+- `dim=0`, 三个元素直接按序放在一起
+
+  ![](https://img-blog.csdnimg.cn/20190709105814512.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2V4Y2VsbGVudF9zdW4=,size_16,color_FFFFFF,t_70)
+
+- `dim=1`, 
+
+  ![](https://img-blog.csdnimg.cn/20190709105948581.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2V4Y2VsbGVudF9zdW4=,size_16,color_FFFFFF,t_70)
+
+- `dim=2`,
+
+  ![](https://img-blog.csdnimg.cn/20190709105948581.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2V4Y2VsbGVudF9zdW4=,size_16,color_FFFFFF,t_70)
+
+
+
+[torch.stack() 和 torch.cat()](https://blog.csdn.net/excellent_sun/article/details/95175823)
+
 ## 4. Device related
 
 ### Pytorch 0.4.0代码与0.3.x上的变化。
