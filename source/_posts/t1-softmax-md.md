@@ -1,5 +1,5 @@
 ---
-title: t1_softmax.md
+title: t1_softmax
 mathjax: true
 date: 2020-02-14 21:27:42
 categories:

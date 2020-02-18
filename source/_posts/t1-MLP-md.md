@@ -1,5 +1,5 @@
 ---
-title: t1_MLP.md
+title: t1_MLP
 mathjax: true
 date: 2020-02-14 21:27:58
 categories:

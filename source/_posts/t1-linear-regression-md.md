@@ -1,5 +1,5 @@
 ---
-title: t1t1_linear_regression.md
+title: t1_linear_regression
 mathjax: true
 date: 2020-02-14 21:26:12
 categories:
