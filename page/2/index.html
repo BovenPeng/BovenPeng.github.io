@@ -373,6 +373,440 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/14/t1-linear-regression-md/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bowen Peng">
+      <meta itemprop="description" content="something about myself and my career development.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boven's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/02/14/t1-linear-regression-md/" class="post-title-link" itemprop="url">t1_linear_regression</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-02-14 21:26:12" itemprop="dateCreated datePublished" datetime="2020-02-14T21:26:12+08:00">2020-02-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-02-19 02:00:06" itemprop="dateModified" datetime="2020-02-19T02:00:06+08:00">2020-02-19</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/动手深度学习/" itemprop="url" rel="index"><span itemprop="name">动手深度学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="线性回归">线性回归</h2>
+<h3 id="表达式表示">表达式表示</h3>
+<p><span class="math display">\[
+\hat{y} = Xw + b \\
+其中模型输出 \hat{y} \in R^{n+1}，批量数据样本特征X\in R^{n  d}, 权重w \in R^{d*1}, 偏差b\in R.\\
+\]</span></p>
+<p><span class="math display">\[
+批量数据样本标签 y \in R^{n *1}  。设模型参数 \theta = [w_1, w_2, b]^T  ，我们可以重写损失函数为:\\
+l(\theta) = \frac{1}{2n}(\hat{y} - y)^T(\hat{y} - y)\\
+\]</span></p>
+<p><span class="math display">\[
+小批量量随机梯度下降的迭代步骤将相应地改写为:\\
+\theta \leftarrow \theta - \frac{\eta}{|\Beta|}\sum_{i \in \Beta} \nabla_\theta l^{(i)}(\theta)
+\]</span></p>
+<h3 id="定义模型">定义模型</h3>
+<h4 id="继承nn.module">继承<code>nn.Module</code></h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LinearNet</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, n_feature)</span>:</span></span><br><span class="line">		super(LinearNet, self).__init__()</span><br><span class="line">		self.linear = nn.Linear(n_feature, <span class="number">1</span>)</span><br><span class="line">	<span class="comment"># forward 定义前向传播</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">		y = self.linear(x)</span><br><span class="line">		<span class="keyword">return</span> y</span><br><span class="line">    </span><br><span class="line">net = LinearNet(num_inputs)</span><br><span class="line">print(net) <span class="comment"># 使⽤用print可以打印出⽹网络的结构</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># output</span></span><br><span class="line">LinearNet(</span><br><span class="line">(linear): Linear(in_features=<span class="number">2</span>, out_features=<span class="number">1</span>, bias=<span class="literal">True</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="用nn.sequential将网络层按照传入sequential的顺序加入到计算图中">用<code>nn.sequential</code>将网络层按照传入<code>sequential</code>的顺序加入到计算图中</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 写法⼀一</span></span><br><span class="line">net = nn.Sequential(</span><br><span class="line">	nn.Linear(num_inputs, <span class="number">1</span>)</span><br><span class="line"><span class="comment"># 此处还可以传⼊入其他层</span></span><br><span class="line">)</span><br><span class="line"><span class="comment"># 写法⼆二</span></span><br><span class="line">net = nn.Sequential()</span><br><span class="line">net.add_module(<span class="string">'linear'</span>, nn.Linear(num_inputs, <span class="number">1</span>))</span><br><span class="line"><span class="comment"># net.add_module ......</span></span><br><span class="line"><span class="comment"># 写法三</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> OrderedDict</span><br><span class="line">net = nn.Sequential(OrderedDict([</span><br><span class="line">		(<span class="string">'linear'</span>, nn.Linear(num_inputs, <span class="number">1</span>))</span><br><span class="line">		<span class="comment"># ......</span></span><br><span class="line">	]))</span><br><span class="line">print(net)</span><br><span class="line">print(net[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># output</span></span><br><span class="line">Sequential(</span><br><span class="line">(linear): Linear(in_features=<span class="number">2</span>, out_features=<span class="number">1</span>, bias=<span class="literal">True</span>)</span><br><span class="line">)</span><br><span class="line">Linear(in_features=<span class="number">2</span>, out_features=<span class="number">1</span>, bias=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="初始化模型参数">初始化模型参数</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torch.nn <span class="keyword">import</span> init</span><br><span class="line">init.normal_(net[<span class="number">0</span>].weight, mean=<span class="number">0</span>, std=<span class="number">0.01</span>)</span><br><span class="line">init.constant_(net[<span class="number">0</span>].bias, val=<span class="number">0</span>) <span class="comment"># 也可以直接修改bias的data:</span></span><br><span class="line">net[<span class="number">0</span>].bias.data.fill_(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="定义损失函数">定义损失函数</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">loss = nn.MSELoss()</span><br></pre></td></tr></table></figure>
+<h3 id="定义优化算法">定义优化算法</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line">optimizer = optim.SGD(net.parameters(), lr=<span class="number">0.03</span>)</span><br><span class="line">print(optimizer)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#output</span></span><br><span class="line">SGD (</span><br><span class="line">    Parameter Group <span class="number">0</span></span><br><span class="line">    dampening: <span class="number">0</span></span><br><span class="line">    lr: <span class="number">0.03</span></span><br><span class="line">    momentum: <span class="number">0</span></span><br><span class="line">    nesterov: <span class="literal">False</span></span><br><span class="line">    weight_decay: <span class="number">0</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h4 id="调整学习率">调整学习率</h4>
+<h5 id="为不同子网络调整学习率常用于finetuning时">1. 为不同子网络调整学习率，常用于finetuning时</h5>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">optimizer =optim.SGD([</span><br><span class="line">                    <span class="comment"># 如果对某个参数不不指定学习率，就使⽤用最外层的默认学习率</span></span><br><span class="line">                    &#123;<span class="string">'params'</span>: net.subnet1.parameters()&#125;, <span class="comment"># lr=0.03</span></span><br><span class="line">                    &#123;<span class="string">'params'</span>: net.subnet2.parameters(), <span class="string">'lr'</span>: <span class="number">0.01</span>&#125;</span><br><span class="line">                ], lr=<span class="number">0.03</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="修改optimizer.param_groups中的学习率">2. 修改<code>optimizer.param_groups</code>中的学习率</h5>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 调整学习率</span></span><br><span class="line"><span class="keyword">for</span> param_group <span class="keyword">in</span> optimizer.param_groups:</span><br><span class="line">param_group[<span class="string">'lr'</span>] *= <span class="number">0.1</span> <span class="comment"># 学习率为之前的0.1倍</span></span><br></pre></td></tr></table></figure>
+<h5 id="新建优化器">3. 新建优化器</h5>
+<p>由于optimizer十分轻量级，构建开销很小，故而可以构建新的optimizer。但是后者对于使用动量的优化器器（如Adam），会丢失动量等状态信息，可能会造成损失函数的收敛出现震荡等情况。</p>
+<h3 id="小结">小结</h3>
+<ul>
+<li><code>pytorch</code>各个模块的作用:
+<ul>
+<li><code>torch.utils.data</code>模块提供了了有关数据处理理的⼯工具，</li>
+<li><code>torch.nn</code>模块定义了了⼤大量量神经⽹网络的层，</li>
+<li><code>torch.nn.init</code>模块定义了了各种初始化方法，</li>
+<li><code>torch.optim</code> 模块提供了了模型参数初始化的各种方法</li>
+</ul></li>
+</ul>
+<h2 id="references">References</h2>
+<p><a href="https://www.jianshu.com/p/8aa646fad1c5" target="_blank" rel="noopener">latex 导数相关符号</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/33899560" target="_blank" rel="noopener">最小二乘法<em>线性回归</em>：矩阵视角</a></p>
+<h2 id="api">API</h2>
+<p><a href="https://pytorch.org/docs/stable/_modules/torch/utils/data/dataloader.html" target="_blank" rel="noopener">torch.utils.data.dataloader</a></p>
+<p><a href="https://stackoverflow.com/questions/41924453/pytorch-how-to-use-dataloaders-for-custom-datasets" target="_blank" rel="noopener">PyTorch: How to use DataLoaders for custom Datasets</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/14/t1-linear-regression/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bowen Peng">
+      <meta itemprop="description" content="something about myself and my career development.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boven's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/02/14/t1-linear-regression/" class="post-title-link" itemprop="url">t1_linear_regression.md</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-02-14 21:26:12 / 修改时间：21:44:24" itemprop="dateCreated datePublished" datetime="2020-02-14T21:26:12+08:00">2020-02-14</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/动手深度学习/" itemprop="url" rel="index"><span itemprop="name">动手深度学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="线性回归">线性回归</h2>
+<h3 id="表达式表示">表达式表示</h3>
+<p><span class="math display">\[
+\hat{y} = Xw + b \\
+其中模型输出 \hat{y} \in R^{n+1}，批量数据样本特征X\in R^{n  d}, 权重w \in R^{d*1}, 偏差b\in R.\\
+\]</span></p>
+<p><span class="math display">\[
+批量数据样本标签 y \in R^{n *1}  。设模型参数 \theta = [w_1, w_2, b]^T  ，我们可以重写损失函数为:\\
+l(\theta) = \frac{1}{2n}(\hat{y} - y)^T(\hat{y} - y)\\
+\]</span></p>
+<p><span class="math display">\[
+小批量量随机梯度下降的迭代步骤将相应地改写为:\\
+\theta \leftarrow \theta - \frac{\eta}{|\Beta|}\sum_{i \in \Beta} \nabla_\theta l^{(i)}(\theta)
+\]</span></p>
+<h3 id="定义模型">定义模型</h3>
+<h4 id="继承nn.module">继承<code>nn.Module</code></h4>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LinearNet</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, n_feature)</span>:</span></span><br><span class="line">		super(LinearNet, self).__init__()</span><br><span class="line">		self.linear = nn.Linear(n_feature, <span class="number">1</span>)</span><br><span class="line">	<span class="comment"># forward 定义前向传播</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">		y = self.linear(x)</span><br><span class="line">		<span class="keyword">return</span> y</span><br><span class="line">    </span><br><span class="line">net = LinearNet(num_inputs)</span><br><span class="line">print(net) <span class="comment"># 使⽤用print可以打印出⽹网络的结构</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># output</span></span><br><span class="line">LinearNet(</span><br><span class="line">(linear): Linear(in_features=<span class="number">2</span>, out_features=<span class="number">1</span>, bias=<span class="literal">True</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="用nn.sequential将网络层按照传入sequential的顺序加入到计算图中">用<code>nn.sequential</code>将网络层按照传入<code>sequential</code>的顺序加入到计算图中</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 写法⼀一</span></span><br><span class="line">net = nn.Sequential(</span><br><span class="line">	nn.Linear(num_inputs, <span class="number">1</span>)</span><br><span class="line"><span class="comment"># 此处还可以传⼊入其他层</span></span><br><span class="line">)</span><br><span class="line"><span class="comment"># 写法⼆二</span></span><br><span class="line">net = nn.Sequential()</span><br><span class="line">net.add_module(<span class="string">'linear'</span>, nn.Linear(num_inputs, <span class="number">1</span>))</span><br><span class="line"><span class="comment"># net.add_module ......</span></span><br><span class="line"><span class="comment"># 写法三</span></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> OrderedDict</span><br><span class="line">net = nn.Sequential(OrderedDict([</span><br><span class="line">		(<span class="string">'linear'</span>, nn.Linear(num_inputs, <span class="number">1</span>))</span><br><span class="line">		<span class="comment"># ......</span></span><br><span class="line">	]))</span><br><span class="line">print(net)</span><br><span class="line">print(net[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># output</span></span><br><span class="line">Sequential(</span><br><span class="line">(linear): Linear(in_features=<span class="number">2</span>, out_features=<span class="number">1</span>, bias=<span class="literal">True</span>)</span><br><span class="line">)</span><br><span class="line">Linear(in_features=<span class="number">2</span>, out_features=<span class="number">1</span>, bias=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="初始化模型参数">初始化模型参数</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torch.nn <span class="keyword">import</span> init</span><br><span class="line">init.normal_(net[<span class="number">0</span>].weight, mean=<span class="number">0</span>, std=<span class="number">0.01</span>)</span><br><span class="line">init.constant_(net[<span class="number">0</span>].bias, val=<span class="number">0</span>) <span class="comment"># 也可以直接修改bias的data:</span></span><br><span class="line">net[<span class="number">0</span>].bias.data.fill_(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="定义损失函数">定义损失函数</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">loss = nn.MSELoss()</span><br></pre></td></tr></table></figure>
+<h3 id="定义优化算法">定义优化算法</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.optim <span class="keyword">as</span> optim</span><br><span class="line">optimizer = optim.SGD(net.parameters(), lr=<span class="number">0.03</span>)</span><br><span class="line">print(optimizer)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#output</span></span><br><span class="line">SGD (</span><br><span class="line">    Parameter Group <span class="number">0</span></span><br><span class="line">    dampening: <span class="number">0</span></span><br><span class="line">    lr: <span class="number">0.03</span></span><br><span class="line">    momentum: <span class="number">0</span></span><br><span class="line">    nesterov: <span class="literal">False</span></span><br><span class="line">    weight_decay: <span class="number">0</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h4 id="调整学习率">调整学习率</h4>
+<h5 id="为不同子网络调整学习率常用于finetuning时">1. 为不同子网络调整学习率，常用于finetuning时</h5>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">optimizer =optim.SGD([</span><br><span class="line">                    <span class="comment"># 如果对某个参数不不指定学习率，就使⽤用最外层的默认学习率</span></span><br><span class="line">                    &#123;<span class="string">'params'</span>: net.subnet1.parameters()&#125;, <span class="comment"># lr=0.03</span></span><br><span class="line">                    &#123;<span class="string">'params'</span>: net.subnet2.parameters(), <span class="string">'lr'</span>: <span class="number">0.01</span>&#125;</span><br><span class="line">                ], lr=<span class="number">0.03</span>)</span><br></pre></td></tr></table></figure>
+<h5 id="修改optimizer.param_groups中的学习率">2. 修改<code>optimizer.param_groups</code>中的学习率</h5>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 调整学习率</span></span><br><span class="line"><span class="keyword">for</span> param_group <span class="keyword">in</span> optimizer.param_groups:</span><br><span class="line">param_group[<span class="string">'lr'</span>] *= <span class="number">0.1</span> <span class="comment"># 学习率为之前的0.1倍</span></span><br></pre></td></tr></table></figure>
+<h5 id="新建优化器">3. 新建优化器</h5>
+<p>由于optimizer十分轻量级，构建开销很小，故而可以构建新的optimizer。但是后者对于使用动量的优化器器（如Adam），会丢失动量等状态信息，可能会造成损失函数的收敛出现震荡等情况。</p>
+<h3 id="小结">小结</h3>
+<ul>
+<li><code>pytorch</code>各个模块的作用:
+<ul>
+<li><code>torch.utils.data</code>模块提供了了有关数据处理理的⼯工具，</li>
+<li><code>torch.nn</code>模块定义了了⼤大量量神经⽹网络的层，</li>
+<li><code>torch.nn.init</code>模块定义了了各种初始化方法，</li>
+<li><code>torch.optim</code> 模块提供了了模型参数初始化的各种方法</li>
+</ul></li>
+</ul>
+<h2 id="references">References</h2>
+<p><a href="https://www.jianshu.com/p/8aa646fad1c5" target="_blank" rel="noopener">latex 导数相关符号</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/33899560" target="_blank" rel="noopener">最小二乘法<em>线性回归</em>：矩阵视角</a></p>
+<h2 id="api">API</h2>
+<p><a href="https://pytorch.org/docs/stable/_modules/torch/utils/data/dataloader.html" target="_blank" rel="noopener">torch.utils.data.dataloader</a></p>
+<p><a href="https://stackoverflow.com/questions/41924453/pytorch-how-to-use-dataloaders-for-custom-datasets" target="_blank" rel="noopener">PyTorch: How to use DataLoaders for custom Datasets</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/14/leetcode题解-15-三数之和-md/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -857,12 +1291,24 @@ LCP(S_1 ...S_n) = LCP(LCP(LCP(S_1, S_2), S_3), ...Sn)
                 
               
 
-              <time title="创建时间：2020-01-28 09:49:14 / 修改时间：09:49:15" itemprop="dateCreated datePublished" datetime="2020-01-28T09:49:14+08:00">2020-01-28</time>
+              <time title="创建时间：2020-01-28 09:49:14" itemprop="dateCreated datePublished" datetime="2020-01-28T09:49:14+08:00">2020-01-28</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-02-19 01:37:31" itemprop="dateModified" datetime="2020-02-19T01:37:31+08:00">2020-02-19</time>
               
             
           </span>
@@ -898,7 +1344,22 @@ LCP(S_1 ...S_n) = LCP(LCP(LCP(S_1, S_2), S_3), ...Sn)
       
         
           
-            
+            <h2 id="题目"><a href="https://leetcode-cn.com/problems/subsets/" target="_blank" rel="noopener">题目</a></h2>
+<h3 id="回溯法">回溯法</h3>
+<p>递归实现</p>
+<p>额外空间：<span class="math inline">\(O(n)\)</span></p>
+<p>时间：<span class="math inline">\(O(2^n)\)</span></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; sub;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">findSub</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; tmp, <span class="keyword">const</span> <span class="keyword">int</span> pos)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (pos &gt;= nums.size())</span><br><span class="line">        &#123;</span><br><span class="line">            sub.emplace_back(tmp);</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// add this element</span></span><br><span class="line">        tmp.emplace_back(nums[pos]);</span><br><span class="line">        findSub(nums, tmp, pos + <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// not add this element</span></span><br><span class="line">        tmp.pop_back();</span><br><span class="line">        findSub(nums, tmp, pos + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; subsets(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; tmp&#123;&#125;;</span><br><span class="line">        findSub(nums, tmp, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> sub;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="总结">总结</h2>
+<ul>
+<li><p>使用<code>emplace_back()</code> 而不是 <code>push_back()</code></p></li>
+<li><p>我的理解：带有条件判断的DFS</p>
+<p>回溯法=&gt;递归实现=&gt;自动调栈&lt;=&gt; DFS</p></li>
+</ul>
+<h2 id="references">References</h2>
+<p><a href="https://stackoverflow.com/questions/4303513/push-back-vs-emplace-back" target="_blank" rel="noopener">push_back vs emplace_back</a></p>
+<p><a href="https://stackoverflow.com/questions/32941695/examples-where-stdvectoremplace-back-is-slower-than-stdvectorpush-back" target="_blank" rel="noopener">Examples where std::vector::emplace_back is slower than std::vector::push_back?</a></p>
+<p><a href="https://stackoverflow.com/questions/43596430/push-back-vs-emplace-back-to-a-stdvectorstdstring" target="_blank" rel="noopener">push_back vs emplace_back to a std::vector</a></p>
 
           
         
@@ -1539,332 +2000,6 @@ LCP(S_1 ...S_n) = LCP(LCP(LCP(S_1, S_2), S_3), ...Sn)
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/13/leetcode题解-239-滑动窗口最大值/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bowen Peng">
-      <meta itemprop="description" content="something about myself and my career development.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Boven's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/01/13/leetcode题解-239-滑动窗口最大值/" class="post-title-link" itemprop="url">leetcode题解-239-滑动窗口最大值</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-01-13 19:59:04" itemprop="dateCreated datePublished" datetime="2020-01-13T19:59:04+08:00">2020-01-13</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-01-14 18:19:34" itemprop="dateModified" datetime="2020-01-14T18:19:34+08:00">2020-01-14</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="https://leetcode-cn.com/problems/sliding-window-maximum/" target="_blank" rel="noopener">题目</a></h2>
-<h3 id="labuladong-way"><a href="https://leetcode-cn.com/problems/sliding-window-maximum/solution/dan-diao-dui-lie-by-labuladong/" target="_blank" rel="noopener">labuladong way</a></h3>
-<h4 id="单调队列">单调队列</h4>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MonotonicQueue</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">deque</span>&lt;<span class="keyword">int</span>&gt; data;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (!data.empty() &amp;&amp; data.back() &lt; n) </span><br><span class="line">            data.pop_back();</span><br><span class="line">        data.push_back(n);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> data.front(); &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">pop</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!data.empty() &amp;&amp; data.front() == n)</span><br><span class="line">            data.pop_front();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; maxSlidingWindow(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> k) &#123;</span><br><span class="line">    MonotonicQueue window;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.size(); i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i &lt; k - <span class="number">1</span>) &#123; <span class="comment">//先填满窗口的前 k - 1</span></span><br><span class="line">            window.push(nums[i]);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123; <span class="comment">// 窗口向前滑动</span></span><br><span class="line">            window.push(nums[i]);</span><br><span class="line">            res.push_back(window.max());</span><br><span class="line">            window.pop(nums[i - k + <span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>不同于一般最大单调栈之处:</p>
-<ul>
-<li>只需求滑窗k里面的最大的一个值出来，也就意味着求出最大的max之后，max之前的所有元素可以丢掉了.</li>
-<li>仅在<code>滑窗大小 &lt; k</code>时，元素才需push入栈。</li>
-</ul>
-<h2 id="references">References</h2>
-<p>https://leetcode-cn.com/problems/sliding-window-maximum/solution/dan-diao-dui-lie-by-labuladong/</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/07/leetcode题解-901-股票价格跨度/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bowen Peng">
-      <meta itemprop="description" content="something about myself and my career development.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Boven's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/01/07/leetcode题解-901-股票价格跨度/" class="post-title-link" itemprop="url">leetcode题解-901-股票价格跨度</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-01-07 21:19:38 / 修改时间：21:44:14" itemprop="dateCreated datePublished" datetime="2020-01-07T21:19:38+08:00">2020-01-07</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="https://leetcode-cn.com/problems/online-stock-span/" target="_blank" rel="noopener">题目</a></h2>
-<h4 id="单调递增最大栈">单调递增最大栈</h4>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StockSpanner</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; prices, cache;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">next</span><span class="params">(<span class="keyword">int</span> price)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> w = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (!prices.empty() &amp;&amp; prices.top() &lt;= price)</span><br><span class="line">        &#123;</span><br><span class="line">            w += cache.top();</span><br><span class="line">            prices.pop();</span><br><span class="line">            cache.pop();</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        prices.push(price);</span><br><span class="line">        cache.push(w);</span><br><span class="line">        <span class="keyword">return</span> w;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your StockSpanner object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * StockSpanner* obj = new StockSpanner();</span></span><br><span class="line"><span class="comment"> * int param_1 = obj-&gt;next(price);</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
-<p>单调栈模板的伪代码:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Stack stack = <span class="keyword">new</span> Stack();</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (遍历这个数组)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">while</span> (栈不为空 &amp;&amp; 栈顶元素小于当前元素)</span><br><span class="line">	&#123;</span><br><span class="line">		栈顶元素出栈;</span><br><span class="line">		对这个出栈值做a操作;</span><br><span class="line">	&#125;</span><br><span class="line">	入栈当前数据;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (栈不为空)</span><br><span class="line">&#123;</span><br><span class="line">	栈顶元素出栈;</span><br><span class="line">	对这个出栈值做b操作;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>问题在于，因为单调栈是要把元素都丢弃的，状态都被“折叠”了，我们会丢失长度，所以容易想到，我们需要cache一下之前栈内元素被折叠的长度 cache有很多种方式，可以用hash表等数据结构，也可以用动态规划 但这题的更优解是，使用另一个同步栈来缓存，读者可以根据下面第一版的代码，动笔推导一下折叠过程，就能体会同步栈工作的原理了。</p>
-<p>都说编程旷世难题是取名字，名字取好了，问题也就解决了一半（才怪 我们可以将两个栈分别命名为 prices 和 cache</p>
-<p>然后就有了下面初版的代码</p>
-<p>我们如果发现插入元素满足本身栈的递减需求，则直接返回1，因为该值前一个值是比它大的 如果不满足，则开始折叠，并将栈中，值比它小的所有段落都累计起来，再将自己插入栈中即可</p>
-<h2 id="总结">总结</h2>
-<ul>
-<li>单调栈的题目复杂化方法
-<ul>
-<li>总会在 <strong>对出栈值做a操作</strong> 和 <strong>对出栈值做b操作</strong> 这2个地方进行一些复杂化</li>
-<li>会在 <strong>出栈值出栈的存储方式/处理方式</strong> 进行一些复杂化的操作</li>
-</ul></li>
-</ul>
-<h2 id="reference">Reference</h2>
-<p>https://leetcode-cn.com/problems/online-stock-span/solution/gu-piao-jie-ge-kua-du-by-leetcode/</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1911,7 +2046,7 @@ LCP(S_1 ...S_n) = LCP(LCP(LCP(S_1, S_2), S_3), ...Sn)
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">117</span>
+                    <span class="site-state-item-count">119</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2097,7 +2232,13 @@ LCP(S_1 ...S_n) = LCP(LCP(LCP(S_1, S_2), S_3), ...Sn)
                     
                       
                     
-                    <span class="site-state-item-count">63</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">66</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

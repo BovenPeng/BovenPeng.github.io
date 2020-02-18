@@ -96,17 +96,18 @@
 
 
 
-  <meta name="description" content="动手深度学习各个task总结汇总  task1  linear regression softmax MLP  task2  文本预处理 语言模型 RNN基础">
+  <meta name="description" content="题目 以下2种题解，时间均是\(O(1)\) 哈希表 额外空间: \(O(n)\) 12345678910111213141516171819202122232425262728293031/** * Definition for singly-linked list. * struct ListNode &amp;#123; *     int val; *     ListNode *next">
+<meta name="keywords" content="链表,双指针">
 <meta property="og:type" content="article">
-<meta property="og:title" content="task总结汇总">
-<meta property="og:url" content="http://yoursite.com/2020/02/14/task总结汇总/index.html">
+<meta property="og:title" content="leetcode题解-141-环形链表">
+<meta property="og:url" content="http://yoursite.com/2020/02/19/leetcode题解-141-环形链表/index.html">
 <meta property="og:site_name" content="Boven&#39;s Blog">
-<meta property="og:description" content="动手深度学习各个task总结汇总  task1  linear regression softmax MLP  task2  文本预处理 语言模型 RNN基础">
+<meta property="og:description" content="题目 以下2种题解，时间均是\(O(1)\) 哈希表 额外空间: \(O(n)\) 12345678910111213141516171819202122232425262728293031/** * Definition for singly-linked list. * struct ListNode &amp;#123; *     int val; *     ListNode *next">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-02-14T13:46:12.300Z">
+<meta property="og:updated_time" content="2020-02-18T17:24:49.483Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="task总结汇总">
-<meta name="twitter:description" content="动手深度学习各个task总结汇总  task1  linear regression softmax MLP  task2  文本预处理 语言模型 RNN基础">
+<meta name="twitter:title" content="leetcode题解-141-环形链表">
+<meta name="twitter:description" content="题目 以下2种题解，时间均是\(O(1)\) 哈希表 额外空间: \(O(n)\) 12345678910111213141516171819202122232425262728293031/** * Definition for singly-linked list. * struct ListNode &amp;#123; *     int val; *     ListNode *next">
 
 
 
@@ -114,7 +115,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2020/02/14/task总结汇总/">
+  <link rel="canonical" href="http://yoursite.com/2020/02/19/leetcode题解-141-环形链表/">
 
 
 
@@ -124,7 +125,7 @@
   };
 </script>
 
-  <title>task总结汇总 | Boven's Blog</title>
+  <title>leetcode题解-141-环形链表 | Boven's Blog</title>
   
 
 
@@ -373,7 +374,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/14/task总结汇总/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/19/leetcode题解-141-环形链表/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bowen Peng">
@@ -390,7 +391,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">task总结汇总
+          <h1 class="post-title" itemprop="name headline">leetcode题解-141-环形链表
 
               
             
@@ -416,7 +417,7 @@
                 
               
 
-              <time title="创建时间：2020-02-14 21:35:52 / 修改时间：21:46:12" itemprop="dateCreated datePublished" datetime="2020-02-14T21:35:52+08:00">2020-02-14</time>
+              <time title="创建时间：2020-02-19 01:15:33 / 修改时间：01:24:49" itemprop="dateCreated datePublished" datetime="2020-02-19T01:15:33+08:00">2020-02-19</time>
             
 
             
@@ -426,24 +427,6 @@
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/动手深度学习/" itemprop="url" rel="index"><span itemprop="name">动手深度学习</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -473,19 +456,23 @@
       
 
       
-        <h2 id="动手深度学习各个task总结汇总">动手深度学习各个task总结汇总</h2>
+        <h2 id="题目"><a href="https://leetcode-cn.com/problems/linked-list-cycle/" target="_blank" rel="noopener">题目</a></h2>
+<p>以下2种题解，时间均是<span class="math inline">\(O(1)\)</span></p>
+<h3 id="哈希表">哈希表</h3>
+<p>额外空间: <span class="math inline">\(O(n)\)</span></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">hasCycle</span><span class="params">(ListNode *head)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> p = head;</span><br><span class="line">        <span class="built_in">set</span>&lt;ListNode*&gt; hash;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (p)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (!hash.count(p))</span><br><span class="line">            &#123;</span><br><span class="line">                hash.insert(p);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            p = p-&gt;next;</span><br><span class="line">        &#125;   </span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="双指针法">双指针法</h3>
+<p>额外空间：<span class="math inline">\(O(1)\)</span></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">hasCycle</span><span class="params">(ListNode *head)</span> </span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!head || !head-&gt;next)   <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        ListNode* slowP = head;</span><br><span class="line">        ListNode* fastP = head-&gt;next;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span> (slowP != fastP)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="comment">// CUZ fastP 快些，所以fastP/ fastP-&gt;next为null之后，就说明 无环了</span></span><br><span class="line">            <span class="keyword">if</span> (!fastP || !fastP-&gt;next) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            </span><br><span class="line">            slowP = slowP-&gt;next;</span><br><span class="line">            fastP = fastP-&gt;next-&gt;next;        </span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="总结">总结</h2>
 <ul>
-<li><strong>task1</strong>
+<li><p><strong>双指针法</strong></p>
 <ul>
-<li><a href="https://bovenpeng.github.io/2020/02/14/t1-linear-regression-md/" target="_blank" rel="noopener">linear regression</a></li>
-<li><a href="https://bovenpeng.github.io/2020/02/14/t1-softmax-md/" target="_blank" rel="noopener">softmax</a></li>
-<li><a href="https://bovenpeng.github.io/2020/02/14/t1-MLP-md/" target="_blank" rel="noopener">MLP</a></li>
-</ul></li>
-<li><strong>task2</strong>
-<ul>
-<li><a href="https://bovenpeng.github.io/2020/02/14/t2-%E6%96%87%E6%9C%AC%E9%A2%84%E5%A4%84%E7%90%86/" target="_blank" rel="noopener">文本预处理</a></li>
-<li><a href="https://bovenpeng.github.io/2020/02/14/t2-%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/" target="_blank" rel="noopener">语言模型</a></li>
-<li><a href="https://bovenpeng.github.io/2020/02/14/t2-%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B/" target="_blank" rel="noopener">RNN基础</a></li>
+<li><p>需要注意，初始化 <code>fastP</code>, <code>slowP</code>快慢指针的时候的判别条件。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!head || !head-&gt;next)   <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">ListNode* slowP = head;</span><br><span class="line">ListNode* fastP = head-&gt;next;</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>判断是否有环</strong> &lt;=&gt; <strong>判断是否指针指向<code>nullptr</code>处</strong>. 判断指针是否指向<code>nullptr</code>处的常数项系数更小。</p>
+<p>注意此时的循环/条件语句的判别条件。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (slowP != fastP)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// CUZ fastP 快些，所以fastP/ fastP-&gt;next为null之后，就说明 无环了</span></span><br><span class="line">    <span class="keyword">if</span> (!fastP || !fastP-&gt;next) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 </ul></li>
 </ul>
 
@@ -509,6 +496,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/链表/" rel="tag"># 链表</a>
+          
+            <a href="/tags/双指针/" rel="tag"># 双指针</a>
+          
+        </div>
+      
 
       
       
@@ -518,8 +513,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/02/14/t2-RNN基础/" rel="next" title="t2-RNN基础">
-                <i class="fa fa-chevron-left"></i> t2-RNN基础
+              <a href="/2020/02/16/pytorch-APIS/" rel="next" title="pytorch_APIS">
+                <i class="fa fa-chevron-left"></i> pytorch_APIS
               </a>
             
           </div>
@@ -527,6 +522,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/19/leetcode题解-66-加一/" rel="prev" title="leetcode题解-66-加一">
+                leetcode题解-66-加一 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -595,7 +594,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">115</span>
+                    <span class="site-state-item-count">119</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -781,7 +780,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">63</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">66</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -819,7 +824,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#动手深度学习各个task总结汇总"><span class="nav-number">1.</span> <span class="nav-text">动手深度学习各个task总结汇总</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目"><span class="nav-number">1.</span> <span class="nav-text">题目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#哈希表"><span class="nav-number">1.1.</span> <span class="nav-text">哈希表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#双指针法"><span class="nav-number">1.2.</span> <span class="nav-text">双指针法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
