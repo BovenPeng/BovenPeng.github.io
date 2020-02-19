@@ -96,14 +96,17 @@
 
 
 
-  <meta property="og:type" content="article">
+  <meta name="description" content="卷积神经网络 卷积操作的本质特性 稀疏交互（Sparse Interaction） 在传统神经网络中，网络层之间输入与输出的连接关系可以由一个权值参数矩阵来表示，其中每个单独的参数值都表示了前后层某两个神经元节点之间的交互。对于全连接网络，任意一对输入与输出神经元之间都产生交互，形成稠密的连接结构。 而在卷积神经网络中，卷积核尺度远小于输入的维度，这样每个输出神经元仅与前一层特定局部区域内">
+<meta property="og:type" content="article">
 <meta property="og:title" content="t3_3_卷积神经网络">
 <meta property="og:url" content="http://yoursite.com/2020/02/19/t3-3-卷积神经网络/index.html">
 <meta property="og:site_name" content="Boven&#39;s Blog">
+<meta property="og:description" content="卷积神经网络 卷积操作的本质特性 稀疏交互（Sparse Interaction） 在传统神经网络中，网络层之间输入与输出的连接关系可以由一个权值参数矩阵来表示，其中每个单独的参数值都表示了前后层某两个神经元节点之间的交互。对于全连接网络，任意一对输入与输出神经元之间都产生交互，形成稠密的连接结构。 而在卷积神经网络中，卷积核尺度远小于输入的维度，这样每个输出神经元仅与前一层特定局部区域内">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-02-19T13:59:40.420Z">
+<meta property="og:updated_time" content="2020-02-19T14:00:12.564Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="t3_3_卷积神经网络">
+<meta name="twitter:description" content="卷积神经网络 卷积操作的本质特性 稀疏交互（Sparse Interaction） 在传统神经网络中，网络层之间输入与输出的连接关系可以由一个权值参数矩阵来表示，其中每个单独的参数值都表示了前后层某两个神经元节点之间的交互。对于全连接网络，任意一对输入与输出神经元之间都产生交互，形成稠密的连接结构。 而在卷积神经网络中，卷积核尺度远小于输入的维度，这样每个输出神经元仅与前一层特定局部区域内">
 
 
 
@@ -413,7 +416,7 @@
                 
               
 
-              <time title="创建时间：2020-02-19 21:55:42 / 修改时间：21:59:40" itemprop="dateCreated datePublished" datetime="2020-02-19T21:55:42+08:00">2020-02-19</time>
+              <time title="创建时间：2020-02-19 21:55:42 / 修改时间：22:00:12" itemprop="dateCreated datePublished" datetime="2020-02-19T21:55:42+08:00">2020-02-19</time>
             
 
             
@@ -470,7 +473,17 @@
       
 
       
-        
+        <h2 id="卷积神经网络">卷积神经网络</h2>
+<h3 id="卷积操作的本质特性">卷积操作的本质特性</h3>
+<h4 id="稀疏交互sparse-interaction">稀疏交互（Sparse Interaction）</h4>
+<p>在传统神经网络中，网络层之间输入与输出的连接关系可以由一个权值参数矩阵来表示，其中每个单独的参数值都表示了前后层某两个神经元节点之间的交互。对于全连接网络，任意一对输入与输出神经元之间都产生交互，形成稠密的连接结构。</p>
+<p>而在卷积神经网络中，卷积核尺度远小于输入的维度，这样每个输出神经元仅与前一层特定局部区域内的神经元存在连接权重（即产生交互），我们称这种特性为<strong>稀疏交互</strong>。</p>
+<p><strong>稀疏交互的物理意义</strong>是，通常图像、文本、语音等现实世界中的数据都具有局部的特征结构，我们可以先学习局部的特征，再将局部的特征组合起来形成更复杂和抽象的特征。以人脸识别为例，最底层的神经元可以检测出各个角度的边缘特征（见图9.17（a））；位于中间层的神经元可以将边缘组合起来得到眼睛、鼻子、嘴巴等复杂特征（见图9.17（b））；最后，位于上层的神经元可以根据各个器官的组合检测出人脸的特征（见图9.17（c））。</p>
+<h3 id="参数共享parameter-sharing">参数共享（Parameter Sharing）</h3>
+<p><strong>参数共享</strong>是指在同一个模型的不同模块中使用相同的参数，它是卷积运算的固有属性。全连接网络中，计算每层的输出时，权值参数矩阵中的每个元素只作用于某个输入元素一次；而在卷积神经网络中，卷积核中的每一个元素将作用于每一次局部输入的特定位置上。根据参数共享的思想，我们只需要学习一组参数集合，而不需要针对每个位置的每个参数都进行优化，从而大大降低了模型的存储需求。</p>
+<p><strong>参数共享的物理意义</strong>是使得卷积层具有平移等变性。假如图像中有一只猫，那么无论它出现在图像中的任何位置，我们都应该将它识别为猫，也就是说神经网络的输出对于平移变换来说应当是等变的。特别地，当函数<span class="math inline">\(f (x)\)</span>与<span class="math inline">\(g(x)\)</span>满足<span class="math inline">\(f(g(x))=g( f (x))\)</span>时，我们称<span class="math inline">\(f (x)\)</span>关于变换<span class="math inline">\(g\)</span>具有等变性。将<span class="math inline">\(g\)</span>视为输入的任意平移函数，令<span class="math inline">\(I\)</span>表示输入图像（在整数坐标上的灰度值函数），平移变换后得到<span class="math inline">\(I’=g(I)\)</span>。</p>
+<p>例如，我们把猫的图像向右移动<span class="math inline">\(l\)</span>像素，满足<span class="math inline">\(I’(x,y)=I(x−l,y)\)</span>。我们令f表示卷积函数，根据其性质，我们很容易得到<span class="math inline">\(g( f(I))=f (I’)=f (g(I ))\)</span>。也就是说，在猫的图片上先进行卷积，再向右平移<span class="math inline">\(l\)</span>像素的输出，与先将图片向右平移<span class="math inline">\(l\)</span>像素再进行卷积操作的输出结果是相等的。</p>
+<p>To be continued...</p>
 
       
     </div>
@@ -553,8 +566,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -788,6 +810,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#卷积神经网络"><span class="nav-number">1.</span> <span class="nav-text">卷积神经网络</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#卷积操作的本质特性"><span class="nav-number">1.1.</span> <span class="nav-text">卷积操作的本质特性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#稀疏交互sparse-interaction"><span class="nav-number">1.1.1.</span> <span class="nav-text">稀疏交互（Sparse Interaction）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数共享parameter-sharing"><span class="nav-number">1.2.</span> <span class="nav-text">参数共享（Parameter Sharing）</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
