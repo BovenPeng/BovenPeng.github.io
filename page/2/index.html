@@ -373,7 +373,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/14/t1-linear-regression-md/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/14/t1-MLP/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bowen Peng">
@@ -393,7 +393,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/02/14/t1-linear-regression-md/" class="post-title-link" itemprop="url">t1_linear_regression</a>
+                <a href="/2020/02/14/t1-MLP/" class="post-title-link" itemprop="url">t1_MLP.md</a>
               
             
           </h1>
@@ -418,7 +418,173 @@
                 
               
 
-              <time title="创建时间：2020-02-14 21:26:12" itemprop="dateCreated datePublished" datetime="2020-02-14T21:26:12+08:00">2020-02-14</time>
+              <time title="创建时间：2020-02-14 21:27:58 / 修改时间：21:38:13" itemprop="dateCreated datePublished" datetime="2020-02-14T21:27:58+08:00">2020-02-14</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/动手深度学习/" itemprop="url" rel="index"><span itemprop="name">动手深度学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="mlp">MLP</h2>
+<p>多层感知机就是含有至少一个隐藏层的由全连接层组成的神经网络，且每个隐藏层的输出通过激活函数进行变换。多层感知机的层数和各隐藏层中隐藏单元个数都是超参数。</p>
+<h3 id="定义模型">定义模型</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">num_inputs, num_outputs, num_hiddens = <span class="number">784</span>, <span class="number">10</span>, <span class="number">256</span></span><br><span class="line"></span><br><span class="line">net = nn.Sequential(</span><br><span class="line">        d2l.FlattenLayer(),</span><br><span class="line">        nn.Linear(num_inputs, num_hiddens),</span><br><span class="line">        nn.ReLU(),</span><br><span class="line">        nn.Linear(num_hiddens, num_outputs),</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> params <span class="keyword">in</span> net.parameters():</span><br><span class="line">	init.normal_(params, mean=<span class="number">0</span>, std=<span class="number">0.01</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="reference">Reference</h2>
+<p><a href="https://zhuanlan.zhihu.com/p/23937778" target="_blank" rel="noopener">神经网络快速入门：什么是多层感知器和反向传播？ - 机器之心的文章 - 知乎</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/14/t1-softmax-md/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bowen Peng">
+      <meta itemprop="description" content="something about myself and my career development.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boven's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/02/14/t1-softmax-md/" class="post-title-link" itemprop="url">t1_softmax</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-02-14 21:27:42" itemprop="dateCreated datePublished" datetime="2020-02-14T21:27:42+08:00">2020-02-14</time>
             
 
             
@@ -435,7 +601,349 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-02-19 02:00:06" itemprop="dateModified" datetime="2020-02-19T02:00:06+08:00">2020-02-19</time>
+                <time title="修改时间：2020-02-19 01:59:51" itemprop="dateModified" datetime="2020-02-19T01:59:51+08:00">2020-02-19</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/动手深度学习/" itemprop="url" rel="index"><span itemprop="name">动手深度学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="softmax">softmax</h2>
+<p>搜了几篇文章看了，和手推了<code>softmax</code>, 交叉熵公式。</p>
+<p><a href="https://zhuanlan.zhihu.com/p/62919791" target="_blank" rel="noopener">这篇文章</a>给了一个为什么要用<code>softmax</code> + <code>cross entropy</code>的解释，</p>
+<p>因为在反向传播时传递的同样是预测值与label值的偏差，即 <span class="math inline">\(y_i - t_i\)</span> .</p>
+<p>与均方误差在反向传播时传递的是预测值与label值的偏差一样。</p>
+<h3 id="将模型training过程封装起来">将模型training过程封装起来</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">num_epochs, lr = <span class="number">5</span>, <span class="number">0.1</span></span><br><span class="line"><span class="comment"># 本函数已保存在d2lzh包中⽅方便便以后使⽤用</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train_ch3</span><span class="params">(net, train_iter, test_iter, loss, num_epochs,</span></span></span><br><span class="line"><span class="function"><span class="params">batch_size, params=None, lr=None, optimizer=None)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> range(num_epochs):</span><br><span class="line">    	train_l_sum, train_acc_sum, n = <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> X, y <span class="keyword">in</span> train_iter:</span><br><span class="line">    	y_hat = net(X)</span><br><span class="line">    l = loss(y_hat, y).sum()</span><br><span class="line">    <span class="comment"># 梯度清零</span></span><br><span class="line">    <span class="keyword">if</span> optimizer <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">    	optimizer.zero_grad()</span><br><span class="line">    <span class="keyword">elif</span> params <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">and</span> params[<span class="number">0</span>].grad <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">for</span> param <span class="keyword">in</span> params:</span><br><span class="line">       		param.grad.data.zero_()</span><br><span class="line">    l.backward()</span><br><span class="line">    <span class="keyword">if</span> optimizer <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">    	d2l.sgd(params, lr, batch_size)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">    	optimizer.step() </span><br><span class="line">    	</span><br><span class="line">    	</span><br><span class="line">        train_l_sum += l.item()</span><br><span class="line">        train_acc_sum += (y_hat.argmax(dim=<span class="number">1</span>) ==</span><br><span class="line">        y).sum().item()</span><br><span class="line">        n += y.shape[<span class="number">0</span>]</span><br><span class="line">    test_acc = evaluate_accuracy(test_iter, net)</span><br><span class="line">    print(<span class="string">'epoch %d, loss %.4f, train acc %.3f, test acc %.3f'</span></span><br><span class="line">    % (epoch + <span class="number">1</span>, train_l_sum / n, train_acc_sum / n,</span><br><span class="line">    test_acc))</span><br><span class="line"></span><br><span class="line">train_ch3(net, train_iter, test_iter, cross_entropy, num_epochs,</span><br><span class="line">batch_size, [W, b], lr)</span><br></pre></td></tr></table></figure>
+<h2 id="references">References</h2>
+<p><a href="https://www.zhihu.com/question/294679135/answer/885285177" target="_blank" rel="noopener">softmax和cross-entropy是什么关系？ - 董鑫的回答 - 知乎</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/27223959" target="_blank" rel="noopener">Softmax函数与交叉熵 - 杀手XIII的文章 - 知乎</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/62919791" target="_blank" rel="noopener">为什么softmax搭配cross entropy是解决分类问题的通用方案？ - 教练我想学挖掘机的文章 - 知乎</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/14/t1-softmax/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bowen Peng">
+      <meta itemprop="description" content="something about myself and my career development.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boven's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/02/14/t1-softmax/" class="post-title-link" itemprop="url">t1_softmax.md</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-02-14 21:27:42 / 修改时间：21:30:25" itemprop="dateCreated datePublished" datetime="2020-02-14T21:27:42+08:00">2020-02-14</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/动手深度学习/" itemprop="url" rel="index"><span itemprop="name">动手深度学习</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="softmax">softmax</h2>
+<p>搜了几篇文章看了，和手推了<code>softmax</code>, 交叉熵公式。</p>
+<p><a href="https://zhuanlan.zhihu.com/p/62919791" target="_blank" rel="noopener">这篇文章</a>给了一个为什么要用<code>softmax</code> + <code>cross entropy</code>的解释，</p>
+<p>因为在反向传播时传递的同样是预测值与label值的偏差，即 <span class="math inline">\(y_i - t_i\)</span> .</p>
+<p>与均方误差在反向传播时传递的是预测值与label值的偏差一样。</p>
+<h3 id="将模型training过程封装起来">将模型training过程封装起来</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">num_epochs, lr = <span class="number">5</span>, <span class="number">0.1</span></span><br><span class="line"><span class="comment"># 本函数已保存在d2lzh包中⽅方便便以后使⽤用</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train_ch3</span><span class="params">(net, train_iter, test_iter, loss, num_epochs,</span></span></span><br><span class="line"><span class="function"><span class="params">batch_size, params=None, lr=None, optimizer=None)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> range(num_epochs):</span><br><span class="line">    	train_l_sum, train_acc_sum, n = <span class="number">0.0</span>, <span class="number">0.0</span>, <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> X, y <span class="keyword">in</span> train_iter:</span><br><span class="line">    	y_hat = net(X)</span><br><span class="line">    l = loss(y_hat, y).sum()</span><br><span class="line">    <span class="comment"># 梯度清零</span></span><br><span class="line">    <span class="keyword">if</span> optimizer <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">    	optimizer.zero_grad()</span><br><span class="line">    <span class="keyword">elif</span> params <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span> <span class="keyword">and</span> params[<span class="number">0</span>].grad <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">for</span> param <span class="keyword">in</span> params:</span><br><span class="line">       		param.grad.data.zero_()</span><br><span class="line">    l.backward()</span><br><span class="line">    <span class="keyword">if</span> optimizer <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">    	d2l.sgd(params, lr, batch_size)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">    	optimizer.step() </span><br><span class="line">    	</span><br><span class="line">    	</span><br><span class="line">        train_l_sum += l.item()</span><br><span class="line">        train_acc_sum += (y_hat.argmax(dim=<span class="number">1</span>) ==</span><br><span class="line">        y).sum().item()</span><br><span class="line">        n += y.shape[<span class="number">0</span>]</span><br><span class="line">    test_acc = evaluate_accuracy(test_iter, net)</span><br><span class="line">    print(<span class="string">'epoch %d, loss %.4f, train acc %.3f, test acc %.3f'</span></span><br><span class="line">    % (epoch + <span class="number">1</span>, train_l_sum / n, train_acc_sum / n,</span><br><span class="line">    test_acc))</span><br><span class="line"></span><br><span class="line">train_ch3(net, train_iter, test_iter, cross_entropy, num_epochs,</span><br><span class="line">batch_size, [W, b], lr)</span><br></pre></td></tr></table></figure>
+<h2 id="references">References</h2>
+<p><a href="https://www.zhihu.com/question/294679135/answer/885285177" target="_blank" rel="noopener">softmax和cross-entropy是什么关系？ - 董鑫的回答 - 知乎</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/27223959" target="_blank" rel="noopener">Softmax函数与交叉熵 - 杀手XIII的文章 - 知乎</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/62919791" target="_blank" rel="noopener">为什么softmax搭配cross entropy是解决分类问题的通用方案？ - 教练我想学挖掘机的文章 - 知乎</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/14/t1-linear-regression/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Bowen Peng">
+      <meta itemprop="description" content="something about myself and my career development.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Boven's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/02/14/t1-linear-regression/" class="post-title-link" itemprop="url">t1_linear_regression.md</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-02-14 21:26:12 / 修改时间：21:44:24" itemprop="dateCreated datePublished" datetime="2020-02-14T21:26:12+08:00">2020-02-14</time>
+            
+
+            
+              
+
               
             
           </span>
@@ -596,7 +1104,7 @@ l(\theta) = \frac{1}{2n}(\hat{y} - y)^T(\hat{y} - y)\\
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/14/t1-linear-regression/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/14/t1-linear-regression-md/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Bowen Peng">
@@ -616,7 +1124,7 @@ l(\theta) = \frac{1}{2n}(\hat{y} - y)^T(\hat{y} - y)\\
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/02/14/t1-linear-regression/" class="post-title-link" itemprop="url">t1_linear_regression.md</a>
+                <a href="/2020/02/14/t1-linear-regression-md/" class="post-title-link" itemprop="url">t1_linear_regression</a>
               
             
           </h1>
@@ -641,12 +1149,24 @@ l(\theta) = \frac{1}{2n}(\hat{y} - y)^T(\hat{y} - y)\\
                 
               
 
-              <time title="创建时间：2020-02-14 21:26:12 / 修改时间：21:44:24" itemprop="dateCreated datePublished" datetime="2020-02-14T21:26:12+08:00">2020-02-14</time>
+              <time title="创建时间：2020-02-14 21:26:12" itemprop="dateCreated datePublished" datetime="2020-02-14T21:26:12+08:00">2020-02-14</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-02-19 02:00:06" itemprop="dateModified" datetime="2020-02-19T02:00:06+08:00">2020-02-19</time>
               
             
           </span>
@@ -1556,455 +2076,11 @@ LCP(S_1 ...S_n) = LCP(LCP(LCP(S_1, S_2), S_3), ...Sn)
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/23/leetcode题解-242-有效的字母异位词/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bowen Peng">
-      <meta itemprop="description" content="something about myself and my career development.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Boven's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/01/23/leetcode题解-242-有效的字母异位词/" class="post-title-link" itemprop="url">leetcode题解-242-有效的字母异位词</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-01-23 22:35:25 / 修改时间：23:11:41" itemprop="dateCreated datePublished" datetime="2020-01-23T22:35:25+08:00">2020-01-23</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目"><a href="https://leetcode-cn.com/problems/valid-anagram/" target="_blank" rel="noopener">题目</a></h2>
-<h3 id="my-way">My way</h3>
-<h4 id="c实现">c++实现</h4>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isAnagram</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> t)</span> </span>&#123;</span><br><span class="line">        <span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt; m;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (s.size() &lt; t.size())    swap(s, t);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; it : s)</span><br><span class="line">        &#123;</span><br><span class="line">            --m[it];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; it: t)</span><br><span class="line">        &#123;</span><br><span class="line">            ++m[it];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; it: m)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (it.second != <span class="number">0</span>)  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>利用哈希表构成一个<strong>计数器</strong>的效果。</li>
-<li>利用<code>ctor</code>初始化<code>int</code>变量默认值是0，
-<ul>
-<li>在<code>s</code>里出现过，则自减1；</li>
-<li>在<code>t</code>里出现过，则自增1；</li>
-</ul></li>
-<li>要注意，<code>s</code>, <code>t</code>字符串的大小可能不一样。所以需要在计数前，交换一次。</li>
-</ul>
-<h3 id="官方-way"><a href="https://leetcode-cn.com/problems/valid-anagram/solution/you-xiao-de-zi-mu-yi-wei-ci-by-leetcode/" target="_blank" rel="noopener">官方 way</a></h3>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isAnagram</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> t)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (s.size() != t.size())   <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> counter[<span class="number">26</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">size_t</span> i = <span class="number">0</span>; i &lt; s.size(); ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            ++counter[s[i] - <span class="string">'a'</span>];</span><br><span class="line">            --counter[t[i] - <span class="string">'a'</span>];</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span>&amp; it: counter)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (it != <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>利用一个<code>int</code>数组构造出一个计数器</li>
-</ul>
-<h2 id="references">References</h2>
-<p>https://leetcode-cn.com/problems/valid-anagram/solution/you-xiao-de-zi-mu-yi-wei-ci-by-leetcode/</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/19/leetcode题解-84-柱状图中最大的矩形/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bowen Peng">
-      <meta itemprop="description" content="something about myself and my career development.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Boven's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/01/19/leetcode题解-84-柱状图中最大的矩形/" class="post-title-link" itemprop="url">leetcode题解-84-柱状图中最大的矩形</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-01-19 18:25:12 / 修改时间：18:25:13" itemprop="dateCreated datePublished" datetime="2020-01-19T18:25:12+08:00">2020-01-19</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/test-env-transform-on-same-PC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Bowen Peng">
-      <meta itemprop="description" content="something about myself and my career development.">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Boven's Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/01/14/test-env-transform-on-same-PC/" class="post-title-link" itemprop="url">test env transform on same PC</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-01-14 19:52:10" itemprop="dateCreated datePublished" datetime="2020-01-14T19:52:10+08:00">2020-01-14</time>
-            
-
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/12/">12</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/13/">13</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -2046,7 +2122,7 @@ LCP(S_1 ...S_n) = LCP(LCP(LCP(S_1, S_2), S_3), ...Sn)
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">119</span>
+                    <span class="site-state-item-count">122</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>t3_3_卷积神经网络</title>
+    <url>/2020/02/19/t3-3-%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[
+]]></content>
+      <categories>
+        <category>动手深度学习</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>t3_2_Attention机制和Seq2Seq模型</title>
+    <url>/2020/02/19/t3-2-Attention%E6%9C%BA%E5%88%B6%E5%92%8CSeq2Seq%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[
+]]></content>
+      <categories>
+        <category>动手深度学习</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>t3_1_过拟合,欠拟合及其解决方案</title>
+    <url>/2020/02/19/t3-1-%E8%BF%87%E6%8B%9F%E5%90%88-%E6%AC%A0%E6%8B%9F%E5%90%88%E5%8F%8A%E5%85%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[<h2 id="过拟合欠拟合及其解决方案">过拟合,欠拟合及其解决方案</h2>
+<p>过拟合**是指模型对于训练数据拟合呈过当的情况，反映到评估指标上，就是模型在训练集上的表现很好，但在测试集和新数据上的表现较差。</p>
+<p><strong>欠拟合</strong>指的是模型在训练和预测时表现都不好的情况。</p>
+<h3 id="如何减少过拟合">如何减少过拟合</h3>
+<p>（1）<strong>从数据入手，获得更多的训练数据</strong>。使用更多的训练数据是解决过拟合问题最有效的手段，因为更多的样本能够让模型学习到更多更有效的特征，减小噪声的影响。当然，直接增加实验数据一般是很困难的，但是可以通过一定的规则来扩充训练数据。比如，在图像分类的问题上，可以通过图像的平移、旋转、缩放等方式扩充数据；更进一步地，可以使用生成式对抗网络来合成大量的新训练数据。 （2）<strong>降低模型复杂度</strong>。在数据较少时，模型过于复杂是产生过拟合的主要因素，适当降低模型复杂度可以避免模型拟合过多的采样噪声。例如，在神经网络模型中减少网络层数、神经元个数等；在决策树模型中降低树的深度、进行剪枝等。 （3）<strong>正则化方法</strong>。给模型的参数加上一定的正则约束，比如将权值的大小加入到损失函数中。</p>
+<p>（4）<strong>集成学习方法</strong>。集成学习是把多个模型集成在一起，来降低单一模型的过拟合风险，如Bagging方法</p>
+<h2 id="降低欠拟合风险的方法">降低“欠拟合”风险的方法</h2>
+<p>（1）<strong>添加新特征</strong>。当特征不足或者现有特征与样本标签的相关性不强时，模型容易出现欠拟合。通过挖掘“上下文特征”“ID类特征”“组合特征”等新的特征，往往能够取得更好的效果。在深度学习潮流中，有很多模型可以帮助完成特征工程，如因子分解机、梯度提升决策树、Deep-crossing等都可以成为丰富特征的方法。 （2）<strong>增加模型复杂度</strong>。简单模型的学习能力较差，通过增加模型的复杂度可以使模型拥有更强的拟合能力。例如，在线性模型中添加高次项，在神经网络模型中增加网络层数或神经元个数等。 （3）<strong>减小正则化系数</strong>。正则化是用来防止过拟合的，但当模型出现欠拟合现象时，则需要有针对性地减小正则化系数。</p>
+]]></content>
+      <categories>
+        <category>动手深度学习</category>
+      </categories>
+  </entry>
+  <entry>
     <title>leetcode题解-66-加一</title>
     <url>/2020/02/19/leetcode%E9%A2%98%E8%A7%A3-66-%E5%8A%A0%E4%B8%80/</url>
     <content><![CDATA[<h2 id="题目"><a href="https://leetcode-cn.com/problems/plus-one/" target="_blank" rel="noopener">题目</a></h2>
@@ -247,8 +281,8 @@ P(w_1, w_2, w_3, w_4) = P(w_1)P(w_2|w_1)P(w_3|w_1,w_2)P(w_4|w_2, W_3)\\
       </categories>
   </entry>
   <entry>
-    <title>t1_MLP.md</title>
-    <url>/2020/02/14/t1-MLP/</url>
+    <title>t1_MLP</title>
+    <url>/2020/02/14/t1-MLP-md/</url>
     <content><![CDATA[<h2 id="mlp">MLP</h2>
 <p>多层感知机就是含有至少一个隐藏层的由全连接层组成的神经网络，且每个隐藏层的输出通过激活函数进行变换。多层感知机的层数和各隐藏层中隐藏单元个数都是超参数。</p>
 <h3 id="定义模型">定义模型</h3>
@@ -261,8 +295,8 @@ P(w_1, w_2, w_3, w_4) = P(w_1)P(w_2|w_1)P(w_3|w_1,w_2)P(w_4|w_2, W_3)\\
       </categories>
   </entry>
   <entry>
-    <title>t1_MLP</title>
-    <url>/2020/02/14/t1-MLP-md/</url>
+    <title>t1_MLP.md</title>
+    <url>/2020/02/14/t1-MLP/</url>
     <content><![CDATA[<h2 id="mlp">MLP</h2>
 <p>多层感知机就是含有至少一个隐藏层的由全连接层组成的神经网络，且每个隐藏层的输出通过激活函数进行变换。多层感知机的层数和各隐藏层中隐藏单元个数都是超参数。</p>
 <h3 id="定义模型">定义模型</h3>
@@ -313,8 +347,8 @@ P(w_1, w_2, w_3, w_4) = P(w_1)P(w_2|w_1)P(w_3|w_1,w_2)P(w_4|w_2, W_3)\\
       </categories>
   </entry>
   <entry>
-    <title>t1_linear_regression</title>
-    <url>/2020/02/14/t1-linear-regression-md/</url>
+    <title>t1_linear_regression.md</title>
+    <url>/2020/02/14/t1-linear-regression/</url>
     <content><![CDATA[<h2 id="线性回归">线性回归</h2>
 <h3 id="表达式表示">表达式表示</h3>
 <p><span class="math display">\[
@@ -372,8 +406,8 @@ l(\theta) = \frac{1}{2n}(\hat{y} - y)^T(\hat{y} - y)\\
       </categories>
   </entry>
   <entry>
-    <title>t1_linear_regression.md</title>
-    <url>/2020/02/14/t1-linear-regression/</url>
+    <title>t1_linear_regression</title>
+    <url>/2020/02/14/t1-linear-regression-md/</url>
     <content><![CDATA[<h2 id="线性回归">线性回归</h2>
 <h3 id="表达式表示">表达式表示</h3>
 <p><span class="math display">\[
